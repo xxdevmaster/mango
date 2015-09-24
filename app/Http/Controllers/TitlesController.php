@@ -57,7 +57,7 @@ class TitlesController extends Controller
         $company_films = $company_films->keyBy('id');
         $store_films = $store_films->keyBy('id');
         $films = $company_films->merge($store_films);
-        dd($films);
+        //dd($films);
         //$store_films = $store_films->toArray();
         //(new Dumper)->dump($store_films[0]['stores']);
         //(new Dumper)->dump($store_films[0]['films']);
@@ -66,6 +66,6 @@ class TitlesController extends Controller
 
         //(new Dumper)->dump($last_query = end($queries));
 
-        return view('titles.list', compact('store_films', 'current_menu'));
+        return view('titles.list', compact('films', 'current_menu'));
     }
 }
