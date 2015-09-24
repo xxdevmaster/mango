@@ -55,7 +55,7 @@
             </a>
             <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
                 <li><a href="profile.html"><i class="fa fa-briefcase"></i>Profile</a></li>
-                <li><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                <li><a href="{{ action('AuthController@logout')  }}"><i class="fa fa-sign-out"></i> Log Out</a></li>
             </ul>
         </li>
         <!-- user login dropdown end -->

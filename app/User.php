@@ -38,6 +38,9 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['pass', 'remember_token'];
 
+
+    public $timestamps = false;
+
     /**
      * @return mixed
      */

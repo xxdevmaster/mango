@@ -9,8 +9,15 @@ use DB;
 
 class TitlesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     //
     public function index(){
+
+        $current_menu = 'allTitles';
 
         DB::enableQueryLog();
 
@@ -43,6 +50,6 @@ class TitlesController extends Controller
 
         //(new Dumper)->dump($last_query = end($queries));
 
-        return view('titles.list', compact('store_films'));
+        return view('titles.list', compact('store_films', 'current_menu'));
     }
 }

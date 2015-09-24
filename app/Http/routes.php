@@ -19,7 +19,7 @@
     return view('welcome');
 });*/
 
-Route::get('/', 'TitlesController@listAll');
+Route::get('/', 'MainController@dashboard');
 
 // Authentication routes...
 Route::get('auth/login/{login}/{password}', 'AuthController@login');
