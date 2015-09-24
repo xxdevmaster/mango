@@ -1,10 +1,10 @@
 <!-- Navbar Start -->
 <nav class="navigation">
     <ul class="list-unstyled">
-        <li><a href="index.html"><i class="ion-home"></i> <span class="nav-label">Dashboard</span></a></li>
-        <li class="has-submenu"><a href="#"><i class="ion-flask"></i> <span class="nav-label">General</span></a>
+        <li {{ ($current_menu == 'dashboard')?'class=active':''  }}><a href="/"><i class="ion-home"></i> <span class="nav-label">Dashboard</span></a></li>
+        <li class="has-submenu {{ ($current_menu == 'allTitles')?'active':''  }}"><a href="#"><i class="ion-flask"></i> <span class="nav-label">General</span></a>
             <ul class="list-unstyled">
-                <li><a href="{{ action('TitlesController@index') }}">All Titles (Total 100)</a></li>
+                <li {{ ($current_menu == 'allTitles')?'class=active':''  }}><a href="{{ action('TitlesController@index') }}">All Titles (Total 100)</a></li>
                 <li><a href="buttons.html">Sales</a></li>
             </ul>
         </li>

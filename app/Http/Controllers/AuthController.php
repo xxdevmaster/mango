@@ -39,6 +39,12 @@ class AuthController extends Controller
         }
     }
 
+    public function logout(){
+        Auth::logout();
+
+        return redirect('http://cinehost-back.loc');
+    }
+
     private function getToken($user_id)
     {
         $token = md5(time().$user_id.rand(1, 5000));
