@@ -25,6 +25,4 @@ Route::get('/', 'TitlesController@listAll');
 Route::get('auth/login/{login}/{password}', 'AuthController@login');
 Route::get('auth/logout', 'AuthController@logout');
 
-
-
 Route::resource('titles', 'TitlesController');
