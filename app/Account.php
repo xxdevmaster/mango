@@ -21,6 +21,10 @@ class Account extends Model
         return $this->belongsTo('App\Store', 'platforms_id');
     }
 
+    public function features(){
+        return $this->belongsToMany('App\Features', 'fk_accounts_features', 'accounts_id', 'features_id');
+    }
+
 
 
 

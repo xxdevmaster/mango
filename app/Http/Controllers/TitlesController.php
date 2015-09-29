@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Http\Requests;
+use Bican\Roles\Models\Role;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Debug\Dumper;
 use DB;
@@ -25,8 +26,29 @@ class TitlesController extends Controller
         $user_info = Auth::user();
        // (new Dumper)->dump($user_info->toArray());
 
+
+        /*   $adminRole = Role::create([
+               'name' => 'God1',
+               'slug' => 'moxito1'
+           ]);
+
+        $adminRole = Role::all();
+        $user_info->attachRole($adminRole[0]);
+        dd($adminRole);
+
+
+        if($user_info->is('moxito1')) echo "haaaa";
+
+        die();
+*/
+
+
+
         $account_info = $user_info->account;
         //(new Dumper)->dump($account_info->toArray());
+
+        $account_features = $account_info->features;
+        (new Dumper)->dump($account_features->toArray());
 
         $company_info = $account_info->company;
         //(new Dumper)->dump($company_info->toArray());
