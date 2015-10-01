@@ -19,7 +19,7 @@
         @foreach($account_users as $user)
             @if($user->is('owner'))
                 <tr>
-                  <td class="userName"><span class="name"> Quincy Newell</span></td>
+                  <td class="userName"><span class="name">{{ $user->person  }}</span></td>
                   <td class="cmsRole">&nbsp;Owner</td>
                   <td colspan="9"></td>
                   <td> </td>
@@ -27,8 +27,9 @@
             @else
                 <tr rel="436">
                     <input type="hidden" name="users[]" value="436">
-                    <td class="userName"><span class="name">{{ $user->title  }}</span></td>
-                    <td class="cmsRole"><select name="cms_role_436" id="cms_role_436" class="cmsRoleSelect "><option value="1" selected="selected">Administrator</option><option value="2">Manager</option><option value="3">Accountant</option><option value="4">Custom</option></select></td>
+                    <td class="userName"><span class="name">{{ $user->person  }}</span></td>
+                    <td class="cmsRole">
+                        <select name="cms_role_436" id="cms_role_436" class="cmsRoleSelect "><option value="1" selected="selected">Administrator</option><option value="2">Manager</option><option value="3">Accountant</option><option value="4">Custom</option></select></td>
                     <td><input type="checkbox" checked="checked" name="rights[436][]" value="metadata" class="perms"></td> <td><input type="checkbox" checked="checked" name="rights[436][]" value="rights" class="perms"></td> <td><input type="checkbox" checked="checked" name="rights[436][]" value="media" class="perms"></td> <td><input type="checkbox" checked="checked" name="rights[436][]" value="interface" class="perms"></td> <td><input type="checkbox" checked="checked" name="rights[436][]" value="subscriptions" class="perms"></td> <td><input type="checkbox" checked="checked" name="rights[436][]" value="channels" class="perms"></td> <td><input type="checkbox" checked="checked" name="rights[436][]" value="users" class="perms"></td> <td><input type="checkbox" checked="checked" name="rights[436][]" value="livepublishing" class="perms"></td> <td><input type="checkbox" checked="checked" name="rights[436][]" value="sales" class="perms"></td>
                     <td>
                          <div class="dropdown pull-right">
