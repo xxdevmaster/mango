@@ -22,7 +22,7 @@ class TitlesController extends Controller
         DB::enableQueryLog();
 
         $user_info = Auth::user();
-       // (new Dumper)->dump($user_info->toArray());
+       //(new Dumper)->dump($user_info->toArray());
 
         $account_info = $user_info->account;
         //(new Dumper)->dump($account_info->toArray());
