@@ -42,7 +42,7 @@ class TitlesController extends Controller
         die();
 */
 
-die();
+
 
         $account_info = $user_info->account;
         //(new Dumper)->dump($account_info->toArray());
