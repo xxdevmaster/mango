@@ -21,7 +21,7 @@ class TitlesController extends Controller
 
         $current_menu = 'allTitles';
 
-        DB::enableQueryLog();
+        //DB::enableQueryLog();
 
         $user_info = Auth::user();
        // (new Dumper)->dump($user_info->toArray());
@@ -48,7 +48,7 @@ class TitlesController extends Controller
         //(new Dumper)->dump($account_info->toArray());
 
         $account_features = $account_info->features;
-        (new Dumper)->dump($account_features->toArray());
+        //(new Dumper)->dump($account_features->toArray());
 
         $company_info = $account_info->company;
         //(new Dumper)->dump($company_info->toArray());

@@ -22,4 +22,7 @@ Route::group(['middleware' => 'auth'], function()
 {
     Route::get('/', 'MainController@dashboard');
     Route::resource('titles', 'TitlesController');
+
+
+    Route::get('account/users', 'Account\UsersController@listAll');
 });

@@ -10,7 +10,7 @@ class Account extends Model
 
     //
     public function users(){
-        return $this->hasMany('App\User');
+        return $this->hasMany('App\User', 'accounts_id');
     }
 
     public function company(){
