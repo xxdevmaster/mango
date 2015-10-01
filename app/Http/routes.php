@@ -11,18 +11,18 @@
 |
 */
 
-/*Route::get('/', function () {
-    var_dump(Auth::user());
-    echo "<pre>";
-    var_dump(Session::all());
-    echo "</pre>";
-    return view('welcome');
-});*/
 
-Route::get('/', 'MainController@dashboard');
 
 // Authentication routes...
 Route::get('auth/login/{login}/{password}', 'AuthController@login');
 Route::get('auth/logout', 'AuthController@logout');
 
-Route::resource('titles', 'TitlesController');
+
+Route::group(['middleware' => 'auth'], function()
+{
+    Route::get('/', 'MainController@dashboard');
+    Route::resource('titles', 'TitlesController');
+
+
+    Route::get('account/users', 'Account\UsersController@listAll');
+});

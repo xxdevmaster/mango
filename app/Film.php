@@ -14,4 +14,8 @@ class Film extends Model
         return $this->belongsToMany('App\Company', 'fk_films_owners', 'films_id', 'owner_id');
     }
 
+    public function baseContract(){
+        return $this->hasOne('App\BaseContracts', 'films_id');
+    }
+
 }

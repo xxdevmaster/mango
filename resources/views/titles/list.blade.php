@@ -1,10 +1,12 @@
 @extends('layout')
 
+{{--@asaha('dddccvbcbcb')--}}
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3 class="panel-title">Titles Filter</h3></div>
+                <div class="panel-heading"><h3 class="panel-title">Titles Filter </h3></div>
                 <div class="panel-body">
 
                     <form class="form-horizontal" role="form">
@@ -31,7 +33,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Datatable</h3>
+                    <h3 class="panel-title">Titles List</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -51,13 +53,13 @@
 
 
                                 <tbody>
-                                    @foreach ($store_films as $store_film)
+                                    @foreach ($films as $film)
                                     <tr>
-                                        <td><img src="http://cinecliq.assets.s3.amazonaws.com/files/{{ $store_film->films->cover }}" style="width:50px;"></td>
-                                        <td>{{ $store_film->films->id  }}</td>
-                                        <td>{{ $store_film->films->title }}</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
+                                        <td><img src="http://cinecliq.assets.s3.amazonaws.com/files/{{ $film->cover }}" style="width:50px;"></td>
+                                        <td>{{ $film->id  }}</td>
+                                        <td>{{ $film->title }}</td>
+                                        <td><span class="badge bg-primary" data-html="true" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $film->companies->implode('title', '</br>')  }}">{{ $film->companies->count() }}</span></td>
+                                        <td><span class="badge bg-primary" data-html="true" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $film->stores->implode('title', '</br>')  }}">{{ $film->stores->count() }}</span></td>
                                         <td> T  F </td>
                                         <td> Edit </td>
                                     </tr>

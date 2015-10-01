@@ -10,7 +10,7 @@ class Account extends Model
 
     //
     public function users(){
-        return $this->hasMany('App\User');
+        return $this->hasMany('App\User', 'accounts_id');
     }
 
     public function company(){
@@ -19,6 +19,10 @@ class Account extends Model
 
     public function store(){
         return $this->belongsTo('App\Store', 'platforms_id');
+    }
+
+    public function features(){
+        return $this->belongsToMany('App\Features', 'fk_accounts_features', 'accounts_id', 'features_id');
     }
 
 

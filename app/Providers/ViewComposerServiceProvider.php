@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class ViewComposerServiceProvider extends ServiceProvider
@@ -15,6 +16,12 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->composerHeader();
+
+        Blade::directive('asaha', function($expression) {
+            return "<?php echo 'nmnmnmnmn'.{$expression}; ?>";
+        });
+
+
     }
 
     /**
