@@ -4,7 +4,17 @@ use Illuminate\Support\Facades\Auth;
 
 class ViewComposer {
 
-    public function compose($view){
+    public function header($view){
+        $view->with('user', Auth::user());
+    }
+
+    public function nav($view){
+//        $user_info = Auth::user();
+/*
+
+            $permissions = $user_info->roles->first()->permissions;*/
+
+
         $view->with('user', Auth::user());
     }
 

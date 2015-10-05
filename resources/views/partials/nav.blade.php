@@ -40,7 +40,9 @@
         <li class="has-submenu"><a href="#"><i class="ion-stats-bars"></i> <span class="nav-label">Account Settings</span></a>
             <ul class="list-unstyled">
                 <li><a href="morris-chart.html">Account Details</a></li>
-                <li><a href="chartjs.html">Account Users</a></li>
+                @if($user->is('owner|administrator'))
+                    <li {{ ($current_menu == 'account_users')?'class=active':''  }}><a href="{{ action('Account\UsersController@listAll') }}">Account Users</a></li>
+                @endif
                 <li><a href="flot-chart.html">Payment Methods</a></li>
                 <li><a href="rickshaw-chart.html">Banking Info</a></li>
                 <li><a href="peity-chart.html">Storage</a></li>

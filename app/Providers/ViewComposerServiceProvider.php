@@ -16,6 +16,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->composerHeader();
+        $this->composerNav();
 
         Blade::directive('asaha', function($expression) {
             return "<?php echo 'nmnmnmnmn'.{$expression}; ?>";
@@ -36,6 +37,13 @@ class ViewComposerServiceProvider extends ServiceProvider
 
     public function composerHeader()
     {
-        view()->composer('partials.header', 'App\Http\Composers\ViewComposer');
+        view()->composer('partials.header', 'App\Http\Composers\ViewComposer@header');
     }
+
+    public function composerNav()
+    {
+        view()->composer('partials.nav', 'App\Http\Composers\ViewComposer@nav');
+    }
+
+
 }

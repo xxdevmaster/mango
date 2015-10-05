@@ -24,5 +24,9 @@ Route::group(['middleware' => 'auth'], function()
     Route::resource('titles', 'TitlesController');
 
 
-    Route::get('account/users', 'Account\UsersController@listAll');
+    Route::get('account/users', [
+        'as' => 'example',
+        'middleware' => 'role:owner|administrator',
+        'uses' => 'Account\UsersController@listAll',
+    ]);
 });
