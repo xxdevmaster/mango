@@ -14,6 +14,8 @@
 
 
 // Authentication routes...
+Route::get('userInvitation/{tk}', 'UserInvitationController@index');
+Route::post('userInvitation/register', 'UserInvitationController@register');
 Route::get('auth/login/{login}/{password}', 'AuthController@login');
 Route::get('auth/logout', 'AuthController@logout');
 
@@ -25,8 +27,22 @@ Route::group(['middleware' => 'auth'], function()
 
 
     Route::get('account/users', [
-        'as' => 'example',
         'middleware' => 'role:owner|administrator',
         'uses' => 'Account\UsersController@listAll',
+    ]);
+    Route::post('account/users/update', [
+        'as' => 'example',
+        'middleware' => 'role:owner|administrator',
+        'uses' => 'Account\UsersController@update',
+    ]);
+    Route::post('account/users/invite', [
+        'as' => 'example',
+        'middleware' => 'role:owner|administrator',
+        'uses' => 'Account\UsersController@invite',
+    ]);
+    Route::post('account/users/reInvite', [
+        'as' => 'example',
+        'middleware' => 'role:owner|administrator',
+        'uses' => 'Account\UsersController@reInvite',
     ]);
 });

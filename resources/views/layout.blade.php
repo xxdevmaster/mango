@@ -30,12 +30,16 @@
         <!-- Custom styles for this template -->
         <link href="/css/style.css" rel="stylesheet">
         <link href="/css/helper.css" rel="stylesheet">
+        <link href="/css/cinehost.css" rel="stylesheet">
 
+        <script src="/js/jquery.js"></script>
+        <script src="/js/ArraySetMath.js"></script>
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
         <!--[if lt IE 9]>
           <script src="/js/html5shiv.js"></script>
           <script src="/js/respond.min.js"></script>
+
         <![endif]-->
 
     </head>
@@ -91,7 +95,7 @@
 
 
         <!-- js placed at the end of the document so the pages load faster -->
-        <script src="/js/jquery.js"></script>
+
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/pace.min.js"></script>
         <script src="/js/wow.min.js"></script>

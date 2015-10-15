@@ -1,0 +1,18 @@
+.accountProfiles th {
+    font-weight: normal;
+    height: 140px;
+    padding: 2px !important;
+    position: relative;
+    vertical-align: bottom !important;
+    width: 5px;
+}
+.vertical-text {
+    bottom: -2px;
+    float: left;
+    left: 0;
+    position: absolute;
+    transform: rotate(-50deg);
+    transform-origin: left top 0;
+    white-space: nowrap;
+    width: 10px;
+}
