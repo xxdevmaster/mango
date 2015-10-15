@@ -25,8 +25,7 @@ Route::group(['middleware' => 'auth'], function()
 
 
     Route::get('account/users', [
-        'as' => 'example',
-        'middleware' => 'role:owner|administrator',
+        'middleware' => ['access:users', 'role:owner,administrator'],
         'uses' => 'Account\UsersController@listAll',
     ]);
 });
