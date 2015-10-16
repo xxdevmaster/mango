@@ -16,7 +16,7 @@ class VerifyAccess
     public function handle($request, Closure $next, $access)
     {
         //echo ($access);
-        dd($access);
+        //dd($access);
         return $next($request);
     }
 }

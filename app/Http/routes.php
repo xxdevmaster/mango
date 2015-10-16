@@ -30,6 +30,12 @@ Route::group(['middleware' => 'auth'], function()
         'middleware' => ['access:users', 'role:owner,administrator'],
         'uses' => 'Account\UsersController@listAll',
     ]);
+
+    Route::get('account/features', [
+        'middleware' => ['access:users', 'role:owner,administrator'],
+        'uses' => 'Account\FeaturesController@features',
+    ]);
+
     Route::post('account/users/update', [
         'as' => 'example',
         'middleware' => 'role:owner|administrator',

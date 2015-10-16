@@ -27,6 +27,8 @@
         <!-- DataTables -->
         <link href="/assets/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 
+        <link href="/assets/toggles/toggles.css" rel="stylesheet" />
+
         <!-- Custom styles for this template -->
         <link href="/css/style.css" rel="stylesheet">
         <link href="/css/helper.css" rel="stylesheet">
