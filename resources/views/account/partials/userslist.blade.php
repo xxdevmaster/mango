@@ -23,88 +23,54 @@
     </thead>
     <tbody>
         @foreach($account_users as $user)
+            <?php
+                $userRolesCheckboxesHtml = '';
+                $userRoleSelectBoxHtml = '';
+                    foreach ($globalRoles['owner']['permissions'] AS $k => $r){
 
-            @foreach($globalRoles as $role)
-              <?php
-                 //$userRolesCheckboxesHtml = '<td><input type="checkbox"  name="rights['.$user->id.' ][]" value="metadata" class="perms"></td>';
-              ?>
-            @endforeach
+                        $disabled = ($user->current)?'disabled="disabled"':'name="rights['.$user->id.'][]" value="'.$r->slug.'" class="perms"';
+                        if ($user->roleSlug == 'owner'){
+                            $userRolesCheckboxesHtml .= '<td ><input type="checkbox" checked="checked" disabled="disabled" ></td>';
+                        }
+                        else {
+                            $userRolesCheckboxesHtml .= '<td ><input type="checkbox" '.(in_array($r->slug,$user->permissions)?'checked="checked"':'').'  '.$disabled.' ></td>';
+
+                        }
+                    }
+                    if($user->roleSlug == 'owner')
+                        $userRoleSelectBoxHtml = '&nbsp;Owner';
+                    else{
+                        $userRoleSelectBoxHtml = '<select name="cms_role_'.$user->id.'" id="cms_role_'.$user->id.'" class="userRoleSelect">';
+                        foreach($globalRoles AS $roleSlug => $roleInfo){
+                            if($roleSlug != 'owner')
+                                $userRoleSelectBoxHtml .= '<option value="'.$roleSlug.'" '.($user->roleSlug == $roleSlug?'selected="selected"':'').'>'.$roleInfo['info']->name.'</option>';
+                        }
+                        $userRoleSelectBoxHtml .= '</select>';
 
 
+                    }
+            ?>
 
-            @if($user->is('owner'))
-                <tr>
-                  <td class="userName"><span class="name">{{ $user->person  }}</span></td>
-                  <td class="cmsRole">&nbsp;Owner</td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-
-                  <td> </td>
-                </tr>
-             @elseif($user->current)
-              <tr>
-                  <td class="userName"><span class="name">{{ $user->email  }}</span></td>
-                  <td class="cmsRole">&nbsp;Administrator</td>
-
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-                  <td ><input type="checkbox" checked="checked" disabled="disabled" class="perms"></td>
-
-                  <td></td>
-                </tr>
-
-            @else
                 <tr rel="{{ $user->id }}">
                     <td class="userName"><span class="name">{{ $user->title  }} </span></td>
-                    <td class="cmsRole">
-                        <select name="cms_role_{{ $user->id }}" id="cms_role_{{ $user->id }}" class="userRoleSelect ">
-                            <option value="administrator">Administrator</option>
-                            <option value="manager">Manager</option>
-                            <option value="accountant">Accountant</option>
-                            <option value="custom">Custom</option>
-                        </select>
-                    </td>
-                    <td><input type="checkbox" checked="checked" name="rights[{{ $user->id }}][]" value="metadata" class="perms"></td>
-                    <td><input type="checkbox" checked="checked" name="rights[{{ $user->id }}][]" value="rights" class="perms"></td>
-                    <td><input type="checkbox" checked="checked" name="rights[{{ $user->id }}][]" value="media" class="perms"></td>
-                    <td><input type="checkbox" checked="checked" name="rights[{{ $user->id }}][]" value="interface" class="perms"></td>
-                    <td><input type="checkbox" checked="checked" name="rights[{{ $user->id }}][]" value="subscriptions" class="perms"></td>
-                    <td><input type="checkbox" checked="checked" name="rights[{{ $user->id }}][]" value="channels" class="perms"></td>
-                    <td><input type="checkbox" checked="checked" name="rights[{{ $user->id }}][]" value="users" class="perms"></td>
-                    <td><input type="checkbox" checked="checked" name="rights[{{ $user->id }}][]" value="publishing" class="perms"></td>
-                    <td><input type="checkbox" checked="checked" name="rights[{{ $user->id }}][]" value="sales" class="perms"></td>
-                    <td><input type="checkbox" checked="checked" name="rights[{{ $user->id }}][]" value="account.settings" class="perms"></td>
+                    <td class="cmsRole"><?php echo $userRoleSelectBoxHtml;?></td>
+                    <?php echo $userRolesCheckboxesHtml;?>
                     <td>
-                        <input type="hidden" name="users[]" value="{{ $user->id }}">
-                        <div class="dropdown pull-right">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="uset_{{ $user->id }}" data-toggle="dropdown" aria-expanded="true">
-                            &nbsp;<span aria-hidden="true" class="glyphicon glyphicon-cog"></span>
-                            <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="uset_{{ $user->id }}">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" class="reSendInvitation cp">Re-send Invitation</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" class="removeUser cp">Remove User</a></li>
-                            </ul>
-                         </div>
+                        @if($user->roleSlug != 'owner' && !$user->current)
+                            <input type="hidden" name="users[]" value="{{ $user->id }}">
+                            <div class="dropdown pull-right">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="uset_{{ $user->id }}" data-toggle="dropdown" aria-expanded="true">
+                                &nbsp;<span aria-hidden="true" class="glyphicon glyphicon-cog"></span>
+                                <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="uset_{{ $user->id }}">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" class="reSendInvitation cp">Re-send Invitation</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" class="removeUser cp">Remove User</a></li>
+                                </ul>
+                             </div>
+                        @endif
                     </td>
                 </tr>
-
-
-            @endif
         @endforeach
 
 
@@ -146,13 +112,13 @@
             $('[name="rights['+user_id+'][]"]').each( function() {
                 if (role !='' && role !='custom'){
                     tmp =  $(this).val();
-                    if (roles[role][tmp] != undefined)
+                    if (roles[role]['permissions'][tmp] != undefined)
                         $(this).prop( "checked", true );
                     else
                         $(this).prop( "checked", false );
                 }
                 else
-                    $(this).prop( "checked", true );
+                    $(this).prop( "checked", false );
             });
         });
 
@@ -167,7 +133,7 @@
             var f2 = 0;
             var isR = false;
             jQuery.each(roles, function(k,v) {
-                var rolePerms= Object.keys(v);
+                var rolePerms= Object.keys(v['permissions']);
                 f1 = rolePerms.subtract( searchIDs ).length;
                 f2 = searchIDs.subtract( rolePerms ).length;
                 if (f1==0 && f2==0){

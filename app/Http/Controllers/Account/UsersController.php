@@ -16,34 +16,35 @@ class UsersController extends Controller
     public function listAll(){
    
         $current_menu = 'account_users';
-
         $user_info = Auth::user();
         $account_info = $user_info->account;
-
         $account_users = $account_info->users()->with('roles')->get();
-
-
-
-
         foreach($account_users as $user){
             $user->current = false;
             if ($user_info->id == $user->id)
                 $user->current = true;
-            if (!empty($user->roles->first()->permissions))
-                $user->permissions = json_decode($user->roles->first()->permissions);
-            if (!empty($user->userPermissions()->get()))
-                $user->permissions = json_decode($user->userPermissions()->get());
+            if (!empty($user->getRoles()->first()->slug)){
+                $user->roleSlug = $user->getRoles()->first()->slug;
+                $user->permissions = json_decode($user->roles->first()->permissions->keyBy('slug')->keys());
+            }
+            else {
+                $user->roleSlug = 'custom';
+                $user->permissions = json_decode($user->userPermissions()->get()->keyBy('slug')->keys());
+            }
         }
-
         $globalRoles = array();
         $roles = Role::all();
         $roles = $roles->keyBy('slug');
-
         foreach($roles AS $key => $val){
             $permissions = $val->permissions->keyBy('slug');
-            $globalRoles[$key] = $permissions;
+            $globalRoles[$key]['permissions'] = $permissions;
+            $globalRoles[$key]['info'] = $val;
         }
+        $globalRoles['custom']['permissions'] =(object) array();
+        $globalRoles['custom']['info'] =  (object)array('slug'=>'custom','name'=>'Custom');
+
         return view('account.users', compact('current_menu', 'account_users', 'globalRoles'));
+
     }
     public function update(Request $request){
         $R = $request->all();
@@ -52,20 +53,23 @@ class UsersController extends Controller
         foreach ($R['users'] AS $k => $user_id){
             $user = User::find($user_id);
             $user->detachAllRoles();
-            if ($R['cms_role_'.$user_id] !=  'custom') {
+            $user->detachAllPermissions();
+            if ($R['cms_role_'.$user_id] !==  'custom') {
                 $userNewRole = $allRoles[$R['cms_role_' . $user_id]];
                 $user->attachRole($userNewRole);
             }
             else {
-                if ($R['rights'][$user_id]){
+                if (isset($R['rights'][$user_id])){
                     foreach ($R['rights'][$user_id] AS $k => $permSlug) {
                         $user->attachPermission($allPremisttions[$permSlug]);
                     }
                 }
 
             }
-            return json_encode(true);
+
+
         }
+        return json_encode(true);
 
     }
 }
