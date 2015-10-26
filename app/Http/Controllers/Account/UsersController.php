@@ -14,14 +14,14 @@ use Illuminate\Support\Facades\Input;
 class UsersController extends Controller
 {
     public function listAll(){
-   
+		
         $current_menu = 'account_users';
 
+		
         $user_info = Auth::user();
         $account_info = $user_info->account;
 
         $account_users = $account_info->users()->with('roles')->get();
-
 
 
 
