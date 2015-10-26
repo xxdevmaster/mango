@@ -27,9 +27,15 @@ Route::group(['middleware' => 'auth'], function()
 
 
     Route::get('account/users', [
-        'middleware' => 'role:owner|administrator',
+        'middleware' => ['access:users', 'role:owner,administrator'],
         'uses' => 'Account\UsersController@listAll',
     ]);
+
+    Route::get('account/features', [
+        'middleware' => ['access:users', 'role:owner,administrator'],
+        'uses' => 'Account\FeaturesController@features',
+    ]);
+
     Route::post('account/users/update', [
         'as' => 'example',
         'middleware' => 'role:owner|administrator',
@@ -44,5 +50,13 @@ Route::group(['middleware' => 'auth'], function()
         'as' => 'example',
         'middleware' => 'role:owner|administrator',
         'uses' => 'Account\UsersController@reInvite',
+    ]);
+
+
+
+    //Cinehost
+    Route::get('features', [
+        'middleware' => ['role:superadmin'],
+        'uses' => 'FeaturesController@features',
     ]);
 });
