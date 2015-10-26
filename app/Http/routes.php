@@ -51,4 +51,12 @@ Route::group(['middleware' => 'auth'], function()
         'middleware' => 'role:owner|administrator',
         'uses' => 'Account\UsersController@reInvite',
     ]);
+
+
+
+    //Cinehost
+    Route::get('features', [
+        'middleware' => ['role:superadmin'],
+        'uses' => 'FeaturesController@features',
+    ]);
 });

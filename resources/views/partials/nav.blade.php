@@ -25,6 +25,7 @@
         <li class="has-submenu"><a href="#"><i class="ion-stats-bars"></i> <span class="nav-label">Account Settings</span></a>
             <ul class="list-unstyled">
                 <li><a href="morris-chart.html">Account Details</a></li>
+                <li><a href="{{ action('Account\UsersController@listAll') }}">Features Manager</a></li>
                 @if($user->is('owner|administrator'))
                     <li {{ ($current_menu == 'account_users')?'class=active':''  }}><a href="{{ action('Account\UsersController@listAll') }}">Account Users</a></li>
                 @endif
