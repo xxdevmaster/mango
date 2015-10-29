@@ -24,6 +24,17 @@ class TitlesController extends Controller
         //DB::enableQueryLog();
 
         $user_info = Auth::user();
+
+
+        /*$superadminRole = Role::create([
+            'name' => 'SuperAdmin',
+            'slug' => 'superadmin'
+        ]);
+
+
+        $user_info->attachRole($superadminRole);*/
+
+
        // (new Dumper)->dump($user_info->toArray());
 
 

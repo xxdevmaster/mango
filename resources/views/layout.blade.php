@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
+        <meta name="_token" content="{{csrf_token()}}">
 
         <link rel="shortcut icon" href="/img/favicon_1.ico">
 
@@ -27,6 +28,8 @@
         <!-- DataTables -->
         <link href="/assets/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 
+        <link href="/assets/toggles/toggles.css" rel="stylesheet" />
+
         <!-- Custom styles for this template -->
         <link href="/css/style.css" rel="stylesheet">
         <link href="/css/helper.css" rel="stylesheet">
@@ -34,19 +37,32 @@
 
         <script src="/js/jquery.js"></script>
         <script src="/js/ArraySetMath.js"></script>
-
+        <script src="/js/functions.js"></script>
+        <script src="/js/bootbox.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+					}
+				});				
+			});		
+		</script>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
         <!--[if lt IE 9]>
           <script src="/js/html5shiv.js"></script>
           <script src="/js/respond.min.js"></script>
 
         <![endif]-->
-
     </head>
 
 
     <body>
-
+		<div class="alert" id="autoCloseMsg">
+		   <button id="autoCloseMsgHide" class="close" type="button">&times;</button>
+		   <strong></strong>
+		</div>
+		
         <!-- Aside Start-->
         <aside class="left-panel">
 
