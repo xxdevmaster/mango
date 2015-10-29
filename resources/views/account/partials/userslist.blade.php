@@ -8,16 +8,9 @@
         <tr>
              <th>User Name</th>
              <th>Role</th>
-             <th><span class="vertical-text"> Metadata Management</span></th>
-             <th><span class="vertical-text"> Rights Management</span></th>
-             <th><span class="vertical-text"> Media Management</span></th>
-             <th><span class="vertical-text"> Interface Management</span></th>
-             <th><span class="vertical-text"> Subscriptions</span></th>
-             <th><span class="vertical-text"> Channels Management</span></th>
-             <th><span class="vertical-text"> Users Management</span></th>
-             <th><span class="vertical-text"> Live Publishing</span></th>
-             <th><span class="vertical-text"> Sales &amp; Reporting</span></th>
-             <th><span class="vertical-text"> Account Settings</span></th>
+			 @foreach($permissionsAll as $permissionsSlug => $permissionsInfo)
+				<th><span class="vertical-text"> {{$permissionsInfo['name']}}</span></th>
+			 @endforeach
              <th></th>
          </tr>
     </thead>
@@ -46,13 +39,22 @@
                                 $userRoleSelectBoxHtml .= '<option value="'.$roleSlug.'" '.($user->roleSlug == $roleSlug?'selected="selected"':'').'>'.$roleInfo['info']->name.'</option>';
                         }
                         $userRoleSelectBoxHtml .= '</select>';
-
-
                     }
             ?>
 
                 <tr rel="{{ $user->id }}">
-                    <td class="userName"><span class="name">{{ $user->title  }} </span></td>
+                    <td class="userName">
+					
+						<span class="name">{{ $user->title  }} </span>				
+						@if($user->roleSlug != 'owner')
+							@if( strtotime(date('Y-m-d')) > strtotime(date("Y-m-d",strtotime("+1 month", strtotime(date($user->invite_dt))))) )
+								<?php $class = 'text-danger';?> 
+							@else
+								<?php $class = 'text-success';?> 	
+							@endif						
+							<p class="{{$class}}">Invitation Expired on  <?=date("d/m/Y",strtotime("+1 month", strtotime(date($user->invite_dt))))?></p>
+						@endif
+					</td>
                     <td class="cmsRole"><?php echo $userRoleSelectBoxHtml;?></td>
                     <?php echo $userRolesCheckboxesHtml;?>
                     <td>
@@ -64,8 +66,8 @@
                                 <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="uset_{{ $user->id }}">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" class="reSendInvitation cp">Re-send Invitation</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" class="removeUser cp">Remove User</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" class="reSendInvitation cp" data-id="{{$user->id}}">Re-send Invitation</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" class="removeUser cp destroy" data-id="{{$user->id}}" data-bb="confirm">Remove User</a></li>
                                 </ul>
                              </div>
                         @endif
@@ -85,24 +87,6 @@
     var tmp;
 
     $(document).ready(function(){
-
-
-
-        $(".save-accUsers").click(function(){
-            $(".save-accProfiles").text("Saving ...");
-            $.when(
-                    $.ajax({
-                        type: "POST",
-                        url: "/account/users/update",
-                        data: $('#accUsers').serialize()
-                    })
-            ).done(function(data){
-                        console.log(data);
-            }).fail(function(){
-
-                    });
-
-        });
 
 
         $(".userRoleSelect").on("change", function() {
@@ -144,8 +128,12 @@
             if (!isR)
                 jQuery("#cms_role_"+user_id).val('custom');
         });
+		
 
+      
+		
+		
     });
-
+	
 
 </script>

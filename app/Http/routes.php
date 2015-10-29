@@ -31,6 +31,12 @@ Route::group(['middleware' => 'auth'], function()
         'uses' => 'Account\UsersController@listAll',
     ]);
 
+    Route::post('account/users/create',[
+		'middleware' => 'role:owner|administrator',
+		"as" => 'account/users/create',
+		"uses"=>'Account\UsersController@create'
+	]);
+
     Route::get('account/features', [
         'middleware' => ['access:users', 'role:owner,administrator'],
         'uses' => 'Account\FeaturesController@features',
@@ -41,6 +47,25 @@ Route::group(['middleware' => 'auth'], function()
         'middleware' => 'role:owner|administrator',
         'uses' => 'Account\UsersController@update',
     ]);
+	
+    Route::post('account/users/getTemplate', [
+        'as' => 'account/users/getTemplate',
+        'middleware' => 'role:owner|administrator',
+        'uses' => 'Account\UsersController@getTemplate',
+    ]);    
+	
+	Route::post('account/users/reSendInvitation', [
+        'as' => 'account/users/reSendInvitation',
+        'middleware' => 'role:owner|administrator',
+        'uses' => 'Account\UsersController@reSendInvitation',
+    ]);
+
+    Route::post('account/users/destroy', [
+        'as' => 'account/users/destroy',
+        'middleware' => 'role:owner|administrator',
+        'uses' => 'Account\UsersController@destroy',
+    ]);	
+	
     Route::post('account/users/invite', [
         'as' => 'example',
         'middleware' => 'role:owner|administrator',

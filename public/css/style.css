@@ -2129,3 +2129,12 @@ aside.left-panel.collapsed span.nav-label {
     display: none;
   }
 }
+
+#autoCloseMsg {
+    z-index: 10000;
+    position: fixed;
+	top:0;
+    width: 100%;
+	display:none;
+	text-align:center;
+}
