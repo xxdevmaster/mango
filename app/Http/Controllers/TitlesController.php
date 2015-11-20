@@ -8,6 +8,7 @@ use Bican\Roles\Models\Role;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Debug\Dumper;
 use DB;
+use App\Film;
 
 class TitlesController extends Controller
 {
@@ -65,7 +66,6 @@ class TitlesController extends Controller
         //(new Dumper)->dump($company_info->toArray());
 
         $company_films = $company_info->films()->where('cc_films.deleted', '0')->get();
-
 
         $store_info = $account_info->store;
         //(new Dumper)->dump($store_info->toArray());

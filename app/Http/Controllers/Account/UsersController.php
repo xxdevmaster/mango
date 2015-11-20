@@ -1,6 +1,6 @@
 <?php
-
 namespace App\Http\Controllers\Account;
+
 use App\User;
 use Bican\Roles\Models\Permission;
 use Bican\Roles\Models\Role;
@@ -12,14 +12,19 @@ use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Libraries\MandrillService\Mandrill;
 
+use App\Libraries\MandrillService\MandrillService;
+
 class UsersController extends Controller
 {
-    public function listAll(Request $request){
+    public function listAll(Request $request)
+	{
         $current_menu = 'account_users';
 		$userData = $this->getUsersListData();
 		$userData['current_menu'] = 'account_users';
         return view('account.users', $userData);
     }
+	
+	
     public function update(Request $request){
         $R = $request->all();
         $allRoles = Role::all()->keyBy('slug');
@@ -46,7 +51,7 @@ class UsersController extends Controller
         return json_encode(true);
     }
 	
-	public function create(Request $request)
+	public function ValidateInputs($request)
 	{
 		$validator = Validator::make($request->Input(),[
 			'cms_role_0'  => 'required',
@@ -60,6 +65,17 @@ class UsersController extends Controller
 			'cms_role_0.rquired' => 'The Role field is required',
 		]
 		);
+		return $validator;
+	}
+	
+	/*
+		Create new user
+	*/
+	public function create(Request $request)
+	{
+		
+		//validate input fields
+		$validator = $this->ValidateInputs($request);
 		
 		if($validator->fails())
 		{		
@@ -112,15 +128,14 @@ class UsersController extends Controller
 
 				}
 				
+				/*Mandrill mail start*/	
 				$data=array(
 					'email' => $email,
 					'title' => $title,
 					'AuthUserEmail' => $userEmail,
 					'AuthUserPerson' => $userPerson,
 					'invite_token' => $invite_token
-				);	
-				
-				/*Mandrill mail start*/	
+				);				
 				$MandrillStatus = $this->SendInvitationMail($data);
 			
 				if( $MandrillStatus == 'sent')			
@@ -182,10 +197,9 @@ class UsersController extends Controller
 	}
 	
     /**
-     * Remove the specified resource from storage.
+     * Remove the user.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return  result int  0 or 1
      */
     public function destroy(Request $request)
     {
@@ -196,15 +210,25 @@ class UsersController extends Controller
 			return 0;
     }
 	
+	
+    /**
+     * Re send invitation user.
+     *
+     * @return  result int  0 or 1
+     */
+	 
 	public function reSendInvitation(Request $request)
 	{
 		$userId = (integer)trim(filter_var($request->Input('id'),FILTER_SANITIZE_NUMBER_INT));
 		$invite_token = md5(time());
 		
+		
+		//update the invite_dt and invite_token
 		$userUpdate =  User::where('id', $userId)->update(array(
 			'invite_dt' => date("Y-m-d"),
 			'invite_token' => $invite_token,
 		));
+		
 		if($userUpdate)
 		{
 			$AuthUser_info = Auth::user();
@@ -265,7 +289,7 @@ class UsersController extends Controller
 			   ),
 			array(
 				'name' => 'invintationLink',
-				'content' => '<a href="http://pro.cinehost.loc/userInvitation/'.$data['invite_token'].'">http://pro.cinehost.loc/userInvitation/'.$data['invite_token'].'</a>'
+				'content' => '<a href="'.url().'/userInvitation/'.$data['invite_token'].'">'.url().'/userInvitation/'.$data['invite_token'].'</a>'
 			   )
 		);
 

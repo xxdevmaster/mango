@@ -8,22 +8,24 @@ var autoCloseMsgTimer = 0;
 */
 function autoCloseMsg(error,message,autoCloseMsgDelay){
 	clearTimeout(autoCloseMsgTimer);
-	$('#autoCloseMsg').hide();
+	//$('#autoCloseMsg').hide();
 	if(error)
 		$('#autoCloseMsg').attr('class','alert alert-danger');
 	else
 		$('#autoCloseMsg').attr('class','alert alert-success');
 	
 	$('#autoCloseMsg').children('strong').html(message);
-	$('#autoCloseMsg').slideToggle(350);
+	$('#autoCloseMsg').slideDown(250);
 	if(autoCloseMsgDelay>0)
-	  autoCloseMsgTimer = setTimeout(function(){$('#autoCloseMsg').fadeOut(350);},autoCloseMsgDelay);
+	  autoCloseMsgTimer = setTimeout(function(){$('#autoCloseMsg').slideUp(200);},autoCloseMsgDelay);
 }
-$(document).on('click','#autoCloseMsgHide',function(e){
-	e.preventDefault();
+
+
+//close autoCloseMsg
+function autoCloseMsgHide(){
 	clearTimeout(autoCloseMsgTimer);
-	$('#autoCloseMsg').fadeOut(350);
-});
+	$('#autoCloseMsg').slideUp(100);	
+}
 
 
 
@@ -43,21 +45,43 @@ function getTemplate(Url,RequestMethod,SectionName,Params)
 			data: Params,
 		})
 	).done(function(data){
-		$(SectionName).html(data);
+		$(SectionName).html(data); //updateing users list
 	}).fail(function(){
 		autoCloseMsg(1,'Bad Request',7000);
 	});	
 }
 
 
-//destroy with xmlHttpRequest
+
 /*
 	string Url 
 	string RequestMethod POST or GET
 	object send proparties Params
 	string CallbackMessage
 */
-function destroy(Url,RequestMethod,CallbackMessage,Params)
+function xmlhttprequest(Url,RequestMethod,CallbackMessage,Params)
+{
+	$.when(
+		$.ajax({
+			type: RequestMethod,
+			url : Url,
+			data: Params,
+		})
+	).done(function(data){
+		//alert(data);
+		if(data){
+			getTemplate('/account/users/getTemplate','POST','#users'); //updating users list
+			$('.loading').hide();//loading close
+			autoCloseMsg(0,CallbackMessage,5000);//show results message
+		}else
+			$('.loading').hide();//loading close
+	}).fail(function(){
+		$('.loading').hide();//loading close
+		autoCloseMsg(1,'Bad Request',7000); //show error message
+	});
+}
+
+function xhr(Url,RequestMethod,Params,callback)
 {
 	$.when(
 		$.ajax({
@@ -67,10 +91,12 @@ function destroy(Url,RequestMethod,CallbackMessage,Params)
 		})
 	).done(function(data){
 		if(data){
-			getTemplate('/account/users/getTemplate','POST','#users');
-			autoCloseMsg(0,CallbackMessage,5000);
+			if(callback && typeof(callback) === "function") {
+				callback(data);
+			}
 		}
 	}).fail(function(){
-		autoCloseMsg(1,'Bad Request',7000);
+		$('.loading').hide();  //loading close
+		autoCloseMsg(1,'Bad Request',5000);  //show error message		
 	});
 }

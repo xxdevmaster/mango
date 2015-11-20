@@ -146,7 +146,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewComposerServiceProvider::class,
         Bican\Roles\RolesServiceProvider::class,
-        
+		
+        App\Providers\AnnotationsServiceProvider::class,
+		Aws\Laravel\AwsServiceProvider::class,
+        Illuminate\Html\HtmlServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class		
     ],
 
     /*
@@ -195,7 +199,13 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-
+		
+		'AWS' 		=> Aws\Laravel\AwsFacade::class,
+		
+        'Form'      => Illuminate\Html\FormFacade::class, 
+        'HTML'      => Illuminate\Html\HtmlFacade::class,
+        'Image'     => Intervention\Image\Facades\Image::class		
+		
     ],
 
 ];

@@ -30,8 +30,8 @@
     </div>
 </div>
 <script>
-   $(document).ready(function(){
-	$(".save-accUsers").click(function(){
+$(document).ready(function(){
+	$(document).on("click", ".save-accUsers", function() {
 		$(".save-accProfiles").text("Saving ...");
 		$.when(
 				$.ajax({
@@ -43,26 +43,30 @@
 					console.log(data);
 		}).fail(function(){
 
-				});
+		});
 
 	});
 	
-	$(document).on("click", ".destroy", function(e) {
-		var id = $(this).data('id');
-		$('#autoCloseMsg').hide();
-		bootbox.confirm("Are you sure?", function(result) {
+	$(document).on("click", ".destroy", function() {	
+		autoCloseMsgHide();//message closing		
+		var id = $(this).data('id'); //user id	
+		var title = $(this).data('title'); //user title
+		var confirmText = 'Do you really want to delete '+title+'?';
+		bootbox.confirm(confirmText, function(result) {
 			if(result)
 			{
-				destroy('{{route('account/users/destroy')}}','POST','User removed!',{_token:'5sdUYcWkyVg4Pj3LJrK6Y6jXMhyAadSFt2VNWpL4',id:id});
+				$('.loading').show(); //show loading
+				xmlhttprequest('{{route('account/users/destroy')}}','POST','User removed!',{id:id}); //destroy user request
 			}
 		});
 	});	
 	
 	$(document).on("click", ".reSendInvitation", function() {
-		var id = $(this).data("id");
-		destroy('{{route('account/users/reSendInvitation')}}','POST','Invitation has been sent successfully!',{id:id});
-	});
-	
+		autoCloseMsgHide();//message closing
+		$('.loading').show(); //show loading
+		var id = $(this).data("id"); //user id
+		xmlhttprequest('{{route('account/users/reSendInvitation')}}','POST','Invitation has been sent successfully!',{id:id});//resend mail to user request
+	});	
 });
 </script>
 @stop

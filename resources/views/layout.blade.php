@@ -31,14 +31,17 @@
         <link href="/assets/toggles/toggles.css" rel="stylesheet" />
 
         <!-- Custom styles for this template -->
-        <link href="/css/style.css" rel="stylesheet">
         <link href="/css/helper.css" rel="stylesheet">
-        <link href="/css/cinehost.css" rel="stylesheet">
-
-        <script src="/js/jquery.js"></script>
+        <link href="/css/style.css" rel="stylesheet"> 
+		<link href="/css/cinehost.css" rel="stylesheet">
+		<link href="/css/token-input-facebook.css" rel="stylesheet">
+		<link href="/css/uploadifiveCss/uploadifive.css" rel="stylesheet">
+				
+        <script src="/js/jquery.js"></script>	
         <script src="/js/ArraySetMath.js"></script>
         <script src="/js/functions.js"></script>
-        <script src="/js/bootbox.min.js"></script>
+        <script src="/js/bootbox.min.js"></script>	
+      
 		<script>
 			$(document).ready(function(){
 				$.ajaxSetup({
@@ -58,8 +61,15 @@
 
 
     <body>
+	
+		<!-- Result message -->
+		<div class="loading">
+			<i class="fa fa-spinner fa-2x fa-spin text-primary"></i>  			
+		</div>
+		
+		<!-- Loading -->
 		<div class="alert" id="autoCloseMsg">
-		   <button id="autoCloseMsgHide" class="close" type="button">&times;</button>
+		   <button onclick="autoCloseMsgHide()" id="autoCloseMsgHide" class="close text-muted" type="button">&times;</button>
 		   <strong></strong>
 		</div>
 		
@@ -116,6 +126,8 @@
         <script src="/js/pace.min.js"></script>
         <script src="/js/wow.min.js"></script>
         <script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
+        <script src="/js/jquery.tokeninput.js" type="text/javascript"></script>
+        <script src="/js/uploadifiveJs/jquery.uploadifive.min.js" type="text/javascript"></script>
 
 
         <script src="/js/jquery.app.js"></script>
@@ -132,8 +144,6 @@
             } );
         </script>
 
-        @yield('footer');
-
-
+        @yield('footer')
     </body>
 </html>

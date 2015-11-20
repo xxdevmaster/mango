@@ -18,14 +18,15 @@ Route::get('userInvitation/{tk}', 'UserInvitationController@index');
 Route::post('userInvitation/register', 'UserInvitationController@register');
 Route::get('auth/login/{login}/{password}', 'AuthController@login');
 Route::get('auth/logout', 'AuthController@logout');
-
-
 Route::group(['middleware' => 'auth'], function()
 {
     Route::get('/', 'MainController@dashboard');
     Route::resource('titles', 'TitlesController');
+	
+	//Titles Menegment
+    Route::get('titles/metadata/{id}', 'TitleMenegment\MetadataController@metadataShow')->where('id', '[1-9]+');
 
-
+	
     Route::get('account/users', [
         'middleware' => ['access:users', 'role:owner,administrator'],
         'uses' => 'Account\UsersController@listAll',

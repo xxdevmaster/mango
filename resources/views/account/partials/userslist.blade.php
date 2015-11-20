@@ -67,7 +67,7 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="uset_{{ $user->id }}">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" class="reSendInvitation cp" data-id="{{$user->id}}">Re-send Invitation</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" class="removeUser cp destroy" data-id="{{$user->id}}" data-bb="confirm">Remove User</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" class="removeUser cp destroy" data-title="{{$user->title}}" data-id="{{$user->id}}" data-bb="confirm">Remove User</a></li>
                                 </ul>
                              </div>
                         @endif

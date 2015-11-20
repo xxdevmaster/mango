@@ -7,7 +7,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="popmsq msgOnTop"></div>
-				<form action="{{url()}}/account/users/create" method="post" id="inviteNewUserForm" name="inviteNewUserForm">
+				<form action="{{url()}}/account/users/create" method="post" id="inviteNewUserForm" name="inviteNewUserForm" autocomplete="off">
 					{{csrf_field()}}
 					<table class="table accountProfiles">
 						<thead>
@@ -65,8 +65,11 @@
 		    <script>
 			$(document).ready(function(){				
 				$('#inviteNewUserForm').submit(function(event){
-					event.preventDefault();
-					var form_data = $('#inviteNewUserForm').serialize();
+					event.preventDefault();					
+					autoCloseMsgHide();	//message closing				
+					$('.loading').show(); //show loading
+					
+					var form_data = $('#inviteNewUserForm').serialize();//serialize forms inputs
 					$.when(
 						$.ajax({
 							type: "POST",
@@ -74,21 +77,26 @@
 							data: form_data,
 						})
 					).done(function(data){
-						autoCloseMsg(data.error,data.msg,7000);
+						autoCloseMsg(data.error,data.msg,7000);//show result message
 						if(!data.error)
 						{
-							$('#inviteNewUserModal').modal('toggle');
-							getTemplate('{{route('account/users/getTemplate')}}','POST','#users');
-							$('#email').val('');
+							$('#inviteNewUserModal').modal('toggle');//modal window close														
+							getTemplate('{{route('account/users/getTemplate')}}','POST','#users'); //updating users list
+							
+							$('.loading').hide(); //hide loading
+							$('#email').val(''); //clear email value
+							
 							$('.cmsRoleSelect option').each(function(){
 								if($(this).val() == 'custom')
 								{
-									$(this).attr('selected','selected');
+									$(this).attr('selected','selected'); //clear selecte chacked
 								}
 							});
-						}
+						}else
+							$('.loading').hide();//hide loading
 					}).fail(function(){
-						autoCloseMsg(1,'Bad Request',7000);
+						$('.loading').hide();//hide loading
+						autoCloseMsg(1,'Bad Request',7000); //show error message
 					});
 				});
 			});	
