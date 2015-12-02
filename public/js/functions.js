@@ -81,9 +81,12 @@ function xmlhttprequest(Url,RequestMethod,CallbackMessage,Params)
 	});
 }
 
-function xhr(Url,RequestMethod,Params,callback)
+
+
+function CHxhr(Url,RequestMethod,Params,callback)
 {
-	$.when(
+	console.log('something');
+	/*$.when(
 		$.ajax({
 			type: RequestMethod,
 			url : Url,
@@ -98,11 +101,15 @@ function xhr(Url,RequestMethod,Params,callback)
 	}).fail(function(){
 		$('.loading').hide();  //loading close
 		autoCloseMsg(1,'Bad Request',5000);  //show error message		
-	});
+	});*/
 }
 
 
 function CHUpload( url, id, params, callback ) {
+	console.log(url);
+	console.log(id);
+	console.log(params);
+	console.log(callback);
 	$('.'+id).uploadifive({
 		'buttonText' 	 	 : 'Upload Image',
 		'auto'           	 : true,

@@ -382,27 +382,15 @@ $(document).ready(function(){
 	});
 
 	//Person Image Upload
-	$(document).on('click', '#uploadifive-person', function(){
-		var this_ = $(this);
+
+	/*$(document).on('click', '#uploadifive-person', function(){
+
 		var personId = $('input[name="personId"]').val();
 		var _token = $('input[name="_token"]').val();
 		var url = this_.data('url');
-		CHUpload(url, 'uploadifive-button', {'personId':personId, '_token':_token }, function(data){
-			var response = JSON.parse(data);
-			if(!response.error) {
-				$('#person_image').attr('src', 'http://cinecliq.assets.s3.amazonaws.com/persons/'+response.message);
-				xhr('{{url()}}/titles/metadata/basic/getTemplate','POST',{filmId:filmId, personId:personId, template:'castAndCrew'},function(data){							
-					if(data) {
-						$('#castAndCrew').html(data);
-					}							
-				});					
-			}
-			else {
-				$(this_).parent().find('.media-body').find('.responseMessage').remove();
-				$('#person_image_text').html('<span class="text-danger responseMessage">'+response.message+'</span>')
-			}				
-		});	
-	});	
+		console.log('opens');
+
+	});	*/
 	//End
 
 	//Remove person locale

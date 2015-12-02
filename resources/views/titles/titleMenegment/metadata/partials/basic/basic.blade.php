@@ -1,4 +1,4 @@
-<?
+<?php
 	$tabClassActive = '';
 	$basicLocaleNavTabs = '';
 	$basicLocaleTabContents = '';
@@ -15,7 +15,7 @@
 					';
 				?>
 			@else
-				<?
+				<?php
 					$tabClassActive = '';
 					$fade = 'fade';
 					$filmLocaleRemove = '
@@ -31,7 +31,7 @@
 				?>
 			@endif
 			<?php
-				$basicLocaleNavTabs .= '
+			$basicLocaleNavTabs .= '
 					<li class="'.$tabClassActive.'">
 						<a href="#tabBasicLocale_'.$val->locale.'" class="tab-level1" data-toggle="tab" aria-expanded="false">
 							<span class="visible-xs">'.ucfirst(array_search($allLocales[$val->locale], $allLocales)).'</span> 

@@ -113,8 +113,35 @@
 <script>
 $(document).ready(function(){
 	//Create person new locale
+
+	var personId = $('input[name="personId"]').val();
+	var _token = $('input[name="_token"]').val();
+	var url = '{{url()}}/titles/metadata/castAndCrew/personImageUpload';
+	CHUpload(url, 'uploadifive-button', {'personId':personId, '_token':_token }, function(data){
+		var response = JSON.parse(data);
+		if(!response.error) {
+			$('#person_image').attr('src', 'http://cinecliq.assets.s3.amazonaws.com/persons/'+response.message);
+			CHxhr('{{url()}}/titles/metadata/basic/getTemplate','POST',{filmId:filmId, personId:personId, template:'castAndCrew'},function(data){
+				if(data) {
+					$('#castAndCrew').html(data);
+				}
+			});
+		}
+		else {
+			$(this_).parent().find('.media-body').find('.responseMessage').remove();
+			$('#person_image_text').html('<span class="text-danger responseMessage">'+response.message+'</span>')
+		}
+	});
+
+
 	$(document).on('change', '#personNewLocale', function() {
-		
+
+
+
+
+
+
+
 		autoCloseMsgHide();
 		var title = $('#personNewLocale option:selected').html();
 		var locale = $('#personNewLocale option:selected').val();
@@ -126,16 +153,16 @@ $(document).ready(function(){
 				$('.loading').show();				
 				xhr('{{url()}}/titles/metadata/castAndCrew/personAddNewLocale','POST',{personId:personId,locale:locale},function(data){					
 					if(data) {
-						xhr('{{url()}}/titles/metadata/castAndCrew/getPersonEditForm','POST',{personId:personId},function(data){							
+						xhr('/titles/metadata/castAndCrew/getPersonEditForm','POST',{personId:personId},function(data){
 							if(data) {
 								$("#editFormInner").html($(data).find("#editPersonModalForm"));
-								$('a[href="#tabPersonLocale_'+locale+'"]').tab('show');	
+								$('a[href="#tabPersonLocale_'+locale+'"]').tab('show');
 								$('.loading').hide();
 							}else {
 								$('.loading').hide();
 								autoCloseMsg(1, 'Language is dont Added', 5000);
 							}
-						});						
+						});
 					}else {
 						$('.loading').hide();
 						autoCloseMsg(1, 'Language is dont Added', 5000);

@@ -150,7 +150,7 @@ return [
         App\Providers\AnnotationsServiceProvider::class,
 		Aws\Laravel\AwsServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class		
+        Intervention\Image\ImageServiceProvider::class
     ],
 
     /*
@@ -202,9 +202,9 @@ return [
 		
 		'AWS' 		=> Aws\Laravel\AwsFacade::class,
 		
-        'Form'      => Illuminate\Html\FormFacade::class, 
+        'Form'      => Illuminate\Html\FormFacade::class,
         'HTML'      => Illuminate\Html\HtmlFacade::class,
-        'Image'     => Intervention\Image\Facades\Image::class		
+        'Image'     => Intervention\Image\Facades\Image::class
 		
     ],
 
