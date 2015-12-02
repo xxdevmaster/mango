@@ -100,3 +100,27 @@ function xhr(Url,RequestMethod,Params,callback)
 		autoCloseMsg(1,'Bad Request',5000);  //show error message		
 	});
 }
+
+
+function CHUpload( url, id, params, callback ) {
+	$('.'+id).uploadifive({
+		'buttonText' 	 	 : 'Upload Image',
+		'auto'           	 : true,
+		'queueID' 		  	 : false,
+		'removeCompleted'	 : true,
+		'removeTimeout'		 : 1,
+		'itemTemplate'	 	 : '',
+		'width' 		 	 : '129',
+		'height' 		 	 : '29',
+		'scriptData'	 	 : {},
+		'formData'       	 : params,
+		'uploadScript'   	 : url,
+		'onUploadComplete'	 : function(file, data) { 
+									if(data){
+										if(callback && typeof(callback) === "function") {
+											callback(data);
+										}
+									}
+								}
+	});			
+}

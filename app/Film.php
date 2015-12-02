@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Film extends Model
 {
-    //
     protected $table = "cc_films";
 	
-   public $timestamps = false;
+    public $timestamps = false;
    
     public function companies(){
         return $this->belongsToMany('App\Company', 'fk_films_owners', 'films_id', 'owner_id');
@@ -36,10 +35,11 @@ class Film extends Model
     }
 
 	public function persons(){
-       return $this->belongsToMany('App\Models\Persons', 'fk_films_persons', 'films_id', 'persons_id')->join('cc_jobs', 'cc_jobs.id', '=', 'fk_films_persons.jobs_id')->select(array('cc_jobs.*', 'cc_jobs.title as jobs_title', 'cc_persons.*'));
+       return $this->belongsToMany('App\Models\Persons', 'fk_films_persons', 'films_id', 'persons_id')->join('cc_jobs', 'cc_jobs.id', '=', 'fk_films_persons.jobs_id')->where('cc_persons.deleted', '0')->select(array('cc_jobs.*', 'cc_jobs.title as jobs_title', 'cc_persons.*'));
     }
 
 	public function jobs(){
         return $this->belongsToMany('App\Models\Jobs', 'fk_films_persons', 'films_id', 'jobs_id');
-    }
+    }	
+	
 }

@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Countries extends Model
 {
-   protected $table = "cc_countries";
+	protected $table = "cc_countries";
    
-   public $timestamps = false;
+	public $timestamps = false;
+   	
 }

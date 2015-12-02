@@ -1,137 +1,149 @@
-<form id="editPersonForm_" name="editPersonForm_" action="" method="post" role="form">
-<div id="editPersonForm">	
-	<div class="modal fade" id="editPersonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
+<div class="modal fade" id="editPersonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
 		<div class="modal-content">
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h4 class="modal-title" id="myModalLabel">Edit Cast/Crew Member</h4>
-		  </div>
-		  <div class="modal-body">
-			<div class="form-group">
-				<output id="list">
-					<img src="http://cinecliq.assets.s3.amazonaws.com/persons/nophoto.png" class="person_image" style="width: 120px;margin:0 20px 14px 0; float:left;" id="person_image_">
-				</output>			
-				<p>We strongly recommend the following format: 375x375px, JPG or PNG, 500KB maximum size.</p>
-				<button type="button" class="btn btn-primary" id="uploadImage" style="position:relative;">Upload Image
-					<input type="file" id="files" name="personImage" style="position:absolute;top:0;left:0;height:33px;width:112px;opacity:0;" />
-				</button>			
-			</div> 
-			<div class="clearfix" style="clear:both">
-				<ul class="nav nav-tabs ">										
-							<li class="active"> 
-								<a href="#tabPersonLocale_en" data-toggle="tab" aria-expanded="true"> 
-									<span class="visible-xs"><i class="fa fa-cog"></i></span> 
-									<span class="hidden-xs">{{$allLocales['en']}}</span> 
-								</a> 
-							</li>
-					@if(isset($LocalePersons))
-						@foreach($LocalePersons as $locale)
-							<li class=""> 
-								<a href="#tabPersonLocale_{{$locale->locale}}" data-toggle="tab" aria-expanded="true"> 
-									<span class="visible-xs"><i class="fa fa-cog"></i></span> 
-									<span class="hidden-xs">{{$allLocales[$locale->locale]}}</span> 
-								</a> 
-							</li>
-						@endforeach
-					@endif					
-				</ul>
-				<div class="tab-content">
-					@if(isset($thisPerson))
-						@foreach($thisPerson as $person)
-							<input type="hidden" name="personId" value="{{$person->id}}"> 
-							<input type="hidden" name="person[{{$person->locale}}][localeId]" value="{{$person->id}}">
-							<div class="tab-pane active" id="tabPersonLocale_en">
-								<div class="form-group">
-									<label for="title">Name</label>
-									<input type="text" class="form-control" id="title" name="persons[en][title]" value="{{$person->title}}">
-								</div>												
-								<div class="form-group">
-									<label class="col-md-2 control-label">Bio</label>
-									<textarea class="form-control" rows="4" name="persons[en][brief]" style="resize:none;">{{$person->breif}}</textarea>
-								</div>																					
-							</div>
-						@endforeach
-					@endif								
-					@if(isset($LocalePersons))
-						@foreach($LocalePersons as $locale)
-							<div class="tab-pane" id="tabPersonLocale_{{$locale->locale}}">
-								<div class="form-group">
-									<label for="title">Name</label>
-									<input type="text" class="form-control" id="title" name="persons[{{$locale->locale}}][title]" value="{{$locale->title}}">
-								</div>												
-								<div class="form-group">
-									<label class="col-md-2 control-label">Bio</label>
-									<textarea class="form-control" rows="4" name="persons[{{$locale->locale}}][brief]" style="resize:none;">{{$locale->brief}}</textarea>
-								</div>																					
-							</div>
-						@endforeach
-					@endif	
-					<div class="form-group">
-						<select class="form-control" id="personNewLocale" name="personNewLocale">
-							<option selected="selected" value="">+ Add New Metadata Language</option>
-							@if(isset($allLocales) && is_array($allLocales))
-								@foreach($allLocales as $val => $key)														
-									<option value="{{ $val }}">{{ $key }}</option>													
-								@endforeach
-							@endif
-						</select>
-					</div>				
-				</div>
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Edit Cast/Crew Member</h4>
 			</div>
-		  </div>
-		<input type="hidden" name="template" value="basic"> 
-		<div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary" id="personEdit_">Add</button>
+			<div class="modal-body" id="editFormInner">
+				<form id="editPersonModalForm" role="form">
+					<div class="form-group" id="person_image_text"></div>
+					<div class="media-body">
+						<output id="list">
+							@if(isset($thisPerson[0]->img))
+								<?
+									$personImg = $thisPerson[0]->img;
+								?>
+							@else
+								<?
+									$personImg = 'nophoto.png';
+								?>
+							@endif
+							<img src="http://cinecliq.assets.s3.amazonaws.com/persons/{{$personImg}}" class="person_image" style="width: 120px;margin:0 20px 14px 0; float:left;" id="person_image" />
+						</output>
+						<div class="form-group">							
+							<span class="pull-right" id="removePersonImage" style="cursor:pointer">
+								<i class="glyphicon glyphicon-remove-circle fa-lg"></i>  
+							</span>	
+						</div>
+						<div class="form-group">We strongly recommend the following format: 375x375px, JPG or PNG, 500KB maximum size.</div>
+						<div class="form-group">
+							<div id="uploadifive-person" class="uploadifive-button" data-url="{{url()}}/titles/metadata/castAndCrew/personImageUpload" style="height: 29px; line-height: 29px; overflow: hidden; position: relative; text-align: center; width: 129px;">Upload Image
+								<input type="file" id="person_img" name="person_img" style="display: none;">
+								<input type="file" style="font-size: 29px; opacity: 0; position: absolute; right: -3px; top: -3px; z-index: 999;" multiple="multiple">
+							</div>
+						</div>			
+					</div>
+					<div class="clearfix" style="clear:both">
+						<ul class="nav nav-tabs ">										
+									<li class="active"> 
+										<a href="#tabPersonLocale_en" class="tab-level2" data-toggle="tab" aria-expanded="true"> 
+											<span class="visible-xs"><?php echo ucfirst(array_search($allLocales['en'], $allLocales));?></span> 
+											<span class="hidden-xs">{{$allLocales['en']}}</span> 
+										</a> 
+									</li>
+							@if(isset($LocalePersons))
+								@foreach($LocalePersons as $locale)
+									<li class=""> 
+										<a href="#tabPersonLocale_{{$locale->locale}}" class="tab-level2" data-toggle="tab" aria-expanded="true"> 
+											<span class="visible-xs"><?php echo ucfirst(array_search($allLocales[$locale->locale], $allLocales));?></span> 
+											<span class="hidden-xs">{{$allLocales[$locale->locale]}}</span> 
+										</a> 
+									</li>
+								@endforeach
+							@endif					
+						</ul>
+						<div class="tab-content">
+							@if(isset($thisPerson))
+								@foreach($thisPerson as $person)
+									<input type="hidden" name="personId" value="{{$person->id}}"> 
+									<input type="hidden" name="person[en][personId]" value="{{$person->id}}">
+									<div class="tab-pane active" id="tabPersonLocale_en">
+										<div class="form-group">
+											<label for="title">Name</label>
+											<input type="text" class="form-control" id="title" name="title" value="{{$person->title}}">
+										</div>												
+										<div class="form-group">
+											<label class="col-md-2 control-label">Bio</label>
+											<textarea class="form-control" rows="4" name="brief" style="resize:none;">{{$person->brief}}</textarea>
+										</div>																					
+									</div>
+								@endforeach
+							@endif								
+							@if(isset($LocalePersons))
+								@foreach($LocalePersons as $locale)
+									<div class="tab-pane" id="tabPersonLocale_{{$locale->locale}}">
+										<input type="hidden" name="persons[{{$locale->locale}}][localeId]" value="{{$locale->id}}">
+										<div class="form-group">
+											<span class="pull-right" id="removePersonLocale" style="cursor:pointer" data-localeid="{{ $locale->id }}">
+												<i class="glyphicon glyphicon-remove-circle fa-lg"></i>  
+											</span>								
+											<label for="title">Name</label>
+											<input type="text" class="form-control" id="title" name="persons[{{$locale->locale}}][title]" value="{{$locale->title}}">
+										</div>												
+										<div class="form-group">
+											<label class="col-md-2 control-label">Bio</label>
+											<textarea class="form-control" rows="4" name="persons[{{$locale->locale}}][brief]" style="resize:none;">{{$locale->brief}}</textarea>
+										</div>																					
+									</div>
+								@endforeach
+							@endif	
+							<div class="form-group">
+								<select class="form-control" id="personNewLocale" name="personNewLocale">
+									<option selected="selected" value="">+ Add New Metadata Language</option>
+									@if(isset($allLocales) && is_array($allLocales))
+										@foreach($allLocales as $val => $key)														
+											<option value="{{ $val }}">{{ $key }}</option>													
+										@endforeach
+									@endif
+								</select>
+							</div>				
+						</div>
+					</div>
+				</form>
+			</div>
+			<input type="hidden" name="template" value="basic"> 
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" id="personEdit">Add</button>
+			</div>
 		</div>
-		</div>
-	  </div>
-	</div>
+  </div>
 </div>
-</form>
 <script>
-	$(document).on('click', '#personEdit_', function() {
+$(document).ready(function(){
+	//Create person new locale
+	$(document).on('change', '#personNewLocale', function() {
+		
 		autoCloseMsgHide();
+		var title = $('#personNewLocale option:selected').html();
+		var locale = $('#personNewLocale option:selected').val();
+		var personId = $('input[name="personId"]').val();
+		var confirmText = 'Please Confirm adding '+title+' translation';
 		
-		var editPersonForm = $("#editPersonForm_").serialize();
-		console.log(editPersonForm);
-		
-		
-		var filmId = $('input[name="filmId"]').val();
-		//$('.loading').show();				
-		xhr('{{url()}}/titles/metadata/castAndCrew/personEdit','POST', editPersonForm ,function(data){					
-			if(data != 0) {
-				xhr('{{url()}}/titles/metadata/basic/getTemplate','POST',{filmId:filmId,template:'basic'},function(data){							
+		bootbox.confirm(confirmText, function(result) {
+			if(result) {
+				$('.loading').show();				
+				xhr('{{url()}}/titles/metadata/castAndCrew/personAddNewLocale','POST',{personId:personId,locale:locale},function(data){					
 					if(data) {
-						$('#basic').html(data);
-						$('a[href="#tabBasicLocale_'+locale+'"]').tab('show');
-						autoCloseMsg(0, 'Language is added', 5000);	
+						xhr('{{url()}}/titles/metadata/castAndCrew/getPersonEditForm','POST',{personId:personId},function(data){							
+							if(data) {
+								$("#editFormInner").html($(data).find("#editPersonModalForm"));
+								$('a[href="#tabPersonLocale_'+locale+'"]').tab('show');	
+								$('.loading').hide();
+							}else {
+								$('.loading').hide();
+								autoCloseMsg(1, 'Language is dont Added', 5000);
+							}
+						});						
+					}else {
 						$('.loading').hide();
-					}							
-				});						
-			}else {
-				autoCloseMsg(1, 'Language is dont Deleted', 5000);
-			}					
-		});
-	});		
-function handleFileSelect(evt) {
-	var files = evt.target.files;
-
-	for (var i = 0, f; f = files[i]; i++) {
-	  if (!f.type.match('image.*')) {
-		continue;
-	  }
-	  var reader = new FileReader();
-	  reader.onload = (function(theFile) {
-		return function(e) {
-			$('.person_image').attr('src', e.target.result);
-			$('.person_image').attr('title', escape(theFile.name));
-		};
-	  })(f);
-	  reader.readAsDataURL(f);
-	}
-}
-
-document.getElementById('files').addEventListener('change', handleFileSelect, false);
+						autoCloseMsg(1, 'Language is dont Added', 5000);
+					}					
+				});				
+			}			
+		});				
+	});
+	//End	
+});
 </script>

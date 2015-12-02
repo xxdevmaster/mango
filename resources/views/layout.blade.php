@@ -36,11 +36,18 @@
 		<link href="/css/cinehost.css" rel="stylesheet">
 		<link href="/css/token-input-facebook.css" rel="stylesheet">
 		<link href="/css/uploadifiveCss/uploadifive.css" rel="stylesheet">
-				
-        <script src="/js/jquery.js"></script>	
+
+        <script src="/js/jquery.js"></script>			
+		<script type="text/javascript" src="/assets/jquery-multi-select/jquery.multi-select.js"></script>
+		<script type="text/javascript" src="/assets/spinner/spinner.min.js"></script>
+		<script src="/assets/select2/select2.min.js" type="text/javascript"></script>
+		
         <script src="/js/ArraySetMath.js"></script>
-        <script src="/js/functions.js"></script>
         <script src="/js/bootbox.min.js"></script>	
+        <script src="/js/functions.js"></script>
+        <script src="/js/exec.js"></script>
+		
+		
       
 		<script>
 			$(document).ready(function(){
