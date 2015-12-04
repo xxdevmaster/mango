@@ -95,13 +95,14 @@ class MetadataController extends Controller
 
 	public function getAllLocale()
 	{
-		$allLocale = Alllocales::select('title', 'code')->get()->toArray();
+		$allLocale = array();
+		/*$allLocale = Alllocales::select('title', 'code')->get()->toArray();
 		
 		if(is_array($allLocale) && count($allLocale) > 0){
 			foreach($allLocale as $val) {
 				$allLocales[$val['code']] = $val['title'];
 			}
-		}
+		}*/
 		return $allLocales;
 	}
 	
