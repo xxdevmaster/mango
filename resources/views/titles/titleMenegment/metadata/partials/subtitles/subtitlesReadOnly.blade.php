@@ -9,9 +9,9 @@
 
 <div class="tab-content">
 	<div class="tab-pane fade in active" id="filmSubtitles">
-		@include('titles.titleMenegment.metadata.partials.subtitles.forms.newFilmSubtitleForm')
+		@include('titles.titleMenegment.metadata.partials.subtitles.forms.newFilmSubtitleFormReadOnly')
 	</div>	
 	<div class="tab-pane fade" id="trailerSubtitles">
-		@include('titles.titleMenegment.metadata.partials.subtitles.forms.newTrailerForm')
+		@include('titles.titleMenegment.metadata.partials.subtitles.forms.newTrailerFormReadOnly')
 	</div>
 </div>

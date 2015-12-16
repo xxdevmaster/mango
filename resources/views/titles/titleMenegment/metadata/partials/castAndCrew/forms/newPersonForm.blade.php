@@ -48,4 +48,72 @@
       </div>
     </div>
   </div>
+<script>
+$(document).ready(function(){
+	
+	$('#addNewPersonModalClose').click(function(){
+		autoCloseMsgHide();
+		$('#addNewPersonModal').modal('hide');
+		$('html').css({'overflow-y':'auto'});
+	});
+		
+	$('#addNewPersonModal').on('hidden.bs.modal', function (e) {
+		$('html').css({'overflow-y':'auto'});
+		$("#newPersonFormDiv").html('');
+	});	
+
+	// add job actors
+	$('#actorPosition').click(function(){
+		$("#input-jobs").tokenInput("clear");
+		$("#input-jobs").tokenInput("add", {id: "28", title: "Actors / Actor"});
+	});	
+	
+	// add job director
+	$('#directorPosition').click(function(){
+		$("#input-jobs").tokenInput("clear");
+		$("#input-jobs").tokenInput("add", {id: "22", title: "Directing / Director"});
+	});
+
+	//Add New Person
+	$('#addNewPerson').click(function(){
+		
+		var personName = $('input[name="persons"]').val();
+		var jobId = $('input[name="jobs"]').val();
+		
+		if(personName === undefined) {
+			autoCloseMsg(1, 'Field Person is empty', 5000);
+			return false;
+		}		
+		if(jobId === undefined) {
+			autoCloseMsg(1, 'Field Position is empty', 5000);
+			return false;
+		}		
+		autoCloseMsgHide();
+		
+		$('#addNewPersonModal').modal('hide');
+		$('html').css({'overflow-y':'auto'});
+		
+		var newPersonForm = $("#newPersonForm").serialize();
+		var filmId = $("input[name='filmId']").val();
+		$('.loading').show();
+		
+		$.post('{{url()}}/titles/metadata/castAndCrew/personCreate', newPersonForm, function(response){
+			if(response.error == 0) {
+				$.post('{{url()}}/titles/metadata/basic/getTemplate', {filmId:filmId, template:'castAndCrew'}, function(data){							
+					if(data) {
+						$('#castAndCrew').html(data);
+						$('.loading').hide();
+						autoCloseMsg(0, response.message, 5000);
+					}							
+				});						
+			}else {
+				$('.loading').hide();
+				autoCloseMsg(response.error, response.message, 5000);
+			}
+		});
+		
+	});	
+	// End
+});
+</script>
 </div>

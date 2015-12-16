@@ -71,10 +71,25 @@ padding: 3px 10px;
 line-height: 0;
 }
 .uploadifive-button{
-background-color: #8090BD !important;
 background-image:none !important;
 border-color: #6F81B4 !important;
 color: #FFFFFF !important;
-border-radius: 3px !important;
-cursor: pointer !important;
+border-radius: 5px !important;
+padding-top:3px;
+line-height:29px !important;
+overflow: hidden !important;
+position:relative !important;
+text-align:center !important;
+color: #fff !important;
+background-color: #428bca !important;
+border-color: #357ebd !important;
+}
+.readOnly{
+display:inline-block;
+width:100%;
+height:auto;
+min-height:34px;	
+}
+#uploadifive-uploadifive-person-queue{
+display:none;	
 }

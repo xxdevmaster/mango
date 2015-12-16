@@ -36,7 +36,8 @@
 		<link href="/css/cinehost.css" rel="stylesheet">
 		<link href="/css/token-input-facebook.css" rel="stylesheet">
 		<link href="/css/uploadifiveCss/uploadifive.css" rel="stylesheet">
-
+		<link rel="stylesheet" type="text/css" href="/assets/select2/select2.css" />
+		
         <script src="/js/jquery.js"></script>			
 		<script type="text/javascript" src="/assets/jquery-multi-select/jquery.multi-select.js"></script>
 		<script type="text/javascript" src="/assets/spinner/spinner.min.js"></script>

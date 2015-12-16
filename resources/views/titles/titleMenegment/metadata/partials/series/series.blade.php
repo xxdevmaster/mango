@@ -1,8 +1,9 @@
 <div class="miniwell countries">
 	<form name="seriesForm" id="seriesForm">
-		<input type="hidden" name="filmId" id="filmId" value="{{ $film->id }}">
+		<input type="hidden" name="filmId" id="filmId" value="{{isset($film->id) ? $film->id : ''}}">
 		<input type="hidden" name="act" value="saveSeries">
 		<div class="form-group">
+			<label>Title type</label>
 			<select class="form-control" id="title_type" name="filmType">
 				@if(isset($film))
 					@if($film->series_parent === 0)
@@ -21,7 +22,7 @@
 				@endif
 			</select>
 		</div>	
-		<div id="seriesChiled" style="display:block">
+		<div id="seriesChiled" style="display:none">
 			<div class="form-group">
 				<label for="form-title">Series</label>
 				<input type="text" style="z-index: 20000; display: none;" id="input-series_parent">
@@ -32,8 +33,8 @@
 							tokenFormatter:function(item){ return '<li><input type="hidden" name="series_parent"  value="'+item.id+'"/><p>' + item.title + '</p></li>' },
 							tokenLimit:1
 						});
-						@if(isset($series['parentFilm']))
-							@foreach($series['parentFilm'] as $key)
+						@if(isset($metadata['series']['parentFilm']))
+							@foreach($metadata['series']['parentFilm'] as $key)
 							<?php
 								echo '$("#input-series_parent").tokenInput("add", {id: "'.$key->id.'", title: "'.$key->title.'"});';
 							?>

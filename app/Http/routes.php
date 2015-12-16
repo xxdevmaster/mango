@@ -24,7 +24,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::resource('titles', 'TitlesController');
 	
 	//Titles Menegment
-    Route::get('titles/metadata/{id}', 'TitleMenegment\MetadataController@metadataShow')->where('id', '[1-9]+');
+    Route::get('titles/metadata/{id}', 'TitleMenegment\MetadataController@metadataShow')->where('id', '[0-9]+');
 
 	
     Route::get('account/users', [
@@ -84,5 +84,5 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('features', [
         'middleware' => ['role:superadmin'],
         'uses' => 'FeaturesController@features',
-    ]);
+    ]);	
 });

@@ -480,7 +480,7 @@ header {
 .nav.nav-tabs>li.active>a,.tabs-vertical-env .nav.tabs-vertical li.active>a {
   //border: 0;
   background-color: #fff;
-  border-top: 2px solid #D8D6D6;
+  border-top: 1px solid #D8D6D6;
 }
 
 .nav.nav-tabs>li>a {

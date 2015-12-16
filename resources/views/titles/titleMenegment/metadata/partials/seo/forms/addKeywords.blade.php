@@ -10,9 +10,9 @@
 		<form id="addNewKeywords" name="addNewKeywords" role="form">
 			<div class="modal-body">		
 				<div class="form-group">
-					<select class="selectBoxWithSearch" name="countries" data-placeholder="Choose a Country...">
-						@if(isset($allLocales) && is_array($allLocales))
-							@foreach($allLocales as $key => $value)	
+					<select class="form-control" name="countries" data-placeholder="Choose a Country...">
+						@if(isset($metadata['seo']['seoAllUniqueLocales']) && is_array($metadata['seo']['seoAllUniqueLocales']))
+							@foreach($metadata['seo']['seoAllUniqueLocales'] as $key => $value)	
 								<option value="{{ $key }}">{{ $value }}</option>
 							@endforeach
 						@endif
@@ -38,16 +38,16 @@
 </div>
 <script>
 	$(document).ready(function(){
-		$(document).on('click', '#addSeoItemButton', function(){
+		$("#addSeoItemButton").click(function(){
 			var addNewKeywords = $('#addNewKeywords').serialize();
 			var filmId = $('input[name="filmId"]').val();
 			$.post('{{url()}}/titles/metadata/castAndCrew/addSeoItem', addNewKeywords, function(data){
 				if(data) {
-					xhr('{{url()}}/titles/metadata/getTemplate','POST',{filmId:filmId,template:'seo'},function(data){							
+					$.post('{{url()}}//titles/metadata/basic/getTemplate', {filmId:filmId,template:'seo'}, function(data){							
 						if(data) {
 							$('#seo').html(data);
 							//$('a[href="#tabBasicLocale_'+locale+'"]').tab('show');
-							autoCloseMsg(0, 'Language is added', 5000);	
+							autoCloseMsg(0, 'Keyword is added', 5000);	
 							$('.loading').hide();
 						}							
 					});

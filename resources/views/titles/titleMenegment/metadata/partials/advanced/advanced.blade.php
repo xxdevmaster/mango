@@ -3,11 +3,11 @@
     <input type="hidden" name="" value="">
 	<div class="form-group">
 		<label for="form-dt">Year</label>
-		<input type="text" class="form-control" id="form-dt" name="dt" placeholder="" value="{{ @isset($film) ? $film->dt : '' }}">
+		<input type="text" class="form-control" id="form-dt" name="dt" value="{{ @isset($film->dt) ? $film->dt : '' }}">
 	</div>
 	<div class="form-group">
 		<label for="duration">Duration (minutes)</label>
-		<input type="text" class="form-control" id="duration" name="duration" placeholder="" value="{{ @isset($film) ? $film->duration : '' }}">
+		<input type="text" class="form-control" id="duration" name="duration" value="{{ @isset($film->duration) ? $film->duration : '' }}">
 	</div>
 	<div class="form-group">
 		<label for="input-genre">Genre</label>	
@@ -16,12 +16,19 @@
 		$(document).ready(function() {
 			$("#input-genre").tokenInput("{{url()}}/titles/metadata/advanced/getTokenGenres", {
 				theme: "facebook",
-				tokenFormatter:function(item){ return '<li><input type="hidden" name="genres['+item.id+']" /><p>' + item.title + '</p></li>' }
+				tokenFormatter:function(item){ return '<li><input type="hidden" name="genres['+item.id+']" /><p>' + item.title + '</p></li>' },
 			});
-			@if(isset($advanced['filmGenres']))
-				@foreach($advanced['filmGenres'] as $genres)
+			@if(isset($metadata['advanced']['filmGenres']))
+				@foreach($metadata['advanced']['filmGenres'] as $genres)
 				<?php
-					echo '$("#input-genre").tokenInput("add", {id: "'.$genres->id.'", title: "'.$genres->title.'"});';
+					if(isset($genres->id) && isset($genres->title)){
+						$genresId = $genres->id;
+						$genresTitle = $genres->title;
+					}else{
+						$genresId = '';
+						$genresTitle = '';
+					}				
+					echo '$("#input-genre").tokenInput("add", {id: "'.$genresId.'", title: "'.$genresTitle.'"});';
 				?>
 				@endforeach
 			@endif
@@ -38,10 +45,17 @@
 				theme: "facebook",
 				tokenFormatter:function(item){ return '<li><input type="hidden" name="originalLanguages['+item.id+']" /><p>' + item.title + '</p></li>' }
 			});
-			@if(isset($advanced['filmLanguages']))
-				@foreach($advanced['filmLanguages'] as $languages)
+			@if(isset($metadata['advanced']['filmLanguages']))
+				@foreach($metadata['advanced']['filmLanguages'] as $languages)
 				<?php
-					echo '$("#input-originalLang").tokenInput("add", {id: "'.$languages->id.'", title: "'.$languages->title.'"});';
+					if(isset($languages->id) && isset($languages->title)){
+						$languagesId = $languages->id;
+						$languagesTitle = $languages->title;
+					}else{
+						$languagesId = '';
+						$languagesTitle = '';
+					}				
+					echo '$("#input-originalLang").tokenInput("add", {id: "'.$languagesId.'", title: "'.$languagesTitle.'"});';
 				?>
 				@endforeach
 			@endif
@@ -57,10 +71,17 @@
 				theme: "facebook",
 				tokenFormatter:function(item){ return '<li><input type="hidden" name="productCompanies['+item.id+']" /><p>' + item.title + '</p></li>' }
 			});
-			@if(isset($advanced['filmProdCompanies']))
-				@foreach($advanced['filmProdCompanies'] as $prodCompanies)
+			@if(isset($metadata['advanced']['filmProdCompanies']))
+				@foreach($metadata['advanced']['filmProdCompanies'] as $prodCompanies)
 				<?php
-					echo '$("#input-productCompanies").tokenInput("add", {id: "'.$prodCompanies->id.'", title: "'.$prodCompanies->title.'"});';
+					if(isset($prodCompanies->id) && isset($prodCompanies->title)){
+						$prodCompaniesId = $prodCompanies->id;
+						$prodCompaniesTitle = $prodCompanies->title;
+					}else{
+						$prodCompaniesId = '';
+						$prodCompaniesTitle = '';
+					} 				
+					echo '$("#input-productCompanies").tokenInput("add", {id: "'.$prodCompaniesId.'", title: "'.$prodCompaniesTitle.'"});';
 				?>
 				@endforeach
 			@endif			
@@ -76,10 +97,17 @@
 				theme: "facebook",
 				tokenFormatter:function(item){ return '<li><input type="hidden" name="countries['+item.id+']" /><p>' + item.title + '</p></li>' }
 			});
-			@if(isset($advanced['filmCountries']))
-				@foreach($advanced['filmCountries'] as $countries)
+			@if(isset($metadata['advanced']['filmCountries']))
+				@foreach($metadata['advanced']['filmCountries'] as $countries)
 				<?php
-					echo '$("#input-countries").tokenInput("add", {id: "'.$countries->id.'", title: "'.$countries->title.'"});';
+					if(isset($countries->id) && isset($countries->title)){
+						$countriesId = $countries->id;
+						$countriesTitle = $countries->title;
+					}else{
+						$countriesId = '';
+						$countriesTitle = '';
+					} 
+					echo '$("#input-countries").tokenInput("add", {id: "'.$countriesId.'", title: "'.$countriesTitle.'"});';
 				?>
 				@endforeach
 			@endif
@@ -88,6 +116,6 @@
 	</div>
 	<div class="form-group">
 		<label for="admcomment">Comment (internal use)</label>
-		<textarea class="form-control" id="admcomment" name="admcomment" style="resize:none">{{ @isset($film) ? $film->admcomment : '' }}</textarea>
+		<textarea class="form-control" id="admcomment" name="admcomment" style="resize:none">{{ @isset($film->admcomment) ? $film->admcomment : '' }}</textarea>
 	</div>
 </form>
