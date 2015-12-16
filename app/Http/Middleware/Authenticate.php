@@ -39,7 +39,7 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect('http://cinehost-back.loc');
+                return redirect(getenv('WEBSITE_SERVER_NAME'));
             }
         }
 

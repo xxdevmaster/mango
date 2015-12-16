@@ -55,7 +55,6 @@ class TitlesController extends Controller
 */
 
 
-
         $account_info = $user_info->account;
         //(new Dumper)->dump($account_info->toArray());
 

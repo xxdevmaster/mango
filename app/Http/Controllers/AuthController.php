@@ -42,7 +42,7 @@ class AuthController extends Controller
     public function logout(){
         Auth::logout();
 
-        return redirect('http://cinehost-back.loc');
+        return redirect(getenv('WEBSITE_SERVER_NAME'));
     }
 
     private function getToken($user_id)
