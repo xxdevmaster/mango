@@ -19,7 +19,7 @@ $select = '';
 											$select = 'selected="selected"';
 										?>
 									@endif									
-									<option value="">{{ $v->title }}</option>
+									<option value="{{$v->id}}">{{ $v->code }} - {{ $v->title }}</option>
 								@endforeach
 							</select>
 						</div>

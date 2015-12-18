@@ -60,12 +60,9 @@ function getTemplate(Url,RequestMethod,SectionName,Params)
 	function CallbackMessage
 */
 
-function CHUpload( url, id, params, callback ) {
+function CHUpload( url, id, buttonText, params, callback ) {
 	$('#'+id).uploadifive({
-		'buttonText' 	 	 : 'Upload Image',
-		//'auto'           	 : true,
-		//'dnd'             	 : false,
-		//'dropTarget'      	 : false,
+		'buttonText' 	 	 : buttonText,
 		'queueID' 		  	 : false,
 		'removeCompleted' 	 : false,
 		'removeTimeout' 	 : 0,
@@ -73,7 +70,6 @@ function CHUpload( url, id, params, callback ) {
 		'width' 		 	 : '129',
 		'height' 		 	 : '35',
 		'multi'           	 : false,
-		//'scriptData'	 	 : {},
 		'formData'       	 : params,
 		'uploadScript'   	 : url,
 		'onUpload'		 	 : function(){

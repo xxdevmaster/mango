@@ -147,7 +147,12 @@ $(document).ready(function(){
 									$('.loading').hide();
 									autoCloseMsg(1, title+' translation is dont adding', 5000);
 								}							
-							});						
+							});
+							$.post('{{url()}}/titles/metadata/basic/getTemplate', {filmId:filmId,template:'images'},function(responce){
+								if(response.error == 0) {
+									$("#images").html(responce);
+								}
+							});							
 						}else {
 							$('.loading').hide();
 							autoCloseMsg(response.error, response.message, 5000);
@@ -177,6 +182,11 @@ $(document).ready(function(){
 								autoCloseMsg(0, title+' language is Deleted', 5000);								
 							}							
 						});	
+						$.post('{{url()}}/titles/metadata/basic/getTemplate', {filmId:filmId,template:'images'},function(responce){
+							if(response.error == 0) {
+								$("#images").html(responce);
+							}
+						});							
 					}else {
 						autoCloseMsg(response.error, response.message, 5000);
 					}
@@ -204,7 +214,12 @@ $(document).ready(function(){
 								autoCloseMsg(0, title+' language is maked default', 5000);	
 								$('.loading').hide();
 							}							
-						});	
+						});
+						$.post('{{url()}}/titles/metadata/basic/getTemplate', {filmId:filmId,template:'images'},function(responce){
+							if(response.error == 0) {
+								$("#images").html(responce);
+							}
+						});													
 					}else {
 						autoCloseMsg(response.error, response.message, 5000);
 					}

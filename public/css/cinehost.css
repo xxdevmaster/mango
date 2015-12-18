@@ -93,3 +93,6 @@ min-height:34px;
 #uploadifive-uploadifive-person-queue{
 display:none;	
 }
+.uploadifive-queue-item ,.complete{
+display:none;	
+}

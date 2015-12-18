@@ -139,7 +139,7 @@ $(document).ready(function(){
 	var personId = $('input[name="personId"]').val();
 	var _token = $('input[name="_token"]').val();
 	
-	CHUpload('{{url()}}/titles/metadata/castAndCrew/personImageUpload', 'uploadifive-person', {'personId':personId, '_token':_token }, function(data){
+	CHUpload('{{url()}}/titles/metadata/castAndCrew/personImageUpload', 'uploadifive-person', 'Upload Image', {'filmId':filmId, 'personId':personId, '_token':_token }, function(data){
 		var response = JSON.parse(data);
 		if(!response.error) {
 			$('#person_image').attr('src', 'http://cinecliq.assets.s3.amazonaws.com/persons/'+response.message);

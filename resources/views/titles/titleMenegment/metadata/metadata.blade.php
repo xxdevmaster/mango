@@ -115,7 +115,7 @@ $(document).ready(function(){
                 $.ajax({
                     type: 'POST',
                     url: '{{ url() }}/titles/metadata/subtitles/subtitlesSaveChanges',
-                    data: editFilmSubtitleForm,editTrailerSubtitleForm
+                    data: editFilmSubtitleForm+'&'+editTrailerSubtitleForm
                 })
             ).done(function(){
 				$('.loading').hide();
