@@ -23,9 +23,12 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('/', 'MainController@dashboard');
     Route::resource('titles', 'TitlesController');
 	
-	//Titles Menegment
+	/*Titles Menegment*/
+    //metadata
     Route::get('titles/metadata/{id}', 'TitleMenegment\MetadataController@metadataShow')->where('id', '[0-9]+');
-
+    //media
+    Route::get('titles/media/{id}', 'TitleMenegment\MediaController@mediaShow')->where('id', '[0-9]+');
+    /*End Titles Menegment*/
 	
     Route::get('account/users', [
         'middleware' => ['access:users', 'role:owner,administrator'],

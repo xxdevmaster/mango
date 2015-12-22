@@ -96,3 +96,45 @@ display:none;
 .uploadifive-queue-item ,.complete{
 display:none;	
 }
+
+table.simple {
+border: 0 none;
+border-collapse: collapse;
+border-spacing: 0;
+margin: 0;
+width: 100%;
+}
+table.simple tr {
+background-color: transparent;
+}
+table.simple th {
+text-align: left;
+}
+table.simple th, table.simple td {
+-moz-border-bottom-colors: none;
+-moz-border-left-colors: none;
+-moz-border-right-colors: none;
+-moz-border-top-colors: none;
+border-color: -moz-use-text-color -moz-use-text-color #cccccc;
+border-image: none;
+border-style: none none solid;
+border-width: 0 0 1px;
+font-size: 1em;
+line-height: 1.6em;
+padding: 2px;
+font-weight: normal;
+vertical-align: bottom;
+}
+table.simple td{
+text-align: right;
+}
+.section {
+border-top: 1px solid #cccccc;
+padding: 1.25em 1.625em;
+}
+header.interior {
+background-color: #fafafa;
+border-top: 1px solid #cccccc;
+padding: 3px 1.625em;
+margin-top: 20px;
+}

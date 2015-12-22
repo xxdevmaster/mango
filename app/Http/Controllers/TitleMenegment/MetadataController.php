@@ -60,10 +60,10 @@ class MetadataController extends Controller
 			'seo' => $this->getSeo($id)
 		];
 		
-		return view('titles.titleMenegment.metadata.metadata', compact('current_menu', 'film', 'allLocales', 'metadata'));
+		return view('titles.titleMenegment.metadata.metadata', compact('current_menu', 'id', 'film', 'allLocales', 'metadata'));
     }
 	
-	public function getFilm($id)
+	private function getFilm($id)
 	{
 		$this->id = (int) $id;     
 		
@@ -1869,11 +1869,11 @@ class MetadataController extends Controller
 		
 		$filmRates = array();
 		foreach($fkAgeRates as $key){
-			$filmRates[] = $key->age_rates_id;
+			$filmRates[$key->age_rates_id] = $key->age_rates_id;
 		}
 		
 		//dd($filmRates);
-       // dd($ageRate);
+        //dd($ageRate['Spain'][0]);
 		
 		return compact('ageRate', 'filmRates');
     }

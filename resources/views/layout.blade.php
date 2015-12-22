@@ -37,6 +37,7 @@
 		<link href="/css/token-input-facebook.css" rel="stylesheet">
 		<link href="/css/uploadifiveCss/uploadifive.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="/assets/select2/select2.css" />
+        <link href="/assets/timepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
 		
         <script src="/js/jquery.js"></script>			
 		<script type="text/javascript" src="/assets/jquery-multi-select/jquery.multi-select.js"></script>
@@ -142,14 +143,27 @@
 
         <script src="/assets/datatables/jquery.dataTables.min.js"></script>
         <script src="/assets/datatables/dataTables.bootstrap.js"></script>
-
+        <script src="/assets/timepicker/bootstrap-datepicker.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function() {
                 $('#datatable').dataTable({
                 bFilter: false, bInfo: false
                 });
-            } );
+
+                jQuery('#startDate-datepicker').datepicker({
+                    setDate: new Date(),
+                    numberOfMonths: 3,
+                    showButtonPanel: true,
+                    format:'dd-mm-yyyy',
+                    autoclose:true,
+                });
+                jQuery('#endDate-datepicker').datepicker({
+                    numberOfMonths: 3,
+                    showButtonPanel: true
+                });
+            });
+
         </script>
 
         @yield('footer')

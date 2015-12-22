@@ -228,7 +228,7 @@ class UsersController extends Controller
 			'invite_dt' => date("Y-m-d"),
 			'invite_token' => $invite_token,
 		));
-		
+
 		if($userUpdate)
 		{
 			$AuthUser_info = Auth::user();
@@ -248,11 +248,11 @@ class UsersController extends Controller
 				'AuthUserEmail' => $AuthUserEmail,
 				'AuthUserPerson' => $AuthUserPerson,
 				'invite_token' => $invite_token
-			);	
-			
+			);
+
 			/*Mandrill mail start*/	
 			$MandrillStatus = $this->SendInvitationMail($data);
-			
+
 			if($MandrillStatus == 'sent')
 				return 1;
 			else 
@@ -264,6 +264,7 @@ class UsersController extends Controller
 	public function SendInvitationMail($data)
 	{
 		$mandrill = new Mandrill("zrVZzzehpLYYFcnHkvegGw");
+
 		$message = array(
 			'subject' => 'Invitation to  Cinehost, Inc. ',
 			'from_email' => 'noreply@cinehost.com',

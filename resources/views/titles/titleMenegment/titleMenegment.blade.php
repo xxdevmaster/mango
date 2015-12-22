@@ -22,10 +22,10 @@
 							</div>
 							<div class="pull-left col-lg-3 col-md-7">
 								<div class="list-group no-border mail-list ">
-                                  <a href="#" class="list-group-item active">Metadata</a>
-                                  <a href="#" class="list-group-item">Media</a>
-                                  <a href="#" class="list-group-item">Rights</a>
-                                  <a href="#" class="list-group-item">TVOD Sales</a>
+                                  <a href="{{url()}}/titles/metadata/{{$id}}" class="list-group-item active">Metadata</a>
+                                  <a href="{{url()}}/titles/media/{{$id}}" class="list-group-item">Media</a>
+                                  <a href="{{url()}}/titles/rights/{{$id}}" class="list-group-item">Rights</a>
+                                  <a href="{{url()}}/titles/sales/{{$id}}" class="list-group-item">TVOD Sales</a>
                                 </div>
 							</div>
 						</div>
