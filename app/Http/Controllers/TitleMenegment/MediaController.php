@@ -29,12 +29,12 @@ class MediaController extends Controller
             return view('errors.404', compact('current_menu'));
 
         $allLocales = $this->getAllLocale();
-
         $media = [
             'storage' => $this->tabStorage($id),
             'streaming' => $this->tabStreaming(),
             'movie' => $this->tabDubbedVersions($id, 'movie'),
-            'trailer' => $this->tabDubbedVersions($id, 'trailer')
+            'trailer' => $this->tabDubbedVersions($id, 'trailer'),
+            'extras' => $this->tabExtras($id)
         ];
         return view('titles.titleMenegment.media.media', compact('current_menu','id', 'film', 'allLocales', 'media'));
     }
@@ -114,14 +114,18 @@ class MediaController extends Controller
         $allLocales = $this->getAllLocale();
 
         switch($templateName){
-            case 'movie' : $template = $this->tabDubbedVersions($filmId, 'movie'); return view('titles.titleMenegment.media.partials.dubbedVersions.partials.movie', compact('film', 'allLocales'));break;
+            case 'movie' :  $media = [
+                                'movie' => $this->tabDubbedVersions($filmId, 'movie')
+                            ];
+                            return view('titles.titleMenegment.media.partials.dubbedVersions.partials.movie', compact('film', 'allLocales', 'media'));break;
+            case 'trailer' :  $media = [
+                                'trailer' => $this->tabDubbedVersions($filmId, 'trailer')
+                            ];
+                             return view('titles.titleMenegment.media.partials.dubbedVersions.partials.trailer', compact('film', 'allLocales', 'media'));break;
         }
 
-        $media = [
-            $templateName => $template
-        ];
 
-        return view('titles.titleMenegment.metadata.partials.'.$templateName.'.'.$templateName, compact('film', 'allLocales', 'metadata'));
+        //return view('titles.titleMenegment.metadata.partials.'.$templateName.'.'.$templateName, compact('film', 'allLocales', 'metadata'));
     }
 
     private function tabStreaming()
@@ -264,13 +268,21 @@ class MediaController extends Controller
             ];
         }
 
+        if(empty($request->Input('type')) || $request->Input('type') != 'movie' && $request->Input('type') != 'trailer'){
+            return [
+                'error' => '1' ,
+                'message' => 'Dubbed version type doesnt exixst'
+            ];
+        }
+
         $filmId = CHhelper::filterInputInt($request->Input('filmId'));
         $locale = CHhelper::filterInput($request->Input('locale'));
+        $type = CHhelper::filterInput($request->Input('type'));
 
         $createmovie = FilmsMedia::create([
             'films_id' => $filmId,
             'locale' => $locale,
-            'type' => 'movie'
+            'type' => $type
         ])->id;
 
         if($createmovie > 0){
@@ -326,28 +338,68 @@ class MediaController extends Controller
         else
             return [
                 'error' => '1' ,
-                'message' => 'Movie doesn\'t deleted!'
+                'message' => 'Movie doesn`t deleted!'
             ];
     }
 
-    public function saveChanges()
+    /**
+     *@POST("/titles/media/dubbedVersions/saveChanges")
+     * @Middleware("auth")
+     */
+    public function dubbedVersionsSaveChanges(Request $request)
     {
-        //
+        if(empty($request->Input('filmId'))){
+            return [
+                'error' => '1' ,
+                'message' => 'Film identifier doesnt exixst'
+            ];
+        }
+        if(!is_numeric($request->Input('filmId'))){
+            return [
+                'error' => '1' ,
+                'message' => 'Identifier film not valid format'
+            ];
+        }
+
+        if(count($this->getFilm($request->Input('filmId'))) === 0){
+            return [
+                'error' => '1' ,
+                'message' => 'You dont have perrmisions'
+            ];
+        }
+
+        $filmId = CHhelper::filterInputInt($request->Input('filmId'));
+
+        if(!empty($request->Input('language')) && is_array($request->Input('language'))){
+            foreach($request->Input('language') as $key => $val){
+                if(is_array($val)){
+                    foreach($val as $k => $v){
+                        if(!array_key_exists($v, $this->getAllLocale())){
+                            return [
+                                'error' => '1' ,
+                                'message' => 'Invalid locale'
+                            ];
+                        }
+                        $mediaId = CHhelper::filterInputInt($k);
+                        $mediaLocale = CHhelper::filterInput($v);
+
+                        FilmsMedia::where('id', $k)->update([
+                           'locale' => $v
+                        ]);
+                    }
+                }
+            }
+        }
+        return [
+            'error' => '0' ,
+            'message' => 'Dubbed Versions updatet successfully!'
+        ];
     }
 
-    public function dubbedVersionsCreate()
+    private function tabExtras($id)
     {
-        //
-    }
+        $film = $this->getFilm($id);
 
-    public function dubbedVersionsDestroy()
-    {
-        //
-    }
-
-    public function extrasCreate()
-    {
-        //
     }
 
     public function extrasDestroy()

@@ -53,7 +53,13 @@
         <script src="/library/bitdash/bitdash.min.js"></script>
       
 		<script>
+            var player_setup_movie= [];
+            var player_setup_trailer = [];
+            var player_movie= [];
+            var player_trailer= [];
 			$(document).ready(function(){
+
+                console.log(player_setup_trailer+'1');
 				$.ajaxSetup({
 					headers: {
 						'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')

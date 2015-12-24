@@ -41,5 +41,6 @@ class Film extends Model
 	public function jobs(){
         return $this->belongsToMany('App\Models\Jobs', 'fk_films_persons', 'films_id', 'jobs_id');
     }	
-	
+
+
 }

@@ -26,6 +26,7 @@ use App\Models\FilmsAgeRates;
 use App\Models\FilmSubtitles;
 use App\Models\TrailerSubtitles;
 use App\Models\ChannelsFilmsKeywords;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Debug\Dumper;
 
 use DB;
@@ -40,7 +41,7 @@ use App\Libraries\CHhelper\CHhelper;
 class MetadataController extends Controller
 {
 	private $id;
-	
+
     public function metadataShow($id)
     {
 		$current_menu = 'Metadata';
@@ -286,7 +287,6 @@ class MetadataController extends Controller
 	*/
     public function basicLocaleRemove(Request $request)
     {
-		
 		if(empty($request->Input('filmId')) || empty($request->Input('localeId'))){
 			return [
 				'error' => '1' ,

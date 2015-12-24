@@ -67,11 +67,15 @@
 	</div>
 	<script>
 		$(document).ready(function(){
-			$(document).on('click', '#saveChanges', function(){
+
+				$(document).on('click', '#saveChanges', function(){
 				autoCloseMsgHide();
 				var thisEllement = $(this);
 				thisEllement.html('Saving...');
+
 				var vimeoForm = $('#vimeoForm').serialize();
+				var dubbedVersionForm = $('#dubbedVersionForm').serialize();
+
 				$('.loading').show();
 
 				$.when(
@@ -79,6 +83,11 @@
 							type: 'POST',
 							url: '{{ url() }}/titles/media/vimeo/saveChangesVimeo',
 							data: vimeoForm,
+						}),
+						$.ajax({
+							type: 'POST',
+							url: '{{ url() }}/titles/media/dubbedVersions/saveChanges',
+							data: dubbedVersionForm,
 						})
 				).done(function(){
 							$('.loading').hide();

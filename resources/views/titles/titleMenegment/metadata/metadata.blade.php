@@ -84,7 +84,7 @@
 	<button class="btn btn-success" id="saveChanges">Save Changes</button>
 </div>	
 <script>
-$(document).ready(function(){					
+$(document).ready(function(){
 	$(document).on('click', '#saveChanges', function(){
 		autoCloseMsgHide();
 		var thisEllement = $(this);
