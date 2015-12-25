@@ -1,7 +1,5 @@
 @extends('layout')
 @section('content')
-	<script>
-	</script>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
@@ -10,11 +8,7 @@
 						<div class="pull-left">
 							<h2 class="text-right">{{ $film->title }} / {{ $current_menu }}</h2>							
 						</div>
-						<!--div class="pull-right">
-							<h4>Invoice # <br>
-								<strong>2015-04-23654789</strong>
-							</h4>
-						</div-->
+
 					</div>
 					<hr>
 					<div class="row">
@@ -24,11 +18,26 @@
 							</div>
 							<div class="pull-left col-lg-3 col-md-7">
 								<div class="list-group no-border mail-list ">
-                                  <a href="{{url()}}/titles/metadata/{{$id}}" class="list-group-item active">Metadata</a>
+									<?php
+
+
+									?>
+                                  <a href="{{url()}}/titles/metadata/{{$id}}" class="list-group-item">Metadata</a>
                                   <a href="{{url()}}/titles/media/{{$id}}" class="list-group-item">Media</a>
                                   <a href="{{url()}}/titles/rights/{{$id}}" class="list-group-item">Rights</a>
                                   <a href="{{url()}}/titles/sales/{{$id}}" class="list-group-item">TVOD Sales</a>
                                 </div>
+							</div>
+							<div class="pull-right onAndOff">
+								<div class="onoffswitch">
+									<input type="checkbox" name="onoffswitch" data-item="79" data-active="products" class="onoffswitch-checkbox" id="myonoffswitch0" checked="">
+									<label class="onoffswitch-label" for="myonoffswitch0">
+										<span class="onoffswitch-inner"></span>
+										<span class="onoffswitch-switch">
+											<i class="ion-checkmark"></i>
+										</span>
+									</label>
+								</div>
 							</div>
 						</div>
 					</div>

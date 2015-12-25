@@ -16,9 +16,9 @@
                 <div class="media">
                     <div class="media-body">
                         <div class="form-group">
-                            <select class="movieLanguages" id="movieLanguages" name="dubbedVersionsLanguages" data-placeholder="Choose Language">
+                            <select id="selectbox_movie" name="dubbedVersionsLanguages" data-placeholder="Choose Language" >
                                 @if(isset($allLocales) && is_array($allLocales))
-                                    <option selected="selected" value="0">Choose Language</option>
+                                    <option selected="selected" value="0" >Choose Language</option>
                                     @foreach($allLocales as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
                                     @endforeach
@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <span class="fs12 dengerTxt language_info_movie"></span>
                             <div class="btn-group pull-right">
-                                <button class="btn btn-default btn-sm" id="addNewMovieLanguage">
+                                <button class="btn btn-default btn-sm" onclick="dubbedVersionsCreate('movie');">
                                     <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
                                 </button>
                             </div>
@@ -38,7 +38,10 @@
                 </div>
 
                 <div id="languages_movie">
-                    @include('titles.titleMenegment.media.partials.dubbedVersions.partials.movie')
+                    <?php
+                        $filmsMedia = $media['movie'];
+                    ?>
+                    @include('titles.titleMenegment.media.partials.dubbedVersions.partials.movieAndTrailer', $filmsMedia)
                 </div>
 
             </div>
@@ -47,7 +50,7 @@
                 <div class="media">
                     <div class="media-body">
                         <div class="form-group">
-                            <select class="trailerLanguages" id="dubbedVersionsLanguages" name="dubbedVersionsLanguages" data-placeholder="Choose Language">
+                            <select id="selectbox_trailer" name="dubbedVersionsLanguages" data-placeholder="Choose Language">
                                 @if(isset($allLocales) && is_array($allLocales))
                                     <option selected="selected" value="0">Choose Language</option>
                                     @foreach($allLocales as $key => $value)
@@ -59,7 +62,7 @@
                         <div class="form-group">
                             <span class="fs12 dengerTxt language_info_trailer"></span>
                             <div class="btn-group pull-right">
-                                <button class="btn btn-default btn-sm" id="addNewTrailerLanguage">
+                                <button class="btn btn-default btn-sm" onclick="dubbedVersionsCreate('trailer');">
                                     <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
                                 </button>
                             </div>
@@ -68,7 +71,10 @@
                     <div class="form-group"></div>
                 </div>
                 <div class="miniwell" id="languages_trailer">
-                    @include('titles.titleMenegment.media.partials.dubbedVersions.partials.trailer')
+                    <?php
+                         $filmsMedia = $media['trailer'];
+                    ?>
+                    @include('titles.titleMenegment.media.partials.dubbedVersions.partials.movieAndTrailer', $filmsMedia)
                 </div>
             </div>
         </div>
@@ -77,81 +83,62 @@
 </div>
 <script>
     jQuery(document).ready(function() {
-        jQuery(".movieLanguages, .trailerLanguages").select2({
+        jQuery("#selectbox_movie, #selectbox_trailer").select2({
             width: '100%',
         });
     });
-    $(document).ready(function(){
+
+    function dubbedVersionsCreate(type){
+        $('.loading').show();
         var filmId = $('input[name="filmId"]').val();
-
-        $("#addNewMovieLanguage").click(function(){
+        var locale = $('#selectbox_'+type+' option:selected').val();
+        if(locale != 0){
             autoCloseMsgHide();
-            $('.loading').show();
-            var selectedValue = $('.movieLanguages option:selected').val();
-            if(selectedValue != 0){
-                $.post('{{url()}}/titles/media/dubbedVersions/movieCreate', {filmId:filmId, locale:selectedValue, type:'movie'}, function(response){
-                    if(response.error == 0){
-                        $.post('http://pro.cinehost-back.loc/titles/media/getTemplate', {filmId:filmId, template:'movie'}, function(data){
-                            if(data){
-                                $.each(player_setup_movie, function( index, value ) {
-                                    if(value != undefined)
-                                        player_movie[index].destroy();
+            $.post('{{url()}}/titles/media/dubbedVersions/dubbedVersionsCreate', {filmId:filmId, locale:locale, type:type}, function(response){
+                if(response.error == 0){
+                    $.each(window['player_setup_'+type], function( index, value ) {
+                        if(value != undefined)
+                            window['player_'+type][index].destroy();
+                    });
+                    window['player_setup_'+type] = [];
+                    window['player_'+type] = [];
+                    $('#languages_'+type).html(response.html);
+                    $('#selectbox_'+type+' option[value=0]').prop('selected','selected').trigger('change');
+                    $('.loading').hide();
+                    autoCloseMsg(0, response.message, 5000);
+                }
+            });
+        }else {
+            $('.loading').hide();
+            autoCloseMsg(1, 'Please Select Language From List', 5000);
+        }
 
-                                });
-                                player_setup_movie = [];
-                                player_movie = [];
-                                $('#languages_movie').html(data);
-                                $('#movieLanguages option[value="0"]').trigger("change");
-                                $('.loading').hide();
-                                autoCloseMsg(0, response.message, 5000);
-                            }else
-                                $('.loading').hide();
+    }
+
+    function dubbedVersionsRemove(movieId, language, filmId, type){
+        autoCloseMsgHide();
+        bootbox.confirm('Do you really want to delete '+language+' language ?', function(result) {
+            if(result){
+                $('.loading').show();
+                $.post('{{url()}}/titles/media/dubbedVersions/dubbedVersionsRemove', {filmId:filmId, movieId:movieId , type:type}, function(response){
+                    if(response.error == 0) {
+                        $.each(window['player_setup_'+type], function( index, value ) {
+                            if(value != undefined)
+                                window['player_'+type][index].destroy();
                         });
-                    }else{
+                        window['player_setup_'+type] = [];
+                        window['player_'+type] = [];
+                        $('#languages_'+type).html(response.html);
+                        $('#selectbox_'+type+' option[value=0]').prop('selected','selected').trigger('change');
+                        $('.loading').hide();
+                        autoCloseMsg(0, response.message, 5000);
+                    }else {
                         $('.loading').hide();
                         autoCloseMsg(1, response.message, 5000);
                     }
                 });
-            }else{
-                $('.loading').hide();
-                autoCloseMsg(1, 'Please Select Language From List', 5000);
             }
         });
+    }
 
-        $("#addNewTrailerLanguage").click(function(){
-            autoCloseMsgHide();
-            $('.loading').show();
-            var selectedValue = $('.trailerLanguages option:selected').val();
-            if(selectedValue != 0){
-                $.post('{{url()}}/titles/media/dubbedVersions/movieCreate', {filmId:filmId, locale:selectedValue, type:'trailer'}, function(response){
-                    if(response.error == 0){
-                        $.post('http://pro.cinehost-back.loc/titles/media/getTemplate', {filmId:filmId, template:'trailer'}, function(data){
-                            if(data){
-
-                                $.each(player_setup_trailer, function( index, value ) {
-                                    if(value != undefined)
-                                        player_trailer[index].destroy();
-
-                                });
-                                player_setup_trailer = [];
-                                player_trailer = [];
-                                $('#languages_trailer').html(data);
-                                $('.trailerLanguages option[value="0"]').trigger("change");
-                                $('.loading').hide();
-                                autoCloseMsg(0, response.message, 5000);
-                            }else
-                                $('.loading').hide();
-                        });
-                    }else{
-                        $('.loading').hide();
-                        autoCloseMsg(1, response.message, 5000);
-                    }
-                });
-            }else{
-                $('.loading').hide();
-                autoCloseMsg(1, 'Please Select Language From List', 5000);
-            }
-        });
-
-    });
 </script>

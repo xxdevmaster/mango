@@ -27,14 +27,14 @@ class MediaController extends Controller
 
         if(count($film) === 0)
             return view('errors.404', compact('current_menu'));
-
         $allLocales = $this->getAllLocale();
         $media = [
             'storage' => $this->tabStorage($id),
             'streaming' => $this->tabStreaming(),
             'movie' => $this->tabDubbedVersions($id, 'movie'),
             'trailer' => $this->tabDubbedVersions($id, 'trailer'),
-            'extras' => $this->tabExtras($id)
+            'extras' => $this->tabExtras($id),
+            'uploadHistory' => $this->getUploaderHistory()
         ];
         return view('titles.titleMenegment.media.media', compact('current_menu','id', 'film', 'allLocales', 'media'));
     }
@@ -81,51 +81,23 @@ class MediaController extends Controller
         return $allLocales;
     }
 
-    /**
-     *@POST("/titles/media/getTemplate")
-     * @Middleware("auth")
-     */
-    public function getTemplate(Request $request)
+    private function drawTemplate($filmId, $template)
     {
-        if(empty($request->Input('filmId')) || empty($request->Input('template'))){
-            return [
-                'error' => '1' ,
-                'message' => 'Film Identifier or template doesnt exixst'
-            ];
-        }
-        if(!is_numeric($request->Input('filmId'))){
-            return [
-                'error' => '1' ,
-                'message' => 'Identifier film not valid format'
-            ];
-        }
-        $filmId = CHhelper::filterInputInt($request->Input('filmId'));
-
-        $templateName = CHhelper::filterInput(($request->Input('template')));
-
-        if(count($this->getFilm($filmId)) === 0) {
-            return [
-                'error' => '1' ,
-                'message' => 'You dont have perrmisions'
-            ];
-        }
-        $template= '';
         $film = $this->getFilm($filmId);
         $allLocales = $this->getAllLocale();
 
-        switch($templateName){
+        switch($template){
             case 'movie' :  $media = [
                                 'movie' => $this->tabDubbedVersions($filmId, 'movie')
                             ];
-                            return view('titles.titleMenegment.media.partials.dubbedVersions.partials.movie', compact('film', 'allLocales', 'media'));break;
+                            $filmsMedia = $media['movie'];
+                            return view('titles.titleMenegment.media.partials.dubbedVersions.partials.movieAndTrailer', compact('film', 'allLocales', 'filmsMedia'));break;
             case 'trailer' :  $media = [
                                 'trailer' => $this->tabDubbedVersions($filmId, 'trailer')
                             ];
-                             return view('titles.titleMenegment.media.partials.dubbedVersions.partials.trailer', compact('film', 'allLocales', 'media'));break;
+                            $filmsMedia = $media['trailer'];
+                            return view('titles.titleMenegment.media.partials.dubbedVersions.partials.movieAndTrailer', compact('film', 'allLocales', 'filmsMedia'));break;
         }
-
-
-        //return view('titles.titleMenegment.metadata.partials.'.$templateName.'.'.$templateName, compact('film', 'allLocales', 'metadata'));
     }
 
     private function tabStreaming()
@@ -236,10 +208,10 @@ class MediaController extends Controller
     }
 
     /**
-     *@POST("/titles/media/dubbedVersions/movieCreate")
+     *@POST("/titles/media/dubbedVersions/dubbedVersionsCreate")
      * @Middleware("auth")
      */
-    public function movieCreate(Request $request)
+    public function dubbedVersionsCreate(Request $request)
     {
         if(empty($request->Input('filmId')) || empty($request->Input('locale'))){
             return [
@@ -286,22 +258,24 @@ class MediaController extends Controller
         ])->id;
 
         if($createmovie > 0){
+            $html = strval($this->drawTemplate($filmId, $type));
             return [
                 'error' => '0' ,
-                'message' => 'Movie created seccessfully!'
+                'message' => 'Movie created seccessfully!',
+                'html' => $html
             ];
         }else
             return [
               'error' => '1' ,
-              'message' => 'Movie dont created!'
+              'message' => 'Movie don`t created!'
             ];
     }
 
     /**
-     *@POST("/titles/media/dubbedVersions/movieRemove")
+     *@POST("/titles/media/dubbedVersions/dubbedVersionsRemove")
      * @Middleware("auth")
      */
-    public function movieRemove(Request $request)
+    public function dubbedVersionsRemove(Request $request)
     {
         if(empty($request->Input('filmId')) && empty($request->Input('movieId'))){
             return [
@@ -325,16 +299,20 @@ class MediaController extends Controller
 
         $filmId = CHhelper::filterInputInt($request->Input('filmId'));
         $movieId = CHhelper::filterInputInt($request->Input('movieId'));
+        $type = CHhelper::filterInput($request->Input('type'));
 
         $movieRemove =  FilmsMedia::where('id', $movieId)->where('films_id', $filmId)->update([
             'deleted' => '1'
         ]);
 
-        if($movieRemove > 0)
+        if($movieRemove > 0){
+            $html = strval($this->drawTemplate($filmId, $type));
             return [
                 'error' => '0' ,
-                'message' => 'Movie was deleted successfully!'
+                'message' => 'Movie deleted successfully!',
+                'html' => $html
             ];
+        }
         else
             return [
                 'error' => '1' ,
@@ -456,10 +434,21 @@ class MediaController extends Controller
     {
         //
     }
-	
-    public function uploadedHistoryShow()
+
+    /**
+     *@POST("/titles/media/uploader/getUploaderHistory")
+     * @Middleware("auth")
+     */
+    public function getUploaderHistory()
     {
-        //
+        $bitjobs = array();
+        $html =  view('titles.titleMenegment.media.partials.uploader.history.uploaderHistory', compact('bitjobs'));
+        $html = strval($html);
+        return [
+            'error' => '0',
+            'message' => 'success',
+            'html' => $html
+        ];
     }
 	
 }

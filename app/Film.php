@@ -42,5 +42,7 @@ class Film extends Model
         return $this->belongsToMany('App\Models\Jobs', 'fk_films_persons', 'films_id', 'jobs_id');
     }	
 
+    public function bitjobs(){
 
+    }
 }
