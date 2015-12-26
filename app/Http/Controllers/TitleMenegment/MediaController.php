@@ -21,7 +21,7 @@ class MediaController extends Controller
 
     public function mediaShow($id)
     {
-        dd($this->getUploaderHistory($id));
+       // dd($this->getUploaderHistory($id));
 
         $current_menu = 'Media';
         $film = $this->getFilm($id);
@@ -441,8 +441,13 @@ class MediaController extends Controller
      */
     public function getUploaderHistory($id)
     {
+        $userInfo = Auth::user();
+
+        $accountInfo = $userInfo->account;
+        $accountId = $accountInfo->id;
+		
         $film = $this->getFilm($id);
-        return $film->bitJobs();
+        //return $film->bitJobs($accountId);
         $bitjobs = array();
         $html =  view('titles.titleMenegment.media.partials.uploader.history.uploaderHistory', compact('bitjobs'));
         $html = strval($html);
