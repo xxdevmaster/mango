@@ -8,7 +8,11 @@
 						<div class="pull-left">
 							<h2 class="text-right">{{ $film->title }} / {{ $current_menu }}</h2>							
 						</div>
-
+						<div class="pull-right review">
+                            <button class="btn btn-default btn-md">
+                                Review
+                            </button>
+                        </div>
 					</div>
 					<hr>
 					<div class="row">
@@ -18,10 +22,6 @@
 							</div>
 							<div class="pull-left col-lg-3 col-md-7">
 								<div class="list-group no-border mail-list ">
-									<?php
-
-
-									?>
                                   <a href="{{url()}}/titles/metadata/{{$id}}" class="list-group-item">Metadata</a>
                                   <a href="{{url()}}/titles/media/{{$id}}" class="list-group-item">Media</a>
                                   <a href="{{url()}}/titles/rights/{{$id}}" class="list-group-item">Rights</a>

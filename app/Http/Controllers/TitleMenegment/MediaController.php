@@ -16,12 +16,13 @@ use App\Models\FilmsMedia;
 
 
 
-
 class MediaController extends Controller
 {
 
     public function mediaShow($id)
     {
+        dd($this->getUploaderHistory($id));
+
         $current_menu = 'Media';
         $film = $this->getFilm($id);
 
@@ -34,7 +35,7 @@ class MediaController extends Controller
             'movie' => $this->tabDubbedVersions($id, 'movie'),
             'trailer' => $this->tabDubbedVersions($id, 'trailer'),
             'extras' => $this->tabExtras($id),
-            'uploadHistory' => $this->getUploaderHistory()
+            'uploadHistory' => $this->getUploaderHistory($id)
         ];
         return view('titles.titleMenegment.media.media', compact('current_menu','id', 'film', 'allLocales', 'media'));
     }
@@ -377,7 +378,6 @@ class MediaController extends Controller
     private function tabExtras($id)
     {
         $film = $this->getFilm($id);
-
     }
 
     public function extrasDestroy()
@@ -439,8 +439,10 @@ class MediaController extends Controller
      *@POST("/titles/media/uploader/getUploaderHistory")
      * @Middleware("auth")
      */
-    public function getUploaderHistory()
+    public function getUploaderHistory($id)
     {
+        $film = $this->getFilm($id);
+        return $film->bitJobs();
         $bitjobs = array();
         $html =  view('titles.titleMenegment.media.partials.uploader.history.uploaderHistory', compact('bitjobs'));
         $html = strval($html);

@@ -40,9 +40,9 @@ class Film extends Model
 
 	public function jobs(){
         return $this->belongsToMany('App\Models\Jobs', 'fk_films_persons', 'films_id', 'jobs_id');
-    }	
+    }
 
-    public function bitjobs(){
-
+    public function bitJobs(){
+        return $this->belongsToMany('App\Models\BitJobs', 'z_pass_through', 'pass_id');
     }
 }
