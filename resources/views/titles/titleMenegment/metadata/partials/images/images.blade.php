@@ -7,64 +7,75 @@
 	</li>
 </ul>
 <div class="tab-content">
-	<div class="tab-pane active" id="tab_filmPosterImages">
-		<!--form name="movie-form-translations" id="movie-form-translations" role="form"-->
-<?
+	<div class="tab-pane fade in active" id="tab_filmPosterImages">
+<?php
 $i = 0;
 $tabsLi = '';
 $tabPane = '';
 $active = 'active';
+$fade = 'fade in';
 $filmPosterImage = 'nocover.png';
+$uploadScript = '';
 
-if(isset($images['localeFilms']) && is_array($images['localeFilms'])) {
-	foreach ($images['localeFilms'] as $locales) {
-		
-		if ($i != 0)
-			$active = '';
-		
-		if ($locales['cover'])
-			$filmPosterImage = $locales['cover'];
-		else
-			$filmPosterImage = 'nocover.png';
-		
-		$tabsLi .= '
-						<li class="'.$active.'" data-locale="'.$locales['locale'].'">
-							<a href="#tab_covers_locale_'.$locales['locale'].'" class="tab-level1" data-toggle="tab" aria-expanded="true">
-								<span class="visible-xs">'.ucfirst(array_search($allLocales[$locales['locale']], $allLocales)).'</span> 
-								<span class="hidden-xs">'.$allLocales[$locales['locale']].'</span>
-							</a>
-						</li>
-					';
-		
-		$tabPane .= '
-						<div class="tab-pane '.$active.'" id="tab_covers_locale_'.$locales['locale'].'">
-							<ul class="list-group " id="slider-list-holder">
-								<li class="list-group-item">
-									<div class="media">
-										<span class="pull-right" id="removePosterImage" data-localeid="'.$locales['id'].'" aria-hidden="true" style="cursor:pointer">
-											<span class="glyphicon glyphicon-remove "></span>  
-										</span>
-										<div class="col-sm-6 col-md-4">
-											<output id="list">
-												<img src="http://cinecliq.assets.s3.amazonaws.com/files/'.$filmPosterImage.'" alt="..." id="cover_imgview" class="cover_imgview" style="max-width:250px">
-											</output>
-										</div>
-										<div class="media-body">
-											<div class="form-group">Poster image must be uploaded in the 2:3 aspect ratio. We strongly recommend the following format: 400x600px, JPG or PNG, 500KB maximum size.</div>
-											<div class="form-group" id="cover_text"></div>
-											<div class="form-group">												
-												<div id="cover_img_'.$locales['locale'].'" class="uploadifive-button" data-url="'.url().'/titles/metadata/castAndCrew/posterImageUpload" data-locale="'.$locales['locale'].'" style="height: 29px; line-height: 29px; overflow: hidden; position: relative; text-align: center; width: 129px;">Upload Image
-													<input type="file" name="cover_img" style="display: none;" accept="image/*" />
-													<input type="file" name="cover_img" style="font-size: 29px; opacity: 0; position: absolute; right: -3px; top: -3px; z-index: 999;" accept="image/*" />														
-												</div>
-											</div>										
+if(isset($metadata['images']['localeFilms']) && is_array($metadata['images']['localeFilms'])) {
+	foreach ($metadata['images']['localeFilms'] as $locales) {
+		if(!empty($locales['locale']) && array_key_exists($locales['locale'], $allLocales)){
+			if ($i != 0){
+				$active = '';
+				$fade = 'fade';
+			}
+			
+			if ($locales['cover'])
+				$filmPosterImage = $locales['cover'];
+			else
+				$filmPosterImage = 'nocover.png';
+			
+			$tabsLi .= '
+							<li class="'.$active.'  imagesLocalesTabs" data-locale="'.$locales['locale'].'">
+								<a href="#tab_covers_locale_'.$locales['locale'].'" class="tab-level1" data-toggle="tab" aria-expanded="true">
+									<span class="visible-xs">'.ucfirst(array_search($allLocales[$locales['locale']], $allLocales)).'</span> 
+									<span class="hidden-xs">'.$allLocales[$locales['locale']].'</span>
+								</a>
+							</li>
+						';
+			
+			$tabPane .= '
+							<div class="tab-pane '.$fade.' '.$active.'" id="tab_covers_locale_'.$locales['locale'].'">
+								<div class="media">
+									<button class="pull-right btn btn-default btn-sm removePosterImage" data-locale="'.$locales['locale'].'" data-localeid="'.$locales['id'].'" aria-hidden="true" style="cursor:pointer">
+										<i class="fa fa-close"></i> 
+									</button>										
+									<div class="col-sm-6 col-md-8">
+										<img src="http://cinecliq.assets.s3.amazonaws.com/files/'.$filmPosterImage.'" alt="..." id="cover_imgview" class="cover_imgview_'.$locales['locale'].'" style="max-width:250px">
+									</div>
+									<div class="media-body">
+										<div class="form-group">Poster image must be uploaded in the 2:3 aspect ratio. We strongly recommend the following format: 400x600px, JPG or PNG, 500KB maximum size.</div>
+										<div class="form-group" id="cover_text"></div>
+										<div class="form-group">												
+											<div id="cover_img_'.$locales['locale'].'" class="uploadifive-button">Upload Image
+												<input type="file" name="cover_img" style="display: none;" accept="image/*" />
+												<input type="file" name="cover_img" style="font-size: 29px; opacity: 0; position: absolute; right: -3px; top: -3px; z-index: 999;" accept="image/*" />														
+											</div>
 										</div>										
 									</div>
-								</li>
-							</ul>
-						</div>
-					';
-		++$i;
+								</div>
+							</div>
+						';
+						
+			$uploadScript .= '
+							CHUpload("'.url().'/titles/metadata/castAndCrew/posterImageUpload", "cover_img_'.$locales['locale'].'","Upload Image", {"filmId":"'.$film->id.'", "locale":"'.$locales['locale'].'", "_token":"'.csrf_token().'" }, function(data){
+								var response = JSON.parse(data);
+								if(!response.error){
+									autoCloseMsg(0, "Poster Image was uploaded succesfully", 5000);
+									$(".cover_imgview_'.$locales['locale'].'").attr("src", "http://cinecliq.assets.s3.amazonaws.com/files/"+response.message);			
+								}			
+								else {
+									autoCloseMsg(1, response.message, 5000);
+								}				
+							});		
+						';
+			++$i;
+		}
 	}
 }
 ?>
@@ -73,119 +84,141 @@ if(isset($images['localeFilms']) && is_array($images['localeFilms'])) {
 		</ul>
 		<div class="tab-content">
 			{!! $tabPane !!}
-		</div>
-		<!--/form-->			
+		</div>			
 	</div>	
-	<div class="tab-pane" id="tab_filmSplashImages">
-		<ul class="list-group " id="slider-list-holder">
-			<li class="list-group-item">
+	<div class="tab-pane fade" id="tab_filmSplashImages">
 				<div class="media">
-					<span class="pull-right" id="removeTSplashImage" aria-hidden="true" style="cursor:pointer">
-						<span class="glyphicon glyphicon-remove "></span>  
-					</span>
-					<div class="col-sm-6 col-md-4">
-						<img src="http://cinecliq.assets.s3.amazonaws.com/splash/{{$film->tsplash}}" alt="..." id="tsplash_imgview" style="max-width:250px">			
+					<button class="pull-right btn btn-default btn-sm" id="removeTSplashImage">
+						<i class="fa fa-close"></i>  
+					</button>
+					<div class="col-sm-8 col-md-8">
+						<?
+							if(!empty($film->tsplash))
+								$tsplash = $film->tsplash;
+							else
+								$tsplash = 'black.png';
+						?>
+						<img src="http://cinecliq.assets.s3.amazonaws.com/splash/{{ $tsplash }}" alt="..." id="tsplash_imgview" style="max-width:250px">			
 					</div>  
 					<div class="media-body">
 						<div class="form-group">Trailer Splash Image [1920x1080px, JPG or PNG, 500KB max size]</div>
-						<div class="form-group" id="tsplash_text"></div>
 						<div class="form-group">
 							<div id="uploadifive-tsplash_img" class="uploadifive-button" data-url="{{url()}}/titles/metadata/castAndCrew/tsplashImageUpload" style="height: 29px; line-height: 29px; overflow: hidden; position: relative; text-align: center; width: 129px;">Upload Image
 								<input type="file" id="tsplash_img" name="tsplash_img" style="display: none;">
 								<input type="file" style="font-size: 29px; opacity: 0; position: absolute; right: -3px; top: -3px; z-index: 999;" multiple="multiple">
 							</div>
-						</div>			
-					</div>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="media">
-					<span class="pull-right" id="removeFSplashImage" aria-hidden="true" style="cursor:pointer">
-						<span class="glyphicon glyphicon-remove "></span>  
-					</span>
-					<div class="col-sm-6 col-md-4">
-						<img src="http://cinecliq.assets.s3.amazonaws.com/splash/{{$film->fsplash}}" alt="..." id="fsplash_imgview" style="max-width:250px">
-					</div>  
-					<div class="media-body">
-						<div class="form-group">Film Splash Image [1920x1080px, JPG or PNG, 500KB max size]</div>
-						<div class="form-group" id="fsplash_text"></div>
-						<div class="form-group">
-							<div id="uploadifive-fsplash_img" class="uploadifive-button" data-url="{{url()}}/titles/metadata/castAndCrew/fsplashImageUpload" style="height: 29px; line-height: 29px; overflow: hidden; position: relative; text-align: center; width: 129px;">Upload Image
-								<input type="file" id="fsplash_img" name="fsplash_img" style="display: none;">
-								<input type="file" style="font-size: 29px; opacity: 0; position: absolute; right: -3px; top: -3px; z-index: 999;" multiple="multiple">
-							</div>
 						</div>
 					</div>
 				</div>
-			</li>
-		</ul>		
+				<div class="media">
+					<div class="col-md-12">
+						<hr>
+					</div>
+				</div>
+				<div class="media">
+					<button class="pull-right btn btn-default btn-sm" id="removeFSplashImage">
+						<i class="fa fa-close"></i>  
+					</button>
+					<div class="col-sm-8 col-md-8">
+						<?
+							if(!empty($film->fsplash))
+								$fsplash = $film->fsplash;
+							else
+								$fsplash = 'black.png';
+						?>					
+						<img src="http://cinecliq.assets.s3.amazonaws.com/splash/{{ $fsplash }}" alt="..." id="fsplash_imgview" style="max-width:250px">
+					</div>  
+					<div class="media-body">
+						<div class="form-group">Film Splash Image [1920x1080px, JPG or PNG, 500KB max size]</div>
+						<div class="form-group">
+							<div id="uploadifive-fsplash_img" class="uploadifive-button" data-url="{{url()}}/titles/metadata/castAndCrew/fsplashImageUpload">Upload Image
+								<input type="file" name="fsplash_img">
+								<input type="file" multiple="multiple">
+							</div>
+						</div>
+					</div>
+				</div>		
 	</div>
 </div>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <script>
-
-	$('.uploadifive-button').click(function(){
-		var this_ = $(this);
-		var locale = this_.data('locale');
-		var filmId = $('input[name="filmId"]').val();
-		var _token = $('input[name="_token"]').val();
-		var url = this_.data('url');
-		CHUpload(url, 'uploadifive-button', {'filmId':filmId, 'locale':locale, '_token':_token }, function(data){
-			var response = JSON.parse(data);
-			if(!response.error)
-				$('#cover_imgview').attr('src', 'http://cinecliq.assets.s3.amazonaws.com/files/'+response.message);
-			else {
-				$(this_).parent().find('.media-body').find('.responseMessage').remove();
-				$(this_).parent().find('.media-body').prepend('<h3 class="text-danger responseMessage">'+response.message+'</h3>')
-			}				
-		});	
+$(document).ready(function(){
+	{!! $uploadScript !!}
+	
+	var filmId = $('input[name="filmId"]').val();
+	
+	CHUpload("{{url()}}/titles/metadata/castAndCrew/tsplashImageUpload", "uploadifive-tsplash_img", 'Upload Image', {"filmId":filmId, "_token":"{{csrf_token()}}" }, function(data){
+		var response = JSON.parse(data);
+		if(!response.error){
+			autoCloseMsg(0, "Trailer Splash Image was uploaded succesfully", 5000);
+			$("#tsplash_imgview").attr("src", "http://cinecliq.assets.s3.amazonaws.com/splash/"+response.message);			
+		}			
+		else {
+			autoCloseMsg(1, response.message, 5000);
+		}				
+	});	
+	
+	CHUpload("{{url()}}/titles/metadata/castAndCrew/fsplashImageUpload", "uploadifive-fsplash_img", 'Upload Image', {"filmId":filmId, "_token":"{{csrf_token()}}" }, function(data){
+		var response = JSON.parse(data);
+		if(!response.error){
+			autoCloseMsg(0, "Film Splash Image was uploaded succesfully", 5000);
+			$("#fsplash_imgview").attr("src", "http://cinecliq.assets.s3.amazonaws.com/splash/"+response.message);			
+		}			
+		else {
+			autoCloseMsg(1, response.message, 5000);
+		}				
 	});
 	
-	$(document).on('click', '#removePosterImage', function(){
-		
+	$(".removePosterImage").click(function(){	
+		autoCloseMsgHide();
 		var localeId = $(this).data('localeid');
-		var confirmText = 'Do you realy want to delete Cover Image';
+		var locale = $(this).data('locale');
 		
-		bootbox.confirm(confirmText, function(result) {
-			
-			$.post('{{url()}}/titles/metadata/castAndCrew/posterImageRemove', { localeId:localeId }, function(data){
-				if(data) {
-					$('#cover_imgview').attr('src', 'http://cinecliq.assets.s3.amazonaws.com/files/nocover.png');
-				}
-			});
-			
+		bootbox.confirm('Do you realy want to delete Cover Image', function(result) {
+			if(result){
+				$.post('{{url()}}/titles/metadata/castAndCrew/posterImageRemove', {filmId:filmId, localeId:localeId }, function(response){
+					if(response.error == 0) {
+						autoCloseMsg(0, response.message, 5000);
+						$('.cover_imgview_'+locale).attr('src', 'http://cinecliq.assets.s3.amazonaws.com/files/nocover.png');
+					}else {
+						autoCloseMsg(1, response.message, 5000);
+					}
+				});
+			}
 		});
 	});	
 	
-	$(document).on('click', '#removeTSplashImage', function(){
-		
-		var filmId = $('input[name="filmId"]').val();
-		var confirmText = 'Do you realy want to delete trailer Splash';
-		
-		bootbox.confirm(confirmText, function(result) {
-			
-			$.post('{{url()}}/titles/metadata/castAndCrew/tsplashImageRemove', { filmId:filmId }, function(data){
-				if(data) {
-					$('#tsplash_imgview').attr('src', 'http://cinecliq.assets.s3.amazonaws.com/splash/black.png');
-				}
-			});
-			
+	$("#removeTSplashImage").click(function(){
+		autoCloseMsgHide();
+		bootbox.confirm('Do you realy want to delete trailer Splash', function(result) {
+			if(result){
+				$.post('{{url()}}/titles/metadata/castAndCrew/tsplashImageRemove', { filmId:filmId }, function(response){
+					if(response.error == 0) {
+						autoCloseMsg(0, response.message, 5000);
+						$('#tsplash_imgview').attr('src', 'http://cinecliq.assets.s3.amazonaws.com/splash/black.png');
+					}else {
+						autoCloseMsg(1, response.message, 5000);
+					}
+				});
+			}
 		});
 	});
 
-	$(document).on('click', '#removeFSplashImage', function(){
-		
-		var filmId = $('input[name="filmId"]').val();
-		var confirmText = 'Do you realy want to delete film Splash';
-		
-		bootbox.confirm(confirmText, function(result) {
-			
-			$.post('{{url()}}/titles/metadata/castAndCrew/fsplashImageRemove', { filmId:filmId }, function(data){
-				if(data) {
-					$('#fsplash_imgview').attr('src', 'http://cinecliq.assets.s3.amazonaws.com/splash/black.png');
-				}
-			});
-			
+	$('#removeFSplashImage').click(function(){		
+		autoCloseMsgHide();
+		bootbox.confirm('Do you realy want to delete film Splash', function(result) {
+			if(result){
+				$.post('{{url()}}/titles/metadata/castAndCrew/fsplashImageRemove', { filmId:filmId }, function(response){
+					if(response.error == 0) {
+						autoCloseMsg(0, response.message, 5000);
+						$('#fsplash_imgview').attr('src', 'http://cinecliq.assets.s3.amazonaws.com/splash/black.png');
+					}else {
+						autoCloseMsg(1, response.message, 5000);
+					}
+				});
+			}
 		});
 	});
+	
+});
 </script>

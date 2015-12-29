@@ -56,7 +56,13 @@ $(document).ready(function(){
 			if(result)
 			{
 				$('.loading').show(); //show loading
-				xmlhttprequest('{{route('account/users/destroy')}}','POST','User removed!',{id:id}); //destroy user request
+				$.post('{{route('account/users/destroy')}}',{id:id}, function(data){
+					if(data) {
+						getTemplate('{{route('account/users/getTemplate')}}','POST','#users');
+						$('.loading').hide();
+						autoCloseMsg(0, 'User removed!', 5000);
+					}
+				});
 			}
 		});
 	});	
@@ -65,7 +71,10 @@ $(document).ready(function(){
 		autoCloseMsgHide();//message closing
 		$('.loading').show(); //show loading
 		var id = $(this).data("id"); //user id
-		xmlhttprequest('{{route('account/users/reSendInvitation')}}','POST','Invitation has been sent successfully!',{id:id});//resend mail to user request
+		$.post('{{route('account/users/reSendInvitation')}}',{id:id}, function(){
+			$('.loading').hide();
+			autoCloseMsg(0, 'Invitation has been sent successfully!', 5000);			
+		});
 	});	
 });
 </script>

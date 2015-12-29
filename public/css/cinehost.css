@@ -71,10 +71,136 @@ padding: 3px 10px;
 line-height: 0;
 }
 .uploadifive-button{
-background-color: #8090BD !important;
 background-image:none !important;
 border-color: #6F81B4 !important;
 color: #FFFFFF !important;
-border-radius: 3px !important;
-cursor: pointer !important;
+border-radius: 5px !important;
+padding-top:3px;
+line-height:29px !important;
+overflow: hidden !important;
+position:relative !important;
+text-align:center !important;
+color: #fff !important;
+background-color: #428bca !important;
+border-color: #357ebd !important;
 }
+.readOnly{
+display:inline-block;
+width:100%;
+height:auto;
+min-height:34px;	
+}
+#uploadifive-uploadifive-person-queue{
+display:none;	
+}
+.uploadifive-queue-item ,.complete{
+display:none;	
+}
+
+table.simple {
+border: 0 none;
+border-collapse: collapse;
+border-spacing: 0;
+margin: 0;
+width: 100%;
+}
+table.simple tr {
+background-color: transparent;
+}
+table.simple th {
+text-align: left;
+}
+table.simple th, table.simple td {
+-moz-border-bottom-colors: none;
+-moz-border-left-colors: none;
+-moz-border-right-colors: none;
+-moz-border-top-colors: none;
+border-color: -moz-use-text-color -moz-use-text-color #cccccc;
+border-image: none;
+border-style: none none solid;
+border-width: 0 0 1px;
+font-size: 1em;
+line-height: 1.6em;
+padding: 2px;
+font-weight: normal;
+vertical-align: bottom;
+}
+table.simple td{
+text-align: right;
+}
+.section {
+border-top: 1px solid #cccccc;
+padding: 1.25em 1.625em;
+}
+header.interior {
+background-color: #fafafa;
+border-top: 1px solid #cccccc;
+padding: 3px 1.625em;
+margin-top: 20px;
+}
+.noVideoPng{max-width:350px;}
+.review{margin-top:15px;}
+
+
+
+/* BEGIN Online Offline Switcher */
+
+.onAndOff{
+    margin-top: 310px;
+}
+.onoffswitch {
+    position: relative; width: 200px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #FFFFFF; border-radius: 50px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 41px; padding: 0; line-height: 41px;
+    font-size: 18px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "ONLINE";
+    padding-left: 30px;
+    background-color: #6E8CD7; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "OFFLINE";
+    padding-right: 30px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block;
+    width: 25px;
+    margin: 9.5px;
+    background: #FFFFFF;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 155px;
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+    transition: all 0.3s ease-in 0s;
+    height: 25px;
+    padding: 2px 6px;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
+
+
+
+/* END Online Offline Switcher */

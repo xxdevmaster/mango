@@ -10,9 +10,9 @@
 		<form id="editKeywords" name="editKeywords" role="form">
 			<div class="modal-body">		
 				<div class="form-group">
-					<select class="select2" name="countries" data-placeholder="Choose a Country...">
-						@if(isset($allLocales) && is_array($allLocales))
-							@foreach($allLocales as $key => $value)
+					<select class="selectBoxWithSearch2" name="countries" data-placeholder="Choose a Country...">
+						@if(isset($metadata['seo']['seoAllUniqueLocales']) && is_array($metadata['seo']['seoAllUniqueLocales']))
+							@foreach($metadata['seo']['seoAllUniqueLocales'] as $key => $value)
 								<option value="{{ $key }}">{{ $value }}</option>
 							@endforeach
 						@endif
@@ -29,89 +29,43 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" id="editSeoItemButton" data-dismiss="modal">Add</button>
-				<button type="button" class="btn btn-primary">Close</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 			</div>
-			<input type="hidden" name="keywordsId" value="">
+			<input type="hidden" name="keywordsId" value="{{ $film->id }}">
 		</form>
     </div>
   </div>
 </div>
 		
-		<script type="text/javascript" src="/assets/jquery-multi-select/jquery.multi-select.js"></script>
+		<!--script type="text/javascript" src="/assets/jquery-multi-select/jquery.multi-select.js"></script>
 		<script type="text/javascript" src="/assets/spinner/spinner.min.js"></script>
-		<script src="/assets/select2/select2.min.js" type="text/javascript"></script>
+		<script src="/assets/select2/select2.min.js" type="text/javascript"></script-->
 
 <script>
+	jQuery(document).ready(function() {
+		jQuery(".selectBoxWithSearch2").select2({
+			width: '100%',
+		});	
+	});
 	$(document).ready(function(){
-		$(document).on('click', '#editSeoItemButton', function(){
-			
+		$("#editSeoItemButton").click(function(){
+
+			var filmId = $('input[name="filmId"]').val();
 			var editKeywords = $('#editKeywords').serialize();
 			
 			$.post('{{url()}}/titles/metadata/castAndCrew/editSeoItem', editKeywords, function(data){
-				
+				if(data) {
+					$.post('{{url()}}//titles/metadata/basic/getTemplate', {filmId:filmId,template:'seo'}, function(data){							
+						if(data) {
+							$('#seo').html(data);
+							//$('a[href="#tabBasicLocale_'+locale+'"]').tab('show');
+							autoCloseMsg(0, 'Keyword is added', 5000);	
+							$('.loading').hide();
+						}							
+					});
+				}				
 			});
 		})
 	});
 </script>		
 		
-        <script>
-            jQuery(document).ready(function() {
-                    
-
-
-                //multiselect start
-
-                $('#my_multi_select1').multiSelect();
-                $('#my_multi_select2').multiSelect({
-                    selectableOptgroup: true
-                });
-
-                $('#my_multi_select3').multiSelect({
-                    selectableHeader: "<input type='text' class='form-control search-input' autocomplete='off' placeholder='search...'>",
-                    selectionHeader: "<input type='text' class='form-control search-input' autocomplete='off' placeholder='search...'>",
-                    afterInit: function (ms) {
-                        var that = this,
-                            $selectableSearch = that.$selectableUl.prev(),
-                            $selectionSearch = that.$selectionUl.prev(),
-                            selectableSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selectable:not(.ms-selected)',
-                            selectionSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selection.ms-selected';
-
-                        that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
-                            .on('keydown', function (e) {
-                                if (e.which === 40) {
-                                    that.$selectableUl.focus();
-                                    return false;
-                                }
-                            });
-
-                        that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
-                            .on('keydown', function (e) {
-                                if (e.which == 40) {
-                                    that.$selectionUl.focus();
-                                    return false;
-                                }
-                            });
-                    },
-                    afterSelect: function () {
-                        this.qs1.cache();
-                        this.qs2.cache();
-                    },
-                    afterDeselect: function () {
-                        this.qs1.cache();
-                        this.qs2.cache();
-                    }
-                });
-
-                //spinner start
-                $('#spinner1').spinner();
-                $('#spinner2').spinner({disabled: true});
-                $('#spinner3').spinner({value:0, min: 0, max: 10});
-                $('#spinner4').spinner({value:0, step: 5, min: 0, max: 200});
-                //spinner end
-
-                // Select2
-                jQuery(".select2").select2({
-                    width: '100%'
-                });
-            });
-        </script>

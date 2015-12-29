@@ -53,78 +53,34 @@ function getTemplate(Url,RequestMethod,SectionName,Params)
 
 
 
-/*
+/******************
 	string Url 
-	string RequestMethod POST or GET
-	object send proparties Params
-	string CallbackMessage
+	string id identifire for upload button
+	object Params send proparties Parametrs
+	function CallbackMessage
 */
-function xmlhttprequest(Url,RequestMethod,CallbackMessage,Params)
-{
-	$.when(
-		$.ajax({
-			type: RequestMethod,
-			url : Url,
-			data: Params,
-		})
-	).done(function(data){
-		//alert(data);
-		if(data){
-			getTemplate('/account/users/getTemplate','POST','#users'); //updating users list
-			$('.loading').hide();//loading close
-			autoCloseMsg(0,CallbackMessage,5000);//show results message
-		}else
-			$('.loading').hide();//loading close
-	}).fail(function(){
-		$('.loading').hide();//loading close
-		autoCloseMsg(1,'Bad Request',7000); //show error message
-	});
-}
 
-
-
-function CHxhr(Url,RequestMethod,Params,callback)
-{
-	console.log('something');
-	/*$.when(
-		$.ajax({
-			type: RequestMethod,
-			url : Url,
-			data: Params,
-		})
-	).done(function(data){
-		if(data){
-			if(callback && typeof(callback) === "function") {
-				callback(data);
-			}
-		}
-	}).fail(function(){
-		$('.loading').hide();  //loading close
-		autoCloseMsg(1,'Bad Request',5000);  //show error message		
-	});*/
-}
-
-
-function CHUpload( url, id, params, callback ) {
-	console.log(url);
-	console.log(id);
-	console.log(params);
-	console.log(callback);
-	$('.'+id).uploadifive({
-		'buttonText' 	 	 : 'Upload Image',
-		'auto'           	 : true,
+function CHUpload( url, id, buttonText, params, callback ) {
+	$('#'+id).uploadifive({
+		'buttonText' 	 	 : buttonText,
 		'queueID' 		  	 : false,
-		'removeCompleted'	 : true,
-		'removeTimeout'		 : 1,
-		'itemTemplate'	 	 : '',
+		'removeCompleted' 	 : false,
+		'removeTimeout' 	 : 0,
+		'itemTemplate'		 : '',
 		'width' 		 	 : '129',
-		'height' 		 	 : '29',
-		'scriptData'	 	 : {},
+		'height' 		 	 : '35',
+		'multi'           	 : false,
 		'formData'       	 : params,
 		'uploadScript'   	 : url,
-		'onUploadComplete'	 : function(file, data) { 
+		'onUpload'		 	 : function(){
+									autoCloseMsgHide();
+									$('.loading').show();
+							   },
+		'onUploadComplete'	 : function(file, data) {
+									console.log(data);;
 									if(data){
 										if(callback && typeof(callback) === "function") {
+											$('.loading').hide();
 											callback(data);
 										}
 									}

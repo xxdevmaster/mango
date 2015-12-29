@@ -36,21 +36,30 @@
 		<link href="/css/cinehost.css" rel="stylesheet">
 		<link href="/css/token-input-facebook.css" rel="stylesheet">
 		<link href="/css/uploadifiveCss/uploadifive.css" rel="stylesheet">
-
+		<link href="/assets/select2/select2.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/timepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
+        <link href="/library/bitdash/bitdashplayer.min.css" rel="stylesheet" />
+		
         <script src="/js/jquery.js"></script>			
-		<script type="text/javascript" src="/assets/jquery-multi-select/jquery.multi-select.js"></script>
-		<script type="text/javascript" src="/assets/spinner/spinner.min.js"></script>
+		<script src="/assets/jquery-multi-select/jquery.multi-select.js" type="text/javascript" ></script>
+		<script src="/assets/spinner/spinner.min.js" type="text/javascript" ></script>
 		<script src="/assets/select2/select2.min.js" type="text/javascript"></script>
 		
         <script src="/js/ArraySetMath.js"></script>
         <script src="/js/bootbox.min.js"></script>	
         <script src="/js/functions.js"></script>
         <script src="/js/exec.js"></script>
-		
-		
+
+        <script src="/library/bitdash/bitdash.min.js"></script>
       
 		<script>
+            var player_setup_movie= [];
+            var player_setup_trailer = [];
+            var player_movie= [];
+            var player_trailer= [];
 			$(document).ready(function(){
+
+                console.log(player_setup_trailer+'1');
 				$.ajaxSetup({
 					headers: {
 						'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -141,6 +150,7 @@
 
         <script src="/assets/datatables/jquery.dataTables.min.js"></script>
         <script src="/assets/datatables/dataTables.bootstrap.js"></script>
+        <script src="/assets/timepicker/bootstrap-datepicker.js"></script>
 
 
         <script type="text/javascript">
@@ -148,7 +158,20 @@
                 $('#datatable').dataTable({
                 bFilter: false, bInfo: false
                 });
-            } );
+
+                jQuery('#startDate-datepicker').datepicker({
+                    setDate: new Date(),
+                    numberOfMonths: 3,
+                    showButtonPanel: true,
+                    format:'dd-mm-yyyy',
+                    autoclose:true,
+                });
+                jQuery('#endDate-datepicker').datepicker({
+                    numberOfMonths: 3,
+                    showButtonPanel: true
+                });
+            });
+
         </script>
 
         @yield('footer')

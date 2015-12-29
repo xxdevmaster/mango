@@ -1,53 +1,81 @@
 <div id="seo">
-	<div>
+	<div class="row">
 		<ol class="list">
 			<li>This section allows you to add, edit and override <strong>meta keywords</strong> and <strong>meta description</strong> for this title.</li>
 			<li>For best results, we recommend you add a pair of keywords and a description for every language your platform supports.</li>
 			<li>Limitations: Meta description – 160 characters, Meta keywords – No more than 10 keyword phrases.</li>
 		</ol>
 	</div>
-
-	<div class="form-group ">
-		<a data-target="#addNewSeoItem" data-toggle="modal" type="button" class="btn btn-primary btn-xs">+ Add Keywords &amp; Description</a>
+	<div class="form-group" style="margin:15px 10px;">
+		<a data-target="#addNewSeoItem" data-toggle="modal" type="button" class="btn btn-default">+ Add Keywords &amp; Description</a>
+		<hr>
 	</div>
-	<hr>
-
 	<div id="seoContent">
-		<ul class="active-sort sortable-list  ">    
-	@if(isset($seo['keywords']))
-		<div id="seoItemParseJson" style="display:none">
-			{{json_encode($seo['keywords'])}}
-		</div>
-		@foreach($seo['keywords'] as $key => $value)	
-			<li class="active-draggable">
-				<span class="name">{{ $allLocales[$key] }}</span>
-				<span class="pos" class="pull-right" id="removeSeoItem" data-locale="{{  $key }}">
-					<a data-toggle="modal" data-target="#editSeoItem" class="btn btn-primary btn-xs">Edit</a>
-				</span>
-				<span data-keywordid="{{ $value->id }}" id="removSeoItem">
-					<span class="glyphicon glyphicon-remove cp delete-collection"></span>
-				</span>                       
-			</li> 
-		@endforeach
-	@endif
-	   </ul>	
-	</div>
+		@if(isset($metadata['seo']['keywords']))
+				<div id="seoItemParseJson" style="display:none">
+					{{json_encode($metadata['seo']['keywords'])}}
+				</div>				
+			@foreach($metadata['seo']['keywords'] as $key => $value)
+				<div class="panel personsPanel">
+					<div class="panel-body p-t-10">
+						<div class="media-main">		
+							<div class="pull-right btn-group-sm" style="margin-top:-9px;margin-bottom:3px">
+								<button class="btn btn-default pos" id="editKeywordsModalOpen" data-locale="{{  $key }}" data-toggle="modal" data-target="#editSeoItem">
+									<i class="fa fa-pencil-square-o"></i>
+								</button>
+								<button class="btn btn-danger removSeoItem" data-keywordid="{{ $value->id }}">
+									<i class="fa fa-close"></i>
+								</button>
+							</div>
+							<div class="info col-md-3">
+								<h4 style="margin:0;padding:0;">
+									@if(array_key_exists($key, $allLocales))
+										{{ $allLocales[$key] }}
+									@endif
+								</h4>					
+							</div>				
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>	
+			@endforeach
+		@endif				
+	</div>	
 </div>
 <script>
 	$(document).ready(function(){
-		$(document).on('click', '#removeSeoItem', function(){
+		$(document).on('click', '#editKeywordsModalOpen', function(){
 			var keywords = JSON.parse($('#seoItemParseJson').html())[$(this).data('locale')];
 			$('#editKeywords').children().find('textarea[name="keywords"]').val(keywords['keywords']);
 			$('#editKeywords').children().find('textarea[name="description"]').val(keywords['description']);
 			$('#editKeywords').find('input[name="keywordsId"]').val(keywords['id']);
-			var locale = $('#editKeywords').children().find('select[name="countries"] option[value="'+keywords['locale']+'"]').html();
+			//var locale = $('.selectBoxWithSearch2 option[value="'+keywords['locale']+'"]').trigger('change');
+			var locale = $('.selectBoxWithSearch2 option[value="'+keywords['locale']+'"]').html();
+			//console.log(locale);
 			$('#select2-chosen-4').html(locale);
 		});
 		
-		$(document).on('click', '#removSeoItem', function(){
+		$(".removSeoItem").click(function(){
+			autoCloseMsgHide();
+			
 			var keywordId = $(this).data('keywordid');
-			$.post('{{url()}}/titles/metadata/castAndCrew/removeSeoItem', {keywordId:keywordId}, function(){
-				
+			var filmId = $('input[name="filmId"]').val();
+			var confirmText = 'Do you really want delete Keyword';
+			bootbox.confirm(confirmText, function(result) {	
+				if(result) {
+					$.post('{{url()}}/titles/metadata/castAndCrew/removeSeoItem', {keywordId:keywordId}, function(data){
+						if(data) {
+							$.post('{{url()}}//titles/metadata/basic/getTemplate', {filmId:filmId,template:'seo'}, function(data){							
+								if(data) {
+									$('#seo').html(data);
+									//$('a[href="#tabBasicLocale_'+locale+'"]').tab('show');
+									autoCloseMsg(0, 'Deleted', 5000);	
+									$('.loading').hide();
+								}							
+							});
+						}				
+					});
+				}
 			});
 		});
 		
