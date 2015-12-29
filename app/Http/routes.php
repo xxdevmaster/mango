@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function()
     //metadata
     Route::get('titles/metadata/{id}', 'TitleMenegment\MetadataController@metadataShow')->where('id', '[0-9]+');
     //media
-    Route::get('titles/media/{id}', 'TitleMenegment\MediaController@mediaShow')->where('id', '[0-9]+');
+    Route::get('titles/media/{filmId}', 'TitleMenegment\MediaController@mediaShow')->where('id', '[0-9]+');
     /*End Titles Menegment*/
 	
     Route::get('account/users', [

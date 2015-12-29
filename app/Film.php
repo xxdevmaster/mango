@@ -41,8 +41,17 @@ class Film extends Model
 	public function jobs(){
         return $this->belongsToMany('App\Models\Jobs', 'fk_films_persons', 'films_id', 'jobs_id');
     }
+	public function medias(){
+        return $this->hasMany('App\Models\FilmsMedia', 'films_id');
 
-    public function bitJobs(){
-        return $this->belongsToMany('App\Models\BitJobs', 'z_pass_through', 'pass_id');
     }
+    //public function bitJobs($accountId){
+        //return $this->belongsToMany('App\Models\BitJobs', 'z_pass_through','pass_id');
+					// ->join('cc_users', 'z_bitjobs.users_id', '=', 'cc_users.id')
+					// ->where('z_bitjobs.accounts_id', $accountId)
+					// ->select([
+						// 'z_bitjobs.*',
+						// 'z_pass_through.*'
+					// ]);
+    //}
 }

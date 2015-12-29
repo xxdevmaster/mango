@@ -13,28 +13,40 @@ use App\Libraries\CHhelper\CHhelper;
 use App\Film;
 use App\AllLocales;
 use App\Models\FilmsMedia;
+use App\Models\BitJobs;
 
 
 
 class MediaController extends Controller
 {
+	private $filmId;
 
+    private $request;
+	public function __construct(Request $request)
+	{
+		if(!empty($request->filmId))
+			$this->filmId = $request->filmId;
+		else
+			$this->filmId = $request->Input('filmId');
+        $this->request = $request;
+	}
+	
     public function mediaShow($id)
-    {
-        dd($this->getUploaderHistory($id));
-
+    {  
         $current_menu = 'Media';
         $film = $this->getFilm($id);
 
         if(count($film) === 0)
             return view('errors.404', compact('current_menu'));
         $allLocales = $this->getAllLocale();
+
         $media = [
             'storage' => $this->tabStorage($id),
             'streaming' => $this->tabStreaming(),
             'movie' => $this->tabDubbedVersions($id, 'movie'),
             'trailer' => $this->tabDubbedVersions($id, 'trailer'),
             'extras' => $this->tabExtras($id),
+            'uploader' => $this->tabUploader($this->id,true),
             'uploadHistory' => $this->getUploaderHistory($id)
         ];
         return view('titles.titleMenegment.media.media', compact('current_menu','id', 'film', 'allLocales', 'media'));
@@ -52,7 +64,7 @@ class MediaController extends Controller
 
         $companyInfo = $accountInfo->company;
 
-        $companyFilms = $companyInfo->films()->where('cc_films.deleted', '0')->get();
+        //$companyFilms = $companyInfo->films()->where('cc_films.deleted', '0')->get();
 
         $film = $companyInfo->films()->where( 'cc_films.id', $this->id)->get();
 
@@ -65,7 +77,6 @@ class MediaController extends Controller
                 $film = $storeFilm->films;
             }
         }
-
         return $film;
 
     }
@@ -430,22 +441,126 @@ class MediaController extends Controller
         ]);
     }
 
-    public function uploaderFileUpload()
+    /**
+     *@POST("/titles/media/uploader/tabUploader")
+     * @Middleware("auth")
+     */
+    public function tabUploader()
+	{
+        if($this->request->ajax()){
+            $type= $this->request->Input('type');
+            return  $this->uploaderUpdateList($type);
+        }else
+	    	return $this->uploaderUpdateList('trailer', true);
+	}
+    private function uploaderUpdateList($mediaType = 'trailer', $isAjax = false)
     {
-        //
+        $type = "mrss";
+         if($isAjax){
+            $filter = 'all';
+        }else {
+            $filter = $this->request->Input("filter").'-'.$this->request->Input("type");
+            if($this->request->Input("type") == "bonus")
+                $type="bonus";
+        }
+
+        return $this->getMedia('0bf4a7e03a9978d4ed2e5770adf23e33', $filter, $type, $mediaType);
+    } 
+
+     private function getMedia($hash, $filter='all', $type='mrss', $mediaType)
+    {
+		$film = $this->getFilm($this->filmId);
+
+        switch($filter)
+        {
+            case 'missing-trailer':
+                    $res = $film->medias()
+                        ->select('id', 'locale')
+                        ->where('fk_films_media.type', 'trailer')
+                        ->where('fk_films_media.source', '')
+                        ->orWhere('fk_films_media.source', null)
+                        ->where('fk_films_media.deleted', '0')
+                        ->orderBy('fk_films_media.type', 'asc')
+                        ->orderBy('fk_films_media.locale', 'asc')->get();
+				break;
+            case 'missing-movie':
+
+                $res = $film->medias()
+                    ->select('id', 'locale')
+                    ->where('fk_films_media.type', 'movie')
+                    ->where('fk_films_media.source', '')
+                    ->orWhere('fk_films_media.source', null)
+                    ->where('fk_films_media.deleted', '0')
+                    ->orderBy('fk_films_media.type', 'asc')
+                    ->orderBy('fk_films_media.locale', 'asc')->get();
+                break;
+            case 'missing-bonus':
+
+                $res = $film->medias()
+                    ->select('id', 'locale', 'track_index')
+                    ->where('fk_films_media.type', 'bonus')
+                    ->where('fk_films_media.source', '')
+                    ->orWhere('fk_films_media.source', null)
+                    ->where('fk_films_media.deleted', '0')
+                    ->orderBy('fk_films_media.type', 'asc')
+                    ->orderBy('fk_films_media.locale', 'asc')->get();
+                break;
+            case 'all-trailer':
+            case 'all-movie':
+            case 'all-bonus':
+            case 'all':
+
+                    $res = $film->medias()
+                        ->select('id', 'locale', 'track_index')
+                        ->where('fk_films_media.type', $mediaType)
+                        ->where('fk_films_media.deleted', '0')
+                        ->orderBy('fk_films_media.type', 'asc')
+                        ->orderBy('fk_films_media.locale', 'asc')->get();
+                break;
+        }
+
+        return $res;
+    }
+	
+    /**
+     *@POST("/titles/media/uploader/filterMediaUploaderUpdateList")
+     * @Middleware("auth")
+     */	
+	public function filterMediaUploaderUpdateList()
+    {
+        $film = $this->getFilm($this->filmId);
+        $allLocales = $this->getAllLocale();
+
+
+        $media = [
+            'uploader' => $this->tabUploader(),
+            'uploadHistory' => $this->getUploaderHistory($this->filmId)
+        ];
+
+        return view('titles.titleMenegment.media.partials.uploader.uploader', compact('film', 'allLocales', 'media'));
     }
 
     /**
      *@POST("/titles/media/uploader/getUploaderHistory")
      * @Middleware("auth")
      */
-    public function getUploaderHistory($id)
+    public function getUploaderHistory()
     {
-        $film = $this->getFilm($id);
-        return $film->bitJobs();
-        $bitjobs = array();
+        $userInfo = Auth::user();
+
+        $accountInfo = $userInfo->account;
+        $accountId = $accountInfo->id;
+		
+        $bitjobs =  BitJobs::join('z_pass_through', 'z_bitjobs.pass_id', '=', 'z_pass_through.id')
+							->join('cc_users', 'z_bitjobs.users_id', '=', 'cc_users.id')
+							->select(['z_bitjobs.*', 'cc_users.person', 'z_pass_through.pass_through'])
+							->where('z_bitjobs.films_id', $this->filmId)
+							->where('z_bitjobs.accounts_id', $accountId)
+							->get();
+
         $html =  view('titles.titleMenegment.media.partials.uploader.history.uploaderHistory', compact('bitjobs'));
         $html = strval($html);
+
         return [
             'error' => '0',
             'message' => 'success',

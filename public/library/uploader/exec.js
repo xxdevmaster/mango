@@ -1,3 +1,10 @@
+function updateList(type, filter,filmId){
+	$.post('/titles/media/uploader/filterMediaUploaderUpdateList', {type:type, filter:filter, filmId:filmId, template:'uploader'}, function(response){
+        $("#titlesBlock").html($(response).find('#titlesWithSearch'));
+		$('#titles').filterByText($('#serachbox'), false);
+	});
+}
+			
 $(document).ready(function() {
     
     $('.history_refresh').click(function(){
@@ -9,55 +16,34 @@ $(document).ready(function() {
             /*window.setTimeout( function() {
             $icon.removeClass( animateClass );
             }, 2000 ); */
-        
-        var film_id = $("#uploaderFilmId").val();
-        $.post('/titles/media/uploader/getUploaderHistory', function(response){
+
+        var filmId = $("input[name='filmId']").val();
+        $.post('/titles/media/uploader/getUploaderHistory',{filmId:filmId}, function(response){
             if(response.error === '0'){
                 $("#uploaderHistory").html(response.html);
                 $icon.removeClass( animateClass );
-            }
+            }else
+                $icon.removeClass( animateClass );
         });
 
     });
     
-    
-    
-                $('#titles').filterByText($('#serachbox'), false);
-                var film_id = $("#uploaderFilmId").val();
-                $('input[type=radio][name=bucket_type]').on('change', function () {
-                    var filter = $("input:radio[name=filter]:checked").val();
-                    updateList($(this).val(), filter,film_id);
-                });
+       
+	$('#titles').filterByText($('#serachbox'), false);
+	var film_id = $("input[name='filmId']").val();
 
-                $('input[type=radio][name=filter]').on('change', function () {
-                    var type = $("input:radio[name=bucket_type]:checked").val();
-                    updateList(type, $(this).val(),film_id);
-                });
-            });
-            function updateList(type, filter,filmId){
-                $.ajax({
-                    type: "POST",
-                    url: "engine.php",
-                    dataType: "json",
-                    data: 'act=filterMediaUploaderUpdateList&type='+type+'&filter='+filter+'&film_id='+filmId,
-                    success: function(msg) {
-                        console.log(msg);
-                        $('#titles').empty().data('options');
-                        $.each(msg, function(key, value) {
-                            if(type == "bonus"){
-                               $('#titles')
-                                    .append($('<option>', { value : filmId, 'data-locale': value.locale, 'data-track': ((value.track)?value.track:0) })
-                                        .text(value.title));
-                            } else {
-                                $('#titles')
-                                    .append($('<option>', { value : filmId, 'data-locale': value.locale, 'data-track': ((value.track)?value.track:0) })
-                                        .text(value.title));
-                            }
-                        });
-                        $('#titles').filterByText($('#serachbox'), false);
-                    }
-                });
-            }
+	$('input[type=radio][name=bucket_type]').on('change', function () {
+		var filter = $("input:radio[name=filter]:checked").val();
+		updateList($(this).val(), filter,film_id);
+	});
+
+	$('input[type=radio][name=filter]').on('change', function () {
+		var type = $("input:radio[name=bucket_type]:checked").val();
+		updateList(type, $(this).val(),film_id);
+	});
+	
+});
+        
 
 
             

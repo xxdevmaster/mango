@@ -1,7 +1,5 @@
 
-    <input type="hidden" name="uploaderFilmId" id="uploaderFilmId" value="2505">
-    <input type="hidden" name="uploaderAccountid" id="uploaderAccountid" value="227">
-    <input type="hidden" name="uploaderUserid" id="uploaderUserid" value="400">
+    <input type="hidden" name="uploaderFilmId" id="FilmId" value="{{ isset($film->id) ? $film->id : ''}}">
     <script src="/library/uploader/moment.js"></script>
     <script src="/library/uploader/exec.js"></script>
 
@@ -67,11 +65,21 @@
                             </label>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <input id="serachbox" type="text" class="form-control" placeholder="Search">
-                        <select id="titles" name="titles" size="5" class="form-control">
-                            <option value="2505" data-locale="aa" data-movieid="" data-track="0">VaterMark - Afar</option><option value="2505" data-locale="aa" data-movieid="" data-track="0">VaterMark - Afar</option><option value="2505" data-locale="ab" data-movieid="" data-track="0">VaterMark - Abkhazian</option><option value="2505" data-locale="am" data-movieid="" data-track="0">VaterMark - Amharic</option>
-                        </select>
+                    <div class="form-group" id="titlesBlock">
+                        <div id="titlesWithSearch">
+                            <input id="serachbox" type="text" class="form-control" placeholder="Search">
+                            <select id="titles" name="titles" size="5" class="form-control">
+                                @if(isset($media['uploader']))
+                                    @foreach($media['uploader'] as $value)
+                                        @if(!empty($value->locale) && array_key_exists($value->locale, $allLocales))
+                                            <option value="{{ isset($film->id) ? $film->id : ''}}" data-movieid="{{ $value->id  }}" data-locale="{{ $value['locale']  }}" data-track="{{ isset($value['track']) ? $value['track'] : ''  }}">
+                                                {{ isset($film->title) ? $film->title : '' }} - {{ $allLocales[$value->locale] }} {{ !empty($value->track_index) ? ' - '. $value->track_index : '' }}
+                                            </option>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
