@@ -1,42 +1,8 @@
 function updateList(type, filter,filmId){
 	$.post('/titles/media/uploader/filterMediaUploaderUpdateList', {type:type, filter:filter, filmId:filmId, template:'uploader'}, function(response){
-		$('#titles').empty().data('options');
         $("#titlesBlock").html($(response).find('#titlesWithSearch'));
-		/*$.each(response, function(key, value) {
-			if(type == "bonus"){
-			   $('#titles')
-					.append($('<option>', { value : filmId, 'data-locale': value.locale, 'data-track': ((value.track)?value.track:0) })
-						.text(value.title));
-			} else {
-				$('#titles')
-					.append($('<option>', { value : filmId, 'data-locale': value.locale, 'data-track': ((value.track)?value.track:0) })
-						.text(value.title));
-			}
-		});*/
 		$('#titles').filterByText($('#serachbox'), false);
 	});
-	// $.ajax({
-		// type: "POST",
-		// url: "engine.php",
-		// dataType: "json",
-		// data: 'act=filterMediaUploaderUpdateList&type='+type+'&filter='+filter+'&film_id='+filmId,
-		// success: function(msg) {
-			//console.log(msg);
-			// $('#titles').empty().data('options');
-			// $.each(msg, function(key, value) {
-				// if(type == "bonus"){
-				   // $('#titles')
-						// .append($('<option>', { value : filmId, 'data-locale': value.locale, 'data-track': ((value.track)?value.track:0) })
-							// .text(value.title));
-				// } else {
-					// $('#titles')
-						// .append($('<option>', { value : filmId, 'data-locale': value.locale, 'data-track': ((value.track)?value.track:0) })
-							// .text(value.title));
-				// }
-			// });
-			// $('#titles').filterByText($('#serachbox'), false);
-		// }
-	// });
 }
 			
 $(document).ready(function() {
@@ -56,7 +22,8 @@ $(document).ready(function() {
             if(response.error === '0'){
                 $("#uploaderHistory").html(response.html);
                 $icon.removeClass( animateClass );
-            }
+            }else
+                $icon.removeClass( animateClass );
         });
 
     });
