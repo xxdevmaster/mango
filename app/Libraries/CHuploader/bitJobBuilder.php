@@ -1,11 +1,13 @@
 <?php
+namespace App\Libraries\CHuploader;
+
 /**
  * Created by PhpStorm.
  * User: gaz
  * Date: 1/10/15
  * Time: 3:21 PM
  */
-require dirname(__FILE__).'/../../vendor/autoload.php';
+//require dirname(__FILE__).'/../../vendor/autoload.php';
 use bitcodin\AudioStreamConfig;
 use bitcodin\Bitcodin;
 use bitcodin\CombinedWidevinePlayreadyDRMConfig;
@@ -73,8 +75,9 @@ class bitJobBuilder {
 
     public function getS3Credentials()
     {
-        $q = "SELECT * FROM cc_amazone_assets WHERE accounts_id='{$this->accountID}'";
-        $this->awsinfo = G('DB')->query($q)->fetch(PDO::FETCH_ASSOC);
+        //$q = "SELECT * FROM cc_amazone_assets WHERE accounts_id='{$this->accountID}'";
+        //$this->awsinfo = G('DB')->query($q)->fetch(PDO::FETCH_ASSOC);
+        $this->awsinfo = AmazoneAssets::where('accounts_id', $this->accountID)->get();
     }
 
     public function createDashUploadJob($params)
@@ -187,8 +190,9 @@ class bitJobBuilder {
 
 
             $passThrough = str_replace("'",'"',json_encode(array('accountID'=>$this->accountID,'filmID'=>$id,'date'=>$this->dt,'locale'=>$params["locale"],'track'=>$params["track"],'media'=>$this->media,'quality'=>$this->quality,'BASEPATH'=>$this->outdir."/","JOB"=>$job->jobId,"INPUT"=>array('bucket'=>$this->input_bucket,'path'=>$this->input_path))));
-            G('DB')->query("INSERT INTO z_pass_through (pass_through) VALUES ('$passThrough')");
-            $passid = G('DB')->lastInsertId();
+            //G('DB')->query("INSERT INTO z_pass_through (pass_through) VALUES ('$passThrough')");
+            //$passid = G('DB')->lastInsertId();
+
 
             G('DB')->query("INSERT INTO z_bitjobs (accounts_id,films_id,job_id,job_status,pass_id,dt,users_id) VALUES ('$this->accountID','$id','$job->jobId','$job->status','$passid',NOW(),'{$this->userID}')");
             return json_encode(array('status'=>'Media uploaded successfully, proceeding to transcoder'));

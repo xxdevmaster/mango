@@ -69,31 +69,22 @@ $(document).ready(function() {
                
    
             button.addEventListener('click', function() {
-                
-             
-
-
-                
-            
-                
-                var type = $("input:radio[name=bucket_type]:checked").val();
+                var type = $("input[name='bucket_type']:checked").val();
                 var movieId = $("#titles").val();
                 var track = $("#titles option:selected").data("track");
                 var locale = $("#titles option:selected").data("locale");
                 //var movieId = $("#titles option:selected").data("movieId");
                 var quality = $("input:radio[name=video_quality]:checked").val();
                 var drm = $("input:radio[name=drm]:checked").val();
+                //var path = createPath(type, movieId, track, locale);
 
-                var path = createPath(type, movieId, track, locale);
-                 console.log(account_id);
                 $.ajax({
                     type: "POST",
-                    url: "engine.php",
+                    url: "/titles/media/uploader/getAccountAmazonAccess",
                     dataType: "json",
                     data: 'act=getAccountAmazonAccess&account_id='+account_id,
                     success: function(data) {
-                        console.log(data);
-                       
+
                         buckets = data.bucket;
                         region = data.region;//.split('.')[1];
                         SecretKey = data.secret_key;
@@ -117,12 +108,9 @@ $(document).ready(function() {
                             var filename = "MASTER."+type+"."+movieId+".mp4";
                             var params = {Key: path+filename, ContentType: file.type, Body: file, queueSize: 10, partSize: 1024 * 1024 * 5};
                             bucket.upload(params, function (err, data) {
-                              if(err)
-                                  createAutoClosingAlert(".msgOnTop",err,4000);
+                              if(err){}
+                                  //createAutoClosingAlert(".msgOnTop",err,4000);
                               else{
-
-                                    //console.log(data);
-
                                   $.ajax({
                                       type: "POST",
                                       url: "engine.php",
@@ -130,7 +118,7 @@ $(document).ready(function() {
                                       data: 'act=mediaUploaderCreateJob&user_id='+user_id+'&acc_id='+account_id+'&zencode=1&bucket='+buckets+'&media='+type+'&id='+movieId+'&dt='+moment().format('YYYY-MM')+'&track='+track+'&locale='+locale+'&quality='+quality+'&drm='+drm,
                                       success: function(msg) {
 
-                                            createAutoClosingAlert(".msgOnTop",msg.status,4000);
+                                           // createAutoClosingAlert(".msgOnTop",msg.status,4000);
                                             $("#uploading_progress").css('width', "0%");
                                             $("#file").val('');
                                             $("#titles").val('');
@@ -157,7 +145,7 @@ $(document).ready(function() {
                                 $("#uploading_progress").css('width', evt.loaded*100/evt.total+"%");
                               });
                         } else {
-                            createAutoClosingAlert(".msgOnTop","Please Select File!",4000);
+                           // createAutoClosingAlert(".msgOnTop","Please Select File!",4000);
                             return false;
                         }
                         
@@ -174,7 +162,7 @@ $(document).ready(function() {
             function createPath(type, movieId, track, locale){
                 var path = '';
                 if(!movieId){
-                     createAutoClosingAlert(".msgOnTop","Please Select Title!",4000);
+                     //createAutoClosingAlert(".msgOnTop","Please Select Title!",4000);
                  }
                 var addSymbols = 5 - movieId.length;
 

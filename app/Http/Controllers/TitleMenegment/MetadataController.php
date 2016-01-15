@@ -26,6 +26,7 @@ use App\Models\FilmsAgeRates;
 use App\Models\FilmSubtitles;
 use App\Models\TrailerSubtitles;
 use App\Models\ChannelsFilmsKeywords;
+use App\Models\ChannelsContracts;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Debug\Dumper;
 
@@ -2028,4 +2029,24 @@ class MetadataController extends Controller
 		return ChannelsFilmsKeywords::destroy($keywordId);
     }
 
+	/**
+	 *@POST("titles/metadata/publishUnpublish")
+	 * @Middleware("auth")
+	 */
+	public function PublishUnpublish(Request $request)
+	{
+		$userInfo = Auth::user();
+		$accountInfo = $userInfo->account;
+		$channelId = $accountInfo->platforms_id;
+
+		$filmId=trim(filter_var($request->Input('filmId'),FILTER_SANITIZE_NUMBER_INT));
+		$filmStatus = CHhelper::filterInput(($request->Input('filmStatus')));
+
+		$film = $this->getFilm($filmId);
+		$bcId = $film->baseContract()->get()[0]->id;
+
+		return ChannelsContracts::where('bcontracts_id', $bcId)->where('channel_id', $channelId)->update([
+			'film_status' => $filmStatusvor
+		]);
+	}
 }

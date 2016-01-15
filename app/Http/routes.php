@@ -11,8 +11,6 @@
 |
 */
 
-
-
 // Authentication routes...
 Route::get('userInvitation/{tk}', 'UserInvitationController@index');
 Route::post('userInvitation/register', 'UserInvitationController@register');
@@ -22,14 +20,16 @@ Route::group(['middleware' => 'auth'], function()
 {
     Route::get('/', 'MainController@dashboard');
     Route::resource('titles', 'TitlesController');
-	
+
 	/*Titles Menegment*/
-    //metadata
-    Route::get('titles/metadata/{id}', 'TitleMenegment\MetadataController@metadataShow')->where('id', '[0-9]+');
-    //media
-    Route::get('titles/media/{filmId}', 'TitleMenegment\MediaController@mediaShow')->where('id', '[0-9]+');
+
+    Route::group(['middleware' => 'filmPermission'], function(){
+         Route::get('titles/metadata/{filmId}', 'TitleMenegment\MetadataController@metadataShow')->where('filmId', '[0-9]+');
+         Route::get('titles/media/{filmId}', 'TitleMenegment\MediaController@mediaShow')->where('filmId', '[0-9]+');
+    });
+
     /*End Titles Menegment*/
-	
+
     Route::get('account/users', [
         'middleware' => ['access:users', 'role:owner,administrator'],
         'uses' => 'Account\UsersController@listAll',
@@ -51,13 +51,13 @@ Route::group(['middleware' => 'auth'], function()
         'middleware' => 'role:owner|administrator',
         'uses' => 'Account\UsersController@update',
     ]);
-	
+
     Route::post('account/users/getTemplate', [
         'as' => 'account/users/getTemplate',
         'middleware' => 'role:owner|administrator',
         'uses' => 'Account\UsersController@getTemplate',
-    ]);    
-	
+    ]);
+
 	Route::post('account/users/reSendInvitation', [
         'as' => 'account/users/reSendInvitation',
         'middleware' => 'role:owner|administrator',
@@ -68,8 +68,8 @@ Route::group(['middleware' => 'auth'], function()
         'as' => 'account/users/destroy',
         'middleware' => 'role:owner|administrator',
         'uses' => 'Account\UsersController@destroy',
-    ]);	
-	
+    ]);
+
     Route::post('account/users/invite', [
         'as' => 'example',
         'middleware' => 'role:owner|administrator',
@@ -87,5 +87,5 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('features', [
         'middleware' => ['role:superadmin'],
         'uses' => 'FeaturesController@features',
-    ]);	
+    ]);
 });

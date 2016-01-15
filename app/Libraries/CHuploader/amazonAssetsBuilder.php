@@ -1,11 +1,14 @@
 <?php
-require dirname(__FILE__).'/../../vendor/autoload.php';
+namespace App\Libraries\CHuploader;
+
+//require dirname(__FILE__).'/../../vendor/autoload.php';
 use Aws\Common\Aws;
 use Aws\Common\Enum\Region;
 use Aws\S3\Enum\CannedAcl;
 use Aws\S3\Exception\S3Exception;
 use Aws\Iam\Exception;
 use Guzzle\Http\EntityBody;
+use App\Models\AmazoneAssets;
 
 class amazonAssetsBuilder {
     public $accountID;
@@ -16,7 +19,8 @@ class amazonAssetsBuilder {
     }
 
     public function getAmazonAssets(){
-        $res= G('DB')->query($q="SELECT cc_amazone_assets.* FROM cc_amazone_assets WHERE cc_amazone_assets.accounts_id='".$this->accountID."' ")->fetch(PDO::FETCH_OBJ);
+        //$res= G('DB')->query($q="SELECT cc_amazone_assets.* FROM cc_amazone_assets WHERE cc_amazone_assets.accounts_id='".$this->accountID."' ")->fetch(PDO::FETCH_OBJ);
+        $res = AmazoneAssets::where('accounts_id', $this->accountID)->get();
         if($res)
         {
             $obj = array('bucket'=>$res->bucket,'region'=>$res->region,'secret_key'=>$res->secret_key,'access_key'=>$res->access_key);
@@ -71,9 +75,16 @@ class amazonAssetsBuilder {
                             'UserName' => $username,
             ));
 
-            $q = "INSERT INTO  cc_amazone_assets (accounts_id,bucket,region,secret_key,access_key) VALUES ('".$this->accountID."','".$backet_name."','".$region."','".$data_to_save['secret_key']."','".$data_to_save['access_key']."')";
-            error_log($q);
-            G('DB')->query($q);
+            //$q = "INSERT INTO  cc_amazone_assets (accounts_id,bucket,region,secret_key,access_key) VALUES ('".$this->accountID."','".$backet_name."','".$region."','".$data_to_save['secret_key']."','".$data_to_save['access_key']."')";
+            //error_log($q);
+           // G('DB')->query($q);
+            AmazoneAssets::create([
+                'accounts_id' => $this->accountID,
+                'bucket' => $backet_name,
+                'region' => $region,
+                'secret_key' => $data_to_save['secret_key'],
+                'access_key' => $data_to_save['access_key']
+            ]);
 		
         } catch (Exception $e) {echo 'Invalid file.';}
          

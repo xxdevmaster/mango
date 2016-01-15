@@ -14,71 +14,42 @@ use App\Film;
 use App\AllLocales;
 use App\Models\FilmsMedia;
 use App\Models\BitJobs;
-
+use App\Libraries\CHuploader\amazoneAssetsBuilder;
 
 
 class MediaController extends Controller
 {
 	private $filmId;
 
+    private $film;
+
     private $request;
+
 	public function __construct(Request $request)
 	{
-		if(!empty($request->filmId))
-			$this->filmId = $request->filmId;
-		else
-			$this->filmId = $request->Input('filmId');
+        $this->filmId = $request->filmId;
+        $this->film = $request->film;
         $this->request = $request;
 	}
-	
-    public function mediaShow($id)
-    {  
-        $current_menu = 'Media';
-        $film = $this->getFilm($id);
 
-        if(count($film) === 0)
-            return view('errors.404', compact('current_menu'));
+    public function mediaShow()
+    {
+        $current_menu = 'Media';
+        $film = $this->request->film;
+
         $allLocales = $this->getAllLocale();
 
         $media = [
-            'storage' => $this->tabStorage($id),
+            'storage' => $this->tabStorage(),
             'streaming' => $this->tabStreaming(),
-            'movie' => $this->tabDubbedVersions($id, 'movie'),
-            'trailer' => $this->tabDubbedVersions($id, 'trailer'),
-            'extras' => $this->tabExtras($id),
-            'uploader' => $this->tabUploader($this->id,true),
-            'uploadHistory' => $this->getUploaderHistory($id)
+            'movie' => $this->tabDubbedVersions('movie'),
+            'trailer' => $this->tabDubbedVersions('trailer'),
+            'extras' => $this->tabExtras(),
+            'uploader' => $this->tabUploader(true),
+            'uploadHistory' => $this->getUploaderHistory()
         ];
-        return view('titles.titleMenegment.media.media', compact('current_menu','id', 'film', 'allLocales', 'media'));
-    }
 
-    private function getFilm($id)
-    {
-        $this->id = (int) $id;
-
-        $userInfo = Auth::user();
-
-        $accountInfo = $userInfo->account;
-
-        $accountFeatures = $accountInfo->features;
-
-        $companyInfo = $accountInfo->company;
-
-        //$companyFilms = $companyInfo->films()->where('cc_films.deleted', '0')->get();
-
-        $film = $companyInfo->films()->where( 'cc_films.id', $this->id)->get();
-
-        if(count($film) != 0) {
-            return $film[0];
-        }else {
-            $storeInfo = $accountInfo->store;
-            $storeFilms = $storeInfo->contracts()->with( 'films', 'stores' )->where( 'films_id', $this->id )->get();
-            foreach($storeFilms as $storeFilm){
-                $film = $storeFilm->films;
-            }
-        }
-        return $film;
-
+        return view('titles.titleMenegment.media.media', compact('current_menu', 'film', 'allLocales', 'media'));
     }
 
     private function getAllLocale()
@@ -93,19 +64,19 @@ class MediaController extends Controller
         return $allLocales;
     }
 
-    private function drawTemplate($filmId, $template)
+    private function drawTemplate($template)
     {
-        $film = $this->getFilm($filmId);
+        $film = $this->request->film;
         $allLocales = $this->getAllLocale();
 
         switch($template){
             case 'movie' :  $media = [
-                                'movie' => $this->tabDubbedVersions($filmId, 'movie')
+                                'movie' => $this->tabDubbedVersions('movie')
                             ];
                             $filmsMedia = $media['movie'];
                             return view('titles.titleMenegment.media.partials.dubbedVersions.partials.movieAndTrailer', compact('film', 'allLocales', 'filmsMedia'));break;
             case 'trailer' :  $media = [
-                                'trailer' => $this->tabDubbedVersions($filmId, 'trailer')
+                                'trailer' => $this->tabDubbedVersions('trailer')
                             ];
                             $filmsMedia = $media['trailer'];
                             return view('titles.titleMenegment.media.partials.dubbedVersions.partials.movieAndTrailer', compact('film', 'allLocales', 'filmsMedia'));break;
@@ -124,14 +95,15 @@ class MediaController extends Controller
     /**
      *@POST("/titles/media/streaming/getStreaming")
      * @Middleware("auth")
+     * @Middleware("filmPermission")
      */
-    public function getStreaming(Request $request)
+    public function getStreaming()
     {
-        if(!empty($request->input('cp')))
-            $cp = '&provider_id='.CHhelper::filterInput($request->input('cp'));
+        if(!empty($this->request->input('cp')))
+            $cp = '&provider_id='.CHhelper::filterInput($this->request->input('cp'));
     }
 
-    private function tabStorage($id)
+    private function tabStorage()
     {
         $userInfo = Auth::user();
 
@@ -139,27 +111,27 @@ class MediaController extends Controller
         $accountId = $accountInfo->id;
 
         $clientCdn = new Client();
-        $urlCdn = $clientCdn->get('http://billing.cinehost.com/filmStorage/cdn?account_id='.$accountId.'&film_ids='.$id);
+        $urlCdn = $clientCdn->get('http://billing.cinehost.com/filmStorage/cdn?account_id='.$accountId.'&film_ids='.$this->filmId);
         $responseCdn = $urlCdn->send();
         $bodyCdn = $responseCdn->getBody(true);
 
         if(!$bodyCdn){
             return [
                 'error' => '1',
-                'message' => 'Curl Error'
+                'message' => 'Curl Film Storage Error'
             ];
         }
         $outCdn = json_decode($bodyCdn);
 
         $clientMez = new Client();
-        $urlMez = $clientMez->get('http://billing.cinehost.com/filmStorage/mezzanine?account_id='.$accountId.'&film_ids='.$id);
+        $urlMez = $clientMez->get('http://billing.cinehost.com/filmStorage/mezzanine?account_id='.$accountId.'&films_id='.$this->filmId);
         $responseMez = $urlMez->send();
         $bodyMez = $responseMez->getBody(true);
 
         if(!$bodyMez){
             return [
                 'error' => '1',
-                'message' => 'Curl Error'
+                'message' => 'Curl Mezzanine Error'
             ];
         }
         $outMez = json_decode($bodyMez);
@@ -214,63 +186,50 @@ class MediaController extends Controller
         return compact('featureCdn', 'trailerCdn', 'extraCdn', 'totalCdn', 'featureMez', 'trailerMez', 'extraMez', 'totalMez');
     }
 
-    private function tabDubbedVersions($id, $type)
+    private function tabDubbedVersions($type)
     {
-        return FilmsMedia::where('films_id', $id)->where('type', $type)->where('deleted', '0')->get();
+        return FilmsMedia::where('films_id', $this->filmId)->where('type', $type)->where('deleted', '0')->get();
     }
 
     /**
      *@POST("/titles/media/dubbedVersions/dubbedVersionsCreate")
      * @Middleware("auth")
+     * @Middleware("filmPermission")
      */
-    public function dubbedVersionsCreate(Request $request)
+    public function dubbedVersionsCreate()
     {
-        if(empty($request->Input('filmId')) || empty($request->Input('locale'))){
+        if(empty($this->request->Input('locale'))){
             return [
                 'error' => '1' ,
-                'message' => 'Film Identifier or film locale doesnt exixst'
-            ];
-        }
-        if(!is_numeric($request->Input('filmId'))){
-            return [
-                'error' => '1' ,
-                'message' => 'Invalid Film Identifier'
+                'message' => 'Film locale doesnt exixst'
             ];
         }
 
-        if(count($this->getFilm($request->Input('filmId'))) === 0){
-            return [
-                'error' => '1' ,
-                'message' => 'You dont have perrmisions'
-            ];
-        }
-
-        if(!array_key_exists($request->Input('locale'), $this->getAllLocale())){
+        if(!array_key_exists($this->request->Input('locale'), $this->getAllLocale())){
             return [
                 'error' => '1' ,
                 'message' => 'Invalid locale'
             ];
         }
 
-        if(empty($request->Input('type')) || $request->Input('type') != 'movie' && $request->Input('type') != 'trailer'){
+        if(empty($this->request->Input('type')) || $this->request->Input('type') != 'movie' && $this->request->Input('type') != 'trailer'){
             return [
                 'error' => '1' ,
                 'message' => 'Dubbed version type doesnt exixst'
             ];
         }
 
-        $filmId = CHhelper::filterInputInt($request->Input('filmId'));
-        $locale = CHhelper::filterInput($request->Input('locale'));
-        $type = CHhelper::filterInput($request->Input('type'));
+        $locale = CHhelper::filterInput($this->request->Input('locale'));
+        $type = CHhelper::filterInput($this->request->Input('type'));
 
         $createmovie = FilmsMedia::create([
-            'films_id' => $filmId,
+            'films_id' => $this->filmId,
             'locale' => $locale,
             'type' => $type
         ])->id;
 
         if($createmovie > 0){
-            $html = strval($this->drawTemplate($filmId, $type));
+            $html = strval($this->drawTemplate($type));
             return [
                 'error' => '0' ,
                 'message' => 'Movie created seccessfully!',
@@ -286,39 +245,32 @@ class MediaController extends Controller
     /**
      *@POST("/titles/media/dubbedVersions/dubbedVersionsRemove")
      * @Middleware("auth")
+     * @Middleware("filmPermission")
      */
-    public function dubbedVersionsRemove(Request $request)
+    public function dubbedVersionsRemove()
     {
-        if(empty($request->Input('filmId')) && empty($request->Input('movieId'))){
+        if(empty($this->request->Input('movieId'))){
             return [
                 'error' => '1' ,
-                'message' => 'Film or movie identifier doesnt exixst'
+                'message' => 'Movie identifier doesnt exixst'
             ];
         }
-        if(!is_numeric($request->Input('filmId')) && !is_numeric($request->Input('movieId'))){
+        if(!is_numeric($this->request->Input('movieId'))){
             return [
                 'error' => '1' ,
-                'message' => 'Identifier film or movie not valid format'
-            ];
-        }
-
-        if(count($this->getFilm($request->Input('filmId'))) === 0){
-            return [
-                'error' => '1' ,
-                'message' => 'You dont have perrmisions'
+                'message' => 'Identifier Movie not valid format'
             ];
         }
 
-        $filmId = CHhelper::filterInputInt($request->Input('filmId'));
-        $movieId = CHhelper::filterInputInt($request->Input('movieId'));
-        $type = CHhelper::filterInput($request->Input('type'));
+        $movieId = CHhelper::filterInputInt($this->request->Input('movieId'));
+        $type = CHhelper::filterInput($this->request->Input('type'));
 
-        $movieRemove =  FilmsMedia::where('id', $movieId)->where('films_id', $filmId)->update([
+        $movieRemove =  FilmsMedia::where('id', $movieId)->where('films_id', $this->filmId)->update([
             'deleted' => '1'
         ]);
 
         if($movieRemove > 0){
-            $html = strval($this->drawTemplate($filmId, $type));
+            $html = strval($this->drawTemplate($type));
             return [
                 'error' => '0' ,
                 'message' => 'Movie deleted successfully!',
@@ -335,33 +287,12 @@ class MediaController extends Controller
     /**
      *@POST("/titles/media/dubbedVersions/saveChanges")
      * @Middleware("auth")
+     * @Middleware("filmPermission")
      */
-    public function dubbedVersionsSaveChanges(Request $request)
+    public function dubbedVersionsSaveChanges()
     {
-        if(empty($request->Input('filmId'))){
-            return [
-                'error' => '1' ,
-                'message' => 'Film identifier doesnt exixst'
-            ];
-        }
-        if(!is_numeric($request->Input('filmId'))){
-            return [
-                'error' => '1' ,
-                'message' => 'Identifier film not valid format'
-            ];
-        }
-
-        if(count($this->getFilm($request->Input('filmId'))) === 0){
-            return [
-                'error' => '1' ,
-                'message' => 'You dont have perrmisions'
-            ];
-        }
-
-        $filmId = CHhelper::filterInputInt($request->Input('filmId'));
-
-        if(!empty($request->Input('language')) && is_array($request->Input('language'))){
-            foreach($request->Input('language') as $key => $val){
+        if(!empty($this->request->Input('language')) && is_array($this->request->Input('language'))){
+            foreach($this->request->Input('language') as $key => $val){
                 if(is_array($val)){
                     foreach($val as $k => $v){
                         if(!array_key_exists($v, $this->getAllLocale())){
@@ -386,9 +317,9 @@ class MediaController extends Controller
         ];
     }
 
-    private function tabExtras($id)
+    private function tabExtras()
     {
-        $film = $this->getFilm($id);
+        $film = $this->film;
     }
 
     public function extrasDestroy()
@@ -409,33 +340,14 @@ class MediaController extends Controller
     /**
      *@POST("/titles/media/vimeo/saveChangesVimeo")
      * @Middleware("auth")
+     * @Middleware("filmPermission")
      */
-    public function saveChangesVimeo(Request $request)
+    public function saveChangesVimeo()
     {
-        if(empty($request->Input('filmId'))){
-            return [
-                'error' => '1' ,
-                'message' => 'Film Identifier or template doesnt exixst'
-            ];
-        }
-        if(!is_numeric($request->Input('filmId'))){
-            return [
-                'error' => '1' ,
-                'message' => 'Identifier film not valid format'
-            ];
-        }
-        if(count($this->getFilm($request->Input('filmId'))) === 0){
-            return [
-                'error' => '1' ,
-                'message' => 'You dont have perrmisions'
-            ];
-        }
+        $trailerVimeo = CHhelper::filterInput($this->request->Input('trailerVimeo'));
+        $movieVimeo = CHhelper::filterInput($this->request->Input('movieVimeo'));
 
-        $filmId = CHhelper::filterInputInt($request->Input('filmId'));
-        $trailerVimeo = CHhelper::filterInput($request->Input('trailerVimeo'));
-        $movieVimeo = CHhelper::filterInput($request->Input('movieVimeo'));
-
-        return Film::where('id', $filmId)->update([
+        return Film::where('id', $this->filmId)->update([
             'trailerVimeo' =>  $trailerVimeo,
             'movieVimeo' =>  $movieVimeo
         ]);
@@ -444,6 +356,7 @@ class MediaController extends Controller
     /**
      *@POST("/titles/media/uploader/tabUploader")
      * @Middleware("auth")
+     * @Middleware("filmPermission")
      */
     public function tabUploader()
 	{
@@ -469,7 +382,7 @@ class MediaController extends Controller
 
      private function getMedia($hash, $filter='all', $type='mrss', $mediaType)
     {
-		$film = $this->getFilm($this->filmId);
+		$film = $this->request->film;
 
         switch($filter)
         {
@@ -525,24 +438,37 @@ class MediaController extends Controller
     /**
      *@POST("/titles/media/uploader/filterMediaUploaderUpdateList")
      * @Middleware("auth")
+     * @Middleware("filmPermission")
      */	
 	public function filterMediaUploaderUpdateList()
     {
-        $film = $this->getFilm($this->filmId);
+        $film = $this->request->film;
         $allLocales = $this->getAllLocale();
 
-
         $media = [
-            'uploader' => $this->tabUploader(),
-            'uploadHistory' => $this->getUploaderHistory($this->filmId)
+            'uploader' => $this->tabUploader()
         ];
 
-        return view('titles.titleMenegment.media.partials.uploader.uploader', compact('film', 'allLocales', 'media'));
+        return view('titles.titleMenegment.media.partials.uploader.partials.mediaUploader', compact('film', 'allLocales', 'media'));
     }
+
+    /**
+     *@POST("/titles/media/uploader/getAccountAmazonAccess")
+     * @Middleware("auth")
+     * @Middleware("filmPermission")
+     */
+    public function getAccountAmazonAccess()
+    {
+        return 1;
+        $se = new amazonAssetsBuilder();
+        return json_encode($se->getAmazonAssets());
+    }
+
 
     /**
      *@POST("/titles/media/uploader/getUploaderHistory")
      * @Middleware("auth")
+     * @Middleware("filmPermission")
      */
     public function getUploaderHistory()
     {
@@ -558,7 +484,7 @@ class MediaController extends Controller
 							->where('z_bitjobs.accounts_id', $accountId)
 							->get();
 
-        $html =  view('titles.titleMenegment.media.partials.uploader.history.uploaderHistory', compact('bitjobs'));
+        $html =  view('titles.titleMenegment.media.partials.uploader.partials.uploaderHistory', compact('bitjobs'));
         $html = strval($html);
 
         return [

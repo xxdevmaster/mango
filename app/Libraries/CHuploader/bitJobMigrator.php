@@ -1,11 +1,13 @@
 <?php
+namespace App\Libraries\CHuploader;
+
 /**
  * Created by PhpStorm.
  * User: edgar
  * Date: 3/10/15
  * Time: 3:21 PM
  */
-require dirname(__FILE__).'/../../vendor/autoload.php';
+//require dirname(__FILE__).'/../../vendor/autoload.php';
 use bitcodin\Bitcodin;
 use bitcodin\VideoStreamConfig;
 use bitcodin\S3OutputConfig;
