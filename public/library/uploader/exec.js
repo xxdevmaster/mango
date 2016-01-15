@@ -105,8 +105,7 @@ $(document).ready(function() {
                                       type: "POST",
                                       url: "/titles/media/uploader/mediaUploaderCreateJob",
                                       dataType: "json",
-                                      //data: 'act=mediaUploaderCreateJob&user_id='+user_id+'&acc_id='+account_id+'&zencode=1&bucket='+buckets+'&media='+type+'&id='+movieId+'&dt='+moment().format('YYYY-MM')+'&track='+track+'&locale='+locale+'&quality='+quality+'&drm='+drm,
-                                      data : "filmId="+film_id,
+                                      data: 'zencode=1&bucket='+buckets+'&media='+type+'&id='+movieId+'&dt='+moment().format('YYYY-MM')+'&track='+track+'&locale='+locale+'&quality='+quality+'&drm='+drm+'&filmId='+film_id,
                                       success: function(msg) {
 
                                            // createAutoClosingAlert(".msgOnTop",msg.status,4000);
@@ -115,9 +114,11 @@ $(document).ready(function() {
                                             $("#titles").val('');
 
                                             var type = $("input:radio[name=bucket_type]:checked").val();
-                                            updateList(type, 'missing',movieId);
-                                             $("input:radio[name=filter]").filter('[value=missing]').prop('checked', true);
-                                            $.ajax({
+
+                                            // $("input:radio[name=filter]").filter('[value=missing]').prop('checked', true);
+
+                                            updateList(type, filter,film_id)
+                                           /* $.ajax({
                                                 type: "POST",
                                                 url: "engine.php",
                                                 dataType: "html",
@@ -125,7 +126,7 @@ $(document).ready(function() {
                                                 success: function(msg) {
                                                         $("#uploaderHistory").html(msg);
                                                 }
-                                            });
+                                            });*/
 
                                       }
                                   });

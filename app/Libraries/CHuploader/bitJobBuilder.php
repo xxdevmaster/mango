@@ -8,6 +8,9 @@ namespace App\Libraries\CHuploader;
  * Time: 3:21 PM
  */
 //require dirname(__FILE__).'/../../vendor/autoload.php';
+use App\Models\AmazoneAssets;
+use App\Models\BitJobs;
+use App\Models\PassThrough;
 use bitcodin\AudioStreamConfig;
 use bitcodin\Bitcodin;
 use bitcodin\CombinedWidevinePlayreadyDRMConfig;
@@ -75,9 +78,7 @@ class bitJobBuilder {
 
     public function getS3Credentials()
     {
-        //$q = "SELECT * FROM cc_amazone_assets WHERE accounts_id='{$this->accountID}'";
-        //$this->awsinfo = G('DB')->query($q)->fetch(PDO::FETCH_ASSOC);
-        $this->awsinfo = AmazoneAssets::where('accounts_id', $this->accountID)->get();
+        $this->awsinfo = AmazoneAssets::where('accounts_id', $this->accountID)->get()->first()->toArray();
     }
 
     public function createDashUploadJob($params)
@@ -93,7 +94,7 @@ class bitJobBuilder {
         //$this->path = $params["path"];
         $this->output_bucket = "cinehost.streamer";
 
-        if($params["batch"]) { // drive based batch job
+        if(isset($params["batch"])) { // drive based batch job
             $this->file = $params["file"];
             $this->input_path = "";
             $this->input_file_path = substr($params['full_path'],1);
@@ -159,42 +160,21 @@ class bitJobBuilder {
                 $combinedWidevinePlayreadyDRMConfig->kid = '8OUM3TRiVymH5WXej9u0Ug==';
                 $combinedWidevinePlayreadyDRMConfig->laUrl = 'http://playready.ezdrm.com/cency/preauth.aspx?pX=0FF54D';
                 $combinedWidevinePlayreadyDRMConfig->method = DRMEncryptionMethods::MPEG_CENC;
-
-//                /* CREATE DRM WIDEVINE CONFIG */
-//                $widevineDRMConfig = new WidevineDRMConfig();
-//                $widevineDRMConfig->requestUrl = 'http://license.uat.widevine.com/cenc/getcontentkey';
-//                $widevineDRMConfig->signingKey = '1ae8ccd0e7985cc0b6203a55855a1034afc252980e970ca90e5202689f947ab9';
-//                $widevineDRMConfig->signingIV = 'd58ce954203b7c9a9a9d467f59839249';
-//                $widevineDRMConfig->contentId = '746573745f69645f4639465043304e4f';
-//                $widevineDRMConfig->provider = 'widevine_test';
-//                $widevineDRMConfig->method = DRMEncryptionMethods::MPEG_CENC;
-
                 $jobConfig->drmConfig = $combinedWidevinePlayreadyDRMConfig;
             }
 
 
             /* CREATE JOB */
             $job = Job::create($jobConfig);
-
-//            $outurls = array();
-//
-//            foreach($levels as $br=>$v)
-//            {
-//                $outurls['hls']['files'][]="s3://{$this->output_bucket}.s3.amazonaws.com/{$this->outdir}/hls/{$br}.m3u8";
-//                $outurls['dash']['files'][]="s3://{$this->output_bucket}.s3.amazonaws.com/{$this->outdir}/dash/{$br}k/rendition.mpd";
-//            }
-//
-//            $outurls['hls']['playlist']="s3://{$this->output_bucket}.s3.amazonaws.com/{$this->outdir}/hls/playlist.m3u8";
-//            $outurls['dash']['playlist']="s3://{$this->output_bucket}.s3.amazonaws.com/{$this->outdir}/dash/playlist.mpd";
-
-
-
-            $passThrough = str_replace("'",'"',json_encode(array('accountID'=>$this->accountID,'filmID'=>$id,'date'=>$this->dt,'locale'=>$params["locale"],'track'=>$params["track"],'media'=>$this->media,'quality'=>$this->quality,'BASEPATH'=>$this->outdir."/","JOB"=>$job->jobId,"INPUT"=>array('bucket'=>$this->input_bucket,'path'=>$this->input_path))));
-            //G('DB')->query("INSERT INTO z_pass_through (pass_through) VALUES ('$passThrough')");
-            //$passid = G('DB')->lastInsertId();
-
-
-            G('DB')->query("INSERT INTO z_bitjobs (accounts_id,films_id,job_id,job_status,pass_id,dt,users_id) VALUES ('$this->accountID','$id','$job->jobId','$job->status','$passid',NOW(),'{$this->userID}')");
+            BitJobs::create([
+                'accounts_id' => $this->accountID,
+                'films_id' => $id,
+                'job_id' => $job->jobId,
+                'job_status' => $job->status,
+                'pass_id' => $passid,
+                'dt' => NOW(),
+                'users_id'=> $this->userID
+            ]);
             return json_encode(array('status'=>'Media uploaded successfully, proceeding to transcoder'));
         } catch (Exception $e) { return json_encode(array('status'=>$e->getMessage(),'error'=>true)); }
     }
@@ -466,12 +446,8 @@ class bitJobBuilder {
             else{
                 $passThrough = str_replace("'",'"',json_encode(array('accountID'=>$this->accountID,'filmID'=>$id,'date'=>$this->dt,'locale'=>$params["locale"],'track'=>$params["track"],'media'=>$this->media,'quality'=>$this->quality,'BASEPATH'=>$outdir."/","OUTPUT"=>$outurls,"INPUT"=>array('bucket'=>$this->input_bucket,'path'=>$this->media.'/'.$this->dt.'/'.(str_pad($id,5,'0',STR_PAD_LEFT)).'/'.$params["track"].'/'.$params["locale"].'/'))));
             }
-
-            G('DB')->query("INSERT INTO z_pass_through (pass_through) VALUES ('$passThrough')");
-            $passid = G('DB')->lastInsertId();
-
+            $passid = PassThrough::create(['z_pass_through'=>$passThrough])->id;
             $passThrough = str_replace('"',"'",json_encode(array('accountID'=>$this->accountID,'filmID'=>$id,'date'=>$this->dt,'locale'=>$params["locale"],'track'=>$params["track"],'media'=>$this->media,'quality'=>$this->quality,'passid'=>$passid)));
-
             $inputfile = $params['file']?'http://'.$this->input_bucket.'.s3.amazonaws.com'.$params["file"]:'http://'.$this->input_bucket.'.s3.amazonaws.com/'.$this->media.'/'.$this->dt.'/'.(str_pad($id,5,'0',STR_PAD_LEFT)).'/'.$params["track"].'/'.$params["locale"].'/'.$infile;
 
             $job_input ='
@@ -553,8 +529,7 @@ class bitJobBuilder {
                 $passThrough = str_replace("'",'"',json_encode(array('accountID'=>$this->accountID,'filmID'=>$id,'date'=>$this->dt,'locale'=>$params["locale"],'track'=>$params["track"],'media'=>$this->media,'quality'=>$this->quality,'BASEPATH'=>$outdir."/","OUTPUT"=>$outurls,"INPUT"=>array('bucket'=>$this->input_bucket,'path'=>$this->media.'/'.$this->dt.'/'.(str_pad($id,5,'0',STR_PAD_LEFT)).'/'.$params["track"].'/'.$params["locale"].'/'))));
             }
 
-            G('DB')->query("INSERT INTO z_pass_through (pass_through) VALUES ('$passThrough')");
-            $passid = G('DB')->lastInsertId();
+            $passid = PassThrough::create(['z_pass_through'=>$passThrough])->id;
 
             $passThrough = str_replace('"',"'",json_encode(array('accountID'=>$this->accountID,'filmID'=>$id,'date'=>$this->dt,'locale'=>$params["locale"],'track'=>$params["track"],'media'=>$this->media,'quality'=>$this->quality,'passid'=>$passid)));
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\TitleMenegment;
 
+use App\Libraries\CHuploader\bitJobBuilder;
 use Guzzle\Http\Client;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -464,7 +465,6 @@ class MediaController extends Controller
 
         $se = new amazoneAssetsBuilder($accountInfo);
         return json_encode($se->getAmazonAssets());
-        dd();
     }
 
     /**
@@ -476,10 +476,9 @@ class MediaController extends Controller
     {
         $userInfo = Auth::user();
         $accountInfo = $userInfo->account;
-
-        $se = new amazoneAssetsBuilder($accountInfo);
-        return json_encode($se->getAmazonAssets());
-        dd();
+        $params = array_except($this->request->all(), ['film']) ;
+        $jobBuilder = new bitJobBuilder($accountInfo->id,$userInfo->id);
+        return $jobBuilder->createJob( array_except($this->request->all(), ['film']));
     }
 
     /**
