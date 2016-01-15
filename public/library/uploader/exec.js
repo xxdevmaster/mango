@@ -150,28 +150,28 @@ $(document).ready(function() {
 });
 
             function createPath(type, movieId, track, locale){
-                var path = '';
-                if(!movieId){
-                     //createAutoClosingAlert(".msgOnTop","Please Select Title!",4000);
-                 }
-                var addSymbols = 5 - movieId.length;
+    var path = '';
+    if(!movieId){
+        //createAutoClosingAlert(".msgOnTop","Please Select Title!",4000);
+    }
+    var addSymbols = 5 - movieId.length;
 
-                for(var i=0;i<addSymbols;i++){
-                    movieId = '0'+movieId;
-                }
+    for(var i=0;i<addSymbols;i++){
+        movieId = '0'+movieId;
+    }
 
-                console.log(movieId);
+    console.log(movieId);
 
-                path += type+'/';
-                path += moment().format('YYYY-MM')+'/';
-                path += movieId+'/';
-                path += track+'/';
-                path += locale+'/';
+    path += type+'/';
+    path += moment().format('YYYY-MM')+'/';
+    path += movieId+'/';
+    path += track+'/';
+    path += locale+'/';
 
 
-                return path;
+    return path;
 
-            };
+};
 
 
             jQuery.fn.filterByText = function(textbox, selectSingleMatch) {
