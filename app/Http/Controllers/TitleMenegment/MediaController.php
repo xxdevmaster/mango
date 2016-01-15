@@ -467,6 +467,20 @@ class MediaController extends Controller
         dd();
     }
 
+    /**
+     *@POST("/titles/media/uploader/mediaUploaderCreateJob")
+     * @Middleware("auth")
+     * @Middleware("filmPermission")
+     */
+    public function mediaUploaderCreateJob()
+    {
+        $userInfo = Auth::user();
+        $accountInfo = $userInfo->account;
+
+        $se = new amazoneAssetsBuilder($accountInfo);
+        return json_encode($se->getAmazonAssets());
+        dd();
+    }
 
     /**
      *@POST("/titles/media/uploader/getUploaderHistory")

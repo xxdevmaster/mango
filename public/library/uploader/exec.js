@@ -103,9 +103,10 @@ $(document).ready(function() {
                               else{
                                   $.ajax({
                                       type: "POST",
-                                      url: "engine.php",
+                                      url: "/titles/media/uploader/mediaUploaderCreateJob",
                                       dataType: "json",
-                                      data: 'act=mediaUploaderCreateJob&user_id='+user_id+'&acc_id='+account_id+'&zencode=1&bucket='+buckets+'&media='+type+'&id='+movieId+'&dt='+moment().format('YYYY-MM')+'&track='+track+'&locale='+locale+'&quality='+quality+'&drm='+drm,
+                                      //data: 'act=mediaUploaderCreateJob&user_id='+user_id+'&acc_id='+account_id+'&zencode=1&bucket='+buckets+'&media='+type+'&id='+movieId+'&dt='+moment().format('YYYY-MM')+'&track='+track+'&locale='+locale+'&quality='+quality+'&drm='+drm,
+                                      data : "filmId="+film_id,
                                       success: function(msg) {
 
                                            // createAutoClosingAlert(".msgOnTop",msg.status,4000);
