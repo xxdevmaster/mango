@@ -6,19 +6,33 @@ function updateList(type, filter,filmId){
 }
 			
 $(document).ready(function() {
-    
+
+
+
+
+
+    var account_id = $("#uploaderAccountid").val();
+    var user_id = $("#uploaderUserid").val();
+    var fileChooser = document.getElementById('file');
+    var button = document.getElementById('upload-button');
+    var film_id = $("input[name='filmId']").val();
+    var buckets;
+    var region;
+    var SecretKey;
+    var AccessKey;
+    var avc_temp;
+    /* var hash = "0bf4a7e03a9978d4ed2e5770adf23e33";
+     var buckets = ["us.cinecliq.master.trailers", "us.cinecliq.master.films", "us.cinecliq.master.bonuss"];
+     var region = "cloudsearch.us-east-1.amazonaws.com";
+     var SecretKey = "YxnQ+urWxiEyHwc/AL8h3asoxqdyrGWBnFFYPK7c";
+     var AccessKey = "AKIAJPIY5AB3KDVIDPOQ";*/
+    // Get our File object
+
     $('.history_refresh').click(function(){
-         var $icon = $(this).children('i'),
-            animateClass = "fa-spin";
-
-            $icon.addClass( animateClass );
-            // setTimeout is to indicate some async operation
-            /*window.setTimeout( function() {
-            $icon.removeClass( animateClass );
-            }, 2000 ); */
-
-        var filmId = $("input[name='filmId']").val();
-        $.post('/titles/media/uploader/getUploaderHistory',{filmId:filmId}, function(response){
+        var $icon = $(this).children('i');
+        animateClass = "fa-spin";
+        $icon.addClass( animateClass );
+        $.post('/titles/media/uploader/getUploaderHistory',{filmId:film_id}, function(response){
             if(response.error === '0'){
                 $("#uploaderHistory").html(response.html);
                 $icon.removeClass( animateClass );
@@ -27,10 +41,8 @@ $(document).ready(function() {
         });
 
     });
-    
-       
+
 	$('#titles').filterByText($('#serachbox'), false);
-	var film_id = $("input[name='filmId']").val();
 
 	$('input[type=radio][name=bucket_type]').on('change', function () {
 		var filter = $("input:radio[name=filter]:checked").val();
@@ -42,29 +54,7 @@ $(document).ready(function() {
 		updateList(type, $(this).val(),film_id);
 	});
 	
-});
-        
 
-
-            
-	
-    
-$(document).ready(function() {
-
-    var account_id = $("#uploaderAccountid").val();
-    var user_id = $("#uploaderUserid").val();
-    var fileChooser = document.getElementById('file');
-    var button = document.getElementById('upload-button');
-    var buckets;
-    var region;
-    var SecretKey;
-    var AccessKey;
-    /* var hash = "0bf4a7e03a9978d4ed2e5770adf23e33";
-     var buckets = ["us.cinecliq.master.trailers", "us.cinecliq.master.films", "us.cinecliq.master.bonuss"];
-     var region = "cloudsearch.us-east-1.amazonaws.com";
-     var SecretKey = "YxnQ+urWxiEyHwc/AL8h3asoxqdyrGWBnFFYPK7c";
-     var AccessKey = "AKIAJPIY5AB3KDVIDPOQ";*/
-     // Get our File object
      
                
    
@@ -73,16 +63,16 @@ $(document).ready(function() {
                 var movieId = $("#titles").val();
                 var track = $("#titles option:selected").data("track");
                 var locale = $("#titles option:selected").data("locale");
-                //var movieId = $("#titles option:selected").data("movieId");
+                var movieId = $("#titles option:selected").data("movieid");
                 var quality = $("input:radio[name=video_quality]:checked").val();
                 var drm = $("input:radio[name=drm]:checked").val();
-                //var path = createPath(type, movieId, track, locale);
-
+                var path = createPath(type, movieId, track, locale);
+                var bucket = new AWS.S3({params: {Bucket: buckets}});
                 $.ajax({
                     type: "POST",
-                    url: "/titles/media/uploader/getAccountAmazonAccess",
+                    url: "/titles/media/uploader/getAccountAmazonAssets",
+                    data: "filmId="+film_id,
                     dataType: "json",
-                    data: 'act=getAccountAmazonAccess&account_id='+account_id,
                     success: function(data) {
 
                         buckets = data.bucket;
@@ -97,7 +87,7 @@ $(document).ready(function() {
                         
                         
                         
-                        var bucket = new AWS.S3({params: {Bucket: buckets}});
+
 
                         var file = fileChooser.files[0];
                         if (file) {

@@ -1,5 +1,6 @@
 
     <input type="hidden" name="uploaderFilmId" id="FilmId" value="{{ isset($film->id) ? $film->id : ''}}">
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.13.min.js"></script>
     <script src="/library/uploader/moment.js"></script>
     <script src="/library/uploader/exec.js"></script>
 

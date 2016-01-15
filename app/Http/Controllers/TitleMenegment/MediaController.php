@@ -453,15 +453,18 @@ class MediaController extends Controller
     }
 
     /**
-     *@POST("/titles/media/uploader/getAccountAmazonAccess")
+     *@POST("/titles/media/uploader/getAccountAmazonAssets")
      * @Middleware("auth")
      * @Middleware("filmPermission")
      */
-    public function getAccountAmazonAccess()
+    public function getAccountAmazonAssets()
     {
-        return 1;
-        $se = new amazonAssetsBuilder();
+        $userInfo = Auth::user();
+        $accountInfo = $userInfo->account;
+
+        $se = new amazoneAssetsBuilder($accountInfo);
         return json_encode($se->getAmazonAssets());
+        dd();
     }
 
 

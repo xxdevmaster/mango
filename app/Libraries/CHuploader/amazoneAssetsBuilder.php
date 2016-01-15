@@ -10,17 +10,18 @@ use Aws\Iam\Exception;
 use Guzzle\Http\EntityBody;
 use App\Models\AmazoneAssets;
 
-class amazonAssetsBuilder {
+class amazoneAssetsBuilder {
+    private $accountInfo;
     public $accountID;
-    public $o;
+    private $o;
    
-    public function __construct($accountID){
-        $this->accountID = $accountID;
+    public function __construct($accountInfo){
+        $this->accountID = $accountInfo->id;
+        $this->accountInfo = $accountInfo;
     }
 
     public function getAmazonAssets(){
-        //$res= G('DB')->query($q="SELECT cc_amazone_assets.* FROM cc_amazone_assets WHERE cc_amazone_assets.accounts_id='".$this->accountID."' ")->fetch(PDO::FETCH_OBJ);
-        $res = AmazoneAssets::where('accounts_id', $this->accountID)->get();
+        $res = AmazoneAssets::where('accounts_id', $this->accountID)->get()->first();
         if($res)
         {
             $obj = array('bucket'=>$res->bucket,'region'=>$res->region,'secret_key'=>$res->secret_key,'access_key'=>$res->access_key);
@@ -35,8 +36,7 @@ class amazonAssetsBuilder {
         $access_key = 'AKIAJPIY5AB3KDVIDPOQ';
         $secret_key = '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';
         $region     = Region::US_EAST_1;
-        $accountInfo = BaseElements::getAccountInfo( $this->accountID );
-        $username = preg_replace( "/[^a-z]/i", "", $accountInfo->title ).'_ACID_.'.$this->accountID;
+        $username = preg_replace( "/[^a-z]/i", "", $this->accountInfo->title ).'_ACID_.'.$this->accountID;
         
         try {
             $backet_name = "zero.".$username.".assets";
