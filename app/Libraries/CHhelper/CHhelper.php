@@ -22,7 +22,8 @@ class CHhelper {
 	
 	public static function filterInputInt($data) 
 	{
-		return trim((int)abs($data));
+		$data = mb_substr($data, 0, 11);
+		return (int) trim(abs(strip_tags($data)));
 	}
 
 	public static function convertBytes($bytes, $precision = 2) {

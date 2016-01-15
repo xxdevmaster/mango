@@ -32,26 +32,26 @@
 
         <!-- Custom styles for this template -->
         <link href="/css/helper.css" rel="stylesheet">
-        <link href="/css/style.css" rel="stylesheet"> 
+        <link href="/css/style.css" rel="stylesheet">
 		<link href="/css/cinehost.css" rel="stylesheet">
 		<link href="/css/token-input-facebook.css" rel="stylesheet">
 		<link href="/css/uploadifiveCss/uploadifive.css" rel="stylesheet">
 		<link href="/assets/select2/select2.css" rel="stylesheet" type="text/css" />
         <link href="/assets/timepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
         <link href="/library/bitdash/bitdashplayer.min.css" rel="stylesheet" />
-		
-        <script src="/js/jquery.js"></script>			
+
+        <script src="/js/jquery.js"></script>
 		<script src="/assets/jquery-multi-select/jquery.multi-select.js" type="text/javascript" ></script>
 		<script src="/assets/spinner/spinner.min.js" type="text/javascript" ></script>
 		<script src="/assets/select2/select2.min.js" type="text/javascript"></script>
-		
+
         <script src="/js/ArraySetMath.js"></script>
-        <script src="/js/bootbox.min.js"></script>	
+        <script src="/js/bootbox.min.js"></script>
         <script src="/js/functions.js"></script>
         <script src="/js/exec.js"></script>
 
         <script src="/library/bitdash/bitdash.min.js"></script>
-      
+
 		<script>
             var player_setup_movie= [];
             var player_setup_trailer = [];
@@ -64,8 +64,8 @@
 					headers: {
 						'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
 					}
-				});				
-			});		
+				});
+			});
 		</script>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
         <!--[if lt IE 9]>
@@ -77,18 +77,18 @@
 
 
     <body>
-	
+
 		<!-- Result message -->
 		<div class="loading">
-			<i class="fa fa-spinner fa-2x fa-spin text-primary"></i>  			
+			<i class="fa fa-spinner fa-2x fa-spin text-primary"></i>
 		</div>
-		
+
 		<!-- Loading -->
 		<div class="alert" id="autoCloseMsg">
 		   <button onclick="autoCloseMsgHide()" id="autoCloseMsgHide" class="close text-muted" type="button">&times;</button>
 		   <strong></strong>
 		</div>
-		
+
         <!-- Aside Start-->
         <aside class="left-panel">
 

@@ -1,13 +1,29 @@
 <?php
+namespace App\Libraries\CHuploader;
+
 /**
  * Created by PhpStorm.
- * User: edgar
- * Date: 3/10/15
+ * User: gaz
+ * Date: 1/10/15
  * Time: 3:21 PM
  */
-require dirname(__FILE__).'/../../vendor/autoload.php';
+//require dirname(__FILE__).'/../../vendor/autoload.php';
+use bitcodin\AudioStreamConfig;
+use bitcodin\Bitcodin;
+use bitcodin\CombinedWidevinePlayreadyDRMConfig;
+use bitcodin\DRMEncryptionMethods;
+use bitcodin\EncodingProfile;
+use bitcodin\EncodingProfileConfig;
+use bitcodin\Input;
+use bitcodin\Job;
+use bitcodin\JobConfig;
+use bitcodin\JobSpeedTypes;
+use bitcodin\ManifestTypes;
+use bitcodin\S3InputConfig;
+use bitcodin\VideoStreamConfig;
 
-class zenJobBuilder {
+
+class bitJobBuilder {
     private $urlprefix = 'sftp://demandcliq.upload.akamai.com';
     private $media;
     private $dt;
@@ -19,27 +35,25 @@ class zenJobBuilder {
     public $accountID;
     private $quality;
 
-    public function __construct($accountID){
+    public function __construct($accountID,$userID){
         $this->accountID = $accountID;
-        $this->zencoder = new Services_Zencoder('4c15b5bbe4bc62d6851c04d84db71691');
-
+        $this->userID = $userID;
+        Bitcodin::setApiToken('0c96481e564313c6519102a323e9aacfe33cd84e93b9a8d93bb680bace598475');
     }
 
-    public function getJobs(){
-        return $this->zencoder->jobs->index();
+    public function listAllJobs()
+    {
+        $jobs = Job::getListAll();
+        return $jobs;
     }
-
 
     public function createJob($params)
     {
-        $exceptions = array('69', '227', '72', '19');
-        if(in_array($this->accountID, $exceptions))
-            if($params["quality"] == 'offline')
-                $this->createDashDVDJob($params);
-            else
-                $this->createDashJob($params);
-        else
-            $this->createRegularJob($params);
+        if($params["quality"] == 'offline')
+            return $this->createDashDVDJob($params);
+        else {
+            return $this->createDashUploadJob($params);
+        }
     }
 
     private function levels($quality)
@@ -47,10 +61,8 @@ class zenJobBuilder {
         $levels = array(
             '400'=>array('width'=>480),
             '800'=>array('width'=>640),
-            //'1250'=>array('width'=>768),
             '1200'=>array('width'=>960),
-            '2400'=>array('width'=>1280),
-            //'2800'=>array('width'=>1280),
+            '2400'=>array('width'=>1280)
         );
         if($quality == 'hd')
             $levels['4600'] = array('width'=>1920);
@@ -60,6 +72,131 @@ class zenJobBuilder {
 
         return $levels;
     }
+
+    public function getS3Credentials()
+    {
+        $q = "SELECT * FROM cc_amazone_assets WHERE accounts_id='{$this->accountID}'";
+        $this->awsinfo = G('DB')->query($q)->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function createDashUploadJob($params)
+    {
+        $this->getS3Credentials(); // fetch credentials for input
+        $this->quality = $params["quality"]?$params["quality"]:"hd";
+        $this->media = $params["media"];
+        $id = ltrim($params["id"],'0');
+        $this->dt = $params["dt"];
+        $this->drm = $params["drm"];
+        $this->track = $params["track"];
+        $this->locale = $params["locale"];
+        //$this->path = $params["path"];
+        $this->output_bucket = "cinehost.streamer";
+
+        if($params["batch"]) { // drive based batch job
+            $this->file = $params["file"];
+            $this->input_path = substr($params['full_path'],1);
+            $this->input_file_path = substr($params['full_path'],1);
+        }
+        else
+        {
+            $this->file = "MASTER." . $this->media . "." . $id . ".mp4";
+            $this->input_path = "{$this->media}/{$this->dt}/" . (str_pad($id, 5, '0', STR_PAD_LEFT)) . "/{$this->track}/{$this->locale}";
+            $this->input_file_path = "{$this->input_path}/{$this->file}";
+        }
+
+        $this->input_bucket = $this->awsinfo['bucket'];
+        $levels = $this->levels($this->quality);
+        $this->outdir = "{$this->media}/".(implode('/',str_split((str_pad($id,5,'0',STR_PAD_LEFT)))))."/{$this->locale}/{$this->track}";
+
+        try
+        {
+            $inputConfig = new S3InputConfig();
+            $inputConfig->accessKey = $this->awsinfo['access_key'];
+            $inputConfig->secretKey = $this->awsinfo['secret_key'];
+            $inputConfig->bucket    = $this->awsinfo['bucket'];
+            $inputConfig->region    = $this->awsinfo['region'];
+            $inputConfig->objectKey = $this->input_file_path;
+            //$inputConfig->host      = 's3-eu-west-1.amazonaws.com';      // OPTIONAL
+            $input = Input::create($inputConfig);
+
+            /* CREATE AUDIO STREAM CONFIGS */
+            $audioStreamConfig = new AudioStreamConfig();
+            $audioStreamConfig->bitrate = 128000;
+
+            $encodingProfileConfig = new EncodingProfileConfig();
+            $encodingProfileConfig->name = 'CinehostFullHD';
+            $encodingProfileConfig->audioStreamConfigs[] = $audioStreamConfig;
+
+            /* CREATE VIDEO STREAM CONFIG */
+            foreach($levels as $br=>$dim)
+            {
+                $VSC = new VideoStreamConfig();
+                $VSC->bitrate = $br*1024;
+                $VSC->width = $dim['width'];
+                $VSC->height = $dim['width']*9/16;
+
+                $encodingProfileConfig->videoStreamConfigs[] = $VSC;
+            }
+
+            /* CREATE ENCODING PROFILE */
+            $encodingProfile = EncodingProfile::create($encodingProfileConfig);
+
+            /* CREATE JOB CONFIG */
+            $jobConfig = new JobConfig();
+            $jobConfig->speed = JobSpeedTypes::STANDARD;
+            $jobConfig->encodingProfile = $encodingProfile;
+            $jobConfig->input = $input;
+            $jobConfig->manifestTypes[] = ManifestTypes::M3U8;
+            $jobConfig->manifestTypes[] = ManifestTypes::MPD;
+
+            if('on' == $this->drm)
+            {
+                /* CREATE COMBINED WIDEVINE PLAYREADY DRM CONFIG */
+                $combinedWidevinePlayreadyDRMConfig = new CombinedWidevinePlayreadyDRMConfig();
+                $combinedWidevinePlayreadyDRMConfig->pssh = 'CAESEInw6s5KklokhmC6SPmlToEaCG1vdmlkb25lIhD97F4BwZf9R4oVfquQm4fhMgA=';
+                $combinedWidevinePlayreadyDRMConfig->key = '8v4wly9BinkBrDdYIEnszQ==';
+                $combinedWidevinePlayreadyDRMConfig->kid = '8OUM3TRiVymH5WXej9u0Ug==';
+                $combinedWidevinePlayreadyDRMConfig->laUrl = 'http://playready.ezdrm.com/cency/preauth.aspx?pX=0FF54D';
+                $combinedWidevinePlayreadyDRMConfig->method = DRMEncryptionMethods::MPEG_CENC;
+
+//                /* CREATE DRM WIDEVINE CONFIG */
+//                $widevineDRMConfig = new WidevineDRMConfig();
+//                $widevineDRMConfig->requestUrl = 'http://license.uat.widevine.com/cenc/getcontentkey';
+//                $widevineDRMConfig->signingKey = '1ae8ccd0e7985cc0b6203a55855a1034afc252980e970ca90e5202689f947ab9';
+//                $widevineDRMConfig->signingIV = 'd58ce954203b7c9a9a9d467f59839249';
+//                $widevineDRMConfig->contentId = '746573745f69645f4639465043304e4f';
+//                $widevineDRMConfig->provider = 'widevine_test';
+//                $widevineDRMConfig->method = DRMEncryptionMethods::MPEG_CENC;
+
+                $jobConfig->drmConfig = $combinedWidevinePlayreadyDRMConfig;
+            }
+
+
+            /* CREATE JOB */
+            $job = Job::create($jobConfig);
+
+//            $outurls = array();
+//
+//            foreach($levels as $br=>$v)
+//            {
+//                $outurls['hls']['files'][]="s3://{$this->output_bucket}.s3.amazonaws.com/{$this->outdir}/hls/{$br}.m3u8";
+//                $outurls['dash']['files'][]="s3://{$this->output_bucket}.s3.amazonaws.com/{$this->outdir}/dash/{$br}k/rendition.mpd";
+//            }
+//
+//            $outurls['hls']['playlist']="s3://{$this->output_bucket}.s3.amazonaws.com/{$this->outdir}/hls/playlist.m3u8";
+//            $outurls['dash']['playlist']="s3://{$this->output_bucket}.s3.amazonaws.com/{$this->outdir}/dash/playlist.mpd";
+
+
+
+            $passThrough = str_replace("'",'"',json_encode(array('accountID'=>$this->accountID,'filmID'=>$id,'date'=>$this->dt,'locale'=>$params["locale"],'track'=>$params["track"],'media'=>$this->media,'quality'=>$this->quality,'BASEPATH'=>$this->outdir."/","JOB"=>$job->jobId,"INPUT"=>array('bucket'=>$this->input_bucket,'path'=>$this->input_path))));
+            G('DB')->query("INSERT INTO z_pass_through (pass_through) VALUES ('$passThrough')");
+            $passid = G('DB')->lastInsertId();
+
+            G('DB')->query("INSERT INTO z_bitjobs (accounts_id,films_id,job_id,job_status,pass_id,dt,users_id) VALUES ('$this->accountID','$id','$job->jobId','$job->status','$passid',NOW(),'{$this->userID}')");
+            return json_encode(array('status'=>'Media uploaded successfully, proceeding to transcoder'));
+        } catch (Exception $e) { return json_encode(array('status'=>$e->getMessage(),'error'=>true)); }
+    }
+
 
     public function createRegularJob($params)
     {
@@ -320,9 +457,9 @@ class zenJobBuilder {
 
 
 
-            if($params['full_path']) // custom deployment via harddrives
+            if($params['file']) // custom deployment via harddrives
             {
-                $passThrough = str_replace("'",'"',json_encode(array('accountID'=>$this->accountID,'filmID'=>$id,'date'=>$this->dt,'locale'=>$params["locale"],'track'=>$params["track"],'media'=>$this->media,'quality'=>$this->quality,'BASEPATH'=>$outdir."/","OUTPUT"=>$outurls,"INPUT"=>array('bucket'=>$this->input_bucket,'path'=>$params["full_path"]))));
+                $passThrough = str_replace("'",'"',json_encode(array('accountID'=>$this->accountID,'filmID'=>$id,'date'=>$this->dt,'locale'=>$params["locale"],'track'=>$params["track"],'media'=>$this->media,'quality'=>$this->quality,'BASEPATH'=>$outdir."/","OUTPUT"=>$outurls,"INPUT"=>array('bucket'=>$this->input_bucket,'path'=>$params["file"]))));
             }
             else{
                 $passThrough = str_replace("'",'"',json_encode(array('accountID'=>$this->accountID,'filmID'=>$id,'date'=>$this->dt,'locale'=>$params["locale"],'track'=>$params["track"],'media'=>$this->media,'quality'=>$this->quality,'BASEPATH'=>$outdir."/","OUTPUT"=>$outurls,"INPUT"=>array('bucket'=>$this->input_bucket,'path'=>$this->media.'/'.$this->dt.'/'.(str_pad($id,5,'0',STR_PAD_LEFT)).'/'.$params["track"].'/'.$params["locale"].'/'))));
@@ -333,7 +470,7 @@ class zenJobBuilder {
 
             $passThrough = str_replace('"',"'",json_encode(array('accountID'=>$this->accountID,'filmID'=>$id,'date'=>$this->dt,'locale'=>$params["locale"],'track'=>$params["track"],'media'=>$this->media,'quality'=>$this->quality,'passid'=>$passid)));
 
-            $inputfile = $params['full_path']?'http://'.$this->input_bucket.'.s3.amazonaws.com'.$params["full_path"]:'http://'.$this->input_bucket.'.s3.amazonaws.com/'.$this->media.'/'.$this->dt.'/'.(str_pad($id,5,'0',STR_PAD_LEFT)).'/'.$params["track"].'/'.$params["locale"].'/'.$infile;
+            $inputfile = $params['file']?'http://'.$this->input_bucket.'.s3.amazonaws.com'.$params["file"]:'http://'.$this->input_bucket.'.s3.amazonaws.com/'.$this->media.'/'.$this->dt.'/'.(str_pad($id,5,'0',STR_PAD_LEFT)).'/'.$params["track"].'/'.$params["locale"].'/'.$infile;
 
             $job_input ='
             "api_key": "4c15b5bbe4bc62d6851c04d84db71691",
@@ -350,7 +487,7 @@ class zenJobBuilder {
 
 
             $job = '{'.$job_input.'"output": ['.(implode(',',$job_out)).']}';
-            //echo $job;
+            echo $job;
             $this->zencoder->jobs->create($job);
 
         } catch (Services_Zencoder_Exception $e) { }
@@ -406,9 +543,9 @@ class zenJobBuilder {
                 $outurls['mpeg']['files'][]="s3://s3.amazonaws.com/{$this->output_bucket}/{$outdir}/mp4/{$br}.mp4";
             }
 
-            if($params['full_path']) // custom deployment via harddrives
+            if($params['file']) // custom deployment via harddrives
             {
-                $passThrough = str_replace("'",'"',json_encode(array('accountID'=>$this->accountID,'filmID'=>$id,'date'=>$this->dt,'locale'=>$params["locale"],'track'=>$params["track"],'media'=>$this->media,'quality'=>$this->quality,'BASEPATH'=>$outdir."/","OUTPUT"=>$outurls,"INPUT"=>array('bucket'=>$this->input_bucket,'path'=>$params["full_path"]))));
+                $passThrough = str_replace("'",'"',json_encode(array('accountID'=>$this->accountID,'filmID'=>$id,'date'=>$this->dt,'locale'=>$params["locale"],'track'=>$params["track"],'media'=>$this->media,'quality'=>$this->quality,'BASEPATH'=>$outdir."/","OUTPUT"=>$outurls,"INPUT"=>array('bucket'=>$this->input_bucket,'path'=>$params["file"]))));
             }
             else{
                 $passThrough = str_replace("'",'"',json_encode(array('accountID'=>$this->accountID,'filmID'=>$id,'date'=>$this->dt,'locale'=>$params["locale"],'track'=>$params["track"],'media'=>$this->media,'quality'=>$this->quality,'BASEPATH'=>$outdir."/","OUTPUT"=>$outurls,"INPUT"=>array('bucket'=>$this->input_bucket,'path'=>$this->media.'/'.$this->dt.'/'.(str_pad($id,5,'0',STR_PAD_LEFT)).'/'.$params["track"].'/'.$params["locale"].'/'))));
@@ -419,7 +556,7 @@ class zenJobBuilder {
 
             $passThrough = str_replace('"',"'",json_encode(array('accountID'=>$this->accountID,'filmID'=>$id,'date'=>$this->dt,'locale'=>$params["locale"],'track'=>$params["track"],'media'=>$this->media,'quality'=>$this->quality,'passid'=>$passid)));
 
-            $inputfile = $params['full_path']?'http://'.$this->input_bucket.'.s3.amazonaws.com'.$params["full_path"]:'http://'.$this->input_bucket.'.s3.amazonaws.com/'.$this->media.'/'.$this->dt.'/'.(str_pad($id,5,'0',STR_PAD_LEFT)).'/'.$params["track"].'/'.$params["locale"].'/'.$infile;
+            $inputfile = $params['file']?'http://'.$this->input_bucket.'.s3.amazonaws.com'.$params["file"]:'http://'.$this->input_bucket.'.s3.amazonaws.com/'.$this->media.'/'.$this->dt.'/'.(str_pad($id,5,'0',STR_PAD_LEFT)).'/'.$params["track"].'/'.$params["locale"].'/'.$infile;
 
             $job_input ='
             "api_key": "4c15b5bbe4bc62d6851c04d84db71691",

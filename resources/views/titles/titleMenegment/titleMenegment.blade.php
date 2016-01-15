@@ -22,12 +22,15 @@
 							</div>
 							<div class="pull-left col-lg-3 col-md-7">
 								<div class="list-group no-border mail-list ">
-                                  <a href="{{url()}}/titles/metadata/{{$id}}" class="list-group-item">Metadata</a>
-                                  <a href="{{url()}}/titles/media/{{$id}}" class="list-group-item">Media</a>
-                                  <a href="{{url()}}/titles/rights/{{$id}}" class="list-group-item">Rights</a>
-                                  <a href="{{url()}}/titles/sales/{{$id}}" class="list-group-item">TVOD Sales</a>
+                                  <a href="{{url()}}/titles/metadata/{{ $film->id }}" class="list-group-item">Metadata</a>
+                                  <a href="{{url()}}/titles/media/{{ $film->id }}" class="list-group-item">Media</a>
+                                  <a href="{{url()}}/titles/rights/{{ $film->id }}" class="list-group-item">Rights</a>
+                                  <a href="{{url()}}/titles/sales/{{ $film->id }}" class="list-group-item">TVOD Sales</a>
                                 </div>
 							</div>
+							<?php
+
+							?>
 							<div class="pull-right onAndOff">
 								<div class="onoffswitch">
 									<input type="checkbox" name="onoffswitch" data-item="79" data-active="products" class="onoffswitch-checkbox" id="myonoffswitch0" checked="">
@@ -49,5 +52,24 @@
 			</div>
 			<input type="hidden" name="filmId" value="{{ $film->id }}">
 		</div>		
-	</div>		
+	</div>
+	<script>
+		$(document).ready(function(){
+			$('input[name="onoffswitch"').change(function(){
+				var filmId = $('input[name="filmId"]').val();
+				var checked = $(this).prop('checked');
+				if(checked){
+					var confirmText = 'Do you realy want to published film?';
+					var filmStatus = 1;
+				}
+				else{
+					var confirmText = 'Do you really want to unpublish film?';
+					var filmStatus = 0;
+				}
+				$.post('{{url()}}/titles/metadata/publishUnpublish', {filmStatus:filmStatus, filmId:filmId}, function(resposne){
+					//alert(resposne);
+				});
+			});
+		});
+	</script>
 @stop

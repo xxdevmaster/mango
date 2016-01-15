@@ -1,7 +1,4 @@
 @extends('layout')
-
-{{--@asaha('dddccvbcbcb')--}}
-
 @section('content')
 	<div class="wrapper-page">
 		<div class="ex-page-content text-center">
