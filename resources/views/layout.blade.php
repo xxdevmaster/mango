@@ -147,7 +147,6 @@
 
 
         <script src="/js/jquery.app.js"></script>
-
         <script src="/assets/datatables/jquery.dataTables.min.js"></script>
         <script src="/assets/datatables/dataTables.bootstrap.js"></script>
         <script src="/assets/timepicker/bootstrap-datepicker.js"></script>
@@ -155,10 +154,6 @@
 
         <script type="text/javascript">
             $(document).ready(function() {
-                $('#datatable').dataTable({
-                bFilter: false, bInfo: false
-                });
-
                 jQuery('#startDate-datepicker').datepicker({
                     setDate: new Date(),
                     numberOfMonths: 3,
