@@ -9,7 +9,7 @@
 
         <link rel="shortcut icon" href="/img/favicon_1.ico">
 
-        <title>Velonic - Responsive Admin Dashboard Template</title>
+        <title>Cinehost -  Software As A Service</title>
 
 
 
