@@ -2,15 +2,70 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d970e7cb-79be-44a7-bbf3-f440f7349167" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\nbproject\private\private.properties" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\nbproject\private\private.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\nbproject\project.properties" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\nbproject\project.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\list.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\app\Http\Controllers\TitleMenegment\MediaController.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\app\Http\Controllers\TitleMenegment\MetadataController.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\app\Http\Controllers\TitleMenegment\RightsController.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\pager\pager.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\media\media.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\media\partials\dubbedVersions\dubbedVersions.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\media\partials\dubbedVersions\partials\movieAndTrailer.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\media\partials\dubbedVersions\partials\trailer.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\media\partials\extras\extras.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\media\partials\extras\forms\newExtrasForm.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\media\partials\storage\storage.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\media\partials\streaming\streaming.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\media\partials\uploader\partials\mediaUploader.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\media\partials\uploader\partials\uploaderHistory.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\media\partials\uploader\uploader.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\media\partials\vimeo\vimeo.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\metadata.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\metadataReadOnly.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\advanced\advanced.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\advanced\advancedReadOnly.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\ageRates\ageRates.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\ageRates\ageRatesReadOnly.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\basic\basic.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\basic\basicReadOnly.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\castAndCrew\castAndCrew.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\castAndCrew\castAndCrewReadOnly.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\castAndCrew\forms\editPersonForm.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\castAndCrew\forms\editPersonFormReadOnly.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\castAndCrew\forms\newPersonForm.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\images\images.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\images\imagesReadOnly.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\seo\forms\addKeywords.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\seo\forms\editKeywords.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\seo\forms\editKeywordsReadOnly.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\seo\seo.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\seo\seoReadOnly.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\series\series.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\series\seriesReadOnly.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\subtitles\forms\newFilmSubtitleForm.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\subtitles\forms\newFilmSubtitleFormReadOnly.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\subtitles\forms\newTrailerForm.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\subtitles\forms\newTrailerFormReadOnly.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\subtitles\subtitles.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\metadata\partials\subtitles\subtitlesReadOnly.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\rights\partials\geoblockingAndPricing\forms\attacheCp.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\rights\partials\geoblockingAndPricing\geoblockingAndPricing.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\rights\partials\rentalInfo\rentalInfo.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\rights\rights.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\titleMenegment.blade.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\CINEHOST\mango\resources\views\titles\titleMenegment\titleMenegmentReadOnly.blade.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Account.php" afterPath="$PROJECT_DIR$/app/Account.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php" afterPath="$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/ChannelsContracts.php" afterPath="$PROJECT_DIR$/app/Models/ChannelsContracts.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Company.php" afterPath="$PROJECT_DIR$/app/Company.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Film.php" afterPath="$PROJECT_DIR$/app/Film.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/FilmMiddleware.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/FilmMiddleware.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Store.php" afterPath="$PROJECT_DIR$/app/Store.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/TitlesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/TitlesController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/cinehost.css" afterPath="$PROJECT_DIR$/public/css/cinehost.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/titles/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/titles/index.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layout.blade.php" afterPath="$PROJECT_DIR$/resources/views/layout.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/titles/partials/list.blade.php" afterPath="$PROJECT_DIR$/resources/views/titles/partials/list.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mango.iws" />
@@ -36,201 +91,96 @@
       <file leaf-file-name="TitlesController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TitlesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="82.23077">
-              <caret line="57" column="25" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
+            <state vertical-scroll-proportion="-1.8461539">
+              <caret line="141" column="7" selection-start-line="141" selection-start-column="7" selection-end-line="141" selection-end-column="7" />
               <folding>
-                <element signature="e#40#49#0#PHP" expanded="true" />
+                <element signature="e#619#1164#0#PHP" expanded="false" />
+                <element signature="e#1017#1158#0#PHP" expanded="false" />
+                <element signature="e#1177#2935#0#PHP" expanded="false" />
+                <element signature="e#1559#1715#0#PHP" expanded="false" />
+                <element signature="e#1724#1829#0#PHP" expanded="false" />
+                <element signature="e#2941#3273#0#PHP" expanded="false" />
+                <element signature="e#3064#3239#0#PHP" expanded="false" />
+                <element signature="e#3127#3229#0#PHP" expanded="false" />
+                <element signature="e#3279#3346#0#PHP" expanded="false" />
+                <element signature="e#3351#3613#0#PHP" expanded="false" />
+                <element signature="e#3619#3737#0#PHP" expanded="false" />
+                <element signature="e#4175#4631#0#PHP" expanded="false" />
+                <element signature="e#4226#4617#0#PHP" expanded="false" />
+                <element signature="e#4438#4617#0#PHP" expanded="false" />
+                <element signature="e#4645#4777#0#PHP" expanded="false" />
+                <element signature="e#4791#4923#0#PHP" expanded="false" />
+                <element signature="e#5635#6181#0#PHP" expanded="false" />
+                <element signature="e#5905#6018#0#PHP" expanded="false" />
+                <element signature="e#6190#8614#0#PHP" expanded="false" />
+                <element signature="e#8626#8693#0#PHP" expanded="false" />
+                <element signature="e#8698#9376#0#PHP" expanded="false" />
+                <element signature="e#9111#9216#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CHhelper.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CHhelper.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.15384616">
-              <caret line="84" column="44" selection-start-line="84" selection-start-column="44" selection-end-line="84" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.7666174">
+              <caret line="85" column="12" selection-start-line="85" selection-start-column="12" selection-end-line="85" selection-end-column="12" />
               <folding>
-                <element signature="e#41#48#0#PHP" expanded="true" />
-                <element signature="e#196#357#0#PHP" expanded="false" />
-                <element signature="e#230#350#0#PHP" expanded="false" />
-                <marker date="1453309645522" expanded="true" signature="1329:1664" placeholder="SELECT COUNT..cc_films..." />
-                <marker date="1453309645522" expanded="true" signature="1750:2005" placeholder="SELECT count..cc_films..." />
-                <marker date="1453309645522" expanded="true" signature="2071:2738" placeholder="SELECT COUNT..id..." />
-                <marker date="1453309645522" expanded="true" signature="2127:2723" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1453309645522" expanded="true" signature="2804:3470" placeholder="SELECT COUNT..id..." />
-                <marker date="1453309645522" expanded="true" signature="2804:3486" placeholder="SELECT COUNT..id..." />
-                <marker date="1453309645522" expanded="true" signature="2860:3145" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1453309645522" expanded="true" signature="2860:3183" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1453309645522" expanded="true" signature="2860:3193" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1453309645522" expanded="true" signature="2860:3194" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1453309645522" expanded="true" signature="2860:3444" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1453309645522" expanded="true" signature="3217:3380" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1453309645522" expanded="true" signature="3217:3444" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1453309645522" expanded="true" signature="3486:3505" placeholder="select(DB::r..." />
-                <marker date="1453309645522" expanded="true" signature="5463:5770" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1453309645522" expanded="true" signature="5463:5990" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1453309645522" expanded="true" signature="5463:5999" placeholder="SELECT COUNT..id..." />
-                <marker date="1453309645522" expanded="true" signature="5771:5990" placeholder="SELECT DISTI..cc_films..." />
+                <marker date="1453906820284" expanded="true" signature="1303:1629" placeholder="SELECT COUNT..cc_films..." />
+                <marker date="1453906820284" expanded="true" signature="1686:1927" placeholder="SELECT count..cc_films..." />
+                <marker date="1453906820284" expanded="true" signature="1956:2622" placeholder="SELECT COUNT..id..." />
+                <marker date="1453906820284" expanded="true" signature="2012:2596" placeholder="SELECT DISTI..cc_films..." />
+                <marker date="1453906820284" expanded="true" signature="4581:4929" placeholder="SELECT DISTI..cc_films..." />
+                <marker date="1453906820284" expanded="true" signature="4930:5184" placeholder="SELECT DISTI..cc_films..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/titles/index.blade.php">
+      <file leaf-file-name="RightsController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TitleManagement/RightsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6486797">
-              <caret line="125" column="47" selection-start-line="125" selection-start-column="47" selection-end-line="125" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/titles/partials/list.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pager.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/pager/pager.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.730769">
-              <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MetadataController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TitleMenegment/MetadataController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+            <state vertical-scroll-proportion="-11.769231">
+              <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="39" />
               <folding>
-                <element signature="e#55#64#0#PHP" expanded="true" />
+                <element signature="e#55#83#0#PHP" expanded="true" />
+                <element signature="e#639#842#0#PHP" expanded="false" />
+                <element signature="e#848#967#0#PHP" expanded="false" />
+                <element signature="e#972#1514#0#PHP" expanded="false" />
+                <element signature="e#1018#1508#0#PHP" expanded="false" />
+                <element signature="e#1390#1507#0#PHP" expanded="false" />
+                <element signature="e#1520#1640#0#PHP" expanded="false" />
+                <element signature="e#1646#2006#0#PHP" expanded="false" />
+                <element signature="e#1687#2000#0#PHP" expanded="false" />
+                <element signature="e#1897#1995#0#PHP" expanded="false" />
+                <element signature="e#1947#1994#1#PHP" expanded="false" />
+                <element signature="e#2012#2123#0#PHP" expanded="false" />
+                <element signature="e#2537#2657#0#PHP" expanded="false" />
+                <element signature="e#3113#3913#0#PHP" expanded="false" />
+                <element signature="e#3773#3880#0#PHP" expanded="false" />
+                <marker date="1453906144709" expanded="false" signature="3182:3714" placeholder="SELECT cc_ge..cc_geo_contracts..." />
+                <marker date="1453906144709" expanded="true" signature="4238:4361" placeholder="SELECT cc_ge..cc_geo_contracts..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AllLocales.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/AllLocales.php">
+      <file leaf-file-name="GeoTemplatesCountries.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/GeoTemplatesCountries.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+            <state vertical-scroll-proportion="-7.8461537">
+              <caret line="12" column="68" selection-start-line="12" selection-start-column="68" selection-end-line="12" selection-end-column="68" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Titles.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../kiwi/classes/Titles/Titles.php">
+      <file leaf-file-name="GeoTemplates.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/GeoTemplates.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="411" column="19" selection-start-line="397" selection-start-column="14" selection-end-line="411" selection-end-column="19" />
-              <folding>
-                <element signature="n#leftMenuCount#0;n#Titles#0;n#!!top" expanded="false" />
-                <element signature="n#getAllFilms#0;n#Titles#0;n#!!top" expanded="false" />
-                <element signature="n#getData#0;n#Titles#0;n#!!top" expanded="false" />
-                <marker date="1453305743010" expanded="true" signature="271:339" placeholder="SELECT COUNT..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="445:781" placeholder="SELECT COUNT..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="867:1123" placeholder="SELECT count..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="1189:1857" placeholder="SELECT COUNT..id..." />
-                <marker date="1453305743010" expanded="true" signature="1245:1842" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="2163:2216" placeholder="SELECT id FR..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="2322:2652" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="2738:2978" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1453305743010" expanded="false" signature="3044:3701" placeholder="SELECT ids a..id..." />
-                <marker date="1453305743010" expanded="false" signature="3093:3692" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="4646:4733" placeholder="SELECT films..fk_films_owners..." />
-                <marker date="1453305743010" expanded="true" signature="5079:5166" placeholder="SELECT films..fk_films_owners..." />
-                <marker date="1453305743010" expanded="true" signature="6393:6512" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="6569:6637" placeholder="SELECT COUNT..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="6725:6828" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="6885:6924" placeholder="SELECT COUNT..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="7025:7128" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="7185:7234" placeholder="SELECT count..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="9368:10949" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="9477:9488" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="9564:9713" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="10226:10815" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="10272:10789" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="10849:10866" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="11332:12243" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="11353:12191" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="11386:11397" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="11443:11455" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="11713:11725" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="12084:12102" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="12146:12163" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="12514:12788" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="12562:12761" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="13326:15079" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="13426:15058" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="13491:15034" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="13537:14208" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="13796:14181" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="13850:14150" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="14261:14824" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="14312:14538" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="14589:14797" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="15159:15213" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="15254:15321" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="15635:15688" placeholder="SELECT * FRO..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="15789:16010" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="16047:17069" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="16116:17050" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="16303:16979" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="16354:16387" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="16438:16651" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="16702:16924" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="17108:17433" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="18782:19055" placeholder="SELECT DISTI..cc_companies..." />
-                <marker date="1453305743010" expanded="true" signature="19306:19577" placeholder="SELECT DISTI..cc_channels..." />
-                <marker date="1453305743010" expanded="true" signature="19851:24591" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="19878:20590" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="19934:20585" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="true" signature="20105:20566" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="20126:20554" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="true" signature="20429:20528" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="20621:21288" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="20675:21272" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="20750:21224" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="20779:21203" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="true" signature="21078:21177" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="21395:23013" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="21460:22165" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="21536:22115" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="true" signature="21876:22089" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="22218:22967" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="22311:22892" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="true" signature="22652:22866" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="23069:23587" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="23144:23565" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="true" signature="23440:23539" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="23666:23995" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="23686:23993" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="23732:23985" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="true" signature="23928:23979" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="24052:24571" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="24128:24549" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="true" signature="24424:24523" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Store.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Store.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state vertical-scroll-proportion="-9.153846">
+              <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -239,12 +189,52 @@
       <file leaf-file-name="Film.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Film.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+            <state vertical-scroll-proportion="-18.846153">
+              <caret line="85" column="40" selection-start-line="68" selection-start-column="0" selection-end-line="85" selection-end-column="40" />
               <folding>
-                <marker date="1453310939527" expanded="true" signature="3542:3890" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1453310939527" expanded="true" signature="3891:4145" placeholder="SELECT DISTI..cc_films..." />
+                <marker date="1453906090999" expanded="true" signature="3806:4154" placeholder="SELECT DISTI..cc_films..." />
+                <marker date="1453906090999" expanded="true" signature="4155:4409" placeholder="SELECT DISTI..cc_films..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Persons.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/Persons.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Company.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Company.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.769231">
+              <caret line="18" column="5" selection-start-line="16" selection-start-column="3" selection-end-line="18" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FilmMiddleware.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Middleware/FilmMiddleware.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.769231">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="changeStore.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/titles/titleManagement/rights/partials/changeStore.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-17.653847">
+              <caret line="78" column="89" selection-start-line="78" selection-start-column="89" selection-end-line="78" selection-end-column="89" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -257,19 +247,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/account/users.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Account/UserInvitation.php" />
-        <option value="$PROJECT_DIR$/resources/views/account/layoutUserInvitation.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Account/UserInvitationController.php" />
-        <option value="$PROJECT_DIR$/resources/views/account/partials/userInvitationForm.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/userInvitation/partials/userInvitationForm.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/UserInvitationController.php" />
-        <option value="$USER_HOME$/Desktop/New folder/css/main.css" />
-        <option value="$PROJECT_DIR$/resources/views/account/partials/userslist.blade.php" />
-        <option value="$PROJECT_DIR$/../../les/sample/contacts.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Account/UsersController.php" />
-        <option value="$PROJECT_DIR$/../../les/apple/system/config.php" />
-        <option value="$PROJECT_DIR$/../../les/apple/includes/partners.php" />
         <option value="$PROJECT_DIR$/../../les/apple/css/main.css" />
         <option value="$PROJECT_DIR$/../../les/php1.php" />
         <option value="$PROJECT_DIR$/../../savex/sms/ZG.php" />
@@ -284,7 +261,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/TitleMenegment/MetadataController.php" />
         <option value="$PROJECT_DIR$/../../CinehostWeb/wp-content/themes/zerotouch/header-signup.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/nav.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Libraries/CHuploader/amazonAssetsBuilder.php" />
         <option value="$PROJECT_DIR$/app/Libraries/CHuploader/amazoneAssetsBuilder.php" />
         <option value="$PROJECT_DIR$/resources/views/titles/titleMenegment/media/partials/uploader/uploader.blade.php" />
@@ -295,15 +271,33 @@
         <option value="$PROJECT_DIR$/public/library/uploader/exec.js" />
         <option value="$PROJECT_DIR$/app/Libraries/CHuploader/bitJobBuilder.php" />
         <option value="$PROJECT_DIR$/resources/views/titles/list.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
-        <option value="$PROJECT_DIR$/app/Account.php" />
         <option value="$PROJECT_DIR$/../kiwi/classes/Titles/Titles.php" />
-        <option value="$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php" />
-        <option value="$PROJECT_DIR$/app/Film.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/TitlesController.php" />
         <option value="$PROJECT_DIR$/resources/views/pager/pager.blade.php" />
+        <option value="$PROJECT_DIR$/public/css/cinehost.css" />
+        <option value="$PROJECT_DIR$/app/Account.php" />
+        <option value="$PROJECT_DIR$/app/Company.php" />
+        <option value="$PROJECT_DIR$/app/Store.php" />
+        <option value="$PROJECT_DIR$/app/Models/ChannelsContracts.php" />
         <option value="$PROJECT_DIR$/resources/views/titles/partials/list.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/titles/partials/newTitle.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/TitlesController.php" />
+        <option value="$PROJECT_DIR$/resources/views/titles/titleManagement/media/media.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/TitleMenegment/RightsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/resources/views/titles/titleManagement/metadata/metadata.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/titles/titleManagement/rights/partials/changeCP.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/titles/titleManagement/rights/rights.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
+        <option value="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php" />
         <option value="$PROJECT_DIR$/resources/views/titles/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/titles/titleManagement/titleManagement.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Middleware/FilmMiddleware.php" />
+        <option value="$PROJECT_DIR$/resources/views/titles/titleManagement/rights/partials/changeStore.blade.php" />
+        <option value="$PROJECT_DIR$/app/Models/GeoTemplatesCountries.php" />
+        <option value="$PROJECT_DIR$/app/Film.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/TitleManagement/RightsController.php" />
+        <option value="$PROJECT_DIR$/app/Models/GeoTemplates.php" />
+        <option value="$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php" />
       </list>
     </option>
   </component>
@@ -352,8 +346,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -382,100 +376,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="titles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="titles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="partials" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="library" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -494,55 +394,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TitleMenegment" />
+              <option name="myItemId" value="Models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -553,7 +405,7 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../grich" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
@@ -625,14 +477,15 @@
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12793177" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2585288" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40324324" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21081081" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20972973" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -640,7 +493,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40427807" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -669,215 +521,32 @@
           <line>487</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/../kiwi/classes/Titles/Titles.php</url>
+          <line>235</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/../kiwi/classes/Titles/Titles.php</url>
+          <line>230</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/../kiwi/classes/Titles/Titles.php</url>
+          <line>343</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/TitleManagement/RightsController.php</url>
+          <line>88</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="10" />
+      <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Authenticate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.851851">
-          <caret line="41" column="47" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/titles/titleMenegment/metadata/metadata.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="372" column="56" selection-start-line="372" selection-start-column="56" selection-end-line="372" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Commands/Inspire.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/logs/laravel.log">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="20.749706">
-          <caret line="23492" column="11" selection-start-line="23492" selection-start-column="11" selection-end-line="23492" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/nav.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6666667">
-          <caret line="1" column="58" selection-start-line="1" selection-start-column="58" selection-end-line="1" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Account/UsersController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5075377">
-          <caret line="77" column="53" selection-start-line="77" selection-start-column="28" selection-end-line="77" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/AgeRates.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Libraries/BillingCinehostService/BillingPayment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="100" selection-start-line="27" selection-start-column="100" selection-end-line="27" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Libraries/BillingCinehostService/SubscriptionComponents.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/console/Output/ConsoleOutput.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="36.814816">
-          <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/artisan">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.0">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/cache.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.0">
-          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.lock">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.62068963">
-          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.2777777">
-          <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/BitJobs.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.666667">
-          <caret line="13" column="0" selection-start-line="8" selection-start-column="4" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/titles/titleMenegment/media/partials/uploader/partials/mediaUploader.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/titles/titleMenegment/media/partials/uploader/partials/uploaderHistory.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/titles/titleMenegment/media/partials/uploader/uploader.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="59" selection-start-line="55" selection-start-column="59" selection-end-line="55" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/titles/titleMenegment/media/media.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/AmazoneAssets.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="55" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Libraries/CHuploader/bitJobBuilder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6153846">
-          <caret line="520" column="4" selection-start-line="520" selection-start-column="4" selection-end-line="520" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/library/uploader/exec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="119" column="52" selection-start-line="119" selection-start-column="52" selection-end-line="119" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Languages.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/LocaleFilms.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/table-datatable.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -889,21 +558,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.066508316">
           <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-50.5">
-          <caret line="155" column="42" selection-start-line="155" selection-start-column="42" selection-end-line="155" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../kiwi/engine.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.981818">
-          <caret line="172" column="32" selection-start-line="172" selection-start-column="32" selection-end-line="172" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -921,25 +575,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TitleMenegment/MediaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72727275">
-          <caret line="79" column="56" selection-start-line="79" selection-start-column="55" selection-end-line="79" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../kiwi/classes/TitleInfo.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Account.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.076923">
-          <caret line="20" column="50" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -957,124 +596,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Company.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../kiwi/classes/Titles/Titles.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="411" column="19" selection-start-line="397" selection-start-column="14" selection-end-line="411" selection-end-column="19" />
-          <folding>
-            <element signature="n#leftMenuCount#0;n#Titles#0;n#!!top" expanded="false" />
-            <element signature="n#getAllFilms#0;n#Titles#0;n#!!top" expanded="false" />
-            <element signature="n#getData#0;n#Titles#0;n#!!top" expanded="false" />
-            <marker date="1453305743010" expanded="true" signature="271:339" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="445:781" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="867:1123" placeholder="SELECT count..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="1189:1857" placeholder="SELECT COUNT..id..." />
-            <marker date="1453305743010" expanded="true" signature="1245:1842" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="2163:2216" placeholder="SELECT id FR..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="2322:2652" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="2738:2978" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1453305743010" expanded="false" signature="3044:3701" placeholder="SELECT ids a..id..." />
-            <marker date="1453305743010" expanded="false" signature="3093:3692" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="4646:4733" placeholder="SELECT films..fk_films_owners..." />
-            <marker date="1453305743010" expanded="true" signature="5079:5166" placeholder="SELECT films..fk_films_owners..." />
-            <marker date="1453305743010" expanded="true" signature="6393:6512" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="6569:6637" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="6725:6828" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="6885:6924" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="7025:7128" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="7185:7234" placeholder="SELECT count..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="9368:10949" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="9477:9488" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="9564:9713" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="10226:10815" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="10272:10789" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="10849:10866" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="11332:12243" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="11353:12191" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="11386:11397" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="11443:11455" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="11713:11725" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="12084:12102" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="12146:12163" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="12514:12788" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="12562:12761" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="13326:15079" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="13426:15058" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="13491:15034" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="13537:14208" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="13796:14181" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="13850:14150" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="14261:14824" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="14312:14538" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="14589:14797" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="15159:15213" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="15254:15321" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="15635:15688" placeholder="SELECT * FRO..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="15789:16010" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="16047:17069" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="16116:17050" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="16303:16979" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="16354:16387" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="16438:16651" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="16702:16924" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="17108:17433" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="18782:19055" placeholder="SELECT DISTI..cc_companies..." />
-            <marker date="1453305743010" expanded="true" signature="19306:19577" placeholder="SELECT DISTI..cc_channels..." />
-            <marker date="1453305743010" expanded="true" signature="19851:24591" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="19878:20590" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="19934:20585" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="true" signature="20105:20566" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="20126:20554" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="true" signature="20429:20528" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="20621:21288" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="20675:21272" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="20750:21224" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="20779:21203" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="true" signature="21078:21177" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="21395:23013" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="21460:22165" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="21536:22115" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="true" signature="21876:22089" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="22218:22967" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="22311:22892" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="true" signature="22652:22866" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="23069:23587" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="23144:23565" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="true" signature="23440:23539" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="23666:23995" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="23686:23993" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="23732:23985" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="true" signature="23928:23979" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="24052:24571" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="24128:24549" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="true" signature="24424:24523" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/AllLocales.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TitleMenegment/MetadataController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
-          <folding>
-            <element signature="e#55#64#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1085,74 +610,238 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Store.php">
+    <entry file="file://$PROJECT_DIR$/app/Models/FilmsLanguages.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.461538">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/LocaleFilms.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8461537">
+          <caret line="12" column="40" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/cinehost.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
+          <caret line="207" column="41" selection-start-line="207" selection-start-column="41" selection-end-line="207" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Film.php">
+    <entry file="file://$PROJECT_DIR$/../kiwi/classes/Titles/Titles.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+        <state vertical-scroll-proportion="-14.038462">
+          <caret line="325" column="50" selection-start-line="325" selection-start-column="42" selection-end-line="325" selection-end-column="50" />
           <folding>
-            <marker date="1453310939527" expanded="true" signature="3542:3890" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1453310939527" expanded="true" signature="3891:4145" placeholder="SELECT DISTI..cc_films..." />
+            <element signature="n#Titles#0;n#Titles#0;n#!!top" expanded="false" />
+            <element signature="n#leftMenuCount#0;n#Titles#0;n#!!top" expanded="false" />
+            <element signature="e#180#1911#0#PHP" expanded="false" />
+            <element signature="e#426#783#0#PHP" expanded="false" />
+            <element signature="e#798#1911#0#PHP" expanded="false" />
+            <element signature="e#848#1125#0#PHP" expanded="false" />
+            <element signature="e#1150#1911#0#PHP" expanded="false" />
+            <element signature="e#2072#3755#0#PHP" expanded="false" />
+            <element signature="e#2719#2980#0#PHP" expanded="false" />
+            <element signature="n#getData#0;n#Titles#0;n#!!top" expanded="false" />
+            <element signature="e#4142#4393#0#PHP" expanded="false" />
+            <element signature="e#4405#4532#0#PHP" expanded="false" />
+            <element signature="e#4541#4962#0#PHP" expanded="false" />
+            <element signature="e#4750#4869#0#PHP" expanded="false" />
+            <element signature="e#4974#5395#0#PHP" expanded="false" />
+            <element signature="e#5183#5302#0#PHP" expanded="false" />
+            <element signature="e#5404#5685#0#PHP" expanded="false" />
+            <element signature="e#6328#7970#0#PHP" expanded="false" />
+            <element signature="e#6665#7970#0#PHP" expanded="false" />
+            <element signature="e#6965#7970#0#PHP" expanded="false" />
+            <element signature="e#7274#7970#0#PHP" expanded="false" />
+            <element signature="e#7372#7660#0#PHP" expanded="false" />
+            <element signature="e#7685#7955#0#PHP" expanded="false" />
+            <element signature="e#7979#8107#0#PHP" expanded="false" />
+            <element signature="e#8464#8635#0#PHP" expanded="false" />
+            <element signature="e#8507#8603#0#PHP" expanded="false" />
+            <element signature="n#drawContent#0;n#Titles#0;n#!!top" expanded="false" />
+            <element signature="e#8724#8839#0#PHP" expanded="false" />
+            <element signature="e#8889#9033#0#PHP" expanded="false" />
+            <element signature="e#9203#10984#0#PHP" expanded="false" />
+            <element signature="n#drawContainer#0;n#Titles#0;n#!!top" expanded="false" />
+            <element signature="e#13174#13260#0#PHP" expanded="false" />
+            <element signature="n#removeTitleModal#0;n#Titles#0;n#!!top" expanded="false" />
+            <element signature="e#15438#17466#0#PHP" expanded="false" />
+            <element signature="e#17977#18077#0#PHP" expanded="false" />
+            <element signature="e#18546#18647#0#PHP" expanded="false" />
+            <element signature="n#getFilmsPlatforms#0;n#Titles#0;n#!!top" expanded="false" />
+            <element signature="e#19269#19579#0#PHP" expanded="false" />
+            <element signature="n#removeTitleItem#0;n#Titles#0;n#!!top" expanded="false" />
+            <element signature="n#scripts#0;n#Titles#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TitlesController.php">
+    <entry file="file://$PROJECT_DIR$/app/ProdCompanies.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="82.23077">
-          <caret line="57" column="25" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
-          <folding>
-            <element signature="e#40#49#0#PHP" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pager/pager.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Store.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.730769">
-          <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-          <folding />
+        <state vertical-scroll-proportion="-8.5">
+          <caret line="13" column="5" selection-start-line="11" selection-start-column="4" selection-end-line="13" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php">
+    <entry file="file://$PROJECT_DIR$/app/Account.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.15384616">
-          <caret line="84" column="44" selection-start-line="84" selection-start-column="44" selection-end-line="84" selection-end-column="44" />
-          <folding>
-            <element signature="e#41#48#0#PHP" expanded="true" />
-            <element signature="e#196#357#0#PHP" expanded="false" />
-            <element signature="e#230#350#0#PHP" expanded="false" />
-            <marker date="1453309645522" expanded="true" signature="1329:1664" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1453309645522" expanded="true" signature="1750:2005" placeholder="SELECT count..cc_films..." />
-            <marker date="1453309645522" expanded="true" signature="2071:2738" placeholder="SELECT COUNT..id..." />
-            <marker date="1453309645522" expanded="true" signature="2127:2723" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1453309645522" expanded="true" signature="2804:3470" placeholder="SELECT COUNT..id..." />
-            <marker date="1453309645522" expanded="true" signature="2804:3486" placeholder="SELECT COUNT..id..." />
-            <marker date="1453309645522" expanded="true" signature="2860:3145" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1453309645522" expanded="true" signature="2860:3183" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1453309645522" expanded="true" signature="2860:3193" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1453309645522" expanded="true" signature="2860:3194" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1453309645522" expanded="true" signature="2860:3444" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1453309645522" expanded="true" signature="3217:3380" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1453309645522" expanded="true" signature="3217:3444" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1453309645522" expanded="true" signature="3486:3505" placeholder="select(DB::r..." />
-            <marker date="1453309645522" expanded="true" signature="5463:5770" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1453309645522" expanded="true" signature="5463:5990" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1453309645522" expanded="true" signature="5463:5999" placeholder="SELECT COUNT..id..." />
-            <marker date="1453309645522" expanded="true" signature="5771:5990" placeholder="SELECT DISTI..cc_films..." />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="25" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/BaseContracts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="40" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/FilmOwners.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/ChannelsContracts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kiwi/engine.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="24" selection-start-line="62" selection-start-column="10" selection-end-line="62" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/titles/partials/list.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.884615">
+          <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/titles/partials/newTitle.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.846154">
+          <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31228474">
+          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/titles/titleManagement/media/media.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.02514793">
+          <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/titles/titleManagement/metadata/metadata.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6035503">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kiwi/js/flexigrid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-28.393162">
+          <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kiwi/lib/bootstrap-transfer/js/bootstrap-custom-transfer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kiwi/classes/rightsManagement/RightsManagementInfo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kiwi/classes/rightsManagement/RightsManagementPL.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/titles/titleManagement/media/partials/streaming/streaming.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.384615">
+          <caret line="37" column="132" selection-start-line="37" selection-start-column="132" selection-end-line="37" selection-end-column="132" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/library/CHTransfer/js/bootstrap-custom-transfer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5542312">
+          <caret line="181" column="79" selection-start-line="181" selection-start-column="74" selection-end-line="181" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/titles/titleManagement/rights/partials/changeCP.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="127" selection-start-line="3" selection-start-column="127" selection-end-line="3" selection-end-column="127" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TitleManagement/MediaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.019517796">
+          <caret line="232" column="27" selection-start-line="232" selection-start-column="20" selection-end-line="232" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/titles/titleManagement/rights/rights.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22617681">
+          <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kiwi/classes/rightsManagement/RightsManagementCP.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kiwi/classes/rightsManagement/RightsManagementCH.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AccountFeatures.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1160,11 +849,166 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154">
+          <caret line="86" column="78" selection-start-line="86" selection-start-column="78" selection-end-line="86" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.846154">
+          <caret line="69" column="15" selection-start-line="60" selection-start-column="12" selection-end-line="69" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/titles/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6486797">
-          <caret line="125" column="47" selection-start-line="125" selection-start-column="47" selection-end-line="125" selection-end-column="47" />
+        <state vertical-scroll-proportion="-1.3076923">
+          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/titles/titleManagement/titleManagement.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.3018868">
+          <caret line="61" column="19" selection-start-line="61" selection-start-column="19" selection-end-line="61" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/FilmMiddleware.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.769231">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/titles/titleManagement/rights/partials/changeStore.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.653847">
+          <caret line="78" column="89" selection-start-line="78" selection-start-column="89" selection-end-line="78" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Persons.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Company.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.769231">
+          <caret line="18" column="5" selection-start-line="16" selection-start-column="3" selection-end-line="18" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/GeoTemplates.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/GeoTemplatesCountries.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8461537">
+          <caret line="12" column="68" selection-start-line="12" selection-start-column="68" selection-end-line="12" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TitlesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8461539">
+          <caret line="141" column="7" selection-start-line="141" selection-start-column="7" selection-end-line="141" selection-end-column="7" />
+          <folding>
+            <element signature="e#619#1164#0#PHP" expanded="false" />
+            <element signature="e#1017#1158#0#PHP" expanded="false" />
+            <element signature="e#1177#2935#0#PHP" expanded="false" />
+            <element signature="e#1559#1715#0#PHP" expanded="false" />
+            <element signature="e#1724#1829#0#PHP" expanded="false" />
+            <element signature="e#2941#3273#0#PHP" expanded="false" />
+            <element signature="e#3064#3239#0#PHP" expanded="false" />
+            <element signature="e#3127#3229#0#PHP" expanded="false" />
+            <element signature="e#3279#3346#0#PHP" expanded="false" />
+            <element signature="e#3351#3613#0#PHP" expanded="false" />
+            <element signature="e#3619#3737#0#PHP" expanded="false" />
+            <element signature="e#4175#4631#0#PHP" expanded="false" />
+            <element signature="e#4226#4617#0#PHP" expanded="false" />
+            <element signature="e#4438#4617#0#PHP" expanded="false" />
+            <element signature="e#4645#4777#0#PHP" expanded="false" />
+            <element signature="e#4791#4923#0#PHP" expanded="false" />
+            <element signature="e#5635#6181#0#PHP" expanded="false" />
+            <element signature="e#5905#6018#0#PHP" expanded="false" />
+            <element signature="e#6190#8614#0#PHP" expanded="false" />
+            <element signature="e#8626#8693#0#PHP" expanded="false" />
+            <element signature="e#8698#9376#0#PHP" expanded="false" />
+            <element signature="e#9111#9216#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TitleManagement/RightsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.769231">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="39" />
+          <folding>
+            <element signature="e#55#83#0#PHP" expanded="true" />
+            <element signature="e#639#842#0#PHP" expanded="false" />
+            <element signature="e#848#967#0#PHP" expanded="false" />
+            <element signature="e#972#1514#0#PHP" expanded="false" />
+            <element signature="e#1018#1508#0#PHP" expanded="false" />
+            <element signature="e#1390#1507#0#PHP" expanded="false" />
+            <element signature="e#1520#1640#0#PHP" expanded="false" />
+            <element signature="e#1646#2006#0#PHP" expanded="false" />
+            <element signature="e#1687#2000#0#PHP" expanded="false" />
+            <element signature="e#1897#1995#0#PHP" expanded="false" />
+            <element signature="e#1947#1994#1#PHP" expanded="false" />
+            <element signature="e#2012#2123#0#PHP" expanded="false" />
+            <element signature="e#2537#2657#0#PHP" expanded="false" />
+            <element signature="e#3113#3913#0#PHP" expanded="false" />
+            <element signature="e#3773#3880#0#PHP" expanded="false" />
+            <marker date="1453906144709" expanded="false" signature="3182:3714" placeholder="SELECT cc_ge..cc_geo_contracts..." />
+            <marker date="1453906144709" expanded="true" signature="4238:4361" placeholder="SELECT cc_ge..cc_geo_contracts..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Film.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.846153">
+          <caret line="85" column="40" selection-start-line="68" selection-start-column="0" selection-end-line="85" selection-end-column="40" />
+          <folding>
+            <marker date="1453906090999" expanded="true" signature="3806:4154" placeholder="SELECT DISTI..cc_films..." />
+            <marker date="1453906090999" expanded="true" signature="4155:4409" placeholder="SELECT DISTI..cc_films..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7666174">
+          <caret line="85" column="12" selection-start-line="85" selection-start-column="12" selection-end-line="85" selection-end-column="12" />
+          <folding>
+            <marker date="1453906820284" expanded="true" signature="1303:1629" placeholder="SELECT COUNT..cc_films..." />
+            <marker date="1453906820284" expanded="true" signature="1686:1927" placeholder="SELECT count..cc_films..." />
+            <marker date="1453906820284" expanded="true" signature="1956:2622" placeholder="SELECT COUNT..id..." />
+            <marker date="1453906820284" expanded="true" signature="2012:2596" placeholder="SELECT DISTI..cc_films..." />
+            <marker date="1453906820284" expanded="true" signature="4581:4929" placeholder="SELECT DISTI..cc_films..." />
+            <marker date="1453906820284" expanded="true" signature="4930:5184" placeholder="SELECT DISTI..cc_films..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -204,3 +204,5 @@ margin-top: 20px;
 
 
 /* END Online Offline Switcher */
+#titlesLoading{display:none;min-height:450px;position:relative;}
+#titlesLoading i{position:absolute;top:48%;}

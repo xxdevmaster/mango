@@ -12,4 +12,5 @@ class Store extends Model
     public function contracts(){
         return $this->belongsToMany('App\BaseContracts', 'cc_channels_contracts', 'channel_id', 'bcontracts_id');
     }
+
 }

@@ -17,5 +17,9 @@ class Company extends Model
     public function films(){
         return $this->belongsToMany('App\Film', 'fk_films_owners', 'owner_id', 'films_id');
     }
+    public function stores(){
+        return $this->belongsToMany('App\Film', 'fk_films_owners', 'owner_id', 'films_id');
+    }
+
 
 }

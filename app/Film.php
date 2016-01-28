@@ -20,7 +20,10 @@ class Film extends Model
 	public function genres(){
         return $this->belongsToMany('App\Genres', 'fk_films_genres', 'films_id', 'genres_id');
     }	
-	
+	public function locales(){
+        return $this->hasMany('App\LocaleFilms', 'films_id');
+    }
+
 	public function languages(){
         return $this->belongsToMany('App\Languages', 'fk_films_languages', 'films_id', 'languages_id');
     }	
@@ -31,6 +34,9 @@ class Film extends Model
 	
 	public function countries(){
         return $this->belongsToMany('App\Countries', 'fk_films_countries', 'films_id', 'countries_id');
+    }
+	public function geoCountries(){
+        return $this->belongsToMany('App\Countries', 'cc_geo_contracts', 'countries_id', 'films_id')->where('cc_countries.deleted','0');
     }
 
 	public function persons(){
@@ -46,11 +52,11 @@ class Film extends Model
     }
     public static function getAccountAllTitles($platformId, $companyId, $filter = null, $limit = null, $offset = null)
     {
-      /*  if($filter != null AND count($filter) >=1)
-           // $filter = " ".implode(" ", $filter);
+       if($filter != null AND count($filter) >=1)
+            $filter = " ".implode(" ", $filter);
         else
             $filter = '';
-*/
+
         if($limit != null)
             $limit = ' LIMIT '.$limit;
         else

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap-transfer.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+	<div id="test" style="width:400px">
+	</div>
+
+	<script src="js/jquery.js"></script>
+    <script src="js/bootstrap-transfer.js"></script>
+    <script>
+		$(function() {
+			var t = $('#test').bootstrapTransfer(
+				{'target_id': 'multi-select-input',
+				 'height': '15em',
+				 'hilite_selection': true});
+			
+			t.populate([
+				{value:111, content:"01", status:false},
+				{value:452, content:"2",status:true},
+				{value:34, content:"3", status:true},
+				{value:477, content:"4", status:true},
+				{value:543, content:"5", status:true},
+				{value:6472, content:"6", status:true},
+				{value:447, content:"7", status:true},
+				{value:87, content:"08", status:false},
+				{value:90, content:"09", status:false},
+				{value:107, content:"10", status:true},
+				{value:17, content:"11", status:true},
+				{value:127896, content:"12", status:true},
+				{value:7, content:"13", status:true},
+			],
+			[
+				{value:21, content:"21"},
+				{value:22, content:"22"},
+				{value:23, content:"23"},
+				{value:107, content:"10"},
+				{value:17, content:"11"},
+			]
+			);
+			
+			t.populate();
+			//t.set_values(["2", "4"]);
+			//console.log(t.get_values());
+		});
+    </script>
+  </body>
+</html>
+
+
+
+

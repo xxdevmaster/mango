@@ -39,6 +39,7 @@
 		<link href="/assets/select2/select2.css" rel="stylesheet" type="text/css" />
         <link href="/assets/timepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
         <link href="/library/bitdash/bitdashplayer.min.css" rel="stylesheet" />
+		<link href="/library/CHTransfer/css/bootstrap-custom-transfer.css" rel="stylesheet" />
 
         <script src="/js/jquery.js"></script>
 		<script src="/assets/jquery-multi-select/jquery.multi-select.js" type="text/javascript" ></script>
@@ -62,7 +63,8 @@
                 console.log(player_setup_trailer+'1');
 				$.ajaxSetup({
 					headers: {
-						'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+						'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content'),
+						'filmId': 341
 					}
 				});
 			});
@@ -150,6 +152,8 @@
         <script src="/assets/datatables/jquery.dataTables.min.js"></script>
         <script src="/assets/datatables/dataTables.bootstrap.js"></script>
         <script src="/assets/timepicker/bootstrap-datepicker.js"></script>
+
+        <script src="/library/CHTransfer/js/bootstrap-custom-transfer.js"></script>
 
 
         <script type="text/javascript">

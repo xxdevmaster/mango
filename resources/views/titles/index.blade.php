@@ -3,30 +3,12 @@
     <div-- class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3 class="panel-title">All Titles </h3></div>
-                <div class="panel-body">
-
-                    <!--form class="form-horizontal" role="form">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Content Providers</label>
-                            <div class="col-sm-10">
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-
-                            </div>
-                        </div>
-                    </form-->
-                </div> <!-- panel-body -->
-            </div> <!-- panel -->
-        </div> <!-- col -->
-
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{isset($current_menu) ? $current_menu : ''}} </h3>
+                </div>
+            </div>
+        </div>
     </div-->
-
     <div-- class="row">
         <div class="col-md-12">
             <div class="panel panel-color panel-inverse">
@@ -34,7 +16,7 @@
                     <h3 class="panel-title">Titles Filter </h3>
                 </div>
                 <div class="panel-body">
-                    <form id="titlesFilter" onsubmit="return false">
+                    <form id="titlesFilter">
                         <div class="form-group row">
                             <!--div class="col-lg-8">
                                 <input type="text" class="dt form-control" id="dt-from" name="filter[search_word]" value="" placeholder="User Name or E-mail" />
@@ -42,8 +24,7 @@
 
                             <div class="col-lg-12">
                                 <div class="input-group">
-
-                                    <input type="text" class="form-control" placeholder="Title" value="" name="filter[search_word]">
+                                    <input type="text" class="form-control" placeholder="Title" value="" name="filter[searchWord]">
                                      <span class="input-group-btn">
                                         <button type="button" class="btn btn-effect-ripple btn-primary" id="titleSearch">
                                             <i class="fa fa-search"></i>
@@ -53,63 +34,80 @@
                             </div>
                         </div>
                         <div class="form-group row">
-
-                                <div class="col-lg-6">
-                                    @if(isset($companies))
-                                        <select name="filter[cp]" id="filter[cp]" class="form-control filter_select">
-                                            <option value="" selected="selected">Content Providers</option>
-                                            @foreach($companies as $val => $key)
-                                                <option value="{{$key->id}}">{{ $key->title  }}</option>
-                                            @endforeach
-                                        </select>
-                                    @endif
-                                </div>
-                                <div class="col-lg-6">
-                                    @if(isset($stores))
-                                        <select name="filter[pl]" id="filter[pl]" class="form-control filter_select">
-                                            <option value="" selected="selected">Stores</option>
-                                            @foreach($stores as $val => $key)
-                                                <option value="{{$key->id}}">{{ $key->title  }}</option>
-                                            @endforeach
-                                        </select>
-                                    @endif
-                                </div>
-                           </div>
-                        <input type="hidden" value="ASC" id="ordertype" name="filter[ordertype]">
-                        <input type="hidden" value="title" id="order" name="filter[order]">
+                            <div class="col-lg-6">
+                                @if(isset($companies))
+                                    <select name="filter[cp]" id="filter[cp]" class="form-control filter_select">
+                                        <option value="" selected="selected">Content Providers</option>
+                                        @foreach($companies as $val => $key)
+                                            <option value="{{$key->id}}">{{ $key->title  }}</option>
+                                        @endforeach
+                                    </select>
+                                @endif
+                            </div>
+                            <div class="col-lg-6">
+                                <select name="filter[pl]" id="filter[pl]" class="form-control filter_select">
+                                    <option value="" selected="selected">Stores</option>
+                                    <option value="31">Arthouse.ru</option>
+                                    <option value="32">City of Film</option>
+                                    <option value="42">MillenniumOnDemand</option>
+                                    <option value="48">Cinecliq</option>
+                                    <option value="89">Neovod</option>
+                                    <option value="217">N1</option>
+                                    <option value="230">HerFlix</option>
+                                    <option value="234">Edgarsss55</option>
+                                    <option value="235">Kinogo</option>
+                                    <option value="238">Herflix</option>
+                                    <option value="239">Robbie Little</option>
+                                    <option value="242">ojocorto</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6">
+                                @if(isset($stores))
+                                    <select name="filter[pl]" id="filter[pl]" class="form-control filter_select">
+                                        <option value="" selected="selected">Stores</option>
+                                        @foreach($stores as $val => $key)
+                                            <option value="{{$key->id}}">{{ $key->title  }}</option>
+                                        @endforeach
+                                    </select>
+                                @endif
+                            </div>
+                        </div>
                     </form>
                 </div>
-            </div> <!-- panel -->
-        </div> <!-- col -->
+            </div>
+        </div>
 
     </div-->
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div>
-                @include('pager.pager')
-            </div>
             <div id="allTitles" class="panel-body">
                 @include('titles.partials.list')
             </div>
-            <div>
-                @include('pager.pager')
-            </div>
         </div>
     </div>
-
+    @include('titles.partials.newTitle')
     <script>
 
-         function titlesFilter(){
-             $('.loading').show();
-             $("#ordertype").val("ASC");
-             $.post('/titles/titlesFilter',$("#titlesFilter").serialize(), function(response){
-                 if(response.error)
-                     $('#allTitles').html('<h3 class="text-center text-danger">' + response.message + '</h3>');
-                 else
-                     $('#allTitles').html(response);
-                 $('.loading').hide();
-             });
-         }
+
+        function titlesFilter(){
+            $('.loading').show();
+            $("#ordertype").val("ASC");
+
+            var titlesFilter = $('#titlesFilter').serialize();
+
+            $.post('/titles/titlesFilter', titlesFilter, function(response){
+                if(response.error)
+                    $('#allTitles').html('<h3 class="text-center text-danger">' + response.message + '</h3>');
+                else
+                    $('#allTitles').html(response);
+                $('.loading').hide();
+            });
+        }
+
+        $('#titlesFilter').submit(function(e){
+            e.preventDefault();
+            titlesFilter();
+        });
 
         $('#titleSearch').click(function(){
             titlesFilter();
@@ -117,24 +115,6 @@
 
         $(".filter_select").change(function(){
             titlesFilter();
-
-        });
-
-        $(document).ready(function(){
-            $(document).on('click', '.pagination li', function(){
-                $('.loading').show();
-                $('.pagination .active').removeClass('active');
-                $(this).addClass('active');
-                $("#allTitles").fadeOut(500);
-                var pager = $(this).data('pager');
-
-                $.post('/titles/pager', {pager:pager}, function(response){
-
-                    $("#allTitles").html(response);
-                    $('.loading').hide();
-                    $("#allTitles").fadeIn('slow');
-                });
-            });
         });
     </script>
 @stop

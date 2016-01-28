@@ -7,8 +7,16 @@ use App\Http\Requests;
 use Bican\Roles\Models\Role;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Debug\Dumper;
+
+
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+
+
 use DB;
 use App\Film;
+use App\AllLocales;
+use App\Company;
 use Illuminate\Http\Request;
 use App\Libraries\CHhelper\CHhelper;
 use App\LocaleFilms;
@@ -27,13 +35,15 @@ class TitlesController extends Controller
 
     private $request;
 
+    private $total;
+
     public function __construct(Request $request)
     {
         $this->user = Auth::user();
         $this->accountInfo = $this->user->account;
-        $this->company = $this->accountInfo->company;
-        $this->store = $this->accountInfo->store;
-
+        //$this->company = $this->accountInfo->company;
+        //$this->store = $this->accountInfo->store;
+        $this->total = $this->getTotal($this->accountInfo->platforms_id, $this->accountInfo->companies_id);
         $this->request = $request;
         if(!empty($this->request->Input('offset'))){
             $this->offset = CHhelper::filterInputInt($this->request->Input('offset'));
@@ -44,23 +54,28 @@ class TitlesController extends Controller
     public function index()
     {
 
-        $current_menu = 'allTitles';
+        $current_menu = 'All Titles';
 
-
+        //dd($this->accountInfo->store->contracts->first());
         //DB::enableQueryLog();
-        $total = CHhelper::getAccountAllTitlesCount($this->accountInfo->platforms_id, $this->accountInfo->companies_id, '')[0]->total;
-        $films = Film::getAccountAllTitles($this->accountInfo->platforms_id, $this->accountInfo->companies_id,  '', 20, $this->offset);
-        $companies = $films->first()->companies;
+        $films = Film::getAccountAllTitles($this->accountInfo->platforms_id, $this->accountInfo->companies_id, '', 20, $this->offset)->keyBy('id');
+        $companies = $films->first()->companies->keyBy('id');
 
-        $pager = [
-            'total' => $total,
-            'limit' => 20,
-            'offset' => 0,
-        ];
+        /*foreach($films AS $film){
+            $film->companies = $film->companies;
+        }
+        dd($film->companies);
+        dd($films->first()->locales);*/
+        foreach($films AS $film){
+            $film->stores = $film->baseContract->stores->keyBy('id');
+        }
+
+        $allLocales = $this->getAllLocale();
+
         //print_r(DB::getQueryLog());
 
-
-
+		$paginator = new LengthAwarePaginator($films, $this->total, 20, 0);
+		//dd($paginator->perPage());
 
         //$store = $account_info->store();
         //$account_info->films();
@@ -90,61 +105,35 @@ class TitlesController extends Controller
         //$company_films = $company_films['company_films']->keyBy('id');
         //$store_films = $store_films['store_films']->keyBy('id');
         //$films = $company_films->merge($store_films);
-        return view('titles.index', compact('films', 'current_menu', 'companies', 'pager'));
+        return view('titles.index', compact('films', 'current_menu', 'allLocales', 'companies', 'paginator'));
     }
 
-    private function getUser()
+    private function getAllLocale()
     {
-        $user_info = Auth::user();
-        return $account_info = $user_info->account;
-        //$account_features = $account_info->features;
-    }
+        $allLocale = AllLocales::select('title', 'code')->get()->toArray();
 
-    private function getCompanyInfo()
-    {
-        $account_info = $this->getUser();
-        return $account_info->company;
-    }
-
-    private function getStoreInfo()
-    {
-        $account_info = $this->getUser();
-        return $account_info->store;
-    }
-
-    private function getCompanyFilms($company_info, $where = false, $field = null)
-    {
-        if($where)
-            $company_films = $company_info->films()->where('cc_films.deleted', '0')->where($field, 'like', $where.'%')->get();
-        else
-            $company_films = $company_info->films()->where('cc_films.deleted', '0')->where('cc_films.id', 'like', '1671%')->get();
-
-        foreach($company_films as $key=>$company_film){
-            $company_film_stores = $company_films->first()->baseContract()->with('stores')->get();
-            $company_film->stores = $company_film_stores->first()->stores;
-            $company_film->companies = $company_film->companies()->where('fk_films_owners.type', '0')->get();
+        if(is_array($allLocale) && count($allLocale) > 0){
+            foreach($allLocale as $val) {
+                $allLocales[$val['code']] = $val['title'];
+            }
         }
-        $companies = $company_film->companies;
-        $stores = $company_film->stores;
-        return compact('company_films', 'companies', 'stores');
+        return $allLocales;
     }
 
-    private function getStoreFilms($store_info, $where = false, $field = null)
+    /**
+     *@POST("/titles/getCP")
+     * @Middleware("auth")
+     */
+    public function getCP()
     {
-        if($where)
-            $store_films = $store_info->contracts()->with('films', 'stores')->where($field, 'like', $where.'%')->get();
-        else
-            $store_films = $store_info->contracts()->with('films', 'stores')->get();
+        if(!empty($this->request->Input('inputToken')))
+            $token = CHhelper::filterInput($this->request->Input('inputToken'));
+        return Company::where('deleted', '0')->where('title', 'like', $token.'%')->get();
+    }
 
-        foreach($store_films as $key=>$store_film){
-            $store_film->films->stores = $store_film->stores;
-            $store_film->films->companies = $store_film->films->companies()->where('fk_films_owners.type', '0')->get();
-            $store_films[$key] = $store_film->films;
-        }
-        $companies = $store_film->films->companies;
-        $stores = $store_film->stores;
-
-        return compact('store_films', 'companies', 'stores');
+    private function getTotal($cp, $pl)
+    {
+        return CHhelper::getAccountAllTitlesCount($cp, $pl)[0]->total;
     }
 
     /**
@@ -153,57 +142,111 @@ class TitlesController extends Controller
      */
     public function titlesFilter()
     {
-      /*  $account_info = $this->getUser();
+        $searchword = '';
+        $field = [];
+        $cp = 0;
+        $pl = 0;
 
-        $store_info = $this->getStoreInfo();
-        $company_info = $this->getCompanyInfo();
-        $filtersArray = $this->request->Input('filter');
-        if(is_numeric($filtersArray['search_word'])){
-            $titleSearch = CHhelper::filterInputInt($filtersArray['search_word']);
+        if(!empty($this->request->input('filter')['searchword']) || !empty($this->request->input('filter')['cp']) || !empty($this->request->input('filter')['pl']) ){
+            $filter = $this->request->input('filter');
 
-            $store_films = $this->getStoreFilms($store_info, $titleSearch, 'films_id');
-            $company_films = $this->getCompanyFilms($company_info, $titleSearch, 'cc_films.id');
+            if(!empty($filter['searchword'])){
+                if(is_numeric($filter['searchword'])){
+                    $searchword = chhelper::filterinputint($filter['searchword']);
+                    $field = ['and cc_films.id like', "'$searchword%'"];
+                }else{
+                    $searchword = chhelper::filterinput($filter['searchword']);
+                    $field = ['and cc_films.title like', "'$searchword%'"];
+                }
+            }
 
-            $company_films = $company_films['company_films']->keyBy('id');
-            $store_films = $store_films['store_films']->keyBy('id');
+            if(!empty($filter['cp']) && is_numeric($filter['cp'])){
+                $cp = chhelper::filterinputint($filter['cp']);
+            }
 
-            $films = $company_films->merge($store_films);
-            if(count($films) === 0)
-                return [
-                    'error' => '1',
-                    'message' => 'No Searching Result'
-                ];
-            else
-                return view('titles.partials.list', compact('films'));
-        }elseif(empty($filtersArray['search_word']))){
-            $store_films = $this->getStoreFilms($store_info);
-            $company_films = $this->getCompanyFilms($company_info);
+            if(!empty($filter['pl']) && is_numeric($filter['pl'])){
+                $pl = chhelper::filterinputint($filter['pl']);
+            }
 
-            $films = $company_films['company_films']->merge($store_films['store_films']);
-            if(count($films) === 0)
-                return [
-                    'error' => '1',
-                    'message' => 'No Searching Result'
-                ];
-            else
-                return view('titles.partials.list', compact('films'));
+            //$films = film::getaccountalltitles($cp, $pl, $field, 20, $this->offset)->keyby('id');
+
+            $this->offset = 0;
+
+            $films = film::getAccountAllTitles($this->accountInfo->platforms_id, $this->accountInfo->companies_id, $field, 20, $this->offset)->keyby('id');
+            //$companies = $films->first()->companies->keyby('id');
+            foreach($films as $film){
+                $film->stores = $film->basecontract->stores->keyby('id');
+            }
+
+            $this->total = $this->getTotal($cp, $pl);
+
+            $paginator = new lengthawarepaginator($films, $this->total, 20, 0);
+
+            return view('titles.partials.list', compact('films', 'paginator'));
+
+        }else{
+            $this->offset = 0;
+            $films = film::getAccountAllTitles($this->accountInfo->platforms_id, $this->accountInfo->companies_id,  '', 20, $this->offset)->keyby('id');
+            //$companies = $films->first()->companies->keyby('id');
+            foreach($films as $film){
+                $film->stores = $film->basecontract->stores->keyby('id');
+            }
+
+			$paginator = new lengthawarepaginator($films, $this->total, 20, 0);
+
+            return view('titles.partials.list', compact('films', 'paginator'));
         }
-        else{
-            $titleSearch = CHhelper::filterInput($filtersArray['search_word']);
+        /*  $account_info = $this->getuser();
 
-            $store_films = $this->getStoreFilms($store_info, $titleSearch, 'title')->join();
-            $company_films = $this->getCompanyFilms($company_info, $titleSearch, 'cc_films.title');
-            //$localeFilms = LocaleFilms::join('cc_films', 'cc_films.id', '=', 'locale_films.films_id')->where('locale_films.title', 'like', $titleSearch.'%')->get();
-            //dd($localeFilms);
-            $films = $company_films->merge($store_films);
-            if(count($films) === 0)
-                return [
-                    'error' => '1',
-                    'message' => 'No Searching Result'
-                ];
-            else
-                return view('titles.partials.list', compact('films'));
-        }*/
+          $store_info = $this->getstoreinfo();
+          $company_info = $this->getcompanyinfo();
+          $filtersarray = $this->request->input('filter');
+          if(is_numeric($filtersarray['search_word'])){
+              $titlesearch = chhelper::filterinputint($filtersarray['search_word']);
+
+              $store_films = $this->getstorefilms($store_info, $titlesearch, 'films_id');
+              $company_films = $this->getcompanyfilms($company_info, $titlesearch, 'cc_films.id');
+
+              $company_films = $company_films['company_films']->keyby('id');
+              $store_films = $store_films['store_films']->keyby('id');
+
+              $films = $company_films->merge($store_films);
+              if(count($films) === 0)
+                  return [
+                      'error' => '1',
+                      'message' => 'no searching result'
+                  ];
+              else
+                  return view('titles.partials.list', compact('films'));
+          }elseif(empty($filtersarray['search_word']))){
+              $store_films = $this->getstorefilms($store_info);
+              $company_films = $this->getcompanyfilms($company_info);
+
+              $films = $company_films['company_films']->merge($store_films['store_films']);
+              if(count($films) === 0)
+                  return [
+                      'error' => '1',
+                      'message' => 'no searching result'
+                  ];
+              else
+                  return view('titles.partials.list', compact('films'));
+          }
+          else{
+              $titlesearch = chhelper::filterinput($filtersarray['search_word']);
+
+              $store_films = $this->getstorefilms($store_info, $titlesearch, 'title')->join();
+              $company_films = $this->getcompanyfilms($company_info, $titlesearch, 'cc_films.title');
+              //$localefilms = localefilms::join('cc_films', 'cc_films.id', '=', 'locale_films.films_id')->where('locale_films.title', 'like', $titlesearch.'%')->get();
+              //dd($localefilms);
+              $films = $company_films->merge($store_films);
+              if(count($films) === 0)
+                  return [
+                      'error' => '1',
+                      'message' => 'no searching result'
+                  ];
+              else
+                  return view('titles.partials.list', compact('films'));
+          }*/
     }
 
     /**
@@ -212,17 +255,19 @@ class TitlesController extends Controller
      */
     public function pager()
     {
-        $this->offset = CHhelper::filterInputInt($this->request->Input('pager'));
-        $total = CHhelper::getAccountAllTitlesCount($this->accountInfo->platforms_id, $this->accountInfo->companies_id, '')[0]->total;
-        $films = Film::getAccountAllTitles($this->accountInfo->platforms_id, $this->accountInfo->companies_id,  '', 20, $this->offset);
-        $companies = $films->first()->companies;
+        $page = CHhelper::filterInputInt($this->request->Input('page'));
+		if(($page - 1) != 0)
+			$this->offset  = ($page - 1)*20;
+		else
+			$this->offset  = 0;
+        $films = Film::getAccountAllTitles($this->accountInfo->platforms_id, $this->accountInfo->companies_id,  '', 20, $this->offset)->keyBy('id');
+        //$companies = $films->first()->companies->keyBy('id');
+        foreach($films AS $film){
+            $film->stores = $film->baseContract->stores->keyBy('id');
+        }
 
-        $pager = [
-            'total' => $total,
-            'limit' => 20,
-            'offset' => $this->offset
-        ];
-
-        return view('titles.partials.list', compact('films', 'current_menu', 'companies', 'pager'));
+		$paginator = new LengthAwarePaginator($films, $this->total, 20, $page);
+		
+        return view('titles.partials.list', compact('films', 'paginator'));
     }
 }

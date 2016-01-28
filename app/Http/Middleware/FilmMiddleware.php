@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Auth;
 use Closure;
 use App\Libraries\CHhelper\CHhelper;
+use App\Film;
 
 class FilmMiddleware
 {
@@ -22,10 +23,11 @@ class FilmMiddleware
     public function handle($request, Closure $next)
     {
         $current_menu = '';
+		   //dd();
         if(!empty($request->filmId))
             $this->filmId = CHhelper::filterInputInt($request->filmId);
         else
-            $this->filmId = CHhelper::filterInputInt($request->Input('filmId'));
+            $this->filmId = CHhelper::filterInputInt($request->header('filmId'));
 
 
         if(!is_numeric($this->filmId) || $this->filmId == 0)
@@ -35,7 +37,7 @@ class FilmMiddleware
 
         $accountInfo = $userInfo->account;
 
-        $accountFeatures = $accountInfo->features;
+        /*$accountFeatures = $accountInfo->features;
 
         $companyInfo = $accountInfo->company;
 
@@ -51,10 +53,11 @@ class FilmMiddleware
             foreach($storeFilms as $storeFilm){
                 $this->film = $storeFilm->films;
             }
-        }
+        }*/
+        $this->film = Film::getAccountAllTitles($accountInfo->platforms_id, $accountInfo->companies_id, ['AND cc_films.id', '=', $this->filmId])->first();
 
         if(count($this->film) === 0)
-            return view('errors.550', compact('current_menu'));
+            return view('errors.550');
 
 
         $request->merge(array("film" => $this->film, 'filmId' => $this->filmId));
