@@ -7,7 +7,8 @@
         <meta name="author" content="Coderthemes">
         <meta name="_token" content="{{csrf_token()}}">
 
-        <link rel="shortcut icon" href="/img/favicon_1.ico">
+        <link type="image/x-icon" href="/img/favicon.png" rel="icon">
+        <link type="image/x-icon" href="/img/favicon.ico" rel="shortcut icon">
 
         <title>Cinehost -  Software As A Service</title>
 
@@ -96,9 +97,8 @@
 
             <!-- brand -->
             <div class="logo">
-                <a href="index.html" class="logo-expanded">
-                    <i class="ion-social-buffer"></i>
-                    <span class="nav-label">CINEHOST</span>
+                <a href="/" class="logo-expanded">
+                    <span class="nav-label"><img src="/img/cinehost_logo.svg"></span>
                 </a>
             </div>
             <!-- / brand -->
