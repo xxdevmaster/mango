@@ -59,12 +59,10 @@
             var player_movie= [];
             var player_trailer= [];
 			$(document).ready(function(){
-
-                console.log(player_setup_trailer+'1');
 				$.ajaxSetup({
 					headers: {
 						'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content'),
-						'filmId': 341
+						'filmId': $('input[name="filmId"]').val()
 					}
 				});
 			});

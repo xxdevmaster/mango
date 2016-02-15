@@ -13,6 +13,6 @@ class GeoTemplates extends Model
 	protected $fillable = ['id', 'title', 'position', 'deleted'];
 
     public function countries(){
-        return $this->belongsToMany('App\Countries', 'fk_geotemplates_countries', 'countries_id', 'geotemplates_id');
+        return $this->belongsToMany('App\Countries', 'fk_geotemplates_countries',  'geotemplates_id','countries_id');
     }
 }

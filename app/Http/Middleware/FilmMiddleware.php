@@ -29,7 +29,7 @@ class FilmMiddleware
         else
             $this->filmId = CHhelper::filterInputInt($request->header('filmId'));
 
-
+		
         if(!is_numeric($this->filmId) || $this->filmId == 0)
             return view('errors.404', compact('current_menu'));
 

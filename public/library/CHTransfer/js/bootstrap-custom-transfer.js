@@ -164,29 +164,27 @@
     };
     $.fn.bootstrapTransfer.defaults = {
         'template':
-            '<div class="input-group  panel panel-default w291 pull-left">\
-                <span class="input-group-btn">\
-                     <span class="btn glyphicon glyphicon-search"></span>\
-                </span>\
+            '<div class="input-group countriesBoxSiza pull-left">\
+				<span class="input-group-btn"><span class="btn btn-default "><i class="fa ion-search "></i></span>\
+				</span>\
                 <input type="text" class="filter-input form-control">\
             </div>\
             <div style="width:10%;float:left;">&nbsp;</div>\
-             <div class="input-group  panel panel-default w291 pull-left">\
-                <span class="input-group-btn">\
-                     <span class="btn glyphicon glyphicon-search"></span>\
-                </span>\
+             <div class="input-group  countriesBoxSiza  pull-left">\
+				<span class="input-group-btn"><span class="btn btn-default "><i class="fa ion-search "></i></span>\
+				</span>\
                 <input type="text" class="filter-input-target form-control">\
             </div>\
             <div style="clear:both;">&nbsp;</div>\
-            <div class="selector-available  panel panel-default">\
+            <div class="selector-available">\
                     <select multiple="multiple" class="filtered remaining changebut"></select>\
                 <a href="#" class="selector-chooseall changebut">Add All </a>\
             </div>\
-            <div class="selector-chooser " style="width:10%;">\
-                <span class="selector-add glyphicon glyphicon-log-out changebut"></span>\
-                <span href="#" class="selector-remove glyphicon glyphicon-remove changebut"></span>\
+            <div class="selector-chooser text-center" style="width:10%;">\
+                <button class="btn btn-default btn-sm selector-add changebut"><i class="ion-log-out"></i></button>\
+                <button class="btn btn-default btn-sm selector-remove changebut" href="#" ><i class="ion-close"></i></button>\
             </div>\
-            <div class="selector-chosen  panel panel-default">\
+            <div class="selector-chosen">\
                     <select multiple="multiple" class="filtered target"></select>\
                 <a href="#" class="selector-clearall changebut">Clear All </a>\
             </div>\

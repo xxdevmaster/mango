@@ -1,5 +1,6 @@
 <!-- Navbar Start -->
 <?php $current_menu = (isset($current_menu)?$current_menu:'');?>
+
 <nav class="navigation">
     <ul class="list-unstyled">
         @if($user->is('superadmin'))

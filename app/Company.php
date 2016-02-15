@@ -20,6 +20,4 @@ class Company extends Model
     public function stores(){
         return $this->belongsToMany('App\Film', 'fk_films_owners', 'owner_id', 'films_id');
     }
-
-
 }

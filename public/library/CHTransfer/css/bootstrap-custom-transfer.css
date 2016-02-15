@@ -6,9 +6,7 @@
     height:310px;
 }
 .bootstrap-transfer-container select {
-	-webkit-border-radius: 0 0 4px 4px;
-       -moz-border-radius: 0 0 4px 4px;
-            border-radius: 0 0 4px 4px;
+
             padding:10px 0 0 10px;
 }
 

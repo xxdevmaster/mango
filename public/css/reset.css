@@ -1,0 +1,42 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;}
+body{line-height:1}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+:focus{outline:0}
+ins{text-decoration:none}
+del{text-decoration:line-through}
+table{border-collapse:collapse;border-spacing:0}
+
+
+.countries .well{padding:0;margin-bottom:2px;}
+.countries .row{margin-left:0;margin-left:0;}
+.countries p{font-size:12px;  height: 27px;    padding-top: 6px; margin: 0;}
+.countries .cInputs input{
+    border: 2px solid #FAFAFA;
+    float: left;
+    font-size: 12px;
+    padding: 6px;
+    text-align: center;
+    width: 85px;
+}
+.countries .cInputs .dt{
+    width: 77px;
+    
+}
+.countries .cInputs .sr{
+    width: 25px;
+    float:left;
+}
+
+
+.countries .cInputs span {
+  float: left;
+  font-size: 12px;
+  text-align: center;
+  width: 48px;
+   padding-top: 6px;
+}
+
+
+.amcharts-chart-div > a{display:none !important;}

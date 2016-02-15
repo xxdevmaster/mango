@@ -15,4 +15,8 @@ class ChannelsContracts extends Model
     public function companies(){
         return $this->belongsToMany('App\FilmsOwners', 'cc_channels_contracts', 'channel_id', 'bcontracts_id');
     }
+
+    public function geoContractsShares(){
+        return $this->hasOne('App\Models\ContractsShares', 'contracts_id');
+    }
 }

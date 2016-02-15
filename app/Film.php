@@ -13,10 +13,16 @@ class Film extends Model
     public function companies(){
         return $this->belongsToMany('App\Company', 'fk_films_owners', 'films_id', 'owner_id');
     }
+
     public function baseContract(){
         return $this->hasOne('App\BaseContracts', 'films_id');
     }
-	
+
+    public function filmOwners()
+    {
+        return $this->hasOne('App\FilmOwners', 'films_id');
+    }
+
 	public function genres(){
         return $this->belongsToMany('App\Genres', 'fk_films_genres', 'films_id', 'genres_id');
     }	
@@ -36,7 +42,7 @@ class Film extends Model
         return $this->belongsToMany('App\Countries', 'fk_films_countries', 'films_id', 'countries_id');
     }
 	public function geoCountries(){
-        return $this->belongsToMany('App\Countries', 'cc_geo_contracts', 'countries_id', 'films_id')->where('cc_countries.deleted','0');
+        return $this->belongsToMany('App\Countries', 'cc_geo_contracts', 'films_id', 'countries_id')->where('cc_countries.deleted','0')->select('cc_geo_contracts.*','cc_countries.title', 'cc_countries.currency_code');
     }
 
 	public function persons(){
@@ -46,6 +52,7 @@ class Film extends Model
 	public function jobs(){
         return $this->belongsToMany('App\Models\Jobs', 'fk_films_persons', 'films_id', 'jobs_id');
     }
+
 	public function medias(){
         return $this->hasMany('App\Models\FilmsMedia', 'films_id');
 
@@ -106,4 +113,5 @@ class Film extends Model
 						// 'z_pass_through.*'
 					// ]);
     //}
+
 }

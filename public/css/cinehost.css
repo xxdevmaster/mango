@@ -206,3 +206,97 @@ margin-top: 20px;
 /* END Online Offline Switcher */
 #titlesLoading{display:none;min-height:450px;position:relative;}
 #titlesLoading i{position:absolute;top:48%;}
+
+
+
+/* Rights Management/ Edit prices*/
+.countriesBoxSiza{width:45%;}
+.priceHide{display:none;}
+.pricesep{float: left; width: 23px;}
+.priceTab{clear:both; width:100%;text-align:right;}
+.priceTab a{
+    background-color: #FFFFFF;
+    border-color: #E3E3E3 #E3E3E3 rgba(0, 0, 0, 0);
+    border-image: none;
+    border-radius: 4px 4px 0 0;
+    border-style: solid;
+    border-width: 1px;
+    display: inline-block;
+    float: right;
+    height: 35px;
+    line-height: 1.42857;
+    margin-right: 2px;
+    padding: 9px 15px;
+    position: relative;
+    top: 3px;
+    width: 129px;
+    color: #555555;
+    text-align: center;
+      
+}
+ .priceTab a:hover {
+     background-color: #DDDDDD;
+     background-color: #EEEEEE;
+     text-decoration: none;
+ }
+.priceTab a.act:hover,.priceTab a.act  { 
+     -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F5F5F5;
+    border-color: #E3E3E3 #E3E3E3 rgba(0, 0, 0, 0);
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+    color: #555555;
+    cursor: default;
+    height: 38px;
+}
+
+
+
+
+.countries .well{padding:0;margin-bottom:2px;}
+.countries .row{margin-left:0;margin-left:0;}
+.countries p{font-size:12px;  height: 27px;    padding-top: 6px; margin: 0;}
+.countries .cInputs input{
+    border: 2px solid #FAFAFA;
+    float: left;
+    font-size: 12px;
+    padding: 6px;
+    text-align: center;
+    width: 85px;
+}
+.countries .cInputs .sr{
+   // width: 25px;
+    //float:left;
+}
+
+
+.countries .cInputs span {
+  float: left;
+  font-size: 12px;
+  text-align: center;
+  //width: 48px;
+  padding-top: 6px;
+}
+
+.ctitles p{
+    display: block;
+    float: left;
+    font-size: 12px;
+    width: 85px;
+    text-align: center;
+	margin:0 !important;
+}
+.ctitles:first-child { width: 173px;text-align:left}
+.ctitles:eq(1){ width: 68px;}
+.ctitles:eq(2){ width: 68px;}
+.bootstrap-transfer-container{height: 297px;padding: 30px 0;}
+.GeoPricingCPContent .panel{border:0px;}
+.false{display:none;}
+.true{opacity:1;color:#000;}
+#contriesPrices input{border:2px solid #FAFAFA;float: left;  font-size: 12px;  padding: 6px;  text-align: center;  width: 85px;  }
+#contriesPrices .table tbody{background-color: #f5f5f5  }
+#contriesPrices  .dt{width:150px;}

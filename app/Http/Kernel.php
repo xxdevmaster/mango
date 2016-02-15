@@ -34,5 +34,6 @@ class Kernel extends HttpKernel
         'level' => \Bican\Roles\Middleware\VerifyLevel::class,
         'access' => \App\Http\Middleware\VerifyAccess::class,
         'filmPermission' => \App\Http\Middleware\FilmMiddleware::class,
+        'rightsPermission' => \App\Http\Middleware\RightsMiddleware::class,
     ];
 }
