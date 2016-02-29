@@ -55,9 +55,9 @@ class Film extends Model
 
 	public function medias(){
         return $this->hasMany('App\Models\FilmsMedia', 'films_id');
-
     }
-    public static function getAccountAllTitles($platformId, $companyId, $filter = null, $limit = null, $offset = null)
+
+    public static function getAccountAllTitles($platformID, $companyID, $filter = null, $limit = null, $offset = null)
     {
        if($filter != null AND count($filter) >=1)
             $filter = " ".implode(" ", $filter);
@@ -92,12 +92,21 @@ class Film extends Model
                WHERE fk_films_owners.owner_id='".$_SESSION['STUDIO_IN']."' AND fk_films_owners.type=0 AND cc_films.deleted=0 )  AS forTotal";
                $res= G('DB')->query($q);
        }*/
-
-        $q = "SELECT DISTINCT cc_films.* FROM cc_films INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id
+        if($platformID > 0 && $companyID > 0){
+            $q = "SELECT DISTINCT cc_films.* FROM cc_films INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id
                 INNER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id
-                WHERE  cc_channels_contracts.channel_id=".$platformId." AND cc_films.deleted=0".$filter."
+                WHERE  cc_channels_contracts.channel_id=".$platformID." AND cc_films.deleted=0".$filter."
                 UNION SELECT DISTINCT cc_films.* FROM cc_films INNER JOIN fk_films_owners ON fk_films_owners.films_id=cc_films.id
-                WHERE fk_films_owners.owner_id=".$companyId." AND fk_films_owners.type=0 AND cc_films.deleted=0".$filter." ".$limit." ".$offset."";
+                WHERE fk_films_owners.owner_id=".$companyID." AND fk_films_owners.type=0 AND cc_films.deleted=0".$filter." ".$limit." ".$offset."";
+        }elseif($platformID > 0){
+            $q = "SELECT cc_films.* FROM cc_films INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id
+                INNER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id
+                WHERE  cc_channels_contracts.channel_id=".$platformID." AND cc_films.deleted=0".$filter;
+        }elseif($companyID > 0){
+            $q = "SELECT cc_films.* FROM cc_films INNER JOIN fk_films_owners ON fk_films_owners.films_id=cc_films.id
+                WHERE fk_films_owners.owner_id=".$companyID." AND fk_films_owners.type=0 AND cc_films.deleted=0".$filter." ".$limit." ".$offset."";
+        }
+
         return self::hydrateRaw($q);
         //return Film::selectRaw("");
 

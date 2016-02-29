@@ -22,7 +22,6 @@ Route::group(['middleware' => 'auth'], function()
     Route::resource('titles', 'TitlesController');
 
 	/*Titles Menegment*/
-
     Route::group(['middleware' => 'filmPermission'], function(){
          Route::get('titles/metadata/{filmId}', 'TitleManagement\MetadataController@metadataShow')->where('filmId', '[0-9]+');
          Route::get('titles/media/{filmId}', 'TitleManagement\MediaController@mediaShow')->where('filmId', '[0-9]+');
@@ -32,8 +31,22 @@ Route::group(['middleware' => 'auth'], function()
              'uses' => 'TitleManagement\RightsController@rightsShow',
          ])->where('filmId', '[0-9]+');*/
     });
-
     /*End Titles Menegment*/
+
+    /*Xchange routing*/
+    Route::get('xchange/contentProvider', 'Xchange\ProfileController@profileShow');
+    Route::get('CPTitles', 'Xchange\CPTitlesController@CPTitlesShow');
+    Route::get('xchangeTitles', 'Xchange\XchangeTitlesController@xchangeTitlesShow');
+    Route::get('xchange/stores', 'Xchange\XchangeStoresController@xchangeStoresShow');
+    Route::get('xchange/contentProviders', 'Xchange\XchangeContentProvidersController@contentProvidersShow');
+    /*End Xchange routing*/
+
+    Route::get('partner/stores', 'PartnerStores\PartnerStoresController@partnerStoresShow');
+	
+	
+    Route::get('store/profile', 'Store\ProfileController@profileShow');
+    Route::get('store/settings', 'Store\SettingsController@settingsShow');
+
 
     Route::get('account/users', [
         'middleware' => ['access:users', 'role:owner,administrator'],

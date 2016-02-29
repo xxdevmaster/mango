@@ -1,6 +1,5 @@
 <!-- Navbar Start -->
 <?php $current_menu = (isset($current_menu)?$current_menu:'');?>
-
 <nav class="navigation">
     <ul class="list-unstyled">
         @if($user->is('superadmin'))
@@ -41,35 +40,41 @@
                 <li><a href="buttons.html">Sales</a></li>
             </ul>
         </li>
+        @if($CHpermissons->isCPPL() || $CHpermissons->isCP())
         <li class="has-submenu"><a href="#"><i class="ion-settings"></i> <span class="nav-label">My Content</span></a>
             <ul class="list-unstyled">
-                <li><a href="grid.html">Content Provider Profile</a></li>
-                <li><a href="portlets.html">Partner Stores</a></li>
-                <li><a href="widgets.html">My Titles</a></li>
+                <li {{ ($current_menu == 'Company Profile')?'class=active':''  }}><a href="/xchange/contentProvider">Content Provider Profile</a></li>
+                <li><a href="/partner/stores">Partner Stores</a></li>
+                <li><a href="/CPTitles">My Titles</a></li>
             </ul>
         </li>
+        @endif
+        @if($CHpermissons->isTrueCP())
         <li class="has-submenu"><a href="#"><i class="ion-compose"></i> <span class="nav-label">My Store</span></a>
             <ul class="list-unstyled">
-                <li><a href="form-elements.html">Store Profile</a></li>
-                <li><a href="form-validation.html">Store Settings</a></li>
-                <li><a href="form-advanced.html">Content Providers</a></li>
-                <li><a href="form-wizard.html">Users (Total 100)</a></li>
-                <li><a href="form-editor.html">Slider</a></li>
-                <li><a href="code-editor.html">Channels Manager</a></li>
-                <li><a href="form-uploads.html">Subscription</a></li>
-                <li><a href="image-crop.html">Subscribers</a></li>
-                <li><a href="form-xeditable.html">Front Page Manager</a></li>
-                <li><a href="form-xeditable.html">Gift Vauchers</a></li>
-                <li><a href="form-xeditable.html">Url Setup</a></li>
+                <li><a href="/store/profile">Store Profile</a></li>
+                <li><a href="/store/settings">Store Settings</a></li>
+                <li><a href="/store/contentProviders">Content Providers</a></li>
+                <li><a href="/store/userManagement">Users (Total 100)</a></li>
+                <li><a href="/store/slider">Slider</a></li>
+                <li><a href="/store/channelsManager">Channels Manager</a></li>
+                <li><a href="/store/subscription">Subscription</a></li>
+                <li><a href="/store/subscribersManagement">Subscribers</a></li>
+                <li><a href="/store/frontPageManager">Front Page Manager</a></li>
+                <li><a href="/store/giftvoucher">Gift Vauchers</a></li>
+                <li><a href="/store/urlSetup">Url Setup</a></li>
             </ul>
         </li>
+        @endif
+        @if($CHpermissons->isPL() || $CHpermissons->isCPPL())
         <li class="has-submenu"><a href="#"><i class="ion-grid"></i> <span class="nav-label">Xchange</span></a>
             <ul class="list-unstyled">
-                <li><a href="tables.html">Titles</a></li>
-                <li><a href="table-datatable.html">Content Providers</a></li>
-                <li><a href="tables-editable.html">Stores</a></li>
+                <li><a href="/xchangeTitles">Titles</a></li>
+                <li><a href="/xchange/contentProviders">Content Providers</a></li>
+                <li><a href="/xchange/stores">Stores</a></li>
             </ul>
         </li>
+        @endif
         <li class="has-submenu"><a href="#"><i class="ion-stats-bars"></i> <span class="nav-label">Account Settings</span></a>
             <ul class="list-unstyled">
                 <li><a href="morris-chart.html">Account Details</a></li>

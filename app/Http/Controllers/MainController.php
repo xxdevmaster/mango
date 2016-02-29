@@ -14,4 +14,5 @@ class MainController extends Controller
         $current_menu = 'dashboard';
         return view('dashboard', compact('current_menu'));
     }
+
 }

@@ -24,8 +24,15 @@ class CHpermissons {
     }
     public function isCPPL(){
         return (!empty($this->authAccount->companies_id) && !empty($this->authAccount->platforms_id));
-    }	
+    }
 
+    public function isTrueCP(){
+        return !empty($this->authAccount->companies_id);
+    }
+
+    public function isTruePL(){
+        return !empty($this->authAccount->platforms_id);
+    }
     /**
     * Return the permission of the action 
     *
