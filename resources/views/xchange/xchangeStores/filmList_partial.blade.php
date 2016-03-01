@@ -4,9 +4,9 @@
 <div class="col-md-12 clearfix">
 	<div class="row">
 		@foreach($paginator->items() as $key => $val)
-			<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-				<div class="thumbnailBox">
-					<a href="#" class="thumbnail">
+			<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+				<div class="thumbnailBox text-center">
+					<a href="#" class="">
 						<img  class="" src="http://cinecliq.assets.s3.amazonaws.com/files/{{ !empty($val->cover) ? $val->cover : 'nocover.png' }}" title="" alt="">
 					</a>
 					<div class="text-center thumbnailCaption">

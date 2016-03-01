@@ -34,7 +34,7 @@ class ProfileController extends Controller
 
 	private function getStore()
 	{
-		return $this->authUser->account->store;
+		return Store::where('id', $this->storeID)->select('id', 'title', 'person', 'address', 'phone', 'email', 'website', 'brief', 'logo')->get()->first();
 	}
 
 	/**

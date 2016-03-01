@@ -305,11 +305,10 @@ margin-top: 20px;
 #editCP label , #editStore label{text-align:left !important;}
 .company_profile td, .store_profile td{width:100px;padding:19px !important;}
 
-.thumbnailBox{width:175px;max-height: 300px;}
+.thumbnailBox{min-height:310px;max-height: 330px;overflow:hidden;}
 .thumbnailBox img{width:175px;height:auto;max-width: 100%;}
-.thumbnailCaption
 .thumbnailCaption p{
-    padding-bottom:5px;
+    padding:10px 0px 10px 0;
 }
 .listStoresThumbs{max-width:150px;margin-bottom:0;}
 .listStoreBrief{width:400px;overflow:hidden;height:80px;}

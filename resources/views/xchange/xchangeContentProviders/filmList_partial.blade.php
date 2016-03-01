@@ -4,13 +4,13 @@
 <div class="col-md-12 clearfix">
 	<div class="row">
 		@foreach($companyFilms->items() as $key => $val)
-			<div class="col-sm-2">
-				<div class="thumbnail storeFilmsThumbs">
-					<div class="filmsImageBox">
+			<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+				<div class="thumbnailBox text-center">
+					<a href="#" class="">
 						<img src="http://cinecliq.assets.s3.amazonaws.com/files/{{ !empty($val->cover) ? $val->cover : 'nocover.png' }}" title="" alt="">
-					</div>
+					</a>
 					<div class="isInVault">V</div>
-					<div class="caption text-center">
+					<div class="text-center thumbnailCaption">
 						<p>
 							{{ isset($val->title) ? $val->title : '' }}
 						</p>
