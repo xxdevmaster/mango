@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function()
 	
     Route::get('store/profile', 'Store\ProfileController@profileShow');
     Route::get('store/settings', 'Store\SettingsController@settingsShow');
+    Route::get('store/userManagement', 'Store\UserManagementController@usersShow');
 
 
     Route::get('account/users', [

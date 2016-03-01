@@ -42,6 +42,14 @@ class CHhelper {
 		return round($bytes, $precision) . ' ' . $units[$pow];
 	}
 
+	public static function getAgeRanges($start,$end, $range ){
+		//$out = array();
+		$out['0,'.$start] = 'Under '.$start;
+		for ($i=$start;$i<($end + 1);$i=$i+$range)
+			$out[$i.','.($i+$range)] = $i.' - '.($i+$range);
+		return $out;
+	}
+
 	public static function getAccountAllTitlesCount($platformID, $companyID, $filter = null)
 	{
 		if($filter != null AND count($filter) >=1)
