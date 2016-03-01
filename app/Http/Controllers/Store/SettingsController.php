@@ -29,11 +29,7 @@ class SettingsController extends Controller
 
     public function settingsShow()
     {
-        $template = $this->getAllTemplates();
-        foreach($template as $key => $val){
-            //dd($val);
-        }
-
+        //$template = $this->getAllTemplates();
         $store = $this->getStore();
         return view('store.settings.settings', compact('store', 'template'));
     }
