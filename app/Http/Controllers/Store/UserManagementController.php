@@ -10,6 +10,7 @@ use App\Libraries\CHhelper\CHhelper;
 use Auth;
 use App\Countries;
 use App\Models\ZaccountsView;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class UserManagementController extends Controller
 {
@@ -20,6 +21,12 @@ class UserManagementController extends Controller
     private $storeID;
 
     private $companyID;
+
+    private $limit = 20;
+
+    private $offset = 0;
+
+    private $page = 0;
 
     public function __construct(Request $request)
     {
@@ -34,62 +41,90 @@ class UserManagementController extends Controller
         $countries = Countries::where('deleted', '0')->orderBy('title')->get();
         $ageRanges = CHhelper::getAgeRanges(20, 90, 5);
         $users = $this->getUsers();
+
         return view('store.users.usersManagement', compact('countries', 'ageRanges', 'users'));
     }
 
-    public function getUsers($filter=''){
+    /**
+     *@POST("/store/usersManagement/drawUsers")
+     * @Middleware("auth")
+     */
+    public function drawUsers(){
+        $users = $this->getUsers();
+        return view('store.users.list_partial', compact('users'));
+    }
+
+    private function getUsers(){
         $condition = '';
-        /*$this->u = new stdClass();
-        $orderType="DESC";
-        if (empty($filter['order']))
-            $filter['order'] = 'u_regdate';
-        if ($filter['ordertype'])
-            $orderType= $filter['ordertype'];
-        if ($filter['age']){
-            $curYear = date('Y');
-            $range = explode(',',$filter['age']);
-            $ageCond = array();
-            for ($i = $range[0];$i<=$range[1];$i++)
-                $ageCond[]= "z_accounts_view.u_bdate LIKE '%".($curYear - $i)."%'";
-            $condition .= " AND ( ".implode(' OR ',$ageCond)." )";
+        $orderBy = '';
+        $filter = !empty($this->request->Input('filter') && is_array($this->request->Input('filter'))) ? $this->request->Input('filter') : false ;
+        if($filter){
+            if (empty($filter['order']))
+                $filter['order'] = 'u_regdate';
+            if ($filter['orderType'])
+                $orderType= $filter['orderType'];
+            if ($filter['age']){
+                $curYear = date('Y');
+                $range = explode(',',$filter['age']);
+                $ageCond = array();
+                for ($i = $range[0];$i<=$range[1];$i++)
+                    $ageCond[]= "z_accounts_view.u_bdate LIKE '%".($curYear - $i)."%'";
+                $condition .= " AND ( ".implode(' OR ',$ageCond)." )";
 
 
-        }
-        if (!empty($filter['sex']))
-            $condition .= " AND z_accounts_view.u_gender='".$filter['sex']."'";
-        if (!empty($filter['country']))
-            $condition .= " AND z_accounts_view.geo_country LIKE '%".$filter['country']."%'";
-        if (!empty($filter['search_word'])){
-            $condition .= " AND (z_accounts_view.u_fname LIKE '%".$filter['search_word']."%'  OR z_accounts_view.u_email LIKE '%".$filter['search_word']."%' OR z_accounts_view.u_lname LIKE '%".$filter['search_word']."%' )";
-        }
-        if (!empty($filter['order'])){
-
-            if (  $filter['order'] == "bdate"){
-                if ($orderType == "DESC")
-                    $orderType = "ASC";
-                else
-                    $orderType = "DESC";
             }
+            if (!empty($filter['sex']))
+                $condition .= " AND z_accounts_view.u_gender='".$filter['sex']."'";
+            if (!empty($filter['country']))
+                $condition .= " AND z_accounts_view.geo_country LIKE '".$filter['country']."%'";
+            if (!empty($filter['searchWord'])){
+                $condition .= " AND (z_accounts_view.u_fname LIKE '".$filter['searchWord']."%'  OR z_accounts_view.u_email LIKE '".$filter['searchWord']."%' OR z_accounts_view.u_lname LIKE '".$filter['searchWord']."%' )";
+            }
+            if (!empty($filter['order'])){
 
-            $orderBy = " ORDER BY ".$filter['order']." ".$orderType." ";
+                if ($filter['order'] == "bdate"){
+                    if ($orderType == "DESC")
+                        $orderType = "ASC";
+                    else
+                        $orderType = "DESC";
+                }
+
+                $orderBy = " ORDER BY ".$filter['order']." ".$orderType." ";
+            }
         }
-        $this->u->filter = $filter;*/
 
-        if($this->companyID == 1)// cinehost
-            $cq = "SELECT COUNT(*)  FROM z_accounts_view WHERE  z_accounts_view.activated=1 $condition  ";
+
+        // cinehost
+        if($this->companyID == 1){
+            $users = ZaccountsView::getUsersInAuthCinehost($condition, $orderBy, $this->limit, $this->offset);
+            $usersTotalCount = ZaccountsView::getUsersTotalInAuthCinehost($condition);
+        }
+        else{
+            $users = ZaccountsView::getUsers($this->storeID, $condition, $orderBy, $this->limit, $this->offset);
+            $usersTotalCount = ZaccountsView::getUsersTotal($this->storeID, $condition);
+        }
+
+        if($usersTotalCount->isEmpty())
+            $usersTotalCount = 0;
         else
-            $cq = "SELECT COUNT(*)  FROM z_accounts_view WHERE z_accounts_view.login_source=".$this->storeID." AND z_accounts_view.activated=1 $condition  ";
+            $usersTotalCount = $usersTotalCount->first()->count;
 
+        return new LengthAwarePaginator($users, $usersTotalCount, $this->limit, $this->page);
+    }
 
-        if($this->companyID == 1)// cinehost
-            $q = "SELECT z_accounts_view.*,sum(z_orders.amount) as uamount  FROM z_accounts_view
-                 LEFT JOIN z_orders ON z_orders.user_id=z_accounts_view.id AND z_orders.status=1  AND  z_orders.test=0
-                 WHERE  z_accounts_view.activated=1 $condition Group by z_accounts_view.id  $orderBy LIMIT  ".($page*$this->ipp).", ".$this->ipp;
-        else
-            $q = "SELECT z_accounts_view.*,sum(z_orders.amount) as uamount  FROM z_accounts_view
-                 LEFT JOIN z_orders ON z_orders.user_id=z_accounts_view.id AND z_orders.status=1 AND  z_orders.test=0 AND z_orders.wl='".$this->storeID."'
-                 WHERE z_accounts_view.login_source='".$this->storeID."' AND z_accounts_view.activated=1 $condition Group by z_accounts_view.id";
+    /**
+     *@POST("/store/usersManagement/pager")
+     * @Middleware("auth")
+     */
+    public function pager()
+    {
+        $this->page = !empty($this->request->Input('page')) && is_numeric($this->request->Input('page')) ? CHhelper::filterInputInt($this->request->Input('page')) : 0;
+        if($this->page){
+            if(($this->page - 1) != 0)
+                $this->offset  = ($this->page - 1)*20;
 
-        return ZaccountsView::hydrateRaw($q);
+            $users = $this->getUsers();
+            return view('store.users.list_partial', compact('users'));
+        }
     }
 }

@@ -1,69 +1,85 @@
+<div class="row text-left clearfix">
+    {!! $users->render() !!}
+</div>
 <div class="table-responsive">
-    <table class="table">
-        <tbody>
+    <table class="table table-striped ">
+        <thead>
             <tr>
-                <td style="width:56px">
+                <th>
                     Photo
-                </td>
-                <td style="width:209px;">
+                </th>
+                <th>
                     Name &amp; Surname
-                </td>
-                <td style="width:65px;">
+                </th>
+                <th>
                     Sex
-                </td>
-                <td style="width:65px;">
+                </th>
+                <th>
                     E-mail
-                </td>
-                <td style="width:60px;"><a class="cp pull-left orderDESC" rel="bdate">
-                        Age
+                </th>
+                <th>
+                    <a class="filter" data-order="bdate" data-orderType="Asc">Age
+                        <i class="ion-arrow-down-b hidden"></i>
                     </a>
-                </td>
-                <td style="width:145px;">
-                    <a class="cp pull-left orderDESC" rel="geo_country">Country</a>
-                </td>
-                <td style="width:105px;">
-                    <a class="cp pull-left orderASC" rel="u_regdate">Joined&nbsp;On</a>
-                    <span class=" pull-left AscDescIcon iconDESC"></span>
-                </td>
-                <td align="right" style="width:110px;">
-                    <a class="cp orderDESC" style="display:inline-block;float:right" rel="uamount">Total&nbsp;Spend</a>
-                </td>
+                </th>
+                <th>
+                    <a class="filter" data-order="country" data-orderType="Asc">Country
+                        <i class="ion-arrow-down-b hidden"></i>
+                    </a>
+                </th>
+                <th>
+                    <a class="filter" data-order="u_regdate" data-orderType="Asc">Joined On
+                        <i class="ion-arrow-down-b"></i>
+                    </a>
+                </th>
+                <th class="text-right">
+                    <a class="filter" data-order="uamount" data-orderType="Asc">Total Spend
+                        <i class="ion-arrow-down-b hidden"></i>
+                    </a>
+                </th>
             </tr>
-            @if(isset($users))
-                @foreach($users as $key => $val)
+        </thead>
+        <tbody>
+            @if(!empty($users->items()))
+                @foreach($users->items() as $key => $val)
                     <?php
                     $curYear = date('Y');
                     if($val->bdate > 0)
                         $uYear = $curYear - $val->bdate;
                     ?>
                     <tr>
-                        <td style="width:56px">
+                        <td>
                             <img src="http://cinecliq.assets.s3.amazonaws.com{{ isset($val->u_avatar) ? $val->u_avatar : "" }}" width="50">
                         </td>
-                        <td style="width:209px;">
+                        <td>
                             {{ isset($val->u_fname) ? $val->u_fname : "" }} {{ isset($val->u_name) ? $val->u_name : "" }}
                         </td>
-                        <td style="width:65px;">
+                        <td>
                             {{ isset($val->u_gender) ? $val->u_gender : "" }}
                         </td>
-                        <td style="width:65px;">
-                            <?php
-                                !empty($val->login_provider) ? '<a href="http://www.facebook.com/'.$val->fb_id.'" target="blank" class="icon_fb"></a>'
-                                  : "<a></a>";
-                            ?>
+                        <td>
+                            @if(empty($val->login_provider == 1))
+                                <a class="fbIcon" data-toggle="tooltip" data-placement="right" animation="true"  title="{{ isset($val->u_email) ? $val->u_email : '' }}">
+                                    <i class="ion-email fa-2x"></i>
+                                </a>
+                            @else
+                                <a href="http://www.facebook.com/{{ $val->fb_id }}" target="blank">
+                                    <i class="ion-social-facebook fa-2x"></i>
+                                </a>
+                            @endif
                         </td>
-                        <td style="width:60px;">
-                            <a class="cp pull-left orderDESC" rel="bdate">
+                        <td>
+                            <p>
                                 {{ isset($uYear) ? $uYear : "" }}
-                            </a>
+                            </p>
                         </td>
-                        <td style="width:145px;">
+                        <td>
                             {{ isset($val->geo_country) ? $val->geo_country : "" }}
                         </td>
-                        <td style="width:105px;">
+                        <td>
                             {{ strftime('%d/%m/%Y', $val->u_regdate) }}
                         </td>
-                        <td align="right" style="width:110px;">
+                        <td class="text-right">
                             {{ isset($val->uamount) ? $val->uamount : "" }}
                         </td>
                     </tr>
@@ -72,3 +88,29 @@
         </tbody>
     </table>
 </div>
+<div id="bottomPager" class="row text-left">
+    {!! $users->render() !!}
+</div>
+<script>
+$(document).ready(function(){
+    $('.pagination li').click(function(e){
+        e.preventDefault();
+        var usersFilter = $("#usersFilter").serialize();
+        var page = $(this).children('a').attr('href');
+        if(page != undefined)
+            var page = page.split('=')[1];
+        else
+            return false;
+        $('.loading').show();
+        $.post('/store/usersManagement/pager', 'page='+page+"&"+usersFilter, function(data){
+            $("#usersContainer").html(data);
+            $('.loading').hide();
+        });
+        $('.pagination .active').removeClass('active');
+        $(this).addClass('active');
+
+    });
+
+
+});
+</script>

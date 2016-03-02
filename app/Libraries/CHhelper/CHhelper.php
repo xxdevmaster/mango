@@ -3,6 +3,8 @@ namespace App\Libraries\CHhelper;
 
 use DB;
 use App\Film;
+use App\Models\ZaccountsView;
+use Auth;
 class CHhelper {
 	private static $allUniqueLocales = array();
 	
@@ -43,11 +45,25 @@ class CHhelper {
 	}
 
 	public static function getAgeRanges($start,$end, $range ){
-		//$out = array();
 		$out['0,'.$start] = 'Under '.$start;
 		for ($i=$start;$i<($end + 1);$i=$i+$range)
 			$out[$i.','.($i+$range)] = $i.' - '.($i+$range);
 		return $out;
+	}
+
+	public function countUsers(){
+		$authUser = Auth::user();
+		$storeID = $authUser->account->platforms_id;
+		$companyID = $authUser->account->companies_id;
+		if($companyID == 1)// cinehost
+			$totalQuery = "SELECT COUNT(*) as count  FROM z_accounts_view WHERE  z_accounts_view.activated=1  ";
+		else
+			$totalQuery = "SELECT COUNT(*) as count FROM z_accounts_view WHERE z_accounts_view.login_source='".$storeID."' AND z_accounts_view.activated=1  ";
+
+		if(ZaccountsView::hydrateRaw($totalQuery)->isEmpty())
+			return 0;
+		else
+			return ZaccountsView::hydrateRaw($totalQuery)->first()->count;
 	}
 
 	public static function getAccountAllTitlesCount($platformID, $companyID, $filter = null)

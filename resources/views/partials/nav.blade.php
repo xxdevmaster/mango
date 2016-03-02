@@ -55,7 +55,12 @@
                 <li><a href="/store/profile">Store Profile</a></li>
                 <li><a href="/store/settings">Store Settings</a></li>
                 <li><a href="/store/contentProviders">Content Providers</a></li>
-                <li><a href="/store/userManagement">Users (Total 100)</a></li>
+                <li>
+                    <a href="/store/userManagement">
+                        @inject('helper', 'App\Libraries\CHhelper\CHhelper')
+                        Users (Total {{ $helper->countUsers() }})
+                    </a>
+                </li>
                 <li><a href="/store/slider">Slider</a></li>
                 <li><a href="/store/channelsManager">Channels Manager</a></li>
                 <li><a href="/store/subscription">Subscription</a></li>
