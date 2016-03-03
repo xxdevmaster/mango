@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Store;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Libraries\CHhelper\CHhelper;
 use Auth;
 use App\Countries;
 use App\Models\ZaccountsView;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\ZOrders;
+
 
 class UserManagementController extends Controller
 {
@@ -42,7 +43,7 @@ class UserManagementController extends Controller
         $ageRanges = CHhelper::getAgeRanges(20, 90, 5);
         $users = $this->getUsers();
 
-        return view('store.users.usersManagement', compact('countries', 'ageRanges', 'users'));
+        return view('store.users.usersManagement', compact('countries', 'ageRanges'), $users);
     }
 
     /**
@@ -51,16 +52,18 @@ class UserManagementController extends Controller
      */
     public function drawUsers(){
         $users = $this->getUsers();
-        return view('store.users.list_partial', compact('users'));
+        return view('store.users.list_partial', $users);
     }
 
     private function getUsers(){
         $condition = '';
         $orderBy = '';
+        $order = 'u_regdate';
+        $orderType = 'ASC';
+
         $filter = !empty($this->request->Input('filter') && is_array($this->request->Input('filter'))) ? $this->request->Input('filter') : false ;
+
         if($filter){
-            if (empty($filter['order']))
-                $filter['order'] = 'u_regdate';
             if ($filter['orderType'])
                 $orderType= $filter['orderType'];
             if ($filter['age']){
@@ -81,14 +84,7 @@ class UserManagementController extends Controller
                 $condition .= " AND (z_accounts_view.u_fname LIKE '".$filter['searchWord']."%'  OR z_accounts_view.u_email LIKE '".$filter['searchWord']."%' OR z_accounts_view.u_lname LIKE '".$filter['searchWord']."%' )";
             }
             if (!empty($filter['order'])){
-
-                if ($filter['order'] == "bdate"){
-                    if ($orderType == "DESC")
-                        $orderType = "ASC";
-                    else
-                        $orderType = "DESC";
-                }
-
+                $order = $filter['order'];
                 $orderBy = " ORDER BY ".$filter['order']." ".$orderType." ";
             }
         }
@@ -109,7 +105,8 @@ class UserManagementController extends Controller
         else
             $usersTotalCount = $usersTotalCount->first()->count;
 
-        return new LengthAwarePaginator($users, $usersTotalCount, $this->limit, $this->page);
+        $users = new LengthAwarePaginator($users, $usersTotalCount, $this->limit, $this->page);
+        return compact('users', 'order', 'orderType');
     }
 
     /**
@@ -124,7 +121,34 @@ class UserManagementController extends Controller
                 $this->offset  = ($this->page - 1)*20;
 
             $users = $this->getUsers();
-            return view('store.users.list_partial', compact('users'));
+            return view('store.users.list_partial', $users);
         }
+    }
+
+    /**
+     *@POST("/store/usersManagement/getUserDetails")
+     * @Middleware("auth")
+     */
+    public function getUserDetails()
+    {
+        $userID = (!empty($this->request->Input('userID')) && is_numeric($this->request->Input('userID'))) ? CHhelper::filterInputInt($this->request->Input('userID')) : false;
+        $renPurchFilms = collect();
+
+        if($userID){
+            if($this->companyID == 1)
+                $renPurchFilms = ZOrders::where('user_id', $userID)
+                    ->where('status', '1')
+                    ->where('test', '0')->get();
+            else
+                $renPurchFilms = ZOrders::where('user_id', $userID)
+                    ->where('wl', $this->storeID)
+                    ->where('status', '1')
+                    ->where('test', '0')->get();
+
+            if(!$renPurchFilms->isEmpty())
+                $renPurchFilms = $renPurchFilms->first()->usersFilms;
+        }
+
+        return view('store.users.rentPurchFilms', compact('renPurchFilms'))->render();
     }
 }

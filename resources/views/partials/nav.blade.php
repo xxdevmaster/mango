@@ -74,7 +74,7 @@
         @if($CHpermissons->isPL() || $CHpermissons->isCPPL())
         <li class="has-submenu"><a href="#"><i class="ion-grid"></i> <span class="nav-label">Xchange</span></a>
             <ul class="list-unstyled">
-                <li><a href="/xchangeTitles">Titles</a></li>
+                <li><a href="/xchange/titles">Titles</a></li>
                 <li><a href="/xchange/contentProviders">Content Providers</a></li>
                 <li><a href="/xchange/stores">Stores</a></li>
             </ul>

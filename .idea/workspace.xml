@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d970e7cb-79be-44a7-bbf3-f440f7349167" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php" afterPath="$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Store/UserManagementController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Store/UserManagementController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/ZaccountsView.php" afterPath="$PROJECT_DIR$/app/Models/ZaccountsView.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Xchange/XchangeTitlesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Xchange/XchangeTitlesController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/ZOrders.php" afterPath="$PROJECT_DIR$/app/Models/ZOrders.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/store/users/list_partial.blade.php" afterPath="$PROJECT_DIR$/resources/views/store/users/list_partial.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/partials/nav.blade.php" afterPath="$PROJECT_DIR$/resources/views/partials/nav.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/store/users/usersManagement.blade.php" afterPath="$PROJECT_DIR$/resources/views/store/users/usersManagement.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mango.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,11 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UserManagementController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserManagementController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Store/UserManagementController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.26865673">
-              <caret line="58" column="22" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
+            <state vertical-scroll-proportion="-12.218182">
+              <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
               <folding>
                 <element signature="e#46#74#0#PHP" expanded="true" />
               </folding>
@@ -41,11 +43,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="rentPurchFilms.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/store/users/rentPurchFilms.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.11710677">
+              <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ZaccountsView.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Models/ZaccountsView.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.365079">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+            <state vertical-scroll-proportion="-17.653847">
+              <caret line="27" column="74" selection-start-line="27" selection-start-column="72" selection-end-line="27" selection-end-column="74" />
               <folding>
                 <marker date="1456927786168" expanded="true" signature="540:863" placeholder="SELECT z_acc..z_accounts_view..." />
                 <marker date="1456927786168" expanded="true" signature="1031:1245" placeholder="SELECT z_acc..z_accounts_view..." />
@@ -64,8 +76,8 @@
       <file leaf-file-name="usersManagement.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/store/users/usersManagement.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-43.153847">
-              <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+            <state vertical-scroll-proportion="-12.836364">
+              <caret line="93" column="1" selection-start-line="93" selection-start-column="1" selection-end-line="93" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -74,17 +86,11 @@
       <file leaf-file-name="list_partial.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/store/users/list_partial.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.807692">
-              <caret line="41" column="14" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="14" />
+            <state vertical-scroll-proportion="-21.73077">
+              <caret line="145" column="59" selection-start-line="145" selection-start-column="59" selection-end-line="145" selection-end-column="59" />
               <folding>
-                <marker date="1456936403707" expanded="true" signature="2951:3112" placeholder="..." />
-                <marker date="1456936403707" expanded="true" signature="2983:3081" placeholder="..." />
-                <marker date="1456936403707" expanded="true" signature="3141:3255" placeholder="..." />
-                <marker date="1456936403707" expanded="true" signature="3284:3325" placeholder="..." />
-                <marker date="1456936403707" expanded="true" signature="3434:3540" placeholder="..." />
-                <marker date="1456936403707" expanded="true" signature="3695:3731" placeholder="..." />
-                <marker date="1456936403707" expanded="true" signature="3740:3778" placeholder="..." />
-                <marker date="1456936403707" expanded="true" signature="3770:3778" placeholder="{...}" />
+                <marker date="1457018310797" expanded="true" signature="4713:4819" placeholder="..." />
+                <marker date="1457018310797" expanded="true" signature="5042:5087" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -93,8 +99,8 @@
       <file leaf-file-name="UserManagement.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../kiwi/classes/UserManagement.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.384615">
-              <caret line="139" column="66" selection-start-line="139" selection-start-column="59" selection-end-line="139" selection-end-column="66" />
+            <state vertical-scroll-proportion="-8.509091">
+              <caret line="348" column="65" selection-start-line="348" selection-start-column="62" selection-end-line="348" selection-end-column="65" />
               <folding>
                 <element signature="e#964#1334#0#PHP" expanded="false" />
                 <element signature="e#3741#3850#0#PHP" expanded="false" />
@@ -102,12 +108,7 @@
                 <element signature="e#4267#4411#0#PHP" expanded="false" />
                 <element signature="n#drawUsers#0;n#UserManagement#0;n#!!top" expanded="false" />
                 <element signature="e#8565#8719#0#PHP" expanded="false" />
-                <element signature="n#getUserDetails#0;n#UserManagement#0;n#!!top" expanded="false" />
-                <element signature="e#11733#11971#0#PHP" expanded="false" />
-                <element signature="e#12001#12272#0#PHP" expanded="false" />
-                <element signature="e#12294#13682#0#PHP" expanded="false" />
                 <element signature="e#12354#13093#0#PHP" expanded="false" />
-                <element signature="n#scripts#0;n#UserManagement#0;n#!!top" expanded="false" />
                 <marker date="1445517568000" expanded="true" signature="328:400" placeholder="SELECT COUNT..z_accounts_view..." />
                 <marker date="1445517568000" expanded="true" signature="437:559" placeholder="SELECT COUNT..z_accounts_view..." />
                 <marker date="1445517568000" expanded="true" signature="2338:2411" placeholder="SELECT COUNT..z_accounts_view..." />
@@ -138,18 +139,18 @@
                 <marker date="1445517568000" expanded="true" signature="10680:11256" placeholder="..." />
                 <marker date="1445517568000" expanded="true" signature="10796:11221" placeholder="..." />
                 <marker date="1445517568000" expanded="true" signature="11482:11551" placeholder="..." />
-                <marker date="1445517568000" expanded="false" signature="11749:11968" placeholder="SELECT z_ord..z_orders..." />
-                <marker date="1445517568000" expanded="false" signature="12017:12270" placeholder="SELECT z_ord..z_orders..." />
-                <marker date="1445517568000" expanded="false" signature="13346:13642" placeholder="..." />
-                <marker date="1445517568000" expanded="false" signature="13566:13583" placeholder="..." />
-                <marker date="1445517568000" expanded="false" signature="13746:14526" placeholder="..." />
-                <marker date="1445517568000" expanded="false" signature="13812:14490" placeholder="..." />
+                <marker date="1445517568000" expanded="true" signature="11749:11968" placeholder="SELECT z_ord..z_orders..." />
+                <marker date="1445517568000" expanded="true" signature="12017:12270" placeholder="SELECT z_ord..z_orders..." />
+                <marker date="1445517568000" expanded="true" signature="13346:13642" placeholder="..." />
+                <marker date="1445517568000" expanded="true" signature="13566:13583" placeholder="..." />
+                <marker date="1445517568000" expanded="true" signature="13746:14526" placeholder="..." />
+                <marker date="1445517568000" expanded="true" signature="13812:14490" placeholder="..." />
                 <marker date="1445517568000" expanded="false" signature="13861:13964" placeholder="..." />
-                <marker date="1445517568000" expanded="false" signature="14025:14467" placeholder="..." />
-                <marker date="1445517568000" expanded="false" signature="14071:14440" placeholder="..." />
+                <marker date="1445517568000" expanded="true" signature="14025:14467" placeholder="..." />
+                <marker date="1445517568000" expanded="true" signature="14071:14440" placeholder="..." />
                 <marker date="1445517568000" expanded="false" signature="14103:14356" placeholder="..." />
                 <marker date="1445517568000" expanded="false" signature="14296:14313" placeholder="..." />
-                <marker date="1445517568000" expanded="false" signature="14608:20104" placeholder="..." />
+                <marker date="1445517568000" expanded="true" signature="14608:20104" placeholder="..." />
                 <marker date="1445517568000" expanded="false" signature="14655:16811" placeholder="{...}" />
                 <marker date="1445517568000" expanded="false" signature="14751:15243" placeholder="{...}" />
                 <marker date="1445517568000" expanded="false" signature="14827:15221" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
@@ -161,11 +162,11 @@
                 <marker date="1445517568000" expanded="false" signature="15909:16593" placeholder="{...}" />
                 <marker date="1445517568000" expanded="false" signature="16011:16565" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
                 <marker date="1445517568000" expanded="false" signature="16390:16519" placeholder="{...}" />
-                <marker date="1445517568000" expanded="false" signature="16854:17706" placeholder="{...}" />
-                <marker date="1445517568000" expanded="false" signature="16923:17690" placeholder="{...}" />
+                <marker date="1445517568000" expanded="true" signature="16854:17706" placeholder="{...}" />
+                <marker date="1445517568000" expanded="true" signature="16923:17690" placeholder="{...}" />
                 <marker date="1445517568000" expanded="false" signature="17030:17134" placeholder="{...}" />
-                <marker date="1445517568000" expanded="false" signature="17155:17642" placeholder="{...}" />
-                <marker date="1445517568000" expanded="false" signature="17184:17622" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
+                <marker date="1445517568000" expanded="true" signature="17155:17642" placeholder="{...}" />
+                <marker date="1445517568000" expanded="true" signature="17184:17622" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
                 <marker date="1445517568000" expanded="false" signature="17441:17596" placeholder="{...}" />
                 <marker date="1445517568000" expanded="false" signature="17745:18390" placeholder="{...}" />
                 <marker date="1445517568000" expanded="false" signature="17804:18374" placeholder="{...}" />
@@ -259,7 +260,7 @@
       <file leaf-file-name="CHhelper.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.471698">
+            <state vertical-scroll-proportion="-0.0">
               <caret line="65" column="74" selection-start-line="65" selection-start-column="74" selection-end-line="65" selection-end-column="74" />
               <folding>
                 <element signature="e#41#48#0#PHP" expanded="true" />
@@ -276,11 +277,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/partials/nav.blade.php">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.192308">
-              <caret line="59" column="76" selection-start-line="59" selection-start-column="76" selection-end-line="59" selection-end-column="76" />
+            <state vertical-scroll-proportion="-27.461538">
+              <caret line="59" column="48" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -294,8 +295,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/xchange/xchangeContentProviders/contentProvidersFilms.blade.php" />
-        <option value="$PROJECT_DIR$/../../magic/index.php" />
         <option value="$PROJECT_DIR$/../../magic/.htaccess" />
         <option value="$PROJECT_DIR$/../../magic/setup/view/layout/layout.phtml" />
         <option value="$PROJECT_DIR$/../../magic/setup/view/magento/setup/index.phtml" />
@@ -336,15 +335,17 @@
         <option value="$PROJECT_DIR$/resources/views/partnerStores/filmList_partial.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/store/settings/templates_tab.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Store/SettingsController.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Models/Zaccounts.php" />
         <option value="$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php" />
-        <option value="$PROJECT_DIR$/resources/views/partials/nav.blade.php" />
-        <option value="$PROJECT_DIR$/app/Models/ZOrders.php" />
         <option value="$PROJECT_DIR$/app/Models/ZaccountsView.php" />
+        <option value="$PROJECT_DIR$/resources/views/partials/nav.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Xchange/XchangeTitlesController.php" />
+        <option value="$PROJECT_DIR$/app/Models/ZOrders.php" />
+        <option value="$PROJECT_DIR$/resources/views/store/users/usersManagement.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Store/UserManagementController.php" />
         <option value="$PROJECT_DIR$/resources/views/store/users/list_partial.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/store/users/usersManagement.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/store/users/rentPurchFilms.blade.php" />
       </list>
     </option>
   </component>
@@ -393,6 +394,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -826,7 +828,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -905,14 +906,14 @@
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15405117" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15565032" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20324324" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20756757" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -980,20 +981,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/xchange/profile/cPProfile.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.269231">
-          <caret line="43" column="31" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xchange/CPTitlesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.13892078">
-          <caret line="47" column="19" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/store/profile/profileInfo_partial.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.66819745">
@@ -1189,13 +1176,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.692307">
-          <caret line="48" column="80" selection-start-line="48" selection-start-column="71" selection-end-line="48" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../kiwi/classes/Base.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1292,7 +1272,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1300,7 +1279,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19517796">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1324,23 +1302,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4098737">
           <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="107" selection-end-column="5" />
-          <folding>
-            <element signature="e#48#76#0#PHP" expanded="false" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Company.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33180252">
+          <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Zaccounts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27324915">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../shop/app/etc/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/partials/nav.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.192308">
-          <caret line="59" column="76" selection-start-line="59" selection-start-column="76" selection-end-line="59" selection-end-column="76" />
+        <state vertical-scroll-proportion="0.8011782">
+          <caret line="76" column="39" selection-start-line="76" selection-start-column="39" selection-end-line="76" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.471698">
+        <state vertical-scroll-proportion="0.0">
           <caret line="65" column="74" selection-start-line="65" selection-start-column="74" selection-end-line="65" selection-end-column="74" />
           <folding>
             <element signature="e#41#48#0#PHP" expanded="true" />
@@ -1356,68 +1352,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Company.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33180252">
-          <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Zaccounts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27324915">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Film.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4293915">
-          <caret line="22" column="28" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/ZOrders.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25373134">
-          <caret line="13" column="28" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/ZaccountsView.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.365079">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding>
-            <marker date="1456927786168" expanded="true" signature="540:863" placeholder="SELECT z_acc..z_accounts_view..." />
-            <marker date="1456927786168" expanded="true" signature="1031:1245" placeholder="SELECT z_acc..z_accounts_view..." />
-            <marker date="1456927786168" expanded="true" signature="1031:1255" placeholder="SELECT z_acc..z_accounts_view..." />
-            <marker date="1456927786168" expanded="true" signature="1031:1256" placeholder="SELECT z_acc..z_accounts_view..." />
-            <marker date="1456927786168" expanded="true" signature="1031:1411" placeholder="SELECT z_acc..z_accounts_view..." />
-            <marker date="1456927786168" expanded="true" signature="1031:1412" placeholder="SELECT z_acc..z_accounts_view..." />
-            <marker date="1456927786168" expanded="true" signature="1031:1426" placeholder="SELECT z_acc..z_accounts_view..." />
-            <marker date="1456927786168" expanded="true" signature="1576:1657" placeholder="SELECT COUNT..." />
-            <marker date="1456927786168" expanded="true" signature="1807:1933" placeholder="SELECT COUNT..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../shop/app/etc/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-27.461538">
+          <caret line="59" column="48" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../kiwi/classes/UserManagement.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.384615">
-          <caret line="139" column="66" selection-start-line="139" selection-start-column="59" selection-end-line="139" selection-end-column="66" />
+        <state vertical-scroll-proportion="-8.509091">
+          <caret line="348" column="65" selection-start-line="348" selection-start-column="62" selection-end-line="348" selection-end-column="65" />
           <folding>
             <element signature="e#964#1334#0#PHP" expanded="false" />
             <element signature="e#3741#3850#0#PHP" expanded="false" />
@@ -1425,12 +1371,7 @@
             <element signature="e#4267#4411#0#PHP" expanded="false" />
             <element signature="n#drawUsers#0;n#UserManagement#0;n#!!top" expanded="false" />
             <element signature="e#8565#8719#0#PHP" expanded="false" />
-            <element signature="n#getUserDetails#0;n#UserManagement#0;n#!!top" expanded="false" />
-            <element signature="e#11733#11971#0#PHP" expanded="false" />
-            <element signature="e#12001#12272#0#PHP" expanded="false" />
-            <element signature="e#12294#13682#0#PHP" expanded="false" />
             <element signature="e#12354#13093#0#PHP" expanded="false" />
-            <element signature="n#scripts#0;n#UserManagement#0;n#!!top" expanded="false" />
             <marker date="1445517568000" expanded="true" signature="328:400" placeholder="SELECT COUNT..z_accounts_view..." />
             <marker date="1445517568000" expanded="true" signature="437:559" placeholder="SELECT COUNT..z_accounts_view..." />
             <marker date="1445517568000" expanded="true" signature="2338:2411" placeholder="SELECT COUNT..z_accounts_view..." />
@@ -1461,18 +1402,18 @@
             <marker date="1445517568000" expanded="true" signature="10680:11256" placeholder="..." />
             <marker date="1445517568000" expanded="true" signature="10796:11221" placeholder="..." />
             <marker date="1445517568000" expanded="true" signature="11482:11551" placeholder="..." />
-            <marker date="1445517568000" expanded="false" signature="11749:11968" placeholder="SELECT z_ord..z_orders..." />
-            <marker date="1445517568000" expanded="false" signature="12017:12270" placeholder="SELECT z_ord..z_orders..." />
-            <marker date="1445517568000" expanded="false" signature="13346:13642" placeholder="..." />
-            <marker date="1445517568000" expanded="false" signature="13566:13583" placeholder="..." />
-            <marker date="1445517568000" expanded="false" signature="13746:14526" placeholder="..." />
-            <marker date="1445517568000" expanded="false" signature="13812:14490" placeholder="..." />
+            <marker date="1445517568000" expanded="true" signature="11749:11968" placeholder="SELECT z_ord..z_orders..." />
+            <marker date="1445517568000" expanded="true" signature="12017:12270" placeholder="SELECT z_ord..z_orders..." />
+            <marker date="1445517568000" expanded="true" signature="13346:13642" placeholder="..." />
+            <marker date="1445517568000" expanded="true" signature="13566:13583" placeholder="..." />
+            <marker date="1445517568000" expanded="true" signature="13746:14526" placeholder="..." />
+            <marker date="1445517568000" expanded="true" signature="13812:14490" placeholder="..." />
             <marker date="1445517568000" expanded="false" signature="13861:13964" placeholder="..." />
-            <marker date="1445517568000" expanded="false" signature="14025:14467" placeholder="..." />
-            <marker date="1445517568000" expanded="false" signature="14071:14440" placeholder="..." />
+            <marker date="1445517568000" expanded="true" signature="14025:14467" placeholder="..." />
+            <marker date="1445517568000" expanded="true" signature="14071:14440" placeholder="..." />
             <marker date="1445517568000" expanded="false" signature="14103:14356" placeholder="..." />
             <marker date="1445517568000" expanded="false" signature="14296:14313" placeholder="..." />
-            <marker date="1445517568000" expanded="false" signature="14608:20104" placeholder="..." />
+            <marker date="1445517568000" expanded="true" signature="14608:20104" placeholder="..." />
             <marker date="1445517568000" expanded="false" signature="14655:16811" placeholder="{...}" />
             <marker date="1445517568000" expanded="false" signature="14751:15243" placeholder="{...}" />
             <marker date="1445517568000" expanded="false" signature="14827:15221" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
@@ -1484,11 +1425,11 @@
             <marker date="1445517568000" expanded="false" signature="15909:16593" placeholder="{...}" />
             <marker date="1445517568000" expanded="false" signature="16011:16565" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
             <marker date="1445517568000" expanded="false" signature="16390:16519" placeholder="{...}" />
-            <marker date="1445517568000" expanded="false" signature="16854:17706" placeholder="{...}" />
-            <marker date="1445517568000" expanded="false" signature="16923:17690" placeholder="{...}" />
+            <marker date="1445517568000" expanded="true" signature="16854:17706" placeholder="{...}" />
+            <marker date="1445517568000" expanded="true" signature="16923:17690" placeholder="{...}" />
             <marker date="1445517568000" expanded="false" signature="17030:17134" placeholder="{...}" />
-            <marker date="1445517568000" expanded="false" signature="17155:17642" placeholder="{...}" />
-            <marker date="1445517568000" expanded="false" signature="17184:17622" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
+            <marker date="1445517568000" expanded="true" signature="17155:17642" placeholder="{...}" />
+            <marker date="1445517568000" expanded="true" signature="17184:17622" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
             <marker date="1445517568000" expanded="false" signature="17441:17596" placeholder="{...}" />
             <marker date="1445517568000" expanded="false" signature="17745:18390" placeholder="{...}" />
             <marker date="1445517568000" expanded="false" signature="17804:18374" placeholder="{...}" />
@@ -1506,38 +1447,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/store/users/usersManagement.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xchange/XchangeTitlesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-43.153847">
-          <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.37292162">
+          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+          <folding>
+            <element signature="e#48#76#0#PHP" expanded="true" />
+            <marker date="1457007602896" expanded="true" signature="-1:-1" placeholder="SELECT films..fk_films_owners..." />
+            <marker date="1457007602896" expanded="true" signature="-1:-1" placeholder="SELECT films..fk_films_owners..." />
+            <marker date="1457007602896" expanded="true" signature="-1:-1" placeholder="Select cc_fi..cc_vaults..." />
+            <marker date="1457007602896" expanded="true" signature="-1:-1" placeholder="Select COUNT..cc_vaults..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Film.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3903559">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="23" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/store/users/list_partial.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Models/ZOrders.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.807692">
-          <caret line="41" column="14" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="14" />
-          <folding>
-            <marker date="1456936403707" expanded="true" signature="2951:3112" placeholder="..." />
-            <marker date="1456936403707" expanded="true" signature="2983:3081" placeholder="..." />
-            <marker date="1456936403707" expanded="true" signature="3141:3255" placeholder="..." />
-            <marker date="1456936403707" expanded="true" signature="3284:3325" placeholder="..." />
-            <marker date="1456936403707" expanded="true" signature="3434:3540" placeholder="..." />
-            <marker date="1456936403707" expanded="true" signature="3695:3731" placeholder="..." />
-            <marker date="1456936403707" expanded="true" signature="3740:3778" placeholder="..." />
-            <marker date="1456936403707" expanded="true" signature="3770:3778" placeholder="{...}" />
-          </folding>
+        <state vertical-scroll-proportion="0.31228474">
+          <caret line="16" column="30" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Store/UserManagementController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.26865673">
-          <caret line="58" column="22" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
+        <state vertical-scroll-proportion="-12.218182">
+          <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
           <folding>
             <element signature="e#46#74#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/store/users/list_partial.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.73077">
+          <caret line="145" column="59" selection-start-line="145" selection-start-column="59" selection-end-line="145" selection-end-column="59" />
+          <folding>
+            <marker date="1457018310797" expanded="true" signature="4713:4819" placeholder="..." />
+            <marker date="1457018310797" expanded="true" signature="5042:5087" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/store/users/usersManagement.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.836364">
+          <caret line="93" column="1" selection-start-line="93" selection-start-column="1" selection-end-line="93" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/ZaccountsView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.653847">
+          <caret line="27" column="74" selection-start-line="27" selection-start-column="72" selection-end-line="27" selection-end-column="74" />
+          <folding>
+            <marker date="1456927786168" expanded="true" signature="540:863" placeholder="SELECT z_acc..z_accounts_view..." />
+            <marker date="1456927786168" expanded="true" signature="1031:1245" placeholder="SELECT z_acc..z_accounts_view..." />
+            <marker date="1456927786168" expanded="true" signature="1031:1255" placeholder="SELECT z_acc..z_accounts_view..." />
+            <marker date="1456927786168" expanded="true" signature="1031:1256" placeholder="SELECT z_acc..z_accounts_view..." />
+            <marker date="1456927786168" expanded="true" signature="1031:1411" placeholder="SELECT z_acc..z_accounts_view..." />
+            <marker date="1456927786168" expanded="true" signature="1031:1412" placeholder="SELECT z_acc..z_accounts_view..." />
+            <marker date="1456927786168" expanded="true" signature="1031:1426" placeholder="SELECT z_acc..z_accounts_view..." />
+            <marker date="1456927786168" expanded="true" signature="1576:1657" placeholder="SELECT COUNT..." />
+            <marker date="1456927786168" expanded="true" signature="1807:1933" placeholder="SELECT COUNT..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/store/users/rentPurchFilms.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11710677">
+          <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>

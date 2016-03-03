@@ -50,7 +50,7 @@
                     </select>
                 </div>
             </div>
-            <input type="hidden" name="filter[order]" value="id">
+            <input type="hidden" name="filter[order]" value="u_regdate">
             <input type="hidden" name="filter[orderType]" value="ASC">
         </form>
     </div>
@@ -61,14 +61,8 @@
 <script>
 $(document).ready(function(){
     $(document).on('click', '.filter', function(){
-        $('.ion-arrow-down-b').addClass('hidden');
         var order = $(this).attr('data-order');
-        var orderType = $(this).attr('data-orderType');
-        console.log(order);
-        if(orderType == 'ASC')
-            $(this).attr('data-orderType', 'DESC')
-        else
-            $(this).attr('data-orderType', 'ASC')
+        var orderType = ($('input[name="filter[orderType]"]').val() == "ASC")?"DESC":"ASC";
 
         $('input[name="filter[order]"]').val(order);
         $('input[name="filter[orderType]"]').val(orderType);

@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function()
     /*Xchange routing*/
     Route::get('xchange/contentProvider', 'Xchange\ProfileController@profileShow');
     Route::get('CPTitles', 'Xchange\CPTitlesController@CPTitlesShow');
-    Route::get('xchangeTitles', 'Xchange\XchangeTitlesController@xchangeTitlesShow');
+    Route::get('xchange/titles', 'Xchange\XchangeTitlesController@xchangeTitlesShow');
     Route::get('xchange/stores', 'Xchange\XchangeStoresController@xchangeStoresShow');
     Route::get('xchange/contentProviders', 'Xchange\XchangeContentProvidersController@contentProvidersShow');
     /*End Xchange routing*/
