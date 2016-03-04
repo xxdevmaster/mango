@@ -110,7 +110,7 @@
                                 {{ isset($val->uamount) ? $val->uamount : "" }}
                             </td>
                         </tr>
-                        <tr id="rentPurchFilms_{{ isset($val->id) ? $val->id : "" }}"></tr>
+                        <tr id="rentPurchFilms_{{ isset($val->id) ? $val->id : "" }}" class="rentOrPurchaseFilmsBox"></tr>
                     @endforeach
                 @endif
             </tbody>
@@ -143,7 +143,9 @@
                 var element = $(this);
                 var userID = $(this).data('id');
                 $.post('/store/usersManagement/getUserDetails', {userID:userID}, function(data){
-                    if($('#rentPurchFilms_'+userID).html() === '') {
+                    $('#rentPurchFilms_'+userID).html(data);
+                    $('#rentPurchFilms_'+userID).fadeToggle();
+                    /*if($('#rentPurchFilms_'+userID).html() === '') {
                         $('#rentPurchFilms_'+userID).fadeIn(function(){
                             $('#rentPurchFilms_'+userID).html(data);
                         });
@@ -151,7 +153,7 @@
                         $('#rentPurchFilms_'+userID).fadeOut(function(){
                             $('#rentPurchFilms_'+userID).html('');
                         });
-                    }
+                    }*/
                 });
             });
 

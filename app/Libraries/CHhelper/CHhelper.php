@@ -56,14 +56,14 @@ class CHhelper {
 		$storeID = $authUser->account->platforms_id;
 		$companyID = $authUser->account->companies_id;
 		if($companyID == 1)// cinehost
-			$totalQuery = "SELECT COUNT(*) as count  FROM z_accounts_view WHERE  z_accounts_view.activated=1  ";
+			$totalQuery = ZaccountsView::getUsersTotalInAuthCinehost();
 		else
-			$totalQuery = "SELECT COUNT(*) as count FROM z_accounts_view WHERE z_accounts_view.login_source='".$storeID."' AND z_accounts_view.activated=1  ";
+			$totalQuery = ZaccountsView::getUsersTotal($storeID);
 
-		if(ZaccountsView::hydrateRaw($totalQuery)->isEmpty())
+		if($totalQuery->isEmpty())
 			return 0;
 		else
-			return ZaccountsView::hydrateRaw($totalQuery)->first()->count;
+			return $totalQuery->first()->count;
 	}
 
 	public static function getAccountAllTitlesCount($platformID, $companyID, $filter = null)

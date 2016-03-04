@@ -18,10 +18,6 @@
                 <div class="panel-body">
                     <form id="titlesFilter">
                         <div class="form-group row">
-                            <!--div class="col-lg-8">
-                                <input type="text" class="dt form-control" id="dt-from" name="filter[search_word]" value="" placeholder="User Name or E-mail" />
-                            </div-->
-
                             <div class="col-lg-12" style="margin-top:30px;">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Title" value="" name="filter[searchWord]">
@@ -36,16 +32,16 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <select name="filter[vaultStatus]" class="form-control filter_select">
-                                    <option value="0">All Titles</option>
-                                    <option value="1">Included in  Xchange</option>
-                                    <option value="2">Not Included in Xchange</option>
+                                    <option value="0">All Titles in Xchange</option>
+                                    <option value="1">Included in My Store</option>
+                                    <option value="2">Not Included in My Store</option>
                                 </select>
                             </div>
                             <div class="col-lg-6">
-                                @if(isset($cp))
+                                @if(isset($companies))
                                     <select name="filter[pl]" id="filter[pl]" class="form-control filter_select">
-                                        <option value="" selected="selected">Stores</option>
-                                        @foreach($cp as $val => $key)
+                                        <option value="" selected="selected">Content Providers</option>
+                                        @foreach($companies as $val => $key)
                                             <option value="{{$key->id}}">{{ $key->title  }}</option>
                                         @endforeach
                                     </select>

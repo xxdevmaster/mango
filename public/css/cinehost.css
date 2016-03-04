@@ -315,3 +315,5 @@ margin-top: 20px;
 
 .isInVault {position: absolute;border: 3px solid #8090BD;top: 1%;left:25%; color: #FFF; font-size: 16px; padding: 4px 10px; border-radius: 50%; margin: 5px; background: #8090BD;
 }
+.rentOrPurchaseFilmsBox{display:none;}
+.rentOrPurchaseFilmsBox > td > .panel{min-height:250px;}

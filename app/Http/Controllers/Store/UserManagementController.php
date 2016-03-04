@@ -137,18 +137,20 @@ class UserManagementController extends Controller
         if($userID){
             if($this->companyID == 1)
                 $renPurchFilms = ZOrders::where('user_id', $userID)
-                    ->where('status', '1')
-                    ->where('test', '0')->get();
+                    ->where('z_orders.status', '1')
+                    ->where('z_orders.test', '0')
+                    ->join('cc_films', 'z_orders.films_id', '=', 'cc_films.id')
+                    ->select('z_orders.*', 'cc_films.id', 'cc_films.title')
+                    ->get();
             else
                 $renPurchFilms = ZOrders::where('user_id', $userID)
-                    ->where('wl', $this->storeID)
-                    ->where('status', '1')
-                    ->where('test', '0')->get();
-
-            if(!$renPurchFilms->isEmpty())
-                $renPurchFilms = $renPurchFilms->first()->usersFilms;
+                    ->where('z_orders.wl', $this->storeID)
+                    ->where('z_orders.status', '1')
+                    ->where('z_orders.test', '0')
+                    ->join('cc_films', 'z_orders.films_id', '=', 'cc_films.id')
+                    ->select('z_orders.*', 'cc_films.id', 'cc_films.title')
+                    ->get();
         }
-
         return view('store.users.rentPurchFilms', compact('renPurchFilms'))->render();
     }
 }

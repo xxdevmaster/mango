@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Auth;
 use App\Libraries\CHhelper\CHhelper;
-use App\Store;
 use App\Film;
 use App\Models\CronJobs;
 use DB;
@@ -23,6 +22,7 @@ use App\Models\Collections;
 use App\Models\SubchannelsFilms;
 use App\Models\Subchannels;
 use App\FilmOwners;
+use App\Company;
 
 class XchangeTitlesController extends Controller
 {
@@ -34,12 +34,15 @@ class XchangeTitlesController extends Controller
     {
         $this->request = $request;
         $this->authUser = Auth::user();
-        $this->platformsID = $this->authUser->account->platforms_id;
-        $this->companiesID = $this->authUser->account->companies_id;
+        $this->storeID = $this->authUser->account->platforms_id;
+        $this->companyID = $this->authUser->account->companies_id;
     }
 
     public function xchangeTitlesShow()
     {
+        $this->getOwnerFilms();
+
+
         $this->getData(0,['order' => 'id', 'ordertype' => '', 'vaultStatus' => '']);
         //dd($this->authUser->account->store->contracts);
         $films = collect();
@@ -47,45 +50,38 @@ class XchangeTitlesController extends Controller
         foreach($this->authUser->account->store->contracts as $val){
             $films[] =  $val->films;
         }
-        //dd($films);
-        //dd(Vaults::all());
-        //$cp = Store::getFilmStores($this->platformsID, $this->companiesID);
-        if(count($films) != 0)
-            $cp = $films->first()->companies->keyBy('id');
-        else
-            $cp = [];
-        $films = Film::getAccountAllTitles($this->platformsID, 0)->take(10)->keyBy('id');
-        //dd($films);
-        //dd($companies);
+
+
+        $films = Film::getAccountAllTitles($this->storeID, 0)->take(10)->keyBy('id');
+
+        $companies = $this->getContentProviders();
         $paginator = new LengthAwarePaginator($films, count($films), 20, 0);
-        return view('xchange.xchangeTitles.xchangeTitles', compact('films', 'cp', 'paginator'));
+        return view('xchange.xchangeTitles.xchangeTitles', compact('films', 'companies', 'paginator'));
     }
 
-    public function getVaultAllFilms(){
+    private function getContentProviders() {
+        return Company::where('cc_companies.title', '<>', '')
+                        ->join('cc_vaults', 'cc_companies.id', '=', 'cc_vaults.companies_id')
+                        ->select('cc_companies.id', 'cc_companies.title')
+                        ->groupBy('cc_companies.id')->get()->keyBy('id');
+    }
 
-        $vaults = Vaults::all();
-
-        return $vaults;
+    private function getVaultAllFilms()
+    {
+        return Vaults::lists('films_id')->toArray();
     }
 
     public function getOwnerFilms()
     {
-        $row = DB::table('cc_films')->select('cc_films.id')
+        return Film::select('cc_films.id')
             ->join('fk_films_owners', 'fk_films_owners.films_id', '=', 'cc_films.id')
             ->join('cc_vaults', 'cc_vaults.films_id', '=', 'cc_films.id')
-            ->where('fk_films_owners.owner_id', $this->companiesID)
-            ->orWhere('fk_films_owners.owner_id', $this->platformsID)
+            ->where('fk_films_owners.owner_id', $this->companyID)
+            ->orWhere('fk_films_owners.owner_id', $this->storeID)
             ->where('fk_films_owners.type', '0')
             ->orWhere('fk_films_owners.type', '1')
             ->where('fk_films_owners.role', '<', '2')
-            ->get();
-        $films = array();
-        foreach($row as $val){
-            array_push($films, $val->id);
-        }
-
-        //dd(Film::whereIn('id', $films)->get());
-        return $films;
+            ->get()->lists('id');
     }
 
     public function getData($pageIndex,$filterArray=''){
@@ -126,15 +122,15 @@ class XchangeTitlesController extends Controller
 
         /**/
         if ($filterArray['vaultStatus']==1) {
-            $pre_query = $pre_query = "INNER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id AND cc_channels_contracts.channel_id=".$this->platformsID."
+            $pre_query = $pre_query = "INNER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id AND cc_channels_contracts.channel_id=".$this->storeID."
                 WHERE 1=1 $filter_cp $filter  AND cc_films.deleted=0 ";
         }
         else if ($filterArray['vaultStatus']==2) {
-            $pre_query = "LEFT OUTER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id AND cc_channels_contracts.channel_id=".$this->platformsID."
+            $pre_query = "LEFT OUTER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id AND cc_channels_contracts.channel_id=".$this->storeID."
                 WHERE 1=1  $filter AND cc_channels_contracts.id IS NULL   AND cc_films.deleted=0";
         }
         else  {
-            $pre_query = "LEFT OUTER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id AND cc_channels_contracts.channel_id=".$this->platformsID."
+            $pre_query = "LEFT OUTER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id AND cc_channels_contracts.channel_id=".$this->storeID."
                 WHERE 1=1 $filter  AND cc_films.deleted=0";
         }
         $q="Select cc_films.*,cc_films.id AS film_id,cc_vaults.*,cc_vaults.id AS VID, cc_channels_contracts.id AS PLConn  FROM cc_vaults
@@ -143,7 +139,7 @@ class XchangeTitlesController extends Controller
                     $pre_query GROUP BY cc_vaults.films_id ORDER BY $sort ";
 
         $res = Film::hydrateRaw($q)->keyBy('id');
-
+        //dd($res);
         $qt="Select COUNT(cc_films.id)as total  FROM cc_vaults
                     INNER JOIN cc_films ON cc_films.id=cc_vaults.films_id
                     INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id

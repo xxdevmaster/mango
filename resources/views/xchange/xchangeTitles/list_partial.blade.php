@@ -44,7 +44,7 @@
 				</td>
 				<td>
 					<span>
-						<span>{{ $cp->implode('title', '&nbsp;,&nbsp;')  }}</span>
+						<span>{{ $companies->implode('title', '&nbsp;,&nbsp;')  }}</span>
 					</span>
 				</td>
 				<td>

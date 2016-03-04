@@ -30,13 +30,13 @@ class ZaccountsView extends Model
         return self::hydrateRaw($query);
     }
 
-    public static function getUsersTotalInAuthCinehost($condition)
+    public static function getUsersTotalInAuthCinehost($condition = '')
     {
         $query = "SELECT COUNT(*) as count FROM z_accounts_view WHERE  z_accounts_view.activated=1 $condition  ";
         return self::hydrateRaw($query);
     }
 
-    public static function getUsersTotal($storeID, $condition)
+    public static function getUsersTotal($storeID, $condition = '')
     {
         $query = "SELECT COUNT(*) as count FROM z_accounts_view WHERE z_accounts_view.login_source=".$storeID." AND z_accounts_view.activated=1 $condition  ";
         return self::hydrateRaw($query);
