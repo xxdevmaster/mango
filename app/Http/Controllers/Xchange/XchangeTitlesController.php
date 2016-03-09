@@ -31,6 +31,16 @@ class XchangeTitlesController extends Controller
 
     private $authUser;
 
+    private $storeID;
+
+    private $companyID;
+
+    private $limit = 20;
+
+    private $offset = 0;
+
+    private $page = 0;
+
     public function __construct(Request $request)
     {
         $this->request = $request;
@@ -41,11 +51,9 @@ class XchangeTitlesController extends Controller
 
     public function xchangeTitlesShow()
     {
-        $films = $this->getData();
-
         $companies = $this->getContentProviders();
-        $paginator = new LengthAwarePaginator($films, count($films), 20, 0);
-        return view('xchange.xchangeTitles.xchangeTitles', compact('films', 'companies', 'paginator'));
+
+        return view('xchange.xchangeTitles.xchangeTitles', compact('companies'), $this->getData());
     }
 
     private function getContentProviders() {
@@ -130,12 +138,13 @@ class XchangeTitlesController extends Controller
             $preQuery = "LEFT OUTER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id AND cc_channels_contracts.channel_id=".$this->storeID."
                 WHERE 1=1 $filter  AND cc_films.deleted=0";
         }
+
         $q="Select cc_films.*,cc_films.id as filmID,cc_vaults.*,cc_vaults.id as vaultID, cc_channels_contracts.id as channelContractID  FROM cc_vaults
                     INNER JOIN cc_films ON cc_films.id=cc_vaults.films_id
                     INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id
                     $preQuery GROUP BY cc_vaults.films_id ORDER BY $sort ";
 
-        $res = Film::hydrateRaw($q);
+        $res = Film::hydrateRaw($q)->keyBy('id');
         //dd($res);
         $qt="Select COUNT(cc_films.id) as count  FROM cc_vaults
                     INNER JOIN cc_films ON cc_films.id=cc_vaults.films_id
@@ -152,7 +161,7 @@ class XchangeTitlesController extends Controller
 
        // $res_deleted = G('DB')->query("SELECT cc_vaults.films_id, cc_vaults.companies_id, cc_vaults.delete_dt  FROM cron_jobs inner join cc_vaults on cron_jobs.films_id=cc_vaults.films_id");
         $resDeleted = CronJobs::join('cc_vaults', 'cron_jobs.films_id', '=', 'cc_vaults.films_id')->select('cc_vaults.films_id', 'cc_vaults.companies_id', 'cc_vaults.delete_dt')->get();
-        //dd($resDeleted);
+
         foreach($resDeleted as $key => $val) {
             if($val->delete_dt > 0)
                 $filmsDelete['AllTeritories'][$val->films_id] = $val->delete_dt;
@@ -162,16 +171,18 @@ class XchangeTitlesController extends Controller
 
         $films = $this->getVaultAllFilms();
 
-        $filmStores = $this->getFilmsPlatforms($films);
+        $filmStores = $this->getFilmsStores($films);
         $filmsOwners = $this->getOwnerFilms();
         $filmsContentProviders = $this->getFilmsContentProviders($films);
 
-        return new LengthAwarePaginator();
+        $items = new LengthAwarePaginator($res, $resTotal, $this->limit, $this->page);
+
+        return compact('items', 'filmsOwners', 'filmStores', 'filmsContentProviders');
         /*
         $this->classObj->filmsDelete =$filmsDelete;*/
     }
 
-    private function getFilmsPlatforms($films)
+    private function getFilmsStores($films)
     {
         return Store::join('fk_films_owners', 'cc_channels.id', '=', 'fk_films_owners.owner_id')
                 ->where('type', '1')
@@ -180,7 +191,8 @@ class XchangeTitlesController extends Controller
                 ->get()->keyBy('films_id')->lists('title', 'films_id');
     }
 
-    public function getFilmsContentProviders($films) {
+    public function getFilmsContentProviders($films)
+    {
         return Company::join('fk_films_owners', 'cc_companies.id', '=', 'fk_films_owners.owner_id')
             ->where('type', '0')
             ->whereIn('fk_films_owners.films_id', $films)

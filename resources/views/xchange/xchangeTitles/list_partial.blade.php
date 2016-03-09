@@ -1,5 +1,5 @@
-@if(isset($films))
-	@foreach($films as $key => $val)
+@if(!empty($items->items()))
+	@foreach($items->items() as $key => $val)
 		@if(isset($val->delete_dt))
 			<tr>
 				<td style="width:20px;">
@@ -16,14 +16,20 @@
 				</td>
 				<td>
 					<span>
-						<span>{{ $cp->implode('title', '&nbsp;,&nbsp;')  }}</span>
+						@foreach($filmStores as $k => $v)
+							{{$k}}
+							@if($k == $key)
+								{{ $v }}
+							@endif
+						@endforeach
 					</span>
 				</td>
-				<td>
-
-				</td>
-				<td>
-					<a href="/titles/metadata/{{ $key  }}" class="view-link text-primary">Edit</a>
+				<td class="text-right">
+					@if(isset($val->V_ID))
+						<button data-filmid="{{ isset($key) ? $key : '' }}" class="btn btn-danger btn-sm soloActDeleteFromStore cp">Remove from My Store</button>
+					@else
+						<button data-filmid="{{ isset($key) ? $key : '' }}" class="btn btn-primary btn-sm soloActAddToStore cp">Add to My Store</button>
+					@endif
 				</td>
 			</tr>
 	   @else
@@ -44,18 +50,19 @@
 				</td>
 				<td>
 					<span>
-						<span>{{ $companies->implode('title', '&nbsp;,&nbsp;')  }}</span>
+						@foreach($filmStores as $k => $v)
+							@if($k == $key)
+								{{ $v }}
+							@endif
+						@endforeach
 					</span>
 				</td>
-				<td>
+				<td class="text-right">
 					@if(isset($val->V_ID))
 						<button data-filmid="{{ isset($key) ? $key : '' }}" class="btn btn-danger btn-sm soloActDeleteFromStore cp">Remove from My Store</button>
 					@else	
-					<button data-filmid="{{ isset($key) ? $key : '' }}" class="btn btn-primary btn-sm soloActAddToStore cp">Add to My Store</button>
+						<button data-filmid="{{ isset($key) ? $key : '' }}" class="btn btn-primary btn-sm soloActAddToStore cp">Add to My Store</button>
 					@endif
-				</td>
-				<td>
-					<a href="/titles/metadata/{{ $key  }}" class="view-link text-primary">Edit</a>
 				</td>
 			</tr>
 		@endif

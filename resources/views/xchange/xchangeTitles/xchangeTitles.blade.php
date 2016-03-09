@@ -54,7 +54,7 @@
         </div>
     </div>
     <div id="topPager" class="text-right">
-        {!! $paginator->render() !!}
+        {!! $items->render() !!}
     </div>
     <form id="vaultBulkForm" onsubmit="return false" class="panel panel-default">
         <div id="VaultCPContainer">
@@ -82,8 +82,7 @@
                         <span class="pull-left AscDescIcon "></span>
                     </td>
                     <td>Stores</td>
-                    <td>Xchange</td>
-                    <td></td>
+                    <td class="text-right">Xchange</td>
                 </tr>
                 <tbody id="listContent">
                     @include('xchange.xchangeTitles.list_partial')
@@ -92,7 +91,7 @@
         </div>
     </form>
     <div id="bottomPager" class="text-right">
-        {!! $paginator->render() !!}
+        {!! $items->render() !!}
     </div>
     <script>
         $( document ).ready(function() {

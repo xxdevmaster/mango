@@ -37,7 +37,7 @@
         <li class="has-submenu {{ ($current_menu == 'allTitles')?'active':''  }}"><a href="#"><i class="ion-flask"></i> <span class="nav-label">General</span></a>
             <ul class="list-unstyled">
                 <li {{ ($current_menu == 'allTitles')?'class=active':''  }}><a href="{{ action('TitlesController@index') }}">All Titles (Total 100)</a></li>
-                <li><a href="buttons.html">Sales</a></li>
+                <li><a class="menuDisabled" href="buttons.html">Sales</a></li>
             </ul>
         </li>
         @if($CHpermissons->isCPPL() || $CHpermissons->isCP())
@@ -54,20 +54,20 @@
             <ul class="list-unstyled">
                 <li><a href="/store/profile">Store Profile</a></li>
                 <li><a href="/store/settings">Store Settings</a></li>
-                <li><a href="/store/contentProviders">Content Providers</a></li>
+                <li><a class="menuDisabled" href="/store/contentProviders">Content Providers</a></li>
                 <li>
                     <a href="/store/userManagement">
                         @inject('helper', 'App\Libraries\CHhelper\CHhelper')
                         Users (Total {{ $helper->countUsers() }})
                     </a>
                 </li>
-                <li><a href="/store/slider">Slider</a></li>
-                <li><a href="/store/channelsManager">Channels Manager</a></li>
-                <li><a href="/store/subscription">Subscription</a></li>
-                <li><a href="/store/subscribersManagement">Subscribers</a></li>
-                <li><a href="/store/frontPageManager">Front Page Manager</a></li>
-                <li><a href="/store/giftvoucher">Gift Vauchers</a></li>
-                <li><a href="/store/urlSetup">Url Setup</a></li>
+                <li><a class="menuDisabled" href="/store/slider">Slider</a></li>
+                <li><a class="menuDisabled" href="/store/channelsManager">Channels Manager</a></li>
+                <li><a class="menuDisabled" href="/store/subscription">Subscription</a></li>
+                <li><a class="menuDisabled" href="/store/subscribersManagement">Subscribers</a></li>
+                <li><a class="menuDisabled" href="/store/frontPageManager">Front Page Manager</a></li>
+                <li><a class="menuDisabled" href="/store/giftvoucher">Gift Vauchers</a></li>
+                <li><a class="menuDisabled" href="/store/urlSetup">Url Setup</a></li>
             </ul>
         </li>
         @endif
@@ -82,18 +82,32 @@
         @endif
         <li class="has-submenu"><a href="#"><i class="ion-stats-bars"></i> <span class="nav-label">Account Settings</span></a>
             <ul class="list-unstyled">
-                <li><a href="morris-chart.html">Account Details</a></li>
+                <li><a class="menuDisabled" href="morris-chart.html">Account Details</a></li>
                 @if($user->is('owner|administrator'))
                     <li {{ ($current_menu == 'account_users')?'class=active':''  }}><a href="{{ action('Account\UsersController@listAll') }}">Account Users</a></li>
                 @endif
-                <li><a href="{{ action('Account\UsersController@listAll') }}">Features Manager</a></li>
-                <li><a href="flot-chart.html">Payment Methods</a></li>
-                <li><a href="rickshaw-chart.html">Banking Info</a></li>
-                <li><a href="peity-chart.html">Storage</a></li>
-                <li><a href="c3-chart.html">Streaming</a></li>
-                <li><a href="other-chart.html">My Profile</a></li>
+                <li><a class="menuDisabled" href="{{ action('Account\UsersController@listAll') }}">Features Manager</a></li>
+                <li><a class="menuDisabled" href="flot-chart.html">Payment Methods</a></li>
+                <li><a class="menuDisabled" href="rickshaw-chart.html">Banking Info</a></li>
+                <li><a class="menuDisabled" href="peity-chart.html">Storage</a></li>
+                <li><a class="menuDisabled" href="c3-chart.html">Streaming</a></li>
+                <li><a class="menuDisabled" href="other-chart.html">My Profile</a></li>
             </ul>
         </li>
         @endif
     </ul>
 </nav>
+
+
+<style>
+    .menuDisabled, .menuDisabled:hover {
+        opacity:0.1 !important;
+        color:#ddd !important;
+        cursor:text !important;
+    }
+</style>
+<script>
+    $('.menuDisabled').click(function(){
+        return false;
+    });
+</script>

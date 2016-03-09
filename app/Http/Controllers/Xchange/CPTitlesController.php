@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Xchange;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -23,33 +23,42 @@ class CPTitlesController extends Controller
 
     private $authUser;
 
-	private $platformsID;
+	private $storeID;
 
-	private $countriesID;
+	private $companyID;
+
+	private $company;
+
+	private $limit = 20;
+
+	private $offset = 0;
+
+	private $page = 0;
 
     public function __construct(Request $request)
     {
         $this->request = $request;
         $this->authUser = Auth::user();
-		$this->platformsID = $this->authUser->account->platforms_id;
-		$this->companiesID = $this->authUser->account->companies_id;
+		$this->storeID = $this->authUser->account->platforms_id;
+		$this->company = $this->authUser->account->company;
+		$this->companyID = $this->authUser->account->companies_id;
     }
 
     public function CPTitlesShow()
     {
+		$allFilms = $this->getAllFilms();
+		$this->getFilmsPlatforms($allFilms);
+
 		$films = $this->getFilmsCp();
-		$stores = Store::getFilmStores($this->platformsID, $this->companiesID);
+		$stores = Store::getFilmStores($this->storeID, $this->companyID);
         return view('xchange.CPTitles.CPTitles', compact('films', 'stores'));
     }
 
 	public function getFilmsCp()
 	{
-        $company = $this->authUser->account->company;
-        $company_ID = $this->authUser->account->company->id;
+        $films = $this->company->films->keyBy('id');
 
-
-        $films = $company->films->keyBy('id');
-        $vaults = $this->authUser->account->company->vaults->keyBy('films_id');
+        $vaults = $this->company->vaults->keyBy('films_id');
         foreach($films as $key => &$val){
             foreach($vaults as $k => $v){
                 if($key == $k){
@@ -58,9 +67,25 @@ class CPTitlesController extends Controller
                 }
             }
         }
-		return $films;
+
+		$filmsTotal = $this->company->filmsTotal->first()->count;
+
+		return new LengthAwarePaginator($films, $filmsTotal, $this->limit, $this->page);
 	}
-	
+
+	private function getAllFilms(){
+		return $this->company->films->lists('id')->toArray();
+	}
+
+	public function getFilmsPlatforms($films)
+	{
+		return Store::join('fk_films_owners', 'cc_channels.id', '=', 'fk_films_owners.owner_id')
+					->where('type', '1')->whereIn('fk_films_owners.films_id', $films)
+					->select('cc_channels.title', 'fk_films_owners.films_id')->get()
+					->lists('title', 'films_id')->toArray();
+
+	}
+
     /**
      *@POST("/CPTitles/soloActAddToVault")
      * @Middleware("auth")
@@ -68,15 +93,13 @@ class CPTitlesController extends Controller
      */
     public function soloActAddToVault()
     {
-        $company_ID = $this->authUser->account->company->id;
-
         Vaults::create([
             'films_id' => $this->request->filmId ,
-            'companies_id' => $company_ID
+            'companies_id' => $this->companyID
         ]);
 		
 		$films = $this->getFilmsCp();
-		$stores = Store::getFilmStores($this->platformsID, $this->companiesID);
+		$stores = Store::getFilmStores($this->storeID, $this->companyID);
 		return view('xchange.CPTitles.list_partial', compact('films', 'stores'))->render();
     }    
 	
@@ -87,12 +110,8 @@ class CPTitlesController extends Controller
      */
     public function soloActDeleteFromVault()
     {
-        $company_ID = $this->authUser->account->company->id;
-
-		$vault = Vaults::where('films_id', $this->request->filmId)->where('companies_id', $company_ID)->select('cc_vaults.id')->get();
-		$vault_ID = $vault->first()->id;
-
-		//$res= G('DB')->query($q = "SELECT * FROM fk_channels_vaults WHERE vaults_id = '".$vaultId->id."'");$qq[]=$q;
+		$vault = Vaults::where('films_id', $this->request->filmId)->where('companies_id', $this->companyID)->select('cc_vaults.id')->get();
+		$vaultID = $vault->first()->id;
 		$channelsVaults = $vault->first()->channelsVaults;
 		
 		$i = 0;
@@ -100,33 +119,32 @@ class CPTitlesController extends Controller
 		
 		foreach($channelsVaults as $key => $val){
 			$i++;
-			$channelsConnectedToThisFilm[]=array('channel_id' => $val->channels_id, 'vault_id' => $vault_ID, 'film_id' => $this->request->filmId);
+			$channelsConnectedToThisFilm[]=array('channel_id' => $val->channels_id, 'vault_id' => $vaultID, 'film_id' => $this->request->filmId);
 		}
 
 		if($i == 0){
-			Vaults::where('films_id', $this->request->filmId)->where('companies_id', $company_ID)->delete();
+			Vaults::where('films_id', $this->request->filmId)->where('companies_id', $this->companyID)->delete();
 		}
 		else{
 			$this->notifyPlatformsAboutDeleting($channelsConnectedToThisFilm);
 		} 
 		
 		$films = $this->getFilmsCp();
-		$stores = Store::getFilmStores($this->platformsID, $this->companiesID);
+		$stores = Store::getFilmStores($this->storeID, $this->companyID);
 		return view('xchange.CPTitles.list_partial', compact('films', 'stores'))->render();
     }
 
 	private function notifyPlatformsAboutDeleting($platforms)
 	{
-        $company_ID = $this->authUser->account->company->id;
 		$countries = array();
         foreach ($platforms AS $k =>$v){
-			$vault_ID = $v['vault_id'];
-			$film_ID = $v['film_id'];
-            $channel_ID = $v['channel_id'];
+			$vaultID = $v['vault_id'];
+			$filmID = $v['film_id'];
+            $channelID = $v['channel_id'];
 
             $res = Countries::join('cc_geo_contracts', 'cc_geo_contracts.countries_id', '=', 'cc_countries.id')
-                ->where('cc_geo_contracts.films_id', $film_ID)
-                ->where('cc_geo_contracts.companies_id', $channel_ID)
+                ->where('cc_geo_contracts.films_id', $filmID)
+                ->where('cc_geo_contracts.companies_id', $channelID)
                 ->where('cc_geo_contracts.deleted', '0')
                 ->get();
 
@@ -134,9 +152,9 @@ class CPTitlesController extends Controller
                 $countries[] = $v->country_title;
             }
 
-            $filmInfo = Film::where('id', $film_ID)->get()->first();
+            $filmInfo = Film::where('id', $filmID)->get()->first();
 
-            $account = Account::where('platforms_id', $channel_ID)->get();
+            $account = Account::where('platforms_id', $channelID)->get();
             $accountMails = User::where('accounts_id', $account->first()->id)
                                   ->where('cms_role', '<', '2')
                                   ->select('email', 'person', 'cms_role')
@@ -156,8 +174,8 @@ class CPTitlesController extends Controller
 				'to' =>  array(array('email' => 'lyov.karamyan@mail.ru', 'name' => 'Levon', 'type' => 'to'))//$rcpts
             );
 
-			$template_name = 'VaultFilmDeleteNotifyPlatforms';
-			$template_content = array(
+			$templateName = 'VaultFilmDeleteNotifyPlatforms';
+			$templateContent = array(
 				array(
 					'name' => 'FilmName',
 					'content' => '<a href="http://pro.cinehost.com/titles/metadata/'.$filmInfo->id.'">'.$filmInfo->title.'</a>'
@@ -168,22 +186,21 @@ class CPTitlesController extends Controller
 				)
 			);
 
-			$mandrill->messages->sendTemplate($template_name, $template_content, $message);
+			$mandrill->messages->sendTemplate($templateName, $templateContent, $message);
         }		
-		
-		$company_ID = $this->authUser->account->company->id;
+
         $today = strtotime(date("Y-m-d H:i:s"));
         $dt = date("Y-m-d H:i:s",strtotime("+48 hour", $today));
 		
-		Vaults::where('id', $vault_ID)->update([
+		Vaults::where('id', $vaultID)->update([
 			'delete_dt' => $dt
 		]);
 		
 		CronJobs::create([
-			'vaults_id' => $vault_ID ,
+			'vaults_id' => $vaultID ,
 			'delete_dt' => $dt ,
-			'companies_id' => $company_ID ,
-			'films_id' => $film_ID
+			'companies_id' => $this->companyID ,
+			'films_id' => $filmID
 		]);	
 	}
 	
@@ -194,20 +211,19 @@ class CPTitlesController extends Controller
     public function bulkActAddToVault()
     {
 		if(!empty($this->request->Input('filmsNotInVault'))){
-			$company_ID = $this->authUser->account->company->id;
 			foreach($this->request->Input('filmsNotInVault') as $key => $value){
 				if($value == 'on'){
-					$films_ID = CHhelper::filterInputInt($key);
+					$filmsID = CHhelper::filterInputInt($key);
 					Vaults::create([
-						'films_id' => $films_ID ,
-						'companies_id' => $company_ID
+						'films_id' => $filmsID ,
+						'companies_id' => $this->companyID
 					]);
 				}
 			}				
 		}
 		
 		$films = $this->getFilmsCp();
-		$stores = Store::getFilmStores($this->platformsID, $this->companiesID);
+		$stores = Store::getFilmStores($this->storeID, $this->companyID);
 		return view('xchange.CPTitles.list_partial', compact('films', 'stores'))->render();
     }
 
@@ -218,23 +234,22 @@ class CPTitlesController extends Controller
     public function bulkActDeleteFromVault()
 	{    
 		if(!empty($this->request->Input('filmsInVault'))){
-			$company_ID = $this->authUser->account->company->id; 
 			foreach($this->request->Input('filmsInVault') AS $k =>$v){
 				if ($v=='on')
 				{
 					$i = 0;
-					$vault = Vaults::where('films_id', $k)->where('companies_id', $company_ID)->select('cc_vaults.id')->get();
-					$vault_ID = $vault->first()->id;
+					$vault = Vaults::where('films_id', $k)->where('companies_id', $this->companyID)->select('cc_vaults.id')->get();
+					$vaultID = $vault->first()->id;
 					
 					$channelsVaults = $vault->first()->channelsVaults;
 
 					foreach($channelsVaults as $key => $val){
 						$i++;
-						$channelsConnectedToThisFilm[]=array('channel_id' => $val->channels_id, 'vault_id' => $vault_ID, 'film_id' => $k);
+						$channelsConnectedToThisFilm[]=array('channel_id' => $val->channels_id, 'vault_id' => $vaultID, 'film_id' => $k);
 					}
 
 					if($i==0){
-						Vaults::where('films_id', $k)->where('companies_id', $company_ID)->delete();
+						Vaults::where('films_id', $k)->where('companies_id', $this->companyID)->delete();
 					}
 					else{
 						$this->notifyPlatformsAboutDeleting($channelsConnectedToThisFilm);
@@ -243,8 +258,9 @@ class CPTitlesController extends Controller
 			}			
 		}
 		$films = $this->getFilmsCp();
-		$stores = Store::getFilmStores($this->platformsID, $this->companiesID);
-		return view('xchange.CPTitles.list_partial', compact('films'), 'stores')->render();
+		$stores = Store::getFilmStores($this->storeID, $this->companyID);
+
+		return view('xchange.CPTitles.list_partial', compact('films', 'stores'))->render();
     }
 	
 }

@@ -19,8 +19,12 @@ class Company extends Model
     }*/
 
 
-    public function films(){
+    public function films($limit = 20, $offset = 0){
         return $this->belongsToMany('App\Film', 'fk_films_owners', 'owner_id', 'films_id')->where('cc_films.deleted', '0');
+    }
+
+    public function filmsTotal(){
+        return $this->belongsToMany('App\Film', 'fk_films_owners', 'owner_id', 'films_id')->where('cc_films.deleted', '0')->select(DB::raw('COUNT(*) as total'));
     }
 
     public function stores(){

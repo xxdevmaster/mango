@@ -18,7 +18,6 @@
 | loading any of our classes later on. It feels nice to relax.
 |
 */
-//ini_set ('xdebug.max_nesting_level', 200);
 require __DIR__.'/../bootstrap/autoload.php';
 
 /*
