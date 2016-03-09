@@ -1,9 +1,9 @@
 <?php
-namespace App\Libraries\CHpermissons;
+namespace App\Libraries\CHpermissions;
 
 use Auth;
 
-class CHpermissons {
+class CHpermissions {
 	private $authUser;
 	
 	private $authAccount;

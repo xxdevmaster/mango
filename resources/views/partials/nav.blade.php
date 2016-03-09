@@ -36,11 +36,16 @@
         <li {{ ($current_menu == 'dashboard')?'class=active':''  }}><a href="/"><i class="ion-home"></i> <span class="nav-label">Dashboard</span></a></li>
         <li class="has-submenu {{ ($current_menu == 'allTitles')?'active':''  }}"><a href="#"><i class="ion-flask"></i> <span class="nav-label">General</span></a>
             <ul class="list-unstyled">
-                <li {{ ($current_menu == 'allTitles')?'class=active':''  }}><a href="{{ action('TitlesController@index') }}">All Titles (Total 100)</a></li>
+                <li {{ ($current_menu == 'allTitles')?'class=active':''  }}>
+                    <a href="{{ action('TitlesController@index') }}">
+                        @inject('helper', 'App\Libraries\CHhelper\CHhelper')
+                        All Titles (Total {{ $helper->getTitlesTotal() }})
+                    </a>
+                </li>
                 <li><a class="menuDisabled" href="buttons.html">Sales</a></li>
             </ul>
         </li>
-        @if($CHpermissons->isCPPL() || $CHpermissons->isCP())
+        @if($CHpermissions->isCPPL() || $CHpermissions->isCP())
         <li class="has-submenu"><a href="#"><i class="ion-settings"></i> <span class="nav-label">My Content</span></a>
             <ul class="list-unstyled">
                 <li {{ ($current_menu == 'Company Profile')?'class=active':''  }}><a href="/xchange/contentProvider">Content Provider Profile</a></li>
@@ -49,7 +54,7 @@
             </ul>
         </li>
         @endif
-        @if($CHpermissons->isTrueCP())
+        @if($CHpermissions->isTrueCP())
         <li class="has-submenu"><a href="#"><i class="ion-compose"></i> <span class="nav-label">My Store</span></a>
             <ul class="list-unstyled">
                 <li><a href="/store/profile">Store Profile</a></li>
@@ -71,7 +76,7 @@
             </ul>
         </li>
         @endif
-        @if($CHpermissons->isPL() || $CHpermissons->isCPPL())
+        @if($CHpermissions->isPL() || $CHpermissions->isCPPL())
         <li class="has-submenu"><a href="#"><i class="ion-grid"></i> <span class="nav-label">Xchange</span></a>
             <ul class="list-unstyled">
                 <li><a href="/xchange/titles">Titles</a></li>

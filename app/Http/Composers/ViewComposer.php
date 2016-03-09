@@ -1,7 +1,7 @@
 <?php namespace App\Http\Composers;
 
 use Illuminate\Support\Facades\Auth;
-use App\Libraries\CHpermissons\CHpermissons;
+use App\Libraries\CHpermissions\CHpermissions;
 
 class ViewComposer {
 
@@ -10,10 +10,10 @@ class ViewComposer {
     }
 
     public function nav($view){
-        $CHpermissons = new CHpermissons();
+        $CHpermissions = new CHpermissions();
         $user =  Auth::user();
 
-        $view->with(compact('user','CHpermissons'));
+        $view->with(compact('user','CHpermissions'));
     }
 
 

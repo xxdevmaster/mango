@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 
 use Auth;
-use App\Libraries\CHpermissons\CHpermissons;
+use App\Libraries\CHpermissions\CHpermissions;
 use App\BaseContracts;
 use App\FilmOwners;
 
@@ -25,9 +25,9 @@ class RightsMiddleware
         $authUser = Auth::user();
         $authAccount = $authUser->account;
         $platformID = $authAccount->platforms_id;
-		$CHpermissons = new CHpermissons();
+		$CHpermissions = new CHpermissions();
 
-		if($CHpermissons->isCPPL()){
+		if($CHpermissions->isCPPL()){
             $this->rightsPermission['action'] = 'CPPL';
             $this->rightsPermission['showCp'] = true;
             $this->rightsPermission['havePlatform'] = true;
@@ -35,7 +35,7 @@ class RightsMiddleware
 			if($baseContactID > 0){
                 $ownerInfo = $request->film->filmOwners->where('owner_id', $platformID)->first();
 				$actionType = 'You are now acting as a <span class="proxBold">Store.</span>';
-                if ($CHpermissons->isAllowAct('update', 'rights', $ownerInfo->role)){
+                if ($CHpermissions->isAllowAct('update', 'rights', $ownerInfo->role)){
                     $baseContactID = $request->film->basecontract->id;
                     if($baseContactID > 0){
                         $this->rightsPermission['actionType'] = 'You are now acting as a <span class="proxBold">Store</span> — <a class="cp" onclick="changeCPPL(\'CP\',\''.$request->film->id.'\')">Change to Content Provider</a>.';
@@ -62,7 +62,7 @@ class RightsMiddleware
                 }
             }			
 		}
-        else if($CHpermissons->isCP()){
+        else if($CHpermissions->isCP()){
             $baseContactID = $request->film->basecontract->id;
             if ($baseContactID > 0){
                 $this->rightsPermission['action'] = 'CP';
@@ -73,7 +73,7 @@ class RightsMiddleware
                 $this->rightsPermission['message'] = 'There is no any contract, please contact with administrator (support@cinehost.com)';
             }
         }
-        else if ($CHpermissons->isPL()){
+        else if ($CHpermissions->isPL()){
                 $baseContactID = $request->film->basecontract->id;
                 if($baseContactID > 0){
                     $this->rightsPermission['action'] = 'PL';
