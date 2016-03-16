@@ -26,7 +26,7 @@ class CHhelper {
 	
 	public static function filterInputInt($data) 
 	{
-		$data = mb_substr($data, 0, 11);
+		//$data = mb_substr($data, 0, 11);
 		return (int) trim(abs(strip_tags($data)));
 	}
 

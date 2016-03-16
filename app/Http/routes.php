@@ -18,6 +18,7 @@ Route::get('auth/login/{login}/{password}', 'AuthController@login');
 Route::get('auth/logout', 'AuthController@logout');
 Route::group(['middleware' => 'auth'], function()
 {
+
     Route::get('/', 'MainController@dashboard');
     Route::resource('titles', 'TitlesController');
 
@@ -47,6 +48,8 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('store/profile', 'Store\ProfileController@profileShow');
     Route::get('store/settings', 'Store\SettingsController@settingsShow');
     Route::get('store/userManagement', 'Store\UserManagementController@usersShow');
+    Route::get('store/contentProviders', 'Store\ContentProvidersController@contentProvidersShow');
+    Route::get('store/slider', 'Store\SliderController@sliderShow');
 
 
     Route::get('account/users', [

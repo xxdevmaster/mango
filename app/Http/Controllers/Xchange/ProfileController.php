@@ -85,6 +85,7 @@ class ProfileController extends Controller
 			'logo' => 'nologo.png',
 		]);		
 	}
+
 	/**
      *@POST("/xchange/profile/uploadLogo")
      * @Middleware("auth")

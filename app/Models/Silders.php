@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Silders extends Model
 {
-    protected $table = "cc_silders";
+    protected $table = "cc_sliders";
 	
     public $timestamps = false;
 	

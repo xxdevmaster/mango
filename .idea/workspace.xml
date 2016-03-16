@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d970e7cb-79be-44a7-bbf3-f440f7349167" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/store/contentProviders/contentProviderFilms.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/store/contentProviders/filmList_partial.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Account.php" afterPath="$PROJECT_DIR$/app/Account.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php" afterPath="$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Libraries/CHpermissions/CHpermissions.php" afterPath="$PROJECT_DIR$/app/Libraries/CHpermissions/CHpermissions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/RightsMiddleware.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/RightsMiddleware.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Composers/ViewComposer.php" afterPath="$PROJECT_DIR$/app/Http/Composers/ViewComposer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Xchange/ProfileController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Xchange/ProfileController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Silders.php" afterPath="$PROJECT_DIR$/app/Models/Silders.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Store.php" afterPath="$PROJECT_DIR$/app/Store.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Xchange/XchangeStoresController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Xchange/XchangeStoresController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/partials/nav.blade.php" afterPath="$PROJECT_DIR$/resources/views/partials/nav.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mango.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,301 +35,131 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CPTitlesController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xchange/CPTitlesController.php">
+      <file leaf-file-name="SliderController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Store/SliderController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73675764">
-              <caret line="43" column="66" selection-start-line="43" selection-start-column="66" selection-end-line="43" selection-end-column="66" />
+            <state vertical-scroll-proportion="-23.538462">
+              <caret line="39" column="112" selection-start-line="39" selection-start-column="105" selection-end-line="39" selection-end-column="112" />
               <folding>
-                <element signature="e#48#76#0#PHP" expanded="true" />
+                <element signature="e#46#74#0#PHP" expanded="true" />
+                <marker date="1458138828789" expanded="true" signature="1957:2044" placeholder="SELECT * FRO..fk_sliders_images..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CHhelper.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php">
+      <file leaf-file-name="slider.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/store/slider/slider.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.756098">
-              <caret line="91" column="48" selection-start-line="91" selection-start-column="48" selection-end-line="91" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.84385765">
+              <caret line="62" column="15" selection-start-line="62" selection-start-column="15" selection-end-line="62" selection-end-column="15" />
               <folding>
-                <marker date="1457531692098" expanded="true" signature="1918:2227" placeholder="SELECT COUNT..cc_films..." />
-                <marker date="1457531692098" expanded="true" signature="2273:2500" placeholder="SELECT count..cc_films..." />
-                <marker date="1457531692098" expanded="true" signature="2521:3161" placeholder="SELECT COUNT..id..." />
-                <marker date="1457531692098" expanded="true" signature="2577:2897" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1457531692098" expanded="true" signature="2577:3147" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1457531692098" expanded="true" signature="2920:3147" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1457531692098" expanded="true" signature="3467:3793" placeholder="SELECT COUNT..cc_films..." />
-                <marker date="1457531692098" expanded="true" signature="3850:4091" placeholder="SELECT count..cc_films..." />
-                <marker date="1457531692098" expanded="true" signature="4120:4786" placeholder="SELECT COUNT..id..." />
-                <marker date="1457531692098" expanded="true" signature="4176:4760" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1457531692098" expanded="true" signature="6745:7093" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1457531692098" expanded="true" signature="7094:7348" placeholder="SELECT DISTI..cc_films..." />
+                <marker date="1458146559084" expanded="true" signature="2000:2360" placeholder="..." />
+                <marker date="1458146559084" expanded="true" signature="2109:2313" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/partials/nav.blade.php">
+      <file leaf-file-name="Slider.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../kiwi/classes/Slider.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.8363636">
-              <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list_partial.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/xchange/xchangeTitles/list_partial.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Vault.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../kiwi/classes/Vault/Vault.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.961538">
-              <caret line="468" column="36" selection-start-line="468" selection-start-column="36" selection-end-line="468" selection-end-column="36" />
+            <state vertical-scroll-proportion="-9.153846">
+              <caret line="56" column="12" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="139" />
               <folding>
-                <element signature="n#Vault#0;n#Vault#0;n#!!top" expanded="false" />
-                <element signature="n#getVaultAllFilms#0;n#Vault#0;n#!!top" expanded="false" />
-                <element signature="n#getOwnerFilms#0;n#Vault#0;n#!!top" expanded="false" />
-                <element signature="e#1325#1465#0#PHP" expanded="false" />
-                <element signature="e#1477#1604#0#PHP" expanded="false" />
-                <element signature="e#1613#2023#0#PHP" expanded="false" />
-                <element signature="e#1811#1930#0#PHP" expanded="false" />
-                <element signature="e#2035#2445#0#PHP" expanded="false" />
-                <element signature="e#2233#2352#0#PHP" expanded="false" />
-                <element signature="e#2454#2735#0#PHP" expanded="false" />
-                <element signature="e#2770#3695#0#PHP" expanded="false" />
-                <element signature="n#drawContent#0;n#Vault#0;n#!!top" expanded="false" />
-                <element signature="e#5704#5819#0#PHP" expanded="false" />
-                <element signature="e#5871#6015#0#PHP" expanded="false" />
-                <element signature="e#6289#11480#0#PHP" expanded="false" />
-                <element signature="e#6385#11470#0#PHP" expanded="false" />
-                <element signature="e#7494#11470#0#PHP" expanded="false" />
-                <element signature="e#7517#7765#0#PHP" expanded="false" />
-                <element signature="e#7653#7765#0#PHP" expanded="false" />
-                <element signature="e#7782#11452#0#PHP" expanded="false" />
-                <element signature="e#9807#11452#0#PHP" expanded="false" />
-                <element signature="n#getAvailableCountriesData#0;n#Vault#0;n#!!top" expanded="false" />
-                <element signature="e#13985#14556#0#PHP" expanded="false" />
-                <element signature="e#14578#14857#0#PHP" expanded="false" />
-                <element signature="n#drawAvailableCountries#0;n#Vault#0;n#!!top" expanded="false" />
-                <element signature="e#15213#15486#0#PHP" expanded="false" />
-                <element signature="e#15515#15632#0#PHP" expanded="false" />
-                <element signature="e#15645#16765#0#PHP" expanded="false" />
-                <element signature="e#15815#16254#0#PHP" expanded="false" />
-                <element signature="n#drawContainer#0;n#Vault#0;n#!!top" expanded="false" />
-                <element signature="e#17904#18092#0#PHP" expanded="false" />
-                <element signature="e#18006#18092#0#PHP" expanded="false" />
-                <element signature="n#bulkActAddToStore#0;n#Vault#0;n#!!top" expanded="false" />
-                <element signature="e#20368#21636#0#PHP" expanded="false" />
-                <element signature="e#20425#21626#0#PHP" expanded="false" />
-                <element signature="e#21370#21612#0#PHP" expanded="false" />
-                <element signature="n#bulkActDeleteFromStore#0;n#Vault#0;n#!!top" expanded="false" />
-                <element signature="e#21699#23732#0#PHP" expanded="false" />
-                <element signature="e#21753#23722#0#PHP" expanded="false" />
-                <element signature="e#22416#22691#0#PHP" expanded="false" />
-                <element signature="e#22718#22982#0#PHP" expanded="false" />
-                <element signature="e#23009#23273#0#PHP" expanded="false" />
-                <element signature="e#23462#23708#0#PHP" expanded="false" />
-                <element signature="n#soloActAddToStore#0;n#Vault#0;n#!!top" expanded="false" />
-                <element signature="e#23818#24941#0#PHP" expanded="false" />
-                <element signature="e#24717#24931#0#PHP" expanded="false" />
-                <element signature="n#soloActDeleteFromStore#0;n#Vault#0;n#!!top" expanded="false" />
-                <element signature="e#25032#26854#0#PHP" expanded="false" />
-                <element signature="e#25658#25929#0#PHP" expanded="false" />
-                <element signature="e#25952#26212#0#PHP" expanded="false" />
-                <element signature="e#26235#26495#0#PHP" expanded="false" />
-                <element signature="e#26626#26844#0#PHP" expanded="false" />
-                <element signature="n#isFilmInStore#0;n#Vault#0;n#!!top" expanded="false" />
-                <element signature="e#26917#27404#0#PHP" expanded="false" />
-                <element signature="e#26917#27427#0#PHP" expanded="false" />
-                <element signature="n#getContentProviders#0;n#Vault#0;n#!!top" expanded="false" />
-                <element signature="e#28408#28509#0#PHP" expanded="false" />
-                <element signature="n#getFilmsPlatforms#0;n#Vault#0;n#!!top" expanded="false" />
-                <element signature="n#connectCP2PL#0;n#Vault#0;n#!!top" expanded="false" />
-                <element signature="e#30278#30480#0#PHP" expanded="false" />
-                <element signature="n#scripts#0;n#Vault#0;n#!!top" expanded="false" />
-                <marker date="1445517566000" expanded="true" signature="210:246" placeholder="Select films..cc_vaults..." />
-                <marker date="1445517566000" expanded="true" signature="496:940" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1445517566000" expanded="false" signature="1718:1794" placeholder="SELECT films..fk_films_owners..." />
-                <marker date="1445517566000" expanded="false" signature="2140:2216" placeholder="SELECT films..fk_films_owners..." />
-                <marker date="1445517566000" expanded="true" signature="3712:4120" placeholder="Select cc_fi..cc_vaults..." />
-                <marker date="1445517566000" expanded="true" signature="4188:4425" placeholder="Select COUNT..cc_vaults..." />
-                <marker date="1445517566000" expanded="true" signature="4707:4855" placeholder="SELECT cc_va..cron_jobs..." />
-                <marker date="1445517566000" expanded="false" signature="6482:7366" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="6507:6558" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="6667:6678" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="6759:6943" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="7242:7259" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="7260:7342" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="7397:7409" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="7861:9663" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="7890:8195" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="8308:8319" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="8408:8966" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="9273:9290" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="9291:9635" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="9698:9710" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="9874:11325" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="9903:10099" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="10212:10223" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="10312:10577" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="10885:10902" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="10903:11297" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="11360:11372" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="11554:13331" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="11575:13279" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="11616:12544" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="11674:12518" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="11924:12019" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="12117:12487" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="12577:12588" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="12634:12646" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="12904:12916" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="13222:13239" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="13394:13791" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="13442:13764" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="14001:14537" placeholder="SELECT cc_va..cc_vaults..." />
-                <marker date="1445517566000" expanded="false" signature="15234:15484" placeholder="SELECT fk_ch..fk_channels_vaults..." />
-                <marker date="1445517566000" expanded="false" signature="16333:16725" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="16829:17530" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="16895:17494" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="16944:17042" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="17106:17471" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="17152:17444" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="17184:17371" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="17313:17323" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="17553:17720" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="17601:17693" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="18158:19928" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="18259:19907" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="18323:19883" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="18369:18829" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="18417:18802" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="18471:18771" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="18882:19673" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="18933:19369" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="19035:19334" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="19420:19646" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="20008:20046" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="20110:20246" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="20153:20224" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="20496:20584" placeholder="SELECT cc_ba..cc_base_contracts..." />
-                <marker date="1445517566000" expanded="false" signature="20657:20753" placeholder="INSERT INTO ..." />
-                <marker date="1445517566000" expanded="false" signature="20803:20908" placeholder="INSERT INTO ..." />
-                <marker date="1445517566000" expanded="false" signature="20958:21066" placeholder="INSERT INTO ..." />
-                <marker date="1445517566000" expanded="true" signature="21116:21238" placeholder="UPDATE cc_ch..." />
-                <marker date="1445517566000" expanded="false" signature="21281:21350" placeholder="SELECT cc_va..cc_vaults..." />
-                <marker date="1445517566000" expanded="false" signature="21456:21561" placeholder="INSERT INTO ..." />
-                <marker date="1445517566000" expanded="false" signature="21824:21912" placeholder="SELECT cc_ba..cc_base_contracts..." />
-                <marker date="1445517566000" expanded="false" signature="21985:22079" placeholder="DELETE FROM ..." />
-                <marker date="1445517566000" expanded="false" signature="22129:22229" placeholder="DELETE FROM ..." />
-                <marker date="1445517566000" expanded="false" signature="22279:22386" placeholder="DELETE FROM ..." />
-                <marker date="1445517566000" expanded="false" signature="22437:22689" placeholder="UPDATE fk_sl..." />
-                <marker date="1445517566000" expanded="false" signature="22607:22664" placeholder="SELECT id FR..cc_sliders..." />
-                <marker date="1445517566000" expanded="false" signature="22739:22980" placeholder="DELETE FROM ..." />
-                <marker date="1445517566000" expanded="false" signature="22891:22955" placeholder="SELECT id FR..cc_collections..." />
-                <marker date="1445517566000" expanded="false" signature="23030:23271" placeholder="DELETE FROM ..." />
-                <marker date="1445517566000" expanded="false" signature="23182:23246" placeholder="SELECT id FR..cc_subchannels..." />
-                <marker date="1445517566000" expanded="false" signature="23373:23442" placeholder="SELECT cc_va..cc_vaults..." />
-                <marker date="1445517566000" expanded="true" signature="23548:23657" placeholder="DELETE FROM ..." />
-                <marker date="1445517566000" expanded="false" signature="23868:23956" placeholder="SELECT cc_ba..cc_base_contracts..." />
-                <marker date="1445517566000" expanded="false" signature="24025:24121" placeholder="INSERT INTO ..." />
-                <marker date="1445517566000" expanded="false" signature="24167:24272" placeholder="INSERT INTO ..." />
-                <marker date="1445517566000" expanded="false" signature="24318:24426" placeholder="INSERT INTO ..." />
-                <marker date="1445517566000" expanded="false" signature="24471:24593" placeholder="UPDATE cc_ch..." />
-                <marker date="1445517566000" expanded="false" signature="24632:24701" placeholder="SELECT cc_va..cc_vaults..." />
-                <marker date="1445517566000" expanded="true" signature="24799:24904" placeholder="INSERT INTO ..." />
-                <marker date="1445517566000" expanded="false" signature="25082:25170" placeholder="SELECT cc_ba..cc_base_contracts..." />
-                <marker date="1445517566000" expanded="false" signature="25239:25333" placeholder="DELETE FROM ..." />
-                <marker date="1445517566000" expanded="false" signature="25379:25479" placeholder="DELETE FROM ..." />
-                <marker date="1445517566000" expanded="false" signature="25525:25632" placeholder="DELETE FROM ..." />
-                <marker date="1445517566000" expanded="false" signature="25679:25927" placeholder="UPDATE fk_sl..." />
-                <marker date="1445517566000" expanded="false" signature="25845:25902" placeholder="SELECT id FR..cc_sliders..." />
-                <marker date="1445517566000" expanded="false" signature="25973:26210" placeholder="DELETE FROM ..." />
-                <marker date="1445517566000" expanded="false" signature="26121:26185" placeholder="SELECT id FR..cc_collections..." />
-                <marker date="1445517566000" expanded="false" signature="26256:26493" placeholder="DELETE FROM ..." />
-                <marker date="1445517566000" expanded="false" signature="26404:26468" placeholder="SELECT id FR..cc_subchannels..." />
-                <marker date="1445517566000" expanded="false" signature="26541:26610" placeholder="SELECT cc_va..cc_vaults..." />
-                <marker date="1445517566000" expanded="false" signature="26708:26817" placeholder="DELETE FROM ..." />
-                <marker date="1445517566000" expanded="false" signature="26938:27402" placeholder="Select cc_fi..cc_vaults..." />
-                <marker date="1445517566000" expanded="true" signature="27616:27788" placeholder="SELECT cc_co..cc_companies..." />
-                <marker date="1445517566000" expanded="true" signature="28644:28917" placeholder="SELECT DISTI..cc_companies..." />
-                <marker date="1445517566000" expanded="true" signature="29168:29439" placeholder="SELECT DISTI..cc_channels..." />
-                <marker date="1445517566000" expanded="true" signature="29640:29765" placeholder="SELECT cc_va..cc_vaults..." />
-                <marker date="1445517566000" expanded="true" signature="29856:29961" placeholder="INSERT INTO ..." />
-                <marker date="1445517566000" expanded="true" signature="30141:30266" placeholder="SELECT cc_va..cc_vaults..." />
-                <marker date="1445517566000" expanded="false" signature="30357:30466" placeholder="DELETE FROM ..." />
-                <marker date="1445517566000" expanded="true" signature="30633:42339" placeholder="..." />
-                <marker date="1445517566000" expanded="false" signature="30674:31336" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="30727:31320" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="30802:31272" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="30831:31251" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="31127:31225" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="31440:33050" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="31505:32206" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="31581:32156" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="31918:32130" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="32259:33004" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="32352:32929" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="32690:32903" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="33091:33763" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="33147:33747" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="33223:33676" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="33495:33650" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="33819:35430" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="33874:34473" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="34012:34423" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="34301:34397" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="34532:35397" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="34729:35349" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="34879:35325" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="35191:35295" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="35471:38555" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="35541:35674" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="35733:36809" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="35779:36790" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="36057:36768" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="36220:36740" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="36580:36702" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="36873:37948" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="36982:37932" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="37011:37912" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="37294:37890" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="37406:37862" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="37726:37832" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="38004:38513" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="38103:38407" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="38227:38382" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="38596:40773" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="38668:39767" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="38755:39748" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="39015:39726" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="39178:39698" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="39538:39660" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="39831:40744" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="39910:40725" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="40155:40707" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="40259:40683" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="40559:40657" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="40829:41343" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="40904:41321" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="41197:41295" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="41422:41747" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="41442:41745" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="41488:41737" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="41681:41731" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="41804:42319" placeholder="{...}" />
-                <marker date="1445517566000" expanded="false" signature="41880:42297" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1445517566000" expanded="false" signature="42173:42271" placeholder="{...}" />
+                <element signature="e#107#157#0#PHP" expanded="false" />
+                <element signature="e#1956#2177#0#PHP" expanded="false" />
+                <element signature="e#1987#2163#0#PHP" expanded="false" />
+                <element signature="n#saveSlider#0;n#Slider#0;n#!!top" expanded="false" />
+                <element signature="e#10564#10901#0#PHP" expanded="false" />
+                <element signature="e#10630#10872#0#PHP" expanded="false" />
+                <element signature="n#deleteImageSlider#0;n#Slider#0;n#!!top" expanded="false" />
+                <element signature="n#sort_predicate#0;n#Slider#0;n#!!top" expanded="false" />
+                <element signature="e#11100#11161#0#PHP" expanded="false" />
+                <element signature="n#scripts#0;n#Slider#0;n#!!top" expanded="false" />
+                <marker date="1458055322106" expanded="true" signature="457:523" placeholder="SELECT * FRO..cc_sliders..." />
+                <marker date="1458055322106" expanded="true" signature="896:985" placeholder="INSERT INTO ..." />
+                <marker date="1458055322106" expanded="true" signature="1031:1121" placeholder="SELECT * FRO..cc_sliders..." />
+                <marker date="1458055322106" expanded="true" signature="1733:1820" placeholder="SELECT * FRO..fk_sliders_images..." />
+                <marker date="1458055322106" expanded="true" signature="7913:7984" placeholder="..." />
+                <marker date="1458055322106" expanded="false" signature="10645:10869" placeholder="UPDATE fk_sl..." />
+                <marker date="1458055322106" expanded="false" signature="10994:11044" placeholder="DELETE FROM ..." />
+                <marker date="1458055322106" expanded="false" signature="11277:11855" placeholder="..." />
+                <marker date="1458055322106" expanded="false" signature="11323:11839" placeholder="{...}" />
+                <marker date="1458055322106" expanded="false" signature="11385:11829" placeholder="{...}" />
+                <marker date="1458055322106" expanded="false" signature="11688:11782" placeholder="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Base.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../kiwi/classes/Base.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="250" column="74" selection-start-line="250" selection-start-column="64" selection-end-line="250" selection-end-column="74" />
+              <folding>
+                <marker date="1452772207853" expanded="true" signature="444:508" placeholder="SELECT slide..cc_channels..." />
+                <marker date="1452772207853" expanded="true" signature="1398:1465" placeholder="SELECT front..cc_channels..." />
+                <marker date="1452772207853" expanded="true" signature="1704:1745" placeholder="SELECT * FRO..cc_films..." />
+                <marker date="1452772207853" expanded="true" signature="2001:2042" placeholder="SELECT * FRO..cc_films..." />
+                <marker date="1452772207853" expanded="true" signature="2211:2434" placeholder="SELECT * FRO..cc_channels_contracts..." />
+                <marker date="1452772207853" expanded="true" signature="2736:2978" placeholder="SELECT cc_ba..cc_base_contracts..." />
+                <marker date="1452772207853" expanded="true" signature="3216:3272" placeholder="SELECT * FRO..cc_base_contracts..." />
+                <marker date="1452772207853" expanded="true" signature="3587:3679" placeholder="SELECT cc_ba..cc_base_contracts..." />
+                <marker date="1452772207853" expanded="true" signature="3744:3986" placeholder="SELECT cc_ba..cc_base_contracts..." />
+                <marker date="1452772207853" expanded="true" signature="4340:4596" placeholder="SELECT cc_ch..cc_channels_contracts..." />
+                <marker date="1452772207853" expanded="true" signature="6731:6754" placeholder="SELECT * FRO..z_locales..." />
+                <marker date="1452772207853" expanded="true" signature="7002:7205" placeholder="SELECT cc_co..cc_companies..." />
+                <marker date="1452772207853" expanded="true" signature="7468:7525" placeholder="SELECT id,ti..cc_companies..." />
+                <marker date="1452772207853" expanded="true" signature="7730:7788" placeholder="SELECT id,ti..cc_subchannels..." />
+                <marker date="1452772207853" expanded="true" signature="8024:8097" placeholder="SELECT * FRO..cc_subscriptions..." />
+                <marker date="1452772207853" expanded="true" signature="8603:8670" placeholder="SELECT * FRO..cc_bundles..." />
+                <marker date="1452772207853" expanded="true" signature="9029:9235" placeholder="SELECT DISTI..cc_contracts..." />
+                <marker date="1452772207853" expanded="true" signature="9269:9522" placeholder="SELECT DISTI..cc_contracts..." />
+                <marker date="1452772207853" expanded="true" signature="9845:10069" placeholder="SELECT DISTI..cc_contracts..." />
+                <marker date="1452772207853" expanded="true" signature="10103:10375" placeholder="SELECT DISTI..cc_contracts..." />
+                <marker date="1452772207853" expanded="true" signature="10886:11219" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1452772207853" expanded="false" signature="16987:17000" placeholder="..." />
+                <marker date="1452772207853" expanded="true" signature="17001:17471" placeholder="..." />
+                <marker date="1452772207853" expanded="true" signature="17046:17259" placeholder="..." />
+                <marker date="1452772207853" expanded="true" signature="17523:19266" placeholder="..." />
+                <marker date="1452772207853" expanded="true" signature="17580:17704" placeholder="{...}" />
+                <marker date="1452772207853" expanded="true" signature="17747:17844" placeholder="{...}" />
+                <marker date="1452772207853" expanded="true" signature="17894:18165" placeholder="{...}" />
+                <marker date="1452772207853" expanded="true" signature="18219:19239" placeholder="{...}" />
+                <marker date="1452772207853" expanded="true" signature="18313:19199" placeholder="{&quot;type&quot;: 'POST'...}" />
+                <marker date="1452772207853" expanded="true" signature="18557:19177" placeholder="{...}" />
+                <marker date="1452772207853" expanded="true" signature="19896:20036" placeholder="..." />
+                <marker date="1452772207853" expanded="true" signature="20220:20349" placeholder="..." />
+                <marker date="1452772207853" expanded="true" signature="28443:28514" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1452772207853" expanded="true" signature="28567:28635" placeholder="SELECT COUNT..cc_films..." />
+                <marker date="1452772207853" expanded="true" signature="28723:28778" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1452772207853" expanded="true" signature="28831:28870" placeholder="SELECT COUNT..cc_films..." />
+                <marker date="1452772207853" expanded="true" signature="28971:29026" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1452772207853" expanded="true" signature="29079:29128" placeholder="SELECT count..cc_films..." />
+                <marker date="1452772207853" expanded="true" signature="30941:31042" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1452772207853" expanded="true" signature="31135:31190" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1452772207853" expanded="true" signature="31283:31338" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1452772207853" expanded="true" signature="32000:32067" placeholder="SELECT * FRO..fk_films_media..." />
+                <marker date="1452772207853" expanded="true" signature="32656:32736" placeholder="SELECT * FRO..cc_countries..." />
+                <marker date="1452772207853" expanded="true" signature="33002:33057" placeholder="SELECT * FRO..cc_countries..." />
+                <marker date="1452772207853" expanded="true" signature="33229:33290" placeholder="SELECT title..cc_countries..." />
+                <marker date="1452772207853" expanded="true" signature="33431:33503" placeholder="SELECT * FRO..cc_features..." />
+                <marker date="1452772207853" expanded="true" signature="33719:33784" placeholder="SELECT * FRO..fk_channels_features..." />
+                <marker date="1452772207853" expanded="true" signature="34009:34376" placeholder="SELECT z_sub..z_subscription_transactions..." />
+                <marker date="1452772207853" expanded="true" signature="38188:38241" placeholder="SELECT id FR..cc_films..." />
+                <marker date="1452772207853" expanded="true" signature="38347:38677" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1452772207853" expanded="true" signature="38763:39003" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1452772207853" expanded="true" signature="39069:39726" placeholder="SELECT ids a..id..." />
+                <marker date="1452772207853" expanded="true" signature="39118:39717" placeholder="SELECT DISTI..cc_films..." />
+                <marker date="1452772207853" expanded="true" signature="40280:40337" placeholder="SELECT * FRO..cc_accounts..." />
+                <marker date="1452772207853" expanded="true" signature="40510:40567" placeholder="SELECT * FRO..cc_accounts..." />
+                <marker date="1452772207853" expanded="true" signature="40731:40804" placeholder="SELECT email..cc_users..." />
+                <marker date="1452772207853" expanded="true" signature="40977:41046" placeholder="SELECT * FRO..cc_users..." />
+                <marker date="1452772207853" expanded="true" signature="41237:41345" placeholder="SELECT email..cc_users..." />
+                <marker date="1452772207853" expanded="true" signature="41631:41679" placeholder="SELECT * FRO..cc_accounts..." />
+                <marker date="1452772207853" expanded="true" signature="41840:41885" placeholder="SELECT * FRO..cc_users..." />
               </folding>
             </state>
           </provider>
@@ -336,22 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/xchange/cPProfile/cPProfile.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/xchange/cPProfile/editCPInfo_partial.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/xchange/profile/cPProfile.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Xchange/ProfileController.php" />
-        <option value="$PROJECT_DIR$/resources/views/store/profile/profile.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/store/profile/profileEdit_partial.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/store/profile/profileInfo_partial.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/store/settings/settings.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Store/ProfileController.php" />
-        <option value="$PROJECT_DIR$/app/Store.php" />
-        <option value="$PROJECT_DIR$/app/Account.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/TitleManagement/MetadataController.php" />
-        <option value="$PROJECT_DIR$/resources/views/store/settings/settings_tab.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/store/settings/settingsEdit_form.blade.php" />
-        <option value="$PROJECT_DIR$/../../magic/app/code/Levon/Theme/registration.php" />
-        <option value="$PROJECT_DIR$/../../magic/app/code/Levon/Theme/etc/module.xml" />
         <option value="$PROJECT_DIR$/../../magic/app/code/Levon/Theme/etc/frontend/routes.xml" />
         <option value="$PROJECT_DIR$/../../magic/app/code/Levon/Theme/Controller/Index/Index.php" />
         <option value="$PROJECT_DIR$/../../magic/var/generation/Levon/Theme/Controller/Index/Index/Interceptor.php" />
@@ -367,7 +188,6 @@
         <option value="$PROJECT_DIR$/resources/views/store/settings/templates_tab.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Store/SettingsController.php" />
         <option value="$PROJECT_DIR$/app/Models/Zaccounts.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/store/users/usersManagement.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/store/users/rentPurchFilms.blade.php" />
         <option value="$PROJECT_DIR$/app/Models/ZOrders.php" />
@@ -382,11 +202,28 @@
         <option value="$PROJECT_DIR$/app/Http/Composers/ViewComposer.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/RightsMiddleware.php" />
         <option value="$PROJECT_DIR$/app/Libraries/CHpermissions/CHpermissions.php" />
-        <option value="$PROJECT_DIR$/resources/views/partials/nav.blade.php" />
         <option value="$PROJECT_DIR$/storage/framework/views/d7573abd8561b2e6b619b6041dd11693" />
         <option value="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" />
-        <option value="$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Xchange/CPTitlesController.php" />
+        <option value="$PROJECT_DIR$/app/Account.php" />
+        <option value="$PROJECT_DIR$/resources/views/store/contentProviders/contentProviders.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Xchange/ProfileController.php" />
+        <option value="$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php" />
+        <option value="$PROJECT_DIR$/resources/views/store/contentProviders/editForm.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/store/contentProviders/list_partial.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Xchange/XchangeStoresController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
+        <option value="$PROJECT_DIR$/resources/views/store/contentProviders/contentProviderFilms.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/resources/views/partials/nav.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/store/contentProviders/filmList_partial.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Store/ContentProvidersController.php" />
+        <option value="$PROJECT_DIR$/app/Models/Silders.php" />
+        <option value="$PROJECT_DIR$/app/Store.php" />
+        <option value="$PROJECT_DIR$/../kiwi/classes/Slider.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Store/SliderController.php" />
+        <option value="$PROJECT_DIR$/resources/views/store/slider/slider.blade.php" />
       </list>
     </option>
   </component>
@@ -435,6 +272,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -468,6 +307,176 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xchange" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xchange" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="profile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xchange" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CPTitles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="users" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="contentProviders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partnerStores" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -593,7 +602,51 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CHhelper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mango" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Middleware" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -641,14 +694,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Xchange" />
+              <option name="myItemId" value="Store" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -661,6 +712,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\CINEHOST\mango\resources\views\store\contentProviders" />
       <recent name="C:\wamp\www\cinecliq\mango\public" />
       <recent name="C:\wamp\www\cinecliq\mango\resources\views\account\partials" />
       <recent name="C:\wamp\www\cinecliq\mango\resources\views\account" />
@@ -726,25 +778,25 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16151386" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20756757" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15191898" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40324324" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2064865" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40324324" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -796,749 +848,21 @@
           <line>4</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/../kiwi/classes/Slider.php</url>
+          <line>240</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="26" />
+      <option name="time" value="29" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TitleManagement/MetadataController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58094144">
-          <caret line="1012" column="8" selection-start-line="1012" selection-start-column="8" selection-end-line="1012" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TitleManagement/MediaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60505164">
-          <caret line="124" column="15" selection-start-line="124" selection-start-column="8" selection-end-line="124" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/store/settings/settings.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35132033">
-          <caret line="18" column="70" selection-start-line="18" selection-start-column="62" selection-end-line="18" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/store/settings/settingsEdit_form.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76578647">
-          <caret line="152" column="34" selection-start-line="152" selection-start-column="34" selection-end-line="152" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/store/settings/settings_tab.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09758898">
-          <caret line="5" column="92" selection-start-line="5" selection-start-column="86" selection-end-line="5" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../magic/vendor/magento/module-cms/Controller/Router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.4982778">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../magic/vendor/magento/framework/View/Element/Template/Context.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.4592423">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/xchange/xchangeContentProviders/filmList_partial.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9245284">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partnerStores/filmList_partial.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38270143">
-          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/store/settings/templates_tab.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9230769">
-          <caret line="6" column="56" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Store/SettingsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4489093">
-          <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../kiwi/classes/Platform/PlatformSettings.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="19" column="29" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/titles/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="119" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/store/profile/profile.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2101033">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="67" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../kiwi/classes/Base.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="169" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="174" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partnerStores/partnerStores.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39494833">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="28" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Store/ProfileController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.153846">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="26" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/ChannelsContracts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.230769">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="12" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/xchange/xchangeStores/filmList_partial.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/xchange/xchangeStores/list_partial.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58094144">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="53" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xchange/XchangeStoresController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4098737">
-          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="107" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Zaccounts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27324915">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../shop/app/etc/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="48" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/store/users/usersManagement.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.307692">
-          <caret line="93" column="1" selection-start-line="93" selection-start-column="1" selection-end-line="93" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/ZOrders.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27293578">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/store/users/rentPurchFilms.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9230769">
-          <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/cinehost.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9053452">
-          <caret line="318" column="56" selection-start-line="318" selection-start-column="56" selection-end-line="318" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../kiwi/classes/UserManagement.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9415138">
-          <caret line="352" column="59" selection-start-line="352" selection-start-column="49" selection-end-line="352" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/store/users/list_partial.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.653846">
-          <caret line="112" column="115" selection-start-line="112" selection-start-column="93" selection-end-line="112" selection-end-column="115" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/ZaccountsView.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.846153">
-          <caret line="38" column="40" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Film.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="94" column="46" selection-start-line="94" selection-start-column="46" selection-end-line="94" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/CronJobs.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xchange/PartnerStoresController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xchange/ProfileController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20183486">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Store/UserManagementController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25344038">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="29" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/xchange/xchangeTitles/xchangeTitles.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="84" column="55" selection-start-line="84" selection-start-column="55" selection-end-line="84" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../kiwi/classes/Vault/VaultCP.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.76923">
-          <caret line="325" column="0" selection-start-line="325" selection-start-column="0" selection-end-line="334" selection-end-column="5" />
-          <folding>
-            <element signature="e#835#1087#0#PHP" expanded="false" />
-            <element signature="e#1099#1226#0#PHP" expanded="false" />
-            <element signature="e#1235#1645#0#PHP" expanded="false" />
-            <element signature="e#1433#1552#0#PHP" expanded="false" />
-            <element signature="e#1657#2067#0#PHP" expanded="false" />
-            <element signature="e#1855#1974#0#PHP" expanded="false" />
-            <element signature="e#2076#2357#0#PHP" expanded="false" />
-            <element signature="e#2392#3720#0#PHP" expanded="false" />
-            <element signature="e#2840#3720#0#PHP" expanded="false" />
-            <element signature="e#4084#4200#0#PHP" expanded="false" />
-            <element signature="n#drawContent#0;n#VaultCP#0;n#!!top" expanded="false" />
-            <element signature="e#4605#4720#0#PHP" expanded="false" />
-            <element signature="e#4772#4916#0#PHP" expanded="false" />
-            <element signature="e#5068#8043#0#PHP" expanded="false" />
-            <element signature="e#5132#8013#0#PHP" expanded="false" />
-            <element signature="e#6657#8013#0#PHP" expanded="false" />
-            <element signature="n#drawContainer#0;n#VaultCP#0;n#!!top" expanded="false" />
-            <element signature="e#10611#10799#0#PHP" expanded="false" />
-            <element signature="e#10713#10799#0#PHP" expanded="false" />
-            <element signature="n#bulkActAddToVault#0;n#VaultCP#0;n#!!top" expanded="false" />
-            <element signature="e#13053#13316#0#PHP" expanded="false" />
-            <element signature="e#13108#13306#0#PHP" expanded="false" />
-            <element signature="n#bulkActDeleteFromVault#0;n#VaultCP#0;n#!!top" expanded="false" />
-            <element signature="e#13388#14388#0#PHP" expanded="false" />
-            <element signature="e#13440#14378#0#PHP" expanded="false" />
-            <element signature="e#13821#14041#0#PHP" expanded="false" />
-            <element signature="e#14058#14342#0#PHP" expanded="false" />
-            <element signature="e#14232#14342#0#PHP" expanded="false" />
-            <element signature="n#soloActAddToVault#0;n#VaultCP#0;n#!!top" expanded="false" />
-            <element signature="e#14496#14667#0#PHP" expanded="false" />
-            <element signature="n#soloActDeleteFromVault#0;n#VaultCP#0;n#!!top" expanded="false" />
-            <element signature="e#14758#15650#0#PHP" expanded="false" />
-            <element signature="e#15118#15338#0#PHP" expanded="false" />
-            <element signature="e#15355#15639#0#PHP" expanded="false" />
-            <element signature="e#15529#15639#0#PHP" expanded="false" />
-            <element signature="e#16138#16238#0#PHP" expanded="false" />
-            <element signature="n#getPlatforms#0;n#VaultCP#0;n#!!top" expanded="false" />
-            <element signature="e#16707#16808#0#PHP" expanded="false" />
-            <element signature="n#getFilmsContentProviders#0;n#VaultCP#0;n#!!top" expanded="false" />
-            <element signature="e#16906#17218#0#PHP" expanded="false" />
-            <element signature="n#notifyPlatformsAboutDeleting#0;n#VaultCP#0;n#!!top" expanded="false" />
-            <element signature="e#17949#20152#0#PHP" expanded="false" />
-            <element signature="e#18077#18439#0#PHP" expanded="false" />
-            <element signature="e#18453#18565#0#PHP" expanded="false" />
-            <element signature="e#18805#19073#0#PHP" expanded="false" />
-            <element signature="e#18859#19059#0#PHP" expanded="false" />
-            <element signature="e#19274#19507#0#PHP" expanded="false" />
-            <element signature="e#19613#20032#0#PHP" expanded="false" />
-            <element signature="e#19640#19851#1#PHP" expanded="false" />
-            <element signature="e#19873#20014#1#PHP" expanded="false" />
-            <element signature="n#scripts#0;n#VaultCP#0;n#!!top" expanded="false" />
-            <marker date="1445517566000" expanded="true" signature="-1:-1" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="SELECT films..fk_films_owners..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="SELECT films..fk_films_owners..." />
-            <marker date="1445517566000" expanded="true" signature="-1:-1" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1445517566000" expanded="true" signature="-1:-1" placeholder="SELECT count..cc_films..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="SELECT cc_va..cc_vaults..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="SELECT * FRO..fk_channels_vaults..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="DELETE from ..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="SELECT cc_va..cc_vaults..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="SELECT * FRO..fk_channels_vaults..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="DELETE from ..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="SELECT DISTI..cc_companies..." />
-            <marker date="1445517566000" expanded="true" signature="-1:-1" placeholder="SELECT DISTI..cc_channels..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="SELECT cc_co..cc_countries..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="UPDATE cc_va..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="-1:-1" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xchange/XchangeTitlesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="47" />
-          <folding>
-            <marker date="1457347614169" expanded="true" signature="-1:-1" placeholder="Select cc_fi..cc_vaults..." />
-            <marker date="1457347614169" expanded="true" signature="-1:-1" placeholder="Select COUNT..cc_vaults..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Company.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.3846154">
-          <caret line="22" column="122" selection-start-line="22" selection-start-column="122" selection-end-line="22" selection-end-column="122" />
-          <folding>
-            <marker date="1457527979686" expanded="true" signature="-1:-1" placeholder="SELECT cc_co..cc_companies..." />
-            <marker date="1457527979686" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1457527979686" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../kiwi/classes/Vault/engine.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="51" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../kiwi/classes/Vault/Vault.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.961538">
-          <caret line="468" column="36" selection-start-line="468" selection-start-column="36" selection-end-line="468" selection-end-column="36" />
-          <folding>
-            <element signature="n#Vault#0;n#Vault#0;n#!!top" expanded="false" />
-            <element signature="n#getVaultAllFilms#0;n#Vault#0;n#!!top" expanded="false" />
-            <element signature="n#getOwnerFilms#0;n#Vault#0;n#!!top" expanded="false" />
-            <element signature="e#1325#1465#0#PHP" expanded="false" />
-            <element signature="e#1477#1604#0#PHP" expanded="false" />
-            <element signature="e#1613#2023#0#PHP" expanded="false" />
-            <element signature="e#1811#1930#0#PHP" expanded="false" />
-            <element signature="e#2035#2445#0#PHP" expanded="false" />
-            <element signature="e#2233#2352#0#PHP" expanded="false" />
-            <element signature="e#2454#2735#0#PHP" expanded="false" />
-            <element signature="e#2770#3695#0#PHP" expanded="false" />
-            <element signature="n#drawContent#0;n#Vault#0;n#!!top" expanded="false" />
-            <element signature="e#5704#5819#0#PHP" expanded="false" />
-            <element signature="e#5871#6015#0#PHP" expanded="false" />
-            <element signature="e#6289#11480#0#PHP" expanded="false" />
-            <element signature="e#6385#11470#0#PHP" expanded="false" />
-            <element signature="e#7494#11470#0#PHP" expanded="false" />
-            <element signature="e#7517#7765#0#PHP" expanded="false" />
-            <element signature="e#7653#7765#0#PHP" expanded="false" />
-            <element signature="e#7782#11452#0#PHP" expanded="false" />
-            <element signature="e#9807#11452#0#PHP" expanded="false" />
-            <element signature="n#getAvailableCountriesData#0;n#Vault#0;n#!!top" expanded="false" />
-            <element signature="e#13985#14556#0#PHP" expanded="false" />
-            <element signature="e#14578#14857#0#PHP" expanded="false" />
-            <element signature="n#drawAvailableCountries#0;n#Vault#0;n#!!top" expanded="false" />
-            <element signature="e#15213#15486#0#PHP" expanded="false" />
-            <element signature="e#15515#15632#0#PHP" expanded="false" />
-            <element signature="e#15645#16765#0#PHP" expanded="false" />
-            <element signature="e#15815#16254#0#PHP" expanded="false" />
-            <element signature="n#drawContainer#0;n#Vault#0;n#!!top" expanded="false" />
-            <element signature="e#17904#18092#0#PHP" expanded="false" />
-            <element signature="e#18006#18092#0#PHP" expanded="false" />
-            <element signature="n#bulkActAddToStore#0;n#Vault#0;n#!!top" expanded="false" />
-            <element signature="e#20368#21636#0#PHP" expanded="false" />
-            <element signature="e#20425#21626#0#PHP" expanded="false" />
-            <element signature="e#21370#21612#0#PHP" expanded="false" />
-            <element signature="n#bulkActDeleteFromStore#0;n#Vault#0;n#!!top" expanded="false" />
-            <element signature="e#21699#23732#0#PHP" expanded="false" />
-            <element signature="e#21753#23722#0#PHP" expanded="false" />
-            <element signature="e#22416#22691#0#PHP" expanded="false" />
-            <element signature="e#22718#22982#0#PHP" expanded="false" />
-            <element signature="e#23009#23273#0#PHP" expanded="false" />
-            <element signature="e#23462#23708#0#PHP" expanded="false" />
-            <element signature="n#soloActAddToStore#0;n#Vault#0;n#!!top" expanded="false" />
-            <element signature="e#23818#24941#0#PHP" expanded="false" />
-            <element signature="e#24717#24931#0#PHP" expanded="false" />
-            <element signature="n#soloActDeleteFromStore#0;n#Vault#0;n#!!top" expanded="false" />
-            <element signature="e#25032#26854#0#PHP" expanded="false" />
-            <element signature="e#25658#25929#0#PHP" expanded="false" />
-            <element signature="e#25952#26212#0#PHP" expanded="false" />
-            <element signature="e#26235#26495#0#PHP" expanded="false" />
-            <element signature="e#26626#26844#0#PHP" expanded="false" />
-            <element signature="n#isFilmInStore#0;n#Vault#0;n#!!top" expanded="false" />
-            <element signature="e#26917#27404#0#PHP" expanded="false" />
-            <element signature="e#26917#27427#0#PHP" expanded="false" />
-            <element signature="n#getContentProviders#0;n#Vault#0;n#!!top" expanded="false" />
-            <element signature="e#28408#28509#0#PHP" expanded="false" />
-            <element signature="n#getFilmsPlatforms#0;n#Vault#0;n#!!top" expanded="false" />
-            <element signature="n#connectCP2PL#0;n#Vault#0;n#!!top" expanded="false" />
-            <element signature="e#30278#30480#0#PHP" expanded="false" />
-            <element signature="n#scripts#0;n#Vault#0;n#!!top" expanded="false" />
-            <marker date="1445517566000" expanded="true" signature="210:246" placeholder="Select films..cc_vaults..." />
-            <marker date="1445517566000" expanded="true" signature="496:940" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1445517566000" expanded="false" signature="1718:1794" placeholder="SELECT films..fk_films_owners..." />
-            <marker date="1445517566000" expanded="false" signature="2140:2216" placeholder="SELECT films..fk_films_owners..." />
-            <marker date="1445517566000" expanded="true" signature="3712:4120" placeholder="Select cc_fi..cc_vaults..." />
-            <marker date="1445517566000" expanded="true" signature="4188:4425" placeholder="Select COUNT..cc_vaults..." />
-            <marker date="1445517566000" expanded="true" signature="4707:4855" placeholder="SELECT cc_va..cron_jobs..." />
-            <marker date="1445517566000" expanded="false" signature="6482:7366" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="6507:6558" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="6667:6678" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="6759:6943" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="7242:7259" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="7260:7342" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="7397:7409" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="7861:9663" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="7890:8195" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="8308:8319" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="8408:8966" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="9273:9290" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="9291:9635" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="9698:9710" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="9874:11325" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="9903:10099" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="10212:10223" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="10312:10577" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="10885:10902" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="10903:11297" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="11360:11372" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="11554:13331" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="11575:13279" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="11616:12544" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="11674:12518" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="11924:12019" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="12117:12487" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="12577:12588" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="12634:12646" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="12904:12916" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="13222:13239" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="13394:13791" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="13442:13764" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="14001:14537" placeholder="SELECT cc_va..cc_vaults..." />
-            <marker date="1445517566000" expanded="false" signature="15234:15484" placeholder="SELECT fk_ch..fk_channels_vaults..." />
-            <marker date="1445517566000" expanded="false" signature="16333:16725" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="16829:17530" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="16895:17494" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="16944:17042" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="17106:17471" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="17152:17444" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="17184:17371" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="17313:17323" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="17553:17720" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="17601:17693" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="18158:19928" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="18259:19907" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="18323:19883" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="18369:18829" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="18417:18802" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="18471:18771" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="18882:19673" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="18933:19369" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="19035:19334" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="19420:19646" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="20008:20046" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="20110:20246" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="20153:20224" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="20496:20584" placeholder="SELECT cc_ba..cc_base_contracts..." />
-            <marker date="1445517566000" expanded="false" signature="20657:20753" placeholder="INSERT INTO ..." />
-            <marker date="1445517566000" expanded="false" signature="20803:20908" placeholder="INSERT INTO ..." />
-            <marker date="1445517566000" expanded="false" signature="20958:21066" placeholder="INSERT INTO ..." />
-            <marker date="1445517566000" expanded="true" signature="21116:21238" placeholder="UPDATE cc_ch..." />
-            <marker date="1445517566000" expanded="false" signature="21281:21350" placeholder="SELECT cc_va..cc_vaults..." />
-            <marker date="1445517566000" expanded="false" signature="21456:21561" placeholder="INSERT INTO ..." />
-            <marker date="1445517566000" expanded="false" signature="21824:21912" placeholder="SELECT cc_ba..cc_base_contracts..." />
-            <marker date="1445517566000" expanded="false" signature="21985:22079" placeholder="DELETE FROM ..." />
-            <marker date="1445517566000" expanded="false" signature="22129:22229" placeholder="DELETE FROM ..." />
-            <marker date="1445517566000" expanded="false" signature="22279:22386" placeholder="DELETE FROM ..." />
-            <marker date="1445517566000" expanded="false" signature="22437:22689" placeholder="UPDATE fk_sl..." />
-            <marker date="1445517566000" expanded="false" signature="22607:22664" placeholder="SELECT id FR..cc_sliders..." />
-            <marker date="1445517566000" expanded="false" signature="22739:22980" placeholder="DELETE FROM ..." />
-            <marker date="1445517566000" expanded="false" signature="22891:22955" placeholder="SELECT id FR..cc_collections..." />
-            <marker date="1445517566000" expanded="false" signature="23030:23271" placeholder="DELETE FROM ..." />
-            <marker date="1445517566000" expanded="false" signature="23182:23246" placeholder="SELECT id FR..cc_subchannels..." />
-            <marker date="1445517566000" expanded="false" signature="23373:23442" placeholder="SELECT cc_va..cc_vaults..." />
-            <marker date="1445517566000" expanded="true" signature="23548:23657" placeholder="DELETE FROM ..." />
-            <marker date="1445517566000" expanded="false" signature="23868:23956" placeholder="SELECT cc_ba..cc_base_contracts..." />
-            <marker date="1445517566000" expanded="false" signature="24025:24121" placeholder="INSERT INTO ..." />
-            <marker date="1445517566000" expanded="false" signature="24167:24272" placeholder="INSERT INTO ..." />
-            <marker date="1445517566000" expanded="false" signature="24318:24426" placeholder="INSERT INTO ..." />
-            <marker date="1445517566000" expanded="false" signature="24471:24593" placeholder="UPDATE cc_ch..." />
-            <marker date="1445517566000" expanded="false" signature="24632:24701" placeholder="SELECT cc_va..cc_vaults..." />
-            <marker date="1445517566000" expanded="true" signature="24799:24904" placeholder="INSERT INTO ..." />
-            <marker date="1445517566000" expanded="false" signature="25082:25170" placeholder="SELECT cc_ba..cc_base_contracts..." />
-            <marker date="1445517566000" expanded="false" signature="25239:25333" placeholder="DELETE FROM ..." />
-            <marker date="1445517566000" expanded="false" signature="25379:25479" placeholder="DELETE FROM ..." />
-            <marker date="1445517566000" expanded="false" signature="25525:25632" placeholder="DELETE FROM ..." />
-            <marker date="1445517566000" expanded="false" signature="25679:25927" placeholder="UPDATE fk_sl..." />
-            <marker date="1445517566000" expanded="false" signature="25845:25902" placeholder="SELECT id FR..cc_sliders..." />
-            <marker date="1445517566000" expanded="false" signature="25973:26210" placeholder="DELETE FROM ..." />
-            <marker date="1445517566000" expanded="false" signature="26121:26185" placeholder="SELECT id FR..cc_collections..." />
-            <marker date="1445517566000" expanded="false" signature="26256:26493" placeholder="DELETE FROM ..." />
-            <marker date="1445517566000" expanded="false" signature="26404:26468" placeholder="SELECT id FR..cc_subchannels..." />
-            <marker date="1445517566000" expanded="false" signature="26541:26610" placeholder="SELECT cc_va..cc_vaults..." />
-            <marker date="1445517566000" expanded="false" signature="26708:26817" placeholder="DELETE FROM ..." />
-            <marker date="1445517566000" expanded="false" signature="26938:27402" placeholder="Select cc_fi..cc_vaults..." />
-            <marker date="1445517566000" expanded="true" signature="27616:27788" placeholder="SELECT cc_co..cc_companies..." />
-            <marker date="1445517566000" expanded="true" signature="28644:28917" placeholder="SELECT DISTI..cc_companies..." />
-            <marker date="1445517566000" expanded="true" signature="29168:29439" placeholder="SELECT DISTI..cc_channels..." />
-            <marker date="1445517566000" expanded="true" signature="29640:29765" placeholder="SELECT cc_va..cc_vaults..." />
-            <marker date="1445517566000" expanded="true" signature="29856:29961" placeholder="INSERT INTO ..." />
-            <marker date="1445517566000" expanded="true" signature="30141:30266" placeholder="SELECT cc_va..cc_vaults..." />
-            <marker date="1445517566000" expanded="false" signature="30357:30466" placeholder="DELETE FROM ..." />
-            <marker date="1445517566000" expanded="true" signature="30633:42339" placeholder="..." />
-            <marker date="1445517566000" expanded="false" signature="30674:31336" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="30727:31320" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="30802:31272" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="30831:31251" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="31127:31225" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="31440:33050" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="31505:32206" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="31581:32156" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="31918:32130" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="32259:33004" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="32352:32929" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="32690:32903" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="33091:33763" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="33147:33747" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="33223:33676" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="33495:33650" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="33819:35430" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="33874:34473" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="34012:34423" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="34301:34397" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="34532:35397" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="34729:35349" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="34879:35325" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="35191:35295" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="35471:38555" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="35541:35674" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="35733:36809" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="35779:36790" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="36057:36768" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="36220:36740" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="36580:36702" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="36873:37948" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="36982:37932" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="37011:37912" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="37294:37890" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="37406:37862" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="37726:37832" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="38004:38513" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="38103:38407" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="38227:38382" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="38596:40773" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="38668:39767" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="38755:39748" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="39015:39726" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="39178:39698" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="39538:39660" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="39831:40744" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="39910:40725" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="40155:40707" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="40259:40683" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="40559:40657" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="40829:41343" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="40904:41321" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="41197:41295" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="41422:41747" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="41442:41745" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="41488:41737" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="41681:41731" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="41804:42319" placeholder="{...}" />
-            <marker date="1445517566000" expanded="false" signature="41880:42297" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1445517566000" expanded="false" signature="42173:42271" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/xchange/xchangeTitles/list_partial.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Composers/ViewComposer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9615384">
-          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/RightsMiddleware.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.576923">
-          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_classmap.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2562592">
           <caret line="46" column="21" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/nav.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8363636">
-          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1546,37 +870,450 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.50073636">
           <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.756098">
-          <caret line="91" column="48" selection-start-line="91" selection-start-column="48" selection-end-line="91" selection-end-column="48" />
-          <folding>
-            <marker date="1457531692098" expanded="true" signature="1918:2227" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1457531692098" expanded="true" signature="2273:2500" placeholder="SELECT count..cc_films..." />
-            <marker date="1457531692098" expanded="true" signature="2521:3161" placeholder="SELECT COUNT..id..." />
-            <marker date="1457531692098" expanded="true" signature="2577:2897" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1457531692098" expanded="true" signature="2577:3147" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1457531692098" expanded="true" signature="2920:3147" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1457531692098" expanded="true" signature="3467:3793" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1457531692098" expanded="true" signature="3850:4091" placeholder="SELECT count..cc_films..." />
-            <marker date="1457531692098" expanded="true" signature="4120:4786" placeholder="SELECT COUNT..id..." />
-            <marker date="1457531692098" expanded="true" signature="4176:4760" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1457531692098" expanded="true" signature="6745:7093" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1457531692098" expanded="true" signature="7094:7348" placeholder="SELECT DISTI..cc_films..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xchange/CPTitlesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73675764">
+        <state vertical-scroll-proportion="0.0">
           <caret line="43" column="66" selection-start-line="43" selection-start-column="66" selection-end-line="43" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kiwi/inc/contentproviders.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Store/ProfileController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.019495413">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="26" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/titles/titleManagement/rights/rights.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="21.423077">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/titles/titleManagement/rights/partials/changeStore/changeStore.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.0">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="74" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/xchange/xchangeStores/storesFilms.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/cache.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.35132033">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Company.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.1923075">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="14" selection-end-column="144" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Account.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23421355">
+          <caret line="12" column="186" selection-start-line="12" selection-start-column="186" selection-end-line="12" selection-end-column="186" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/xchange/xchangeStores/xchangeStores.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35132033">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="51" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/xchange/xchangeStores/list_partial.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5510907">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="53" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/xchange/xchangeTitles/list_partial.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.48335248">
+          <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/xchange/xchangeContentProviders/list_partial.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.11710677">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/partnerStores/filmList_partial.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/partnerStores/list_partial.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/xchange/CPTitles/list_partial.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.8346728">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/xchange/profile/cPInfo_partial.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xchange/XchangeContentProvidersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xchange/ProfileController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.1923075">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/xchange/profile/cPProfile.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45350173">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/store/contentProviders/list_partial.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2692308">
+          <caret line="23" column="100" selection-start-line="23" selection-start-column="100" selection-end-line="23" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/store/contentProviders/contentProviders.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0045924224">
+          <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.346153">
+          <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kiwi/classes/ContentProviders.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.072727">
+          <caret line="188" column="31" selection-start-line="188" selection-start-column="31" selection-end-line="188" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/VerifyAccess.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Authenticate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.576923">
+          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6153846">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Request.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3">
+          <caret line="12" column="62" selection-start-line="12" selection-start-column="62" selection-end-line="12" selection-end-column="62" />
           <folding>
-            <element signature="e#48#76#0#PHP" expanded="true" />
+            <element signature="e#39#67#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/FilmMiddleware.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0308824">
+          <caret line="62" column="52" selection-start-line="62" selection-start-column="52" selection-end-line="62" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/store/contentProviders/editForm.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7761194">
+          <caret line="55" column="33" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/partials/nav.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21469575">
+          <caret line="68" column="23" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58553386">
+          <caret line="51" column="65" selection-start-line="51" selection-start-column="55" selection-end-line="51" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Store/UserManagementController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.35132033">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="37" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/store/users/list_partial.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13662457">
+          <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="130" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/store/contentProviders/contentProviderFilms.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5074627">
+          <caret line="26" column="18" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/store/contentProviders/filmList_partial.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7416762">
+          <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xchange/XchangeStoresController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37543055">
+          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="108" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/store/users/usersManagement.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.5">
+          <caret line="58" column="9" selection-start-line="0" selection-start-column="0" selection-end-line="95" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Store/ContentProvidersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33180252">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="40" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Silders.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15614237">
+          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Store.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58208954">
+          <caret line="30" column="31" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="31" />
+          <folding>
+            <element signature="e#23#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kiwi/classes/Base.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="250" column="74" selection-start-line="250" selection-start-column="64" selection-end-line="250" selection-end-column="74" />
+          <folding>
+            <marker date="1452772207853" expanded="true" signature="444:508" placeholder="SELECT slide..cc_channels..." />
+            <marker date="1452772207853" expanded="true" signature="1398:1465" placeholder="SELECT front..cc_channels..." />
+            <marker date="1452772207853" expanded="true" signature="1704:1745" placeholder="SELECT * FRO..cc_films..." />
+            <marker date="1452772207853" expanded="true" signature="2001:2042" placeholder="SELECT * FRO..cc_films..." />
+            <marker date="1452772207853" expanded="true" signature="2211:2434" placeholder="SELECT * FRO..cc_channels_contracts..." />
+            <marker date="1452772207853" expanded="true" signature="2736:2978" placeholder="SELECT cc_ba..cc_base_contracts..." />
+            <marker date="1452772207853" expanded="true" signature="3216:3272" placeholder="SELECT * FRO..cc_base_contracts..." />
+            <marker date="1452772207853" expanded="true" signature="3587:3679" placeholder="SELECT cc_ba..cc_base_contracts..." />
+            <marker date="1452772207853" expanded="true" signature="3744:3986" placeholder="SELECT cc_ba..cc_base_contracts..." />
+            <marker date="1452772207853" expanded="true" signature="4340:4596" placeholder="SELECT cc_ch..cc_channels_contracts..." />
+            <marker date="1452772207853" expanded="true" signature="6731:6754" placeholder="SELECT * FRO..z_locales..." />
+            <marker date="1452772207853" expanded="true" signature="7002:7205" placeholder="SELECT cc_co..cc_companies..." />
+            <marker date="1452772207853" expanded="true" signature="7468:7525" placeholder="SELECT id,ti..cc_companies..." />
+            <marker date="1452772207853" expanded="true" signature="7730:7788" placeholder="SELECT id,ti..cc_subchannels..." />
+            <marker date="1452772207853" expanded="true" signature="8024:8097" placeholder="SELECT * FRO..cc_subscriptions..." />
+            <marker date="1452772207853" expanded="true" signature="8603:8670" placeholder="SELECT * FRO..cc_bundles..." />
+            <marker date="1452772207853" expanded="true" signature="9029:9235" placeholder="SELECT DISTI..cc_contracts..." />
+            <marker date="1452772207853" expanded="true" signature="9269:9522" placeholder="SELECT DISTI..cc_contracts..." />
+            <marker date="1452772207853" expanded="true" signature="9845:10069" placeholder="SELECT DISTI..cc_contracts..." />
+            <marker date="1452772207853" expanded="true" signature="10103:10375" placeholder="SELECT DISTI..cc_contracts..." />
+            <marker date="1452772207853" expanded="true" signature="10886:11219" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1452772207853" expanded="false" signature="16987:17000" placeholder="..." />
+            <marker date="1452772207853" expanded="true" signature="17001:17471" placeholder="..." />
+            <marker date="1452772207853" expanded="true" signature="17046:17259" placeholder="..." />
+            <marker date="1452772207853" expanded="true" signature="17523:19266" placeholder="..." />
+            <marker date="1452772207853" expanded="true" signature="17580:17704" placeholder="{...}" />
+            <marker date="1452772207853" expanded="true" signature="17747:17844" placeholder="{...}" />
+            <marker date="1452772207853" expanded="true" signature="17894:18165" placeholder="{...}" />
+            <marker date="1452772207853" expanded="true" signature="18219:19239" placeholder="{...}" />
+            <marker date="1452772207853" expanded="true" signature="18313:19199" placeholder="{&quot;type&quot;: 'POST'...}" />
+            <marker date="1452772207853" expanded="true" signature="18557:19177" placeholder="{...}" />
+            <marker date="1452772207853" expanded="true" signature="19896:20036" placeholder="..." />
+            <marker date="1452772207853" expanded="true" signature="20220:20349" placeholder="..." />
+            <marker date="1452772207853" expanded="true" signature="28443:28514" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1452772207853" expanded="true" signature="28567:28635" placeholder="SELECT COUNT..cc_films..." />
+            <marker date="1452772207853" expanded="true" signature="28723:28778" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1452772207853" expanded="true" signature="28831:28870" placeholder="SELECT COUNT..cc_films..." />
+            <marker date="1452772207853" expanded="true" signature="28971:29026" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1452772207853" expanded="true" signature="29079:29128" placeholder="SELECT count..cc_films..." />
+            <marker date="1452772207853" expanded="true" signature="30941:31042" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1452772207853" expanded="true" signature="31135:31190" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1452772207853" expanded="true" signature="31283:31338" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1452772207853" expanded="true" signature="32000:32067" placeholder="SELECT * FRO..fk_films_media..." />
+            <marker date="1452772207853" expanded="true" signature="32656:32736" placeholder="SELECT * FRO..cc_countries..." />
+            <marker date="1452772207853" expanded="true" signature="33002:33057" placeholder="SELECT * FRO..cc_countries..." />
+            <marker date="1452772207853" expanded="true" signature="33229:33290" placeholder="SELECT title..cc_countries..." />
+            <marker date="1452772207853" expanded="true" signature="33431:33503" placeholder="SELECT * FRO..cc_features..." />
+            <marker date="1452772207853" expanded="true" signature="33719:33784" placeholder="SELECT * FRO..fk_channels_features..." />
+            <marker date="1452772207853" expanded="true" signature="34009:34376" placeholder="SELECT z_sub..z_subscription_transactions..." />
+            <marker date="1452772207853" expanded="true" signature="38188:38241" placeholder="SELECT id FR..cc_films..." />
+            <marker date="1452772207853" expanded="true" signature="38347:38677" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1452772207853" expanded="true" signature="38763:39003" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1452772207853" expanded="true" signature="39069:39726" placeholder="SELECT ids a..id..." />
+            <marker date="1452772207853" expanded="true" signature="39118:39717" placeholder="SELECT DISTI..cc_films..." />
+            <marker date="1452772207853" expanded="true" signature="40280:40337" placeholder="SELECT * FRO..cc_accounts..." />
+            <marker date="1452772207853" expanded="true" signature="40510:40567" placeholder="SELECT * FRO..cc_accounts..." />
+            <marker date="1452772207853" expanded="true" signature="40731:40804" placeholder="SELECT email..cc_users..." />
+            <marker date="1452772207853" expanded="true" signature="40977:41046" placeholder="SELECT * FRO..cc_users..." />
+            <marker date="1452772207853" expanded="true" signature="41237:41345" placeholder="SELECT email..cc_users..." />
+            <marker date="1452772207853" expanded="true" signature="41631:41679" placeholder="SELECT * FRO..cc_accounts..." />
+            <marker date="1452772207853" expanded="true" signature="41840:41885" placeholder="SELECT * FRO..cc_users..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/FilmSlidersImages.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11710677">
+          <caret line="6" column="23" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kiwi/classes/Slider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="56" column="12" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="139" />
+          <folding>
+            <element signature="e#107#157#0#PHP" expanded="false" />
+            <element signature="e#1956#2177#0#PHP" expanded="false" />
+            <element signature="e#1987#2163#0#PHP" expanded="false" />
+            <element signature="n#saveSlider#0;n#Slider#0;n#!!top" expanded="false" />
+            <element signature="e#10564#10901#0#PHP" expanded="false" />
+            <element signature="e#10630#10872#0#PHP" expanded="false" />
+            <element signature="n#deleteImageSlider#0;n#Slider#0;n#!!top" expanded="false" />
+            <element signature="n#sort_predicate#0;n#Slider#0;n#!!top" expanded="false" />
+            <element signature="e#11100#11161#0#PHP" expanded="false" />
+            <element signature="n#scripts#0;n#Slider#0;n#!!top" expanded="false" />
+            <marker date="1458055322106" expanded="true" signature="457:523" placeholder="SELECT * FRO..cc_sliders..." />
+            <marker date="1458055322106" expanded="true" signature="896:985" placeholder="INSERT INTO ..." />
+            <marker date="1458055322106" expanded="true" signature="1031:1121" placeholder="SELECT * FRO..cc_sliders..." />
+            <marker date="1458055322106" expanded="true" signature="1733:1820" placeholder="SELECT * FRO..fk_sliders_images..." />
+            <marker date="1458055322106" expanded="true" signature="7913:7984" placeholder="..." />
+            <marker date="1458055322106" expanded="false" signature="10645:10869" placeholder="UPDATE fk_sl..." />
+            <marker date="1458055322106" expanded="false" signature="10994:11044" placeholder="DELETE FROM ..." />
+            <marker date="1458055322106" expanded="false" signature="11277:11855" placeholder="..." />
+            <marker date="1458055322106" expanded="false" signature="11323:11839" placeholder="{...}" />
+            <marker date="1458055322106" expanded="false" signature="11385:11829" placeholder="{...}" />
+            <marker date="1458055322106" expanded="false" signature="11688:11782" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Store/SliderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.538462">
+          <caret line="39" column="112" selection-start-line="39" selection-start-column="105" selection-end-line="39" selection-end-column="112" />
+          <folding>
+            <element signature="e#46#74#0#PHP" expanded="true" />
+            <marker date="1458138828789" expanded="true" signature="1957:2044" placeholder="SELECT * FRO..fk_sliders_images..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/store/slider/slider.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.84385765">
+          <caret line="62" column="15" selection-start-line="62" selection-start-column="15" selection-end-line="62" selection-end-column="15" />
+          <folding>
+            <marker date="1458146559084" expanded="true" signature="2000:2360" placeholder="..." />
+            <marker date="1458146559084" expanded="true" signature="2109:2313" placeholder="..." />
           </folding>
         </state>
       </provider>

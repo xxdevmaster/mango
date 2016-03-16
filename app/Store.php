@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 class Store extends Model
 {
-    //
     protected $table = "cc_channels";
 
     public $timestamps = false;
@@ -30,7 +29,11 @@ class Store extends Model
     }
 
     public function storesFilms($limit = 20, $offset = 0){
-        return $this->belongsToMany('App\Film', 'fk_films_owners', 'owner_id', 'films_id')->where('cc_films.deleted', '0')->where('fk_films_owners.type', '1')->limit($limit)->skip($offset);
+        $query = $this->belongsToMany('App\Film', 'fk_films_owners', 'owner_id', 'films_id')->where('cc_films.deleted', '0')->where('fk_films_owners.type', '1');
+        if($limit)
+            return $query->limit($limit)->skip($offset);
+        else
+            return $query;
     }
 
     public function partnerStoresFilmsCount($whereIn = []){

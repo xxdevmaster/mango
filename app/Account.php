@@ -8,6 +8,10 @@ class Account extends Model
 {
     protected $table = 'cc_accounts';
 
+    public $timestamps = false;
+
+    protected $fillable = ['id', 'platforms_id', 'companies_id', 'parent_id', 'title', 'email', 'person', 'country', 'city', 'address', 'phone', 'zip', 'source', 'level', 'status', 'meta'];
+
     //
     public function users(){
         return $this->hasMany('App\User', 'accounts_id');

@@ -83,6 +83,7 @@ class XchangeStoresController extends Controller
     /**
      *@GET("/xchange/stores/films/{storeID}")
      * @Middleware("auth")
+     * @Where({"storeID": "[0-9]+"})
      */
     public function storesFilms($storeID)
     {
