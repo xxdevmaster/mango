@@ -10,5 +10,5 @@ class Silders extends Model
 	
     public $timestamps = false;
 	
-	protected $fillable = ['id', 'title', 'channel_id'];
+	protected $fillable = ['id', 'title', 'channel_id', 'width', 'height'];
 }

@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
+use App\Libraries\CHhelper\CHhelper;
 use App\Models\Silders;
 use App\Models\FilmSlidersImages;
 use App\Store;
+use Aws\Common\Aws;
 class SliderController extends Controller
 {
     private $request;
@@ -34,10 +36,7 @@ class SliderController extends Controller
     public function sliderShow()
     {
         $films = $this->getStoreFilms();
-
-        $this->getMainSliderID();
-        $sliderItems = $this->getImageitems($this->sliderID);
-        return view('store.slider.slider', compact('films', 'sliderItems'), ['slider' => $this->slider, 'storeID' => $this->storeID]);
+        return view('store.slider.slider', compact('films'), ['slider' => $this->getMainSliderID(), 'storeID' => $this->storeID]);
     }
 
     public function getMainSliderID()
@@ -46,7 +45,7 @@ class SliderController extends Controller
             $this->slider = Silders::where('channel_id', $this->storeID)->get()->keyBy('id');
             $this->slider->each(function ($val, $key) {
                 if ($val->title == 'Main Slider')
-                    $this->sliderID = $key;
+                    $this->sliderID[] = $key;
             });
 
             if(empty($this->sliderID))
@@ -55,51 +54,104 @@ class SliderController extends Controller
                     'title' => 'Main Slider'
                 ])->id;
 
-            return $this->sliderID;
+            return $this->slider;
         }
     }
 
     public function getImageitems($sliderID)
     {
-        return FilmSlidersImages::where('sliders_id', $sliderID)->orderBy('position', 'asc')->get();
-
-        dd($sliderItems);
-        $FilmsObj = BaseElements::getPlatformFilms($_SESSION['WL_ID'],'all',$this->id);
-
-        $res= G('DB')->query("SELECT * FROM fk_sliders_images WHERE sliders_id='".$slider_id."' ORDER BY position ASC");
-        while ($row = $res->fetch(PDO::FETCH_ASSOC)){
-            $Films = array();
-            $item_id = $row['id'];
-            if($FilmsObj){
-                foreach ($FilmsObj as $key => $val){
-                    $Films[] = '<option value="'.$key.'" '.($row['films_id'] == $key?'selected':'').'>'.$val.'</option>';
-                }
-            }
-            $surl = $row['url']?$row['url']:'http://cinecliq.assets.s3.amazonaws.com/wls/'.intval($_SESSION['WL_ID']).'/'.$row['filename'];
-            $imagelist[]=  '
-                <li class="list-group-item" id="item-'.$item_id.'">
-                    <div class="media">
-                        <div class="col-sm-6 col-md-3">
-                            <a href="#" class="thumbnail">
-                                <img   data-src="holder.js/100x100" src="'.$surl.'" alt="...">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <div class="form-group"><input name="title['.$item_id.']" type="text" class="form-control" placeholder="Title" value="'.$row['title'].'"></div>
-                            <div class="form-group"><input name="brief['.$item_id.']" type="text" class="form-control" placeholder="Description" value="'.$row['brief'].'"></div>
-                            <div class="form-group"><input name="url['.$item_id.']" type="text" class="form-control" placeholder="URL" value="'.$row['ext_url'].'"></div>
-                            <div class="form-group"><select name="film['.$item_id.']" class="selectpicker form-control"><option value="">Select Film</option>'.implode('',$Films).'</select></div>
-                            <button type="button" class="btn btn-xs btn-danger" onclick="deleteWLimage(\''.$item_id.'\');">Delete</button>
-                        </div>
-                    </div>
-               </li>
-                ';
-        }
-        return implode('',$imagelist);
+        return FilmSlidersImages::where('sliders_id', $sliderID)->orderBy('position', 'asc')->get()->keyBy('id');
     }
 
     private function getStoreFilms()
     {
         return Store::find($this->storeID)->storesFilms(0)->get()->keyBy('id');
+    }
+
+    /**
+     *@POST("/store/slider/uploadImage")
+     * @Middleware("auth")
+     */
+    public function uploadImage()
+    {
+        $s3AccessKey = 'AKIAJPIY5AB3KDVIDPOQ';
+        $s3SecretKey = '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';
+        $region    	 = 'us-east-1';
+        $bucket		 = 'cinecliq.assets';
+
+        $fileTypes = array('jpg','jpeg','png','PNG','JPG','JPEG','svg','SVG'); // File extensions
+
+        $s3path = $this->request->file('Filedata');
+        $s3name = $s3path->getClientOriginalName();
+        $s3mimeType = $s3path->getClientOriginalExtension();
+
+        if(in_array($s3mimeType, $fileTypes)){
+            $s3 = AWS::factory([
+                'key'    => $s3AccessKey,
+                'secret' => $s3SecretKey,
+                'region' => $region,
+            ])->get('s3');
+
+            $s3->putObject([
+                'Bucket' => $bucket,
+                'Key'    => 'wls/'.$this->storeID.'/'.$s3name,
+                'Body'   => fopen($s3path, 'r'),
+                'SourceFile' => $s3path,
+                'ACL'    => 'public-read',
+            ]);
+
+            FilmSlidersImages::create([
+                'filename' => $s3name ,
+                'sliders_id' => $this->request->Input('sliderID')
+            ]);
+
+            $films = $this->getStoreFilms();
+
+            return [
+                'error' => 0,
+                'message' => $s3name ,
+                'html' => view('store.slider.list', compact('films'), ['slider' => $this->getMainSliderID(), 'storeID' => $this->storeID])->render()
+            ];
+        }else
+            $response = [
+                'error' => 1,
+                'message' => $s3mimeType.' is invalid file type'
+            ];
+
+        return $response;
+    }
+
+    /**
+     *@POST("/store/slider/save")
+     * @Middleware("auth")
+     */
+    public function save()
+    {
+        foreach($this->request->Input() as $key => $val) {
+            foreach($val as $k => $v) {
+                $slideID = CHhelper::filterInputInt($k);
+                FilmSlidersImages::where('id', $slideID)->update([
+                    'title' => CHhelper::filterInput($v['title']) ,
+                    'brief' => CHhelper::filterInput($v['brief']) ,
+                    'url' => CHhelper::filterInput($v['url']) ,
+                    'films_id' => CHhelper::filterInputInt($v['filmsID']) ,
+                    'position' => CHhelper::filterInputInt($v['position']) ,
+                ]);
+            }
+        }
+    }
+
+    /**
+     *@POST("/store/slider/removeSlide")
+     * @Middleware("auth")
+     */
+    public function removeSlide()
+    {
+        $slideID = (!empty($this->request->Input('slideID')) && is_numeric($this->request->Input('slideID'))) ? CHhelper::filterInputInt($this->request->Input('slideID')) : false;
+        if($slideID)
+            FilmSlidersImages::destroy($slideID);
+
+        $films = $this->getStoreFilms();
+        return view('store.slider.list', compact('films'), ['slider' => $this->getMainSliderID(), 'storeID' => $this->storeID])->render();
     }
 }
