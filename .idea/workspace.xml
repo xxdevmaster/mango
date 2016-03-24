@@ -7,15 +7,9 @@
     <list default="true" id="d970e7cb-79be-44a7-bbf3-f440f7349167" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php" afterPath="$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Film.php" afterPath="$PROJECT_DIR$/app/Film.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Store/SliderController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Store/SliderController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/TitlesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/TitlesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/cinehost.css" afterPath="$PROJECT_DIR$/public/css/cinehost.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/titles/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/titles/index.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/titles/partials/list.blade.php" afterPath="$PROJECT_DIR$/resources/views/titles/partials/list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/partials/nav.blade.php" afterPath="$PROJECT_DIR$/resources/views/partials/nav.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mango.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,21 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.8727272">
-              <caret line="22" column="22" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TitlesController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TitlesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27324915">
-              <caret line="95" column="69" selection-start-line="95" selection-start-column="69" selection-end-line="95" selection-end-column="69" />
+            <state vertical-scroll-proportion="0.7807118">
+              <caret line="101" column="71" selection-start-line="101" selection-start-column="71" selection-end-line="101" selection-end-column="71" />
               <folding>
                 <element signature="e#40#49#0#PHP" expanded="true" />
               </folding>
@@ -62,8 +46,8 @@
       <file leaf-file-name="Titles.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../kiwi/classes/Titles/Titles.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.672728">
-              <caret line="188" column="185" selection-start-line="188" selection-start-column="182" selection-end-line="188" selection-end-column="185" />
+            <state vertical-scroll-proportion="-16.346153">
+              <caret line="86" column="12" selection-start-line="86" selection-start-column="12" selection-end-line="86" selection-end-column="12" />
               <folding>
                 <element signature="n#Titles#0;n#Titles#0;n#!!top" expanded="false" />
                 <element signature="n#leftMenuCount#0;n#Titles#0;n#!!top" expanded="false" />
@@ -75,12 +59,7 @@
                 <element signature="n#getAllFilms#0;n#Titles#0;n#!!top" expanded="false" />
                 <element signature="e#2072#3755#0#PHP" expanded="false" />
                 <element signature="e#4142#4393#0#PHP" expanded="false" />
-                <element signature="e#4405#4532#0#PHP" expanded="false" />
-                <element signature="e#4541#4962#0#PHP" expanded="false" />
-                <element signature="e#4750#4869#0#PHP" expanded="false" />
-                <element signature="e#4974#5395#0#PHP" expanded="false" />
                 <element signature="e#5183#5302#0#PHP" expanded="false" />
-                <element signature="e#5404#5685#0#PHP" expanded="false" />
                 <element signature="e#6328#7970#0#PHP" expanded="false" />
                 <element signature="e#6665#7970#0#PHP" expanded="false" />
                 <element signature="e#6965#7970#0#PHP" expanded="false" />
@@ -101,89 +80,6 @@
                 <element signature="e#19269#19579#0#PHP" expanded="false" />
                 <element signature="n#removeTitleItem#0;n#Titles#0;n#!!top" expanded="false" />
                 <element signature="n#scripts#0;n#Titles#0;n#!!top" expanded="false" />
-                <marker date="1453305743010" expanded="false" signature="271:339" placeholder="SELECT COUNT..cc_films..." />
-                <marker date="1453305743010" expanded="false" signature="445:781" placeholder="SELECT COUNT..cc_films..." />
-                <marker date="1453305743010" expanded="false" signature="867:1123" placeholder="SELECT count..cc_films..." />
-                <marker date="1453305743010" expanded="false" signature="1189:1857" placeholder="SELECT COUNT..id..." />
-                <marker date="1453305743010" expanded="false" signature="1245:1842" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1453305743010" expanded="false" signature="2163:2216" placeholder="SELECT id FR..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="2322:2652" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="2738:2978" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="3044:3701" placeholder="SELECT ids a..id..." />
-                <marker date="1453305743010" expanded="true" signature="3093:3692" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1453305743010" expanded="false" signature="4646:4733" placeholder="SELECT films..fk_films_owners..." />
-                <marker date="1453305743010" expanded="false" signature="5079:5166" placeholder="SELECT films..fk_films_owners..." />
-                <marker date="1453305743010" expanded="false" signature="6393:6512" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1453305743010" expanded="false" signature="6569:6637" placeholder="SELECT COUNT..cc_films..." />
-                <marker date="1453305743010" expanded="false" signature="6725:6828" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1453305743010" expanded="false" signature="6885:6924" placeholder="SELECT COUNT..cc_films..." />
-                <marker date="1453305743010" expanded="false" signature="7025:7128" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1453305743010" expanded="false" signature="7185:7234" placeholder="SELECT count..cc_films..." />
-                <marker date="1453305743010" expanded="true" signature="9368:10949" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="9477:9488" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="9564:9713" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="10226:10815" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="10272:10789" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="10849:10866" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="11332:12243" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="11353:12191" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="11386:11397" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="11443:11455" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="11713:11725" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="12084:12102" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="12146:12163" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="12514:12788" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="12562:12761" placeholder="{...}" />
-                <marker date="1453305743010" expanded="true" signature="13326:15079" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="13426:15058" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="13491:15034" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="13537:14208" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="13796:14181" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="13850:14150" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="14261:14824" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="14312:14538" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="14589:14797" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="15159:15213" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="15254:15321" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="15635:15688" placeholder="SELECT * FRO..cc_films..." />
-                <marker date="1453305743010" expanded="false" signature="15789:16010" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="16047:17069" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="16116:17050" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="16303:16979" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="16354:16387" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="16438:16651" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="16702:16924" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="17108:17433" placeholder="..." />
-                <marker date="1453305743010" expanded="true" signature="18782:19055" placeholder="SELECT DISTI..cc_companies..." />
-                <marker date="1453305743010" expanded="false" signature="19306:19577" placeholder="SELECT DISTI..cc_channels..." />
-                <marker date="1453305743010" expanded="false" signature="19851:24591" placeholder="..." />
-                <marker date="1453305743010" expanded="false" signature="19878:20590" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="19934:20585" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="false" signature="20105:20566" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="20126:20554" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="false" signature="20429:20528" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="20621:21288" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="20675:21272" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="20750:21224" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="20779:21203" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="false" signature="21078:21177" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="21395:23013" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="21460:22165" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="21536:22115" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="false" signature="21876:22089" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="22218:22967" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="22311:22892" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="false" signature="22652:22866" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="23069:23587" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="23144:23565" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="false" signature="23440:23539" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="23666:23995" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="23686:23993" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="23732:23985" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="false" signature="23928:23979" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="24052:24571" placeholder="{...}" />
-                <marker date="1453305743010" expanded="false" signature="24128:24549" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-                <marker date="1453305743010" expanded="false" signature="24424:24523" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -192,8 +88,8 @@
       <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/titles/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="18" column="61" selection-start-line="18" selection-start-column="61" selection-end-line="18" selection-end-column="61" />
+            <state vertical-scroll-proportion="-9.961538">
+              <caret line="66" column="10" selection-start-line="66" selection-start-column="10" selection-end-line="66" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -202,15 +98,15 @@
       <file leaf-file-name="list.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/titles/partials/list.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.3846154">
-              <caret line="63" column="41" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
+            <state vertical-scroll-proportion="-26.961538">
+              <caret line="81" column="46" selection-start-line="81" selection-start-column="46" selection-end-line="81" selection-end-column="46" />
               <folding>
-                <marker date="1458816476986" expanded="true" signature="2686:4149" placeholder="..." />
-                <marker date="1458816476986" expanded="true" signature="2697:4148" placeholder="..." />
-                <marker date="1458816476986" expanded="true" signature="2765:3764" placeholder="..." />
-                <marker date="1458816476986" expanded="true" signature="2777:3763" placeholder="..." />
-                <marker date="1458816476986" expanded="true" signature="3074:3555" placeholder="..." />
-                <marker date="1458816476986" expanded="true" signature="3090:3175" placeholder="..." />
+                <marker date="1458817250817" expanded="true" signature="2686:4146" placeholder="..." />
+                <marker date="1458817250817" expanded="true" signature="2697:4145" placeholder="..." />
+                <marker date="1458817250817" expanded="true" signature="2764:3761" placeholder="..." />
+                <marker date="1458817250817" expanded="true" signature="2776:3760" placeholder="..." />
+                <marker date="1458817250817" expanded="true" signature="3073:3554" placeholder="..." />
+                <marker date="1458817250817" expanded="true" signature="3089:3174" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -219,24 +115,28 @@
       <file leaf-file-name="Film.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Film.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.076923">
-              <caret line="76" column="46" selection-start-line="76" selection-start-column="46" selection-end-line="76" selection-end-column="46" />
+            <state vertical-scroll-proportion="-16.5">
+              <caret line="78" column="46" selection-start-line="78" selection-start-column="46" selection-end-line="78" selection-end-column="46" />
               <folding>
-                <marker date="1458735761368" expanded="true" signature="2594:2943" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1458735761368" expanded="true" signature="2944:3171" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1458735761368" expanded="true" signature="2944:3187" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1458735761368" expanded="true" signature="2944:3188" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1458735761368" expanded="true" signature="2944:3195" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1458735761368" expanded="true" signature="3251:3558" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1458735761368" expanded="true" signature="3251:3568" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1458735761368" expanded="true" signature="3251:3570" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1458735761368" expanded="true" signature="3251:3571" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1458735761368" expanded="true" signature="3633:3843" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1458735761368" expanded="true" signature="3633:3844" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1458735761368" expanded="true" signature="3633:3867" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1458735761368" expanded="true" signature="3633:3868" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1458735761368" expanded="true" signature="3633:3875" placeholder="SELECT cc_fi..cc_films..." />
-                <marker date="1458735761368" expanded="true" signature="3633:3877" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="2699:3045" placeholder="SELECT DISTI..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="3046:3270" placeholder="SELECT DISTI..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="3046:3286" placeholder="SELECT DISTI..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="3046:3287" placeholder="SELECT DISTI..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="3046:3294" placeholder="SELECT DISTI..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="3350:3654" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="3350:3664" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="3350:3666" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="3350:3667" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="3729:3936" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="3729:3937" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="3729:3960" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="3729:3961" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="3729:3968" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="3729:3970" placeholder="SELECT cc_fi..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="4247:4560" placeholder="SELECT COUNT..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="4632:4860" placeholder="SELECT count..cc_films..." />
+                <marker date="1458818762809" expanded="true" signature="4904:5572" placeholder="SELECT COUNT..id..." />
+                <marker date="1458818762809" expanded="true" signature="4960:5546" placeholder="SELECT DISTI..cc_films..." />
               </folding>
             </state>
           </provider>
@@ -245,20 +145,14 @@
       <file leaf-file-name="CHhelper.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="96" column="5" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
+            <state vertical-scroll-proportion="-28.923077">
+              <caret line="93" column="5" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
               <folding>
-                <marker date="1458734443250" expanded="true" signature="1920:2229" placeholder="SELECT COUNT..cc_films..." />
-                <marker date="1458734443250" expanded="true" signature="2275:2502" placeholder="SELECT count..cc_films..." />
-                <marker date="1458734443250" expanded="true" signature="2523:3163" placeholder="SELECT COUNT..id..." />
-                <marker date="1458734443250" expanded="true" signature="2579:2899" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1458734443250" expanded="true" signature="2922:3149" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1458734443250" expanded="true" signature="3404:3717" placeholder="SELECT COUNT..cc_films..." />
-                <marker date="1458734443250" expanded="true" signature="3774:4002" placeholder="SELECT count..cc_films..." />
-                <marker date="1458734443250" expanded="true" signature="4031:4699" placeholder="SELECT COUNT..id..." />
-                <marker date="1458734443250" expanded="true" signature="4087:4673" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1458734443250" expanded="true" signature="6660:7008" placeholder="SELECT DISTI..cc_films..." />
-                <marker date="1458734443250" expanded="true" signature="7009:7263" placeholder="SELECT DISTI..cc_films..." />
+                <marker date="1458818878520" expanded="true" signature="1920:2229" placeholder="SELECT COUNT..cc_films..." />
+                <marker date="1458818878520" expanded="true" signature="2275:2502" placeholder="SELECT count..cc_films..." />
+                <marker date="1458818878520" expanded="true" signature="2523:3163" placeholder="SELECT COUNT..id..." />
+                <marker date="1458818878520" expanded="true" signature="2579:2899" placeholder="SELECT DISTI..cc_films..." />
+                <marker date="1458818878520" expanded="true" signature="2922:3149" placeholder="SELECT DISTI..cc_films..." />
               </folding>
             </state>
           </provider>
@@ -336,13 +230,13 @@
         <option value="$PROJECT_DIR$/resources/views/store/giftVoucher/giftVoucher.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/store/giftVoucher/giftVoucherInfo.blade.php" />
         <option value="$PROJECT_DIR$/public/css/cinehost.css" />
-        <option value="$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php" />
-        <option value="$PROJECT_DIR$/app/Film.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/resources/views/partials/nav.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/titles/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/titles/partials/list.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Film.php" />
+        <option value="$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TitlesController.php" />
-        <option value="$PROJECT_DIR$/resources/views/partials/nav.blade.php" />
       </list>
     </option>
   </component>
@@ -922,13 +816,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/store/contentProviders/filmList_partial.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7416762">
-          <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xchange/XchangeStoresController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.37543055">
@@ -1198,26 +1085,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="96" column="5" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
-          <folding>
-            <marker date="1458734443250" expanded="true" signature="1920:2229" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1458734443250" expanded="true" signature="2275:2502" placeholder="SELECT count..cc_films..." />
-            <marker date="1458734443250" expanded="true" signature="2523:3163" placeholder="SELECT COUNT..id..." />
-            <marker date="1458734443250" expanded="true" signature="2579:2899" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1458734443250" expanded="true" signature="2922:3149" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1458734443250" expanded="true" signature="3404:3717" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1458734443250" expanded="true" signature="3774:4002" placeholder="SELECT count..cc_films..." />
-            <marker date="1458734443250" expanded="true" signature="4031:4699" placeholder="SELECT COUNT..id..." />
-            <marker date="1458734443250" expanded="true" signature="4087:4673" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1458734443250" expanded="true" signature="6660:7008" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1458734443250" expanded="true" signature="7009:7263" placeholder="SELECT DISTI..cc_films..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/store/users/usersManagement.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26865673">
@@ -1261,18 +1128,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/partials/nav.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.4727273">
+          <caret line="8" column="112" selection-start-line="8" selection-start-column="96" selection-end-line="8" selection-end-column="112" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.8727272">
+          <caret line="22" column="22" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Libraries/CHhelper/CHhelper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-28.923077">
+          <caret line="93" column="5" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
+          <folding>
+            <marker date="1458818878520" expanded="true" signature="1920:2229" placeholder="SELECT COUNT..cc_films..." />
+            <marker date="1458818878520" expanded="true" signature="2275:2502" placeholder="SELECT count..cc_films..." />
+            <marker date="1458818878520" expanded="true" signature="2523:3163" placeholder="SELECT COUNT..id..." />
+            <marker date="1458818878520" expanded="true" signature="2579:2899" placeholder="SELECT DISTI..cc_films..." />
+            <marker date="1458818878520" expanded="true" signature="2922:3149" placeholder="SELECT DISTI..cc_films..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Film.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.5">
+          <caret line="78" column="46" selection-start-line="78" selection-start-column="46" selection-end-line="78" selection-end-column="46" />
+          <folding>
+            <marker date="1458818762809" expanded="true" signature="2699:3045" placeholder="SELECT DISTI..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="3046:3270" placeholder="SELECT DISTI..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="3046:3286" placeholder="SELECT DISTI..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="3046:3287" placeholder="SELECT DISTI..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="3046:3294" placeholder="SELECT DISTI..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="3350:3654" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="3350:3664" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="3350:3666" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="3350:3667" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="3729:3936" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="3729:3937" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="3729:3960" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="3729:3961" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="3729:3968" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="3729:3970" placeholder="SELECT cc_fi..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="4247:4560" placeholder="SELECT COUNT..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="4632:4860" placeholder="SELECT count..cc_films..." />
+            <marker date="1458818762809" expanded="true" signature="4904:5572" placeholder="SELECT COUNT..id..." />
+            <marker date="1458818762809" expanded="true" signature="4960:5546" placeholder="SELECT DISTI..cc_films..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/titles/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="61" selection-start-line="18" selection-start-column="61" selection-end-line="18" selection-end-column="61" />
+        <state vertical-scroll-proportion="-9.961538">
+          <caret line="66" column="10" selection-start-line="66" selection-start-column="10" selection-end-line="66" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../kiwi/classes/Titles/Titles.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.672728">
-          <caret line="188" column="185" selection-start-line="188" selection-start-column="182" selection-end-line="188" selection-end-column="185" />
+        <state vertical-scroll-proportion="-16.346153">
+          <caret line="86" column="12" selection-start-line="86" selection-start-column="12" selection-end-line="86" selection-end-column="12" />
           <folding>
             <element signature="n#Titles#0;n#Titles#0;n#!!top" expanded="false" />
             <element signature="n#leftMenuCount#0;n#Titles#0;n#!!top" expanded="false" />
@@ -1284,12 +1209,7 @@
             <element signature="n#getAllFilms#0;n#Titles#0;n#!!top" expanded="false" />
             <element signature="e#2072#3755#0#PHP" expanded="false" />
             <element signature="e#4142#4393#0#PHP" expanded="false" />
-            <element signature="e#4405#4532#0#PHP" expanded="false" />
-            <element signature="e#4541#4962#0#PHP" expanded="false" />
-            <element signature="e#4750#4869#0#PHP" expanded="false" />
-            <element signature="e#4974#5395#0#PHP" expanded="false" />
             <element signature="e#5183#5302#0#PHP" expanded="false" />
-            <element signature="e#5404#5685#0#PHP" expanded="false" />
             <element signature="e#6328#7970#0#PHP" expanded="false" />
             <element signature="e#6665#7970#0#PHP" expanded="false" />
             <element signature="e#6965#7970#0#PHP" expanded="false" />
@@ -1310,152 +1230,37 @@
             <element signature="e#19269#19579#0#PHP" expanded="false" />
             <element signature="n#removeTitleItem#0;n#Titles#0;n#!!top" expanded="false" />
             <element signature="n#scripts#0;n#Titles#0;n#!!top" expanded="false" />
-            <marker date="1453305743010" expanded="false" signature="271:339" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1453305743010" expanded="false" signature="445:781" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1453305743010" expanded="false" signature="867:1123" placeholder="SELECT count..cc_films..." />
-            <marker date="1453305743010" expanded="false" signature="1189:1857" placeholder="SELECT COUNT..id..." />
-            <marker date="1453305743010" expanded="false" signature="1245:1842" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1453305743010" expanded="false" signature="2163:2216" placeholder="SELECT id FR..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="2322:2652" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="2738:2978" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="3044:3701" placeholder="SELECT ids a..id..." />
-            <marker date="1453305743010" expanded="true" signature="3093:3692" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1453305743010" expanded="false" signature="4646:4733" placeholder="SELECT films..fk_films_owners..." />
-            <marker date="1453305743010" expanded="false" signature="5079:5166" placeholder="SELECT films..fk_films_owners..." />
-            <marker date="1453305743010" expanded="false" signature="6393:6512" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1453305743010" expanded="false" signature="6569:6637" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1453305743010" expanded="false" signature="6725:6828" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1453305743010" expanded="false" signature="6885:6924" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1453305743010" expanded="false" signature="7025:7128" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1453305743010" expanded="false" signature="7185:7234" placeholder="SELECT count..cc_films..." />
-            <marker date="1453305743010" expanded="true" signature="9368:10949" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="9477:9488" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="9564:9713" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="10226:10815" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="10272:10789" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="10849:10866" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="11332:12243" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="11353:12191" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="11386:11397" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="11443:11455" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="11713:11725" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="12084:12102" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="12146:12163" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="12514:12788" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="12562:12761" placeholder="{...}" />
-            <marker date="1453305743010" expanded="true" signature="13326:15079" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="13426:15058" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="13491:15034" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="13537:14208" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="13796:14181" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="13850:14150" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="14261:14824" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="14312:14538" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="14589:14797" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="15159:15213" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="15254:15321" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="15635:15688" placeholder="SELECT * FRO..cc_films..." />
-            <marker date="1453305743010" expanded="false" signature="15789:16010" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="16047:17069" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="16116:17050" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="16303:16979" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="16354:16387" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="16438:16651" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="16702:16924" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="17108:17433" placeholder="..." />
-            <marker date="1453305743010" expanded="true" signature="18782:19055" placeholder="SELECT DISTI..cc_companies..." />
-            <marker date="1453305743010" expanded="false" signature="19306:19577" placeholder="SELECT DISTI..cc_channels..." />
-            <marker date="1453305743010" expanded="false" signature="19851:24591" placeholder="..." />
-            <marker date="1453305743010" expanded="false" signature="19878:20590" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="19934:20585" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="false" signature="20105:20566" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="20126:20554" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="false" signature="20429:20528" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="20621:21288" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="20675:21272" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="20750:21224" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="20779:21203" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="false" signature="21078:21177" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="21395:23013" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="21460:22165" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="21536:22115" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="false" signature="21876:22089" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="22218:22967" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="22311:22892" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="false" signature="22652:22866" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="23069:23587" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="23144:23565" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="false" signature="23440:23539" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="23666:23995" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="23686:23993" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="23732:23985" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="false" signature="23928:23979" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="24052:24571" placeholder="{...}" />
-            <marker date="1453305743010" expanded="false" signature="24128:24549" placeholder="{&quot;type&quot;: &quot;POST&quot;...}" />
-            <marker date="1453305743010" expanded="false" signature="24424:24523" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Film.php">
+    <entry file="file://$PROJECT_DIR$/app/FilmOwners.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.076923">
-          <caret line="76" column="46" selection-start-line="76" selection-start-column="46" selection-end-line="76" selection-end-column="46" />
-          <folding>
-            <marker date="1458735761368" expanded="true" signature="2594:2943" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1458735761368" expanded="true" signature="2944:3171" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1458735761368" expanded="true" signature="2944:3187" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1458735761368" expanded="true" signature="2944:3188" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1458735761368" expanded="true" signature="2944:3195" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1458735761368" expanded="true" signature="3251:3558" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1458735761368" expanded="true" signature="3251:3568" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1458735761368" expanded="true" signature="3251:3570" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1458735761368" expanded="true" signature="3251:3571" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1458735761368" expanded="true" signature="3633:3843" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1458735761368" expanded="true" signature="3633:3844" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1458735761368" expanded="true" signature="3633:3867" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1458735761368" expanded="true" signature="3633:3868" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1458735761368" expanded="true" signature="3633:3875" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1458735761368" expanded="true" signature="3633:3877" placeholder="SELECT cc_fi..cc_films..." />
-          </folding>
+        <state vertical-scroll-proportion="0.11710677">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/titles/partials/list.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3846154">
-          <caret line="63" column="41" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
+        <state vertical-scroll-proportion="-26.961538">
+          <caret line="81" column="46" selection-start-line="81" selection-start-column="46" selection-end-line="81" selection-end-column="46" />
           <folding>
-            <marker date="1458816476986" expanded="true" signature="2686:4149" placeholder="..." />
-            <marker date="1458816476986" expanded="true" signature="2697:4148" placeholder="..." />
-            <marker date="1458816476986" expanded="true" signature="2765:3764" placeholder="..." />
-            <marker date="1458816476986" expanded="true" signature="2777:3763" placeholder="..." />
-            <marker date="1458816476986" expanded="true" signature="3074:3555" placeholder="..." />
-            <marker date="1458816476986" expanded="true" signature="3090:3175" placeholder="..." />
+            <marker date="1458817250817" expanded="true" signature="2686:4146" placeholder="..." />
+            <marker date="1458817250817" expanded="true" signature="2697:4145" placeholder="..." />
+            <marker date="1458817250817" expanded="true" signature="2764:3761" placeholder="..." />
+            <marker date="1458817250817" expanded="true" signature="2776:3760" placeholder="..." />
+            <marker date="1458817250817" expanded="true" signature="3073:3554" placeholder="..." />
+            <marker date="1458817250817" expanded="true" signature="3089:3174" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/nav.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.4727273">
-          <caret line="8" column="112" selection-start-line="8" selection-start-column="96" selection-end-line="8" selection-end-column="112" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8727272">
-          <caret line="22" column="22" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TitlesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27324915">
-          <caret line="95" column="69" selection-start-line="95" selection-start-column="69" selection-end-line="95" selection-end-column="69" />
+        <state vertical-scroll-proportion="0.7807118">
+          <caret line="101" column="71" selection-start-line="101" selection-start-column="71" selection-end-line="101" selection-end-column="71" />
           <folding>
             <element signature="e#40#49#0#PHP" expanded="true" />
           </folding>

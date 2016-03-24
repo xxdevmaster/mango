@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{{isset($current_menu) ? $current_menu : ''}} </h3>
+                    <h3 class="panel-title">All Titles</h3>
                 </div>
             </div>
         </div>
@@ -65,7 +65,6 @@
             </div>
         </div>
     </div>
-    @include('titles.partials.newTitle')
     <script>
         function titlesFilter(){
             $('.loading').show();

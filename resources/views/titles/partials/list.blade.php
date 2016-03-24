@@ -78,7 +78,6 @@
 
 <script>
     $(document).ready(function(){
-
         //All titles Pagination
         $('.pagination li').click(function(e){
             e.preventDefault();
@@ -103,12 +102,10 @@
                 });
             });
 
-
             //$('.pagination li a[href="/?page='+page+'"]').parent('li').addClass('active');
 
             $('.pagination .active').removeClass('active');
             $(this).addClass('active');
-
         });
         //End pagination
 

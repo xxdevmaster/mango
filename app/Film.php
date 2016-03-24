@@ -57,11 +57,13 @@ class Film extends Model
         return $this->hasMany('App\Models\FilmsMedia', 'films_id');
     }
 
-    public static function getAccountAllTitles($platformID, $companyID, $filter, $orderBy = false, $orderType = 'ASC', $limit = null, $offset = null)
+    public static function getAccountAllTitles($platformID, $companyID, $select = 'cc_films.*', $filter, $orderBy = false, $orderType = 'ASC', $limit = null, $offset = null)
     {
        if($filter != '')
             $filter = implode(" ", $filter);
 
+        if($select != 'cc_films.*')
+            $select = implode(",", $select);
         $orderBy = (!empty($orderBy)) ? ' ORDER BY '.$orderBy.' '.$orderType : ' ORDER BY id '.$orderBy;
 
         if($limit != null)
@@ -75,30 +77,45 @@ class Film extends Model
             $offset = '';
 
         if($platformID > 0 && $companyID > 0){
-            $q = "SELECT DISTINCT cc_films.* FROM cc_films INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id
+            $q = "SELECT DISTINCT $select FROM cc_films INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id
                 INNER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id
                 WHERE  cc_channels_contracts.channel_id=".$platformID." AND cc_films.deleted=0 ".$filter."
-                UNION SELECT DISTINCT cc_films.* FROM cc_films INNER JOIN fk_films_owners ON fk_films_owners.films_id=cc_films.id
+                UNION SELECT DISTINCT $select FROM cc_films INNER JOIN fk_films_owners ON fk_films_owners.films_id=cc_films.id
                 WHERE fk_films_owners.owner_id=".$companyID." AND fk_films_owners.type=0 AND cc_films.deleted=0 $filter $orderBy $limit $offset ";
         }elseif($platformID > 0){
-            $q = "SELECT cc_films.* FROM cc_films INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id
+            $q = "SELECT $select FROM cc_films INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id
                 INNER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id
                 WHERE  cc_channels_contracts.channel_id=".$platformID." AND cc_films.deleted=0 ".$filter.' '.$orderBy;
         }elseif($companyID > 0){
-            $q = "SELECT cc_films.* FROM cc_films INNER JOIN fk_films_owners ON fk_films_owners.films_id=cc_films.id
+            $q = "SELECT $select FROM cc_films INNER JOIN fk_films_owners ON fk_films_owners.films_id=cc_films.id
                 WHERE fk_films_owners.owner_id=".$companyID." AND fk_films_owners.type=0 AND cc_films.deleted=0 $filter $orderBy $limit $offset ";
         }
 
         return self::hydrateRaw($q);
     }
-    //public function bitJobs($accountId){
-        //return $this->belongsToMany('App\Models\BitJobs', 'z_pass_through','pass_id');
-					// ->join('cc_users', 'z_bitjobs.users_id', '=', 'cc_users.id')
-					// ->where('z_bitjobs.accounts_id', $accountId)
-					// ->select([
-						// 'z_bitjobs.*',
-						// 'z_pass_through.*'
-					// ]);
-    //}
+
+    public static function getAccountAllTitlesCount($platformID, $companyID, $filter)
+    {
+        if($filter != '')
+            $filter = implode(" ", $filter);
+
+        if($platformID && !$companyID){
+            $q="SELECT COUNT(*) as total FROM cc_films INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id
+                INNER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id
+                WHERE cc_channels_contracts.channel_id=".$platformID." AND cc_films.deleted=0 ".$filter;
+        }elseif(!$platformID && $companyID){
+            $q="SELECT count(cc_films.id) as total FROM cc_films INNER JOIN fk_films_owners ON fk_films_owners.films_id=cc_films.id
+                WHERE fk_films_owners.owner_id=".$companyID." AND fk_films_owners.type=0 AND cc_films.deleted=0 ".$filter;
+        }else{
+            $q = "SELECT COUNT(*) AS total FROM (
+                        SELECT DISTINCT cc_films.id as ids FROM cc_films INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id
+                INNER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id
+                WHERE  cc_channels_contracts.channel_id=".$platformID." AND cc_films.deleted=0 ".$filter."
+                UNION SELECT DISTINCT cc_films.id as ids FROM cc_films INNER JOIN fk_films_owners ON fk_films_owners.films_id=cc_films.id
+                WHERE fk_films_owners.owner_id=".$companyID." AND fk_films_owners.type=0 AND cc_films.deleted=0 ".$filter." )  AS forTotal";
+        }
+
+        return self::hydrateRaw($q);
+    }
 
 }
