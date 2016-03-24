@@ -1,3 +1,12 @@
+.w-80{
+    width:80px;
+}
+.w-160{
+    width:160px;
+}
+.w-450{
+    width:450px;
+}
 .margin-top10{
 margin-top:10px !important;	
 }
@@ -317,3 +326,6 @@ margin-top: 20px;
 }
 .rentOrPurchaseFilmsBox{display:none;}
 .rentOrPurchaseFilmsBox > td > .panel{min-height:250px;}
+.codes{cursor:pointer;margin-left:2px;}
+.codes span{background: transparent;opacity: 0;font-size:0;}
+.vaucherBox{padding:8px 15px !important;margin-bottom:0;}

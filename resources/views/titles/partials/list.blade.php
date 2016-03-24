@@ -1,76 +1,125 @@
 <div id="topPager" class="text-right">
-	{!! $paginator->render() !!}
+	{!! $items->render() !!}
 </div>
 <div class="text-center" id="titlesLoading">
 	<i class="ion-loading-c fa-4x"></i>
 </div>
-<table id="datatable" class="table table-striped table-bordered">
-    <thead>
-    <tr>
-        <th>Poster</th>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Content Providers</th>
-        <th>Stores</th>
-        <th>Media</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach ($films as $film)
+<div class="table-responsive">
+    <table id="datatable" class="table table-striped table-bordered">
+        <thead>
         <tr>
-            <td>
-                <a href="{{url()}}/titles/metadata/{{$film->id}}">
-                    <img src="http://cinecliq.assets.s3.amazonaws.com/files/{{ $film->cover }}" style="width:50px;">
+            <th class="w-80">
+                Poster
+            </th>
+            <th class="w-160">
+                <a class="filter" data-order="id">ID
+                    @if(!empty($orderBy) && $orderBy == 'id')
+                        @if(!empty($orderType) && $orderType == 'DESC')
+                            <i class="ion-arrow-down-b"></i>
+                        @else
+                            <i class="ion-arrow-up-b"></i>
+                        @endif
+                    @endif
                 </a>
-            </td>
-            <td>{{ $film->id  }}</td>
-            <td>{{ $film->title }}</td>
-            <td>
-                <span>{{ $film->companies->implode('title', '&nbsp;,&nbsp;')  }}</span>
-            </td>
-            <td>
-                <span>{{ $film->stores->implode('title', '&nbsp;,&nbsp;')  }}</span>
-            </td>
-            <td> T  F </td>
-            <td>
-                <a href="{{url()}}/titles/metadata/{{$film->id}}">Edit</a>
-            </td>
+            </th>
+            <th class="w-160">
+                <a class="filter" data-order="title">Title
+                    @if(!empty($orderBy) && $orderBy == 'title')
+                        @if(!empty($orderType) && $orderType == 'DESC')
+                            <i class="ion-arrow-down-b"></i>
+                        @else
+                            <i class="ion-arrow-up-b"></i>
+                        @endif
+                    @endif
+                </a>
+            </th>
+            <th class="w-450">
+                Content Providers
+            </th>
+            <th class="w-450">
+                Stores
+            </th>
+            <th>Media</th>
+            <th>Actions</th>
         </tr>
-    @endforeach
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        @foreach ($items->items() as $film)
+            <tr>
+                <td class="w-80">
+                    <a href="{{url()}}/titles/metadata/{{$film->id}}">
+                        <img src="http://cinecliq.assets.s3.amazonaws.com/files/{{ $film->cover }}" style="width:50px;">
+                    </a>
+                </td>
+                <td class="w-160">
+                    {{ $film->id  }}
+                </td>
+                <td class="w-160">
+                    {{ $film->title }}
+                </td>
+                <td class="w-450">
+                    <span>{{ implode(' , ', $filmCP[$film->id])  }}</span>
+                </td>
+                <td class="w-450">
+                    <span>{{ implode(' , ', $filmStores[$film->id]) }}</span>
+                </td>
+                <td> T  F </td>
+                <td>
+                    <a href="{{url()}}/titles/metadata/{{$film->id}}">Edit</a>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+</div>
 <div id="bottomPager" class="text-right">
-	{!! $paginator->render() !!}
+	{!! $items->render() !!}
 </div>
 
 <script>
-        $(document).ready(function(){
-			
-			//All titles Pagination
-            $('.pagination li').click(function(e){
-                e.preventDefault();
-				
-				var page = $(this).children('a').attr('href');
-				var page = page.split('=')[1];	
+    $(document).ready(function(){
 
-                $('#bottomPager').hide();
-                $("#datatable").fadeOut(300, function(){
-					$('#titlesLoading').show();
-                    $.post('/titles/pager', {page:page}, function(response){
-                        $("#allTitles").html(response);
-                        $("#datatable").fadeIn(250);
-                        $('body').animate({
-                            scrollTop: $(".pagination").offset().top
-                        });
-                        $('#titlesLoading').hide();
+        //All titles Pagination
+        $('.pagination li').click(function(e){
+            e.preventDefault();
+
+            var page = $(this).children('a').attr('href');
+
+            if(page != undefined)
+                var page = page.split('=')[1];
+            else
+                return false;
+
+            $('#bottomPager').hide();
+            $("#datatable").fadeOut(300, function(){
+                $('#titlesLoading').show();
+                $.post('/titles/pager', 'page='+page+'&'+$('#titlesFilter').serialize(), function(response){
+                    $("#allTitles").html(response);
+                    $("#datatable").fadeIn(250);
+                    $('body').animate({
+                        scrollTop: $(".pagination").offset().top
                     });
+                    $('#titlesLoading').hide();
                 });
-				
-				$('.pagination .active').removeClass('active');
-				$(this).addClass('active');
-				
             });
-			//End pagination
+
+
+            //$('.pagination li a[href="/?page='+page+'"]').parent('li').addClass('active');
+
+            $('.pagination .active').removeClass('active');
+            $(this).addClass('active');
+
         });
+        //End pagination
+
+        $('.filter').click(function(){
+            var order = $(this).attr('data-order');
+            var orderType = ($('input[name="filter[orderType]"]').val() == "ASC")?"DESC":"ASC";
+
+            $('input[name="filter[order]"]').val(order);
+            $('input[name="filter[orderType]"]').val(orderType);
+
+            titlesFilter();
+        });
+    });
 </script>

@@ -93,28 +93,25 @@ class CHhelper {
 
 	}
 
-	public static function getAccountAllTitlesCount($platformID, $companyID, $filter = null)
+	public static function getAccountAllTitlesCount($platformID, $companyID, $filter)
 	{
-		if($filter != null AND count($filter) >=1)
-			$filter = " AND ".implode(" ", $filter);
-		else
-			$filter = '';
-
+		if($filter != '')
+			$filter = implode(" ", $filter);
 
 		if($platformID && !$companyID){
 			$q="SELECT COUNT(*) as total FROM cc_films INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id
                 INNER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id
-                WHERE 1 $filter AND cc_channels_contracts.channel_id=".$platformID." AND cc_films.deleted=0".$filter;
+                WHERE cc_channels_contracts.channel_id=".$platformID." AND cc_films.deleted=0 ".$filter;
 		}elseif(!$platformID && $companyID){
 			$q="SELECT count(cc_films.id) as total FROM cc_films INNER JOIN fk_films_owners ON fk_films_owners.films_id=cc_films.id
-                WHERE 1 $filter AND fk_films_owners.owner_id=".$companyID." AND fk_films_owners.type=0 AND cc_films.deleted=0".$filter;
+                WHERE fk_films_owners.owner_id=".$companyID." AND fk_films_owners.type=0 AND cc_films.deleted=0 ".$filter;
 		}else{
 			$q = "SELECT COUNT(*) AS total FROM (
                         SELECT DISTINCT cc_films.id as ids FROM cc_films INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id
                 INNER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id
-                WHERE  cc_channels_contracts.channel_id=".$platformID." AND cc_films.deleted=0".$filter."
+                WHERE  cc_channels_contracts.channel_id=".$platformID." AND cc_films.deleted=0 ".$filter."
                 UNION SELECT DISTINCT cc_films.id as ids FROM cc_films INNER JOIN fk_films_owners ON fk_films_owners.films_id=cc_films.id
-                WHERE fk_films_owners.owner_id=".$companyID." AND fk_films_owners.type=0 AND cc_films.deleted=0".$filter." )  AS forTotal";
+                WHERE fk_films_owners.owner_id=".$companyID." AND fk_films_owners.type=0 AND cc_films.deleted=0 ".$filter." )  AS forTotal";
 		}
 		return DB::select(DB::raw($q));
 
@@ -155,6 +152,8 @@ class CHhelper {
                WHERE fk_films_owners.owner_id='".$_SESSION['STUDIO_IN']."' AND fk_films_owners.type=0 AND cc_films.deleted=0 )  AS forTotal";
                $res= G('DB')->query($q);
        }*/
+
+
 
 		$q = "SELECT DISTINCT cc_films.* FROM cc_films INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id
                 INNER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id

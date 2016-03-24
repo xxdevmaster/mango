@@ -43,13 +43,9 @@ class SliderController extends Controller
     {
         if($this->storeID != 0 || $this->companyID == 1) {
             $this->slider = Silders::where('channel_id', $this->storeID)->get()->keyBy('id');
-            $this->slider->each(function ($val, $key) {
-                if ($val->title == 'Main Slider')
-                    $this->sliderID[] = $key;
-            });
 
-            if(empty($this->sliderID))
-                $this->sliderID = Silders::create([
+            if($this->slider->isEmpty())
+                Silders::create([
                     'channel_id' => $this->storeID,
                     'title' => 'Main Slider'
                 ])->id;

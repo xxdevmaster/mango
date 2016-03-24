@@ -6,7 +6,7 @@
         <li {{ ($current_menu == 'dashboard')?'class=active':''  }}><a href="/"><i class="ion-home"></i> <span class="nav-label">Dashboard</span></a></li>
         <li class="has-submenu {{ ($current_menu == 'allTitles')?'active':''  }}"><a href="#"><i class="ion-flask"></i> <span class="nav-label">General</span></a>
             <ul class="list-unstyled">
-                <li {{ ($current_menu == 'allTitles')?'class=active':''  }}><a href="{{ action('TitlesController@index') }}">All Titles (Total 100)</a></li>
+                <li {{ ($current_menu == 'allTitles')?'class=active':''  }}><a href="{{ action('TitlesController@titlesShow') }}">All Titles (Total 100)</a></li>
                 <li><a href="buttons.html">Sales</a></li>
                 <li><a href="buttons.html">Age Ratings</a></li>
                 <li><a href="buttons.html">Content Providers</a></li>
@@ -37,7 +37,7 @@
         <li class="has-submenu {{ ($current_menu == 'allTitles')?'active':''  }}"><a href="#"><i class="ion-flask"></i> <span class="nav-label">General</span></a>
             <ul class="list-unstyled">
                 <li {{ ($current_menu == 'allTitles')?'class=active':''  }}>
-                    <a href="{{ action('TitlesController@index') }}">
+                    <a href="{{ action('TitlesController@titlesShow') }}">
                         @inject('helper', 'App\Libraries\CHhelper\CHhelper')
                         All Titles (Total {{ $helper->getTitlesTotal() }})
                     </a>
@@ -67,11 +67,11 @@
                     </a>
                 </li>
                 <li><a href="/store/slider">Slider</a></li>
-                <li><a class="menuDisabled" href="/store/channelsManager">Channels Manager</a></li>
+                <li><a href="/store/channelsManager">Channels Manager</a></li>
                 <li><a class="menuDisabled" href="/store/subscription">Subscription</a></li>
                 <li><a class="menuDisabled" href="/store/subscribersManagement">Subscribers</a></li>
                 <li><a class="menuDisabled" href="/store/frontPageManager">Front Page Manager</a></li>
-                <li><a class="menuDisabled" href="/store/giftvoucher">Gift Vauchers</a></li>
+                <li><a href="/store/giftVoucher">Gift Vauchers</a></li>
                 <li><a class="menuDisabled" href="/store/urlSetup">Url Setup</a></li>
             </ul>
         </li>

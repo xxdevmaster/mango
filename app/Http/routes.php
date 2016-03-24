@@ -20,7 +20,7 @@ Route::group(['middleware' => 'auth'], function()
 {
 
     Route::get('/', 'MainController@dashboard');
-    Route::resource('titles', 'TitlesController');
+    Route::get('titles', 'TitlesController@titlesShow');
 
 	/*Titles Menegment*/
     Route::group(['middleware' => 'filmPermission'], function(){
@@ -50,6 +50,8 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('store/userManagement', 'Store\UserManagementController@usersShow');
     Route::get('store/contentProviders', 'Store\ContentProvidersController@contentProvidersShow');
     Route::get('store/slider', 'Store\SliderController@sliderShow');
+    Route::get('store/channelsManager', 'Store\ChannelsManagerController@channelsManagerShow');
+    Route::get('store/giftVoucher', 'Store\GiftVoucherController@giftVoucherShow');
 
 
     Route::get('account/users', [
