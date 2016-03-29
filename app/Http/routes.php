@@ -24,13 +24,13 @@ Route::group(['middleware' => 'auth'], function()
 
 	/*Titles Menegment*/
     Route::group(['middleware' => 'filmPermission'], function(){
-         Route::get('titles/metadata/{filmId}', 'TitleManagement\MetadataController@metadataShow')->where('filmId', '[0-9]+');
-         Route::get('titles/media/{filmId}', 'TitleManagement\MediaController@mediaShow')->where('filmId', '[0-9]+');
-         Route::get('titles/rights/{filmId}', 'TitleManagement\RightsController@rightsShow')->where('filmId', '[0-9]+');
-         /*Route::get('titles/rights/{filmId}', [
+         Route::get('titles/metadata/{filmID}', 'TitleManagement\MetadataController@metadataShow')->where('filmID', '[0-9]+');
+         Route::get('titles/media/{filmID}', 'TitleManagement\MediaController@mediaShow')->where('filmID', '[0-9]+');
+         Route::get('titles/rights/{filmID}', 'TitleManagement\RightsController@rightsShow')->where('filmID', '[0-9]+');
+         /*Route::get('titles/rights/{filmID}', [
              'middleware' => 'rightsPermission',
              'uses' => 'TitleManagement\RightsController@rightsShow',
-         ])->where('filmId', '[0-9]+');*/
+         ])->where('filmID', '[0-9]+');*/
     });
     /*End Titles Menegment*/
 
@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('store/contentProviders', 'Store\ContentProvidersController@contentProvidersShow');
     Route::get('store/slider', 'Store\SliderController@sliderShow');
     Route::get('store/channelsManager', 'Store\ChannelsManagerController@channelsManagerShow');
+    Route::get('store/subscriptions', 'Store\SubscriptionsController@subscriptionsShow');
     Route::get('store/giftVoucher', 'Store\GiftVoucherController@giftVoucherShow');
 
 

@@ -36,11 +36,25 @@ class Store extends Model
             return $query;
     }
 
-    public function partnerStoresFilmsCount($whereIn = []){
-        return $this->belongsToMany('App\Film', 'fk_films_owners', 'owner_id', 'films_id')->whereIn('cc_films.id', $whereIn)->select(DB::raw('COUNT(*) as count'));
+    /**
+     * Get store films in partner stores.
+     * @param array or collection $whereIn
+     * @return integer
+     */
+    public function storeFilmsCount($whereIn)
+    {
+        return $this->belongsToMany('App\Film', 'fk_films_owners', 'owner_id', 'films_id')->whereIn('cc_films.id', $whereIn)->count();
     }
 
-    public function partnerStoresFilms($whereIn = [], $limit = 20, $offset = 0){
+    /**
+     * Get store films in partner stores.
+     *  @param array or collection $whereIn
+     *  @param integer $limit
+     *  @param integer $offset
+     * @return collection
+     */
+    public function storeFilms($whereIn = [], $limit = 20, $offset = 0)
+    {
         return $this->belongsToMany('App\Film', 'fk_films_owners', 'owner_id', 'films_id')->whereIn('cc_films.id', $whereIn)->where('cc_films.deleted', '0')->where('fk_films_owners.type', '1')->limit($limit)->skip($offset);
     }
 
@@ -66,10 +80,11 @@ class Store extends Model
                     WHERE fk_films_owners.owner_id='".$company_ID."' AND fk_films_owners.type=0 AND cc_films.deleted=0";
         }
 
-
+		
         $q ="SELECT cc_channels.id,cc_channels.title FROM cc_channels JOIN fk_films_owners ON cc_channels.id=fk_films_owners.owner_id
              WHERE fk_films_owners.films_id IN ($idsQuery) AND fk_films_owners.type=1 AND cc_channels.title<>'' GROUP BY cc_channels.id ";
 
+			 
         return self::hydrateRaw($q);
     }
 

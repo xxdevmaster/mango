@@ -9,10 +9,26 @@ use App\Film;
 
 class FilmMiddleware
 {
-    private $filmId;
+    private $filmID;
 
     private $film;
 
+    private $authUser;
+
+    private $accountID;
+
+    private $storeID;
+
+    private $companyID;	
+	
+    public function __construct()
+    {
+        $this->authUser = Auth::user();
+        $this->accountID = $this->authUser->account->id;
+        $this->storeID = $this->authUser->account->platforms_id;
+        $this->companyID = $this->authUser->account->companies_id;
+    }	
+	
     /**
      * Handle an incoming request.
      *
@@ -22,45 +38,70 @@ class FilmMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $current_menu = '';
-		   //dd();
-        if(!empty($request->filmId))
-            $this->filmId = CHhelper::filterInputInt($request->filmId);
+        if(!empty($request->filmID))
+            $this->filmID = CHhelper::filterInputInt($request->filmID);
         else
-            $this->filmId = CHhelper::filterInputInt($request->header('filmId'));
+            $this->filmID = CHhelper::filterInputInt($request->header('filmID'));
 
-		
-        if(!is_numeric($this->filmId) || $this->filmId == 0)
+        if(!is_numeric($this->filmID) || $this->filmID == 0)
             return view('errors.404', compact('current_menu'));
 
         $userInfo = Auth::user();
 
         $accountInfo = $userInfo->account;
 
-        /*$accountFeatures = $accountInfo->features;
+		
+		$this->film = $this->getFilm();
 
-        $companyInfo = $accountInfo->company;
-
-        $companyFilms = $companyInfo->films()->where('cc_films.deleted', '0')->get();
-
-        $film = $companyInfo->films()->where( 'cc_films.id', $this->filmId)->get();
-
-        if(count($film) != 0) {
-            $this->film = $film[0];
-        }else {
-            $storeInfo = $accountInfo->store;
-            $storeFilms = $storeInfo->contracts()->with( 'films', 'stores' )->where( 'films_id', $this->filmId )->get();
-            foreach($storeFilms as $storeFilm){
-                $this->film = $storeFilm->films;
-            }
-        }*/
-        $this->film = Film::getAccountAllTitles($accountInfo->platforms_id, $accountInfo->companies_id, ['AND cc_films.id', '=', $this->filmId])->first();
-
-        if(count($this->film) === 0)
+        if($this->film->isEmpty())
             return view('errors.550');
 
 
-        $request->merge(array("film" => $this->film, 'filmId' => $this->filmId));
+        $request->merge(array("film" => $this->film, 'filmID' => $this->filmID));
         return $next($request);
     }
+
+    /**
+     * Get film.
+     * @return collection
+    */	
+	private function getFilm()
+	{
+        if( $this->storeID > 0 && $this->companyID > 0)
+        {
+            $union = Film::distinct()->join('fk_films_owners', 'fk_films_owners.films_id', '=', 'cc_films.id')
+                                    ->where('fk_films_owners.owner_id', $this->companyID)
+                                    ->where('fk_films_owners.type', 0)
+                                    ->where('cc_films.deleted', 0)
+									->where('cc_films.id', $this->filmID);
+
+            return Film::distinct()->join('cc_base_contracts', 'cc_base_contracts.films_id', '=', 'cc_films.id')
+                                    ->join('cc_channels_contracts', 'cc_channels_contracts.bcontracts_id', '=', 'cc_base_contracts.id')
+                                    ->where('cc_channels_contracts.channel_id', $this->storeID)
+                                    ->where('cc_films.deleted', 0)
+									->where('cc_films.id', $this->filmID)
+									->union($union->select('cc_films.*'))
+									->select('cc_films.*')->get();
+        }
+        elseif( $this->storeID > 0)
+        {
+            return Film::join('cc_base_contracts', 'cc_base_contracts.films_id', '=', 'cc_films.id')
+                              ->join('cc_channels_contracts', 'cc_channels_contracts.bcontracts_id', '=', 'cc_base_contracts.id')
+                              ->where('cc_channels_contracts.channel_id', $this->storeID)
+                              ->where('cc_films.deleted', 0)
+                              ->where('cc_films.id', $this->filmID)
+							  ->select('cc_films.*')->get();
+
+
+        }
+        elseif( $this->companyID > 0)
+        {
+            return Film::join('fk_films_owners', 'fk_films_owners.films_id', '=', 'cc_films.id')
+                            ->where('fk_films_owners.owner_id', $this->companyID)
+                            ->where('fk_films_owners.type', 0)
+                            ->where('cc_films.deleted', 0)
+                            ->where('cc_films.id', $this->filmID)
+							->select('cc_films.*')->get();
+        }		
+	}
 }

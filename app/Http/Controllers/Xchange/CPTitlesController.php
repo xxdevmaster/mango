@@ -46,11 +46,18 @@ class CPTitlesController extends Controller
 
     public function CPTitlesShow()
     {
-		$allFilms = $this->getAllFilms();
-		$this->getFilmsPlatforms($allFilms);
+		
+		
+		
+		$getAllFilmsIDS = $this->getAllFilmsIDS();
+
+		//$this->getStores($getAllFilmsIDS);
+		
+		$this->getFilmsPlatforms($getAllFilmsIDS);
 
 		$films = $this->getFilmsCp();
 		$stores = Store::getFilmStores($this->storeID, $this->companyID);
+		//dd($stores);
         return view('xchange.CPTitles.CPTitles', compact('films', 'stores'));
     }
 
@@ -73,10 +80,42 @@ class CPTitlesController extends Controller
 		return new LengthAwarePaginator($films, $filmsTotal, $this->limit, $this->page);
 	}
 
-	private function getAllFilms(){
-		return $this->company->films->lists('id')->toArray();
+	private function getAllFilmsIDS()
+	{		
+		return $this->company->films('cc_films.id')->lists('id')->toArray();
 	}
 
+    private function getStores($filmsIDS) 
+	{
+		$x = Store::join('fk_films_owners', 'cc_channels.id', '=', 'fk_films_owners.owner_id')
+					->where('fk_films_owners.type', 1)
+					->where('cc_channels.title', '<>', '')
+					->whereIn('fk_films_owners.films_id', $filmsIDS)
+					->groupBy('cc_channels.id')->get();
+					
+		dd($x);			
+        $q ="SELECT cc_channels.id,cc_channels.title  "
+                 . "FROM cc_channels JOIN fk_films_owners ON cc_channels.id=fk_films_owners.owner_id "
+                 . "WHERE fk_films_owners.films_id IN ('".implode("','",$films)."') AND fk_films_owners.type=1 AND cc_channels.title<>'' GROUP BY cc_channels.id ";
+        $res= G('DB')->query($q);
+        while($row = $res->fetch(PDO::FETCH_ASSOC)){
+            $out[$row['id']] = $row['title']; 
+        }
+        return $out;
+    }
+	
+    private function getFilmStores($films) 
+	{
+        $res= G('DB')->query($q1="
+                SELECT DISTINCT cc_channels.title,fk_films_owners.films_id
+                FROM cc_channels 
+                INNER JOIN fk_films_owners ON cc_channels.id=fk_films_owners.owner_id WHERE 
+                type=1  AND fk_films_owners.films_id IN ('".implode("','",$films)."')"); 
+        while($row = $res->fetch(PDO::FETCH_OBJ))
+            $pls[$row->films_id][] = $row->title;
+        return $pls;
+    }	
+	
 	public function getFilmsPlatforms($films)
 	{
 		return Store::join('fk_films_owners', 'cc_channels.id', '=', 'fk_films_owners.owner_id')
@@ -94,7 +133,7 @@ class CPTitlesController extends Controller
     public function soloActAddToVault()
     {
         Vaults::create([
-            'films_id' => $this->request->filmId ,
+            'films_id' => $this->request->filmID ,
             'companies_id' => $this->companyID
         ]);
 		
@@ -110,7 +149,7 @@ class CPTitlesController extends Controller
      */
     public function soloActDeleteFromVault()
     {
-		$vault = Vaults::where('films_id', $this->request->filmId)->where('companies_id', $this->companyID)->select('cc_vaults.id')->get();
+		$vault = Vaults::where('films_id', $this->request->filmID)->where('companies_id', $this->companyID)->select('cc_vaults.id')->get();
 		$vaultID = $vault->first()->id;
 		$channelsVaults = $vault->first()->channelsVaults;
 		
@@ -119,11 +158,11 @@ class CPTitlesController extends Controller
 		
 		foreach($channelsVaults as $key => $val){
 			$i++;
-			$channelsConnectedToThisFilm[]=array('channel_id' => $val->channels_id, 'vault_id' => $vaultID, 'film_id' => $this->request->filmId);
+			$channelsConnectedToThisFilm[]=array('channel_id' => $val->channels_id, 'vault_id' => $vaultID, 'film_id' => $this->request->filmID);
 		}
 
 		if($i == 0){
-			Vaults::where('films_id', $this->request->filmId)->where('companies_id', $this->companyID)->delete();
+			Vaults::where('films_id', $this->request->filmID)->where('companies_id', $this->companyID)->delete();
 		}
 		else{
 			$this->notifyPlatformsAboutDeleting($channelsConnectedToThisFilm);
@@ -213,9 +252,9 @@ class CPTitlesController extends Controller
 		if(!empty($this->request->Input('filmsNotInVault'))){
 			foreach($this->request->Input('filmsNotInVault') as $key => $value){
 				if($value == 'on'){
-					$filmsID = CHhelper::filterInputInt($key);
+					$filmID = CHhelper::filterInputInt($key);
 					Vaults::create([
-						'films_id' => $filmsID ,
+						'films_id' => $filmID ,
 						'companies_id' => $this->companyID
 					]);
 				}

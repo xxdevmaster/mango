@@ -8,7 +8,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">Stores Filter</div>
     <div class="panel-body">
-        <form id="storesFilter">
+        <form id="storesFilter" autocomplete="off" role="form">
             <div class="form-group row">
                 <div class="col-lg-12">
                     <div class="input-group">
@@ -24,8 +24,12 @@
         </form>
     </div>
 </div>
-<div id="partnerStoresContainer">
-    @include('partnerStores.list_partial')
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div id="container">
+            @include('partnerStores.storeList')
+        </div>
+    </div>
 </div>
 <script>
     function filterSearch() {
@@ -33,16 +37,17 @@
         $('.loading').show();
 
         $.post('/partner/stores/filterSearch', {searchWord:searchWord},function(data){
-            $("#partnerStoresContainer").html(data);
+            $("#container").html(data);
             $('.loading').hide();
         });
+        return true;
     }
 
     $(document).ready(function(){
         $("#storesFilter").submit(function(e){
             e.preventDefault();
             filterSearch();
-        })
+        });
 
         $(".filterSearch").click(function(){
             filterSearch();

@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{{isset($current_menu) ? $current_menu : ''}} </h3>
+                    <h3 class="panel-title">Xchange</h3>
                 </div>
             </div>
         </div>
@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <div class="panel panel-color panel-inverse">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Titles Filter </h3>
+                    <h3 class="panel-title">Xchange Filter</h3>
                 </div>
                 <div class="panel-body">
                     <form id="titlesFilter">
@@ -41,8 +41,8 @@
                                 @if(isset($companies))
                                     <select name="filter[pl]" id="filter[pl]" class="form-control filter_select">
                                         <option value="" selected="selected">Content Providers</option>
-                                        @foreach($companies as $val => $key)
-                                            <option value="{{$key->id}}">{{ $key->title  }}</option>
+                                        @foreach($companies as $key => $val)
+                                            <option value="{{$key}}">{{ $val }}</option>
                                         @endforeach
                                     </select>
                                 @endif

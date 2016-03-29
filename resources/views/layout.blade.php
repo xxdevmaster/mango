@@ -63,7 +63,7 @@
 				$.ajaxSetup({
 					headers: {
 						'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content'),
-						'filmId': $('input[name="filmId"]').val()
+						'filmID': $('input[name="filmID"]').val()
 					}
 				});
 			});

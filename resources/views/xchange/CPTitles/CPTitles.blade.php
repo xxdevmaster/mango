@@ -1,95 +1,83 @@
 @extends('layout')
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{isset($current_menu) ? $current_menu : ''}} </h3>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-color panel-inverse">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Titles Filter </h3>
-                </div>
-                <div class="panel-body">
-                    <form id="titlesFilter">
-                        <div class="form-group row">
-                            <!--div class="col-lg-8">
-                                <input type="text" class="dt form-control" id="dt-from" name="filter[search_word]" value="" placeholder="User Name or E-mail" />
-                            </div-->
-
-                            <div class="col-lg-12" style="margin-top:30px;">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Title" value="" name="filter[searchWord]">
-                                     <span class="input-group-btn">
-                                        <button type="button" class="btn btn-effect-ripple btn-primary" id="titleSearch">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <select name="filter[vaultStatus]" class="form-control filter_select">
-                                    <option value="0">All Titles</option>
-                                    <option value="1">Included in  Xchange</option>
-                                    <option value="2">Not Included in Xchange</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-6">
-                                @if(isset($stores))
-                                    <select name="filter[pl]" id="filter[pl]" class="form-control filter_select">
-                                        <option value="" selected="selected">Stores</option>
-                                        @foreach($stores as $val => $key)
-                                            <option value="{{$key->id}}">{{ $key->title  }}</option>
-                                        @endforeach
-                                    </select>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{isset($current_menu) ? $current_menu : ''}} </h3>
+		</div>
+	</div>
+	<div class="panel panel-color panel-inverse">
+		<div class="panel-heading">
+			<h3 class="panel-title">Titles Filter </h3>
+		</div>
+		<div class="panel-body">
+			<form id="titlesFilter">
+				<div class="form-group row">
+					<div class="col-lg-12" style="margin-top:30px;">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Title" value="" name="filter[searchWord]">
+							 <span class="input-group-btn">
+								<button type="button" class="btn btn-effect-ripple btn-primary" id="titleSearch">
+									<i class="fa fa-search"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<select name="filter[vaultStatus]" class="form-control filter_select">
+							<option value="0">All Titles</option>
+							<option value="1">Included in  Xchange</option>
+							<option value="2">Not Included in Xchange</option>
+						</select>
+					</div>
+					<div class="col-lg-6">
+						@if(isset($stores))
+							<select name="filter[pl]" id="filter[pl]" class="form-control filter_select">
+								<option value="" selected="selected">Stores</option>
+								@foreach($stores as $val => $key)
+									<option value="{{$key->id}}">{{ $key->title  }}</option>
+								@endforeach
+							</select>
+						@endif
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
     <form id="vaultCPBulkForm" onsubmit="return false" class="panel panel-default">
         <div id="VaultCPContainer">
-                <table class="table" id="platformsRows">
-                    <tr>
-                        <td class="bulkAct" style="width:20px;">
-                            <div class="dropdown pull-left">
-                                <input type="checkbox" id="bulkActCheckbox">
-                                <a id="bulkActPopup" data-target="#" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                                    <span class="caret"></span>
-                                </a>
-                                <ul aria-labelledby="bulkActPopup" role="menu" class="dropdown-menu">
-                                    <li role="presentation"><a class=" cp" tabindex="-1" role="menuitem" rollapp-href="" id="bulkActAddToVault">Add to Xchange</a></li>
-                                    <li role="presentation"><a class=" cp" tabindex="-1" role="menuitem" rollapp-href="" id="bulkActDeleteFromVault">Remove from Xchange</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                        <td>Poster</td>
-                        <td>
-                            <a class="cp pull-left" rel="id">ID</a>
-                            <span class=" pull-left AscDescIcon"></span>
-                        </td>
-                        <td>
-                            <a class="cp pull-left" rel="title" >Title</a>
-                            <span class="pull-left AscDescIcon "></span>
-                        </td>
-                        <td>Stores</td>
-                        <td>Xchange</td>
-                        <td></td>
-                    </tr>
-					<tbody id="listContent">
-						@include('xchange.CPTitles.list_partial')
-					</tbody>
-                </table>
+            <table class="table" id="platformsRows">
+                <tr>
+                    <td class="bulkAct" style="width:20px;">
+                        <div class="dropdown pull-left">
+                            <input type="checkbox" id="bulkActCheckbox">
+                            <a id="bulkActPopup" data-target="#" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                                <span class="caret"></span>
+                            </a>
+                            <ul aria-labelledby="bulkActPopup" role="menu" class="dropdown-menu">
+                                <li role="presentation"><a class=" cp" tabindex="-1" role="menuitem" rollapp-href="" id="bulkActAddToVault">Add to Xchange</a></li>
+                                <li role="presentation"><a class=" cp" tabindex="-1" role="menuitem" rollapp-href="" id="bulkActDeleteFromVault">Remove from Xchange</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>Poster</td>
+                    <td>
+                        <a class="cp pull-left" rel="id">ID</a>
+                        <span class=" pull-left AscDescIcon"></span>
+                    </td>
+                    <td>
+                        <a class="cp pull-left" rel="title" >Title</a>
+                        <span class="pull-left AscDescIcon "></span>
+                    </td>
+                    <td>Stores</td>
+                    <td>Xchange</td>
+                    <td></td>
+                </tr>
+                <tbody id="listContent">
+                    @include('xchange.CPTitles.list_partial')
+                </tbody>
+            </table>
         </div>
     </form>
 <script>

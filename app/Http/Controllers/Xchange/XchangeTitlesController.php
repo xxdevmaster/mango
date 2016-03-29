@@ -56,11 +56,17 @@ class XchangeTitlesController extends Controller
         return view('xchange.xchangeTitles.xchangeTitles', compact('companies'), $this->getData());
     }
 
-    private function getContentProviders() {
-        return Company::where('cc_companies.title', '<>', '')
-                        ->join('cc_vaults', 'cc_companies.id', '=', 'cc_vaults.companies_id')
-                        ->select('cc_companies.id', 'cc_companies.title')
-                        ->groupBy('cc_companies.id')->get()->keyBy('id');
+    /**
+     * Get content providers.
+     * @return collection
+     */
+    public function getContentProviders()
+    {
+        return Company::join('cc_vaults', 'cc_companies.id', '=', 'cc_vaults.companies_id')
+            ->where('cc_companies.title', '<>', '')
+            ->groupBy('cc_companies.id')
+            ->select('cc_companies.id', 'cc_companies.title')
+            ->lists('title', 'id')->toArray();
     }
 
     private function getVaultAllFilms()
@@ -93,9 +99,16 @@ class XchangeTitlesController extends Controller
 
         $filterArray = (!empty($this->request->Input('filter')) && is_array($this->request->Input('filter'))) ? $this->request->Input('filter') : false;
 
-        if($filterArray) {
+        /*$filter = (!empty($this->request->input('filter')) && is_array($this->request->input('filter'))) ? $this->request->input('filter') : false;
 
-        }
+        if($filter) {
+            $this->searchWord = !empty($filter['searchWord']) ? CHhelper::filterInput($filter['searchWord']) : false;
+            $filterContentProviderID = (!empty($filter['cp']) && is_numeric($filter['cp'])) ? CHhelper::filterInputInt($filter['cp']) : false;
+
+            if ($filterContentProviderID) {
+                $contentProviderFilmsIDS = FilmOwners::where('owner_id', $filterContentProviderID)->lists('films_id');
+            }
+        }*/
 
         if($filterArray['order'])
             $order = CHhelper::filterInput($filterArray['order']);
@@ -107,13 +120,7 @@ class XchangeTitlesController extends Controller
         if (!empty($filterArray['searchWord'])) {
             $filter = " AND (cc_films.title LIKE '".CHhelper::filterInput($filterArray['search_word'])."%' OR cc_films.id LIKE '".CHhelper::filterInput($filterArray['search_word'])."%')";
         }
-        /*if (!empty($filterArray['status'])) {
-            $filter .= " AND cc_films.published='".$filterArray['status']."' ";
-        }*/
-        if (!empty($filterArray['pl']) && is_numeric($filterArray['pl'])) {
-            $plFilms = FilmOwners::where('owner_id', CHhelper::filterInputInt($filterArray['pl']))->lists('films_id')->toArray();
-            $filterPl .= " AND cc_films.id IN  ('".implode("','",$plFilms)."') ";
-        }
+
         if (!empty($filterArray['cp']) && is_numeric($filterArray['cp'])) {
             $cpFilms = FilmOwners::where('owner_id', CHhelper::filterInputInt($filterArray['cp']))->lists('films_id')->toArray();
             $filterCp .= " AND cc_films.id IN  ('".implode("','",$cpFilms)."') ";
@@ -173,7 +180,7 @@ class XchangeTitlesController extends Controller
 
         $filmStores = $this->getFilmsStores($films);
         $filmsOwners = $this->getOwnerFilms();
-        $filmsContentProviders = $this->getFilmsContentProviders($films);
+        $filmsContentProviders = $this->getContentProviders();
 
         $items = new LengthAwarePaginator($res, $resTotal, $this->limit, $this->page);
 
@@ -189,15 +196,6 @@ class XchangeTitlesController extends Controller
                 ->whereIn('fk_films_owners.films_id', $films)
                 ->select('cc_channels.title', 'fk_films_owners.films_id')
                 ->get()->keyBy('films_id')->lists('title', 'films_id');
-    }
-
-    public function getFilmsContentProviders($films)
-    {
-        return Company::join('fk_films_owners', 'cc_companies.id', '=', 'fk_films_owners.owner_id')
-            ->where('type', '0')
-            ->whereIn('fk_films_owners.films_id', $films)
-            ->select('cc_companies.title', 'fk_films_owners.films_id')
-            ->get()->keyBy('films_id')->lists('title', 'films_id');
     }
 
     /**

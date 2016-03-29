@@ -49,9 +49,9 @@
 				</td>
 				<td>
 					@if(isset($val->V_ID))
-						<button data-filmid="{{ isset($key) ? $key : '' }}" class="btn btn-danger btn-sm soloActDeleteFromVault cp">Remove from Xchange</button>		
+						<button data-id="{{ isset($key) ? $key : '' }}" class="btn btn-danger btn-sm soloActDeleteFromVault cp">Remove from Xchange</button>
 					@else	
-					<button data-filmid="{{ isset($key) ? $key : '' }}" class="btn btn-primary btn-sm soloActAddToVault cp">Add to Xchange</button>
+					<button data-id="{{ isset($key) ? $key : '' }}" class="btn btn-primary btn-sm soloActAddToVault cp">Add to Xchange</button>
 					@endif
 				</td>
 				<td>
@@ -64,10 +64,10 @@
 <script>
 $(document).ready(function(){
 	$( ".soloActAddToVault" ).click(function(){
-		var filmId = $(this).data("filmid");
+		var filmID = $(this).data("id");
 		autoCloseMsgHide();
 		$(".loading").show();
-		$.post('/CPTitles/soloActAddToVault', {filmId:filmId}, function(data){
+		$.post('/CPTitles/soloActAddToVault', {filmID:filmID}, function(data){
 			$('#listContent').html(data);
 			$("#bulkActCheckbox").prop('checked', false);
 			$(".loading").hide();			
@@ -75,11 +75,11 @@ $(document).ready(function(){
 	});
 	
 	$( ".soloActDeleteFromVault" ).click(function(){
-		var filmId = $(this).data("filmid");
+		var filmID = $(this).data("filmID");
 		
 		autoCloseMsgHide();
 		$(".loading").show();		
-		$.post('/CPTitles/soloActDeleteFromVault', {filmId:filmId}, function(data){
+		$.post('/CPTitles/soloActDeleteFromVault', {filmID:filmID}, function(data){
 			$('#listContent').html(data);
 			$("#bulkActCheckbox").prop('checked', false);
 			$(".loading").hide();			

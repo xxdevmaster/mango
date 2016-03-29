@@ -155,7 +155,9 @@ margin-top: 20px;
 /* BEGIN Online Offline Switcher */
 
 .onAndOff{
-    margin-top: 310px;
+    position:absolute;
+	right:31px;
+	bottom:0;
 }
 .onoffswitch {
     position: relative; width: 200px;

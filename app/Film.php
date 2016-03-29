@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Film extends Model
 {
     protected $table = "cc_films";
-	
+
     public $timestamps = false;
    
     public function companies(){
@@ -57,7 +57,7 @@ class Film extends Model
         return $this->hasMany('App\Models\FilmsMedia', 'films_id');
     }
 
-    public static function getAccountAllTitles($platformID, $companyID, $select = 'cc_films.*', $filter, $orderBy = false, $orderType = 'ASC', $limit = null, $offset = null)
+    /*public static function getAccountAllTitles($platformID, $companyID, $select = 'cc_films.*', $filter, $orderBy = false, $orderType = 'ASC', $limit = null, $offset = null)
     {
        if($filter != '')
             $filter = implode(" ", $filter);
@@ -116,6 +116,6 @@ class Film extends Model
         }
 
         return self::hydrateRaw($q);
-    }
+    }*/
 
 }

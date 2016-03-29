@@ -14,7 +14,7 @@
             <th class="w-160">
                 <a class="filter" data-order="id">ID
                     @if(!empty($orderBy) && $orderBy == 'id')
-                        @if(!empty($orderType) && $orderType == 'DESC')
+                        @if(!empty($orderType) && $orderType == 'desc')
                             <i class="ion-arrow-down-b"></i>
                         @else
                             <i class="ion-arrow-up-b"></i>
@@ -25,7 +25,7 @@
             <th class="w-160">
                 <a class="filter" data-order="title">Title
                     @if(!empty($orderBy) && $orderBy == 'title')
-                        @if(!empty($orderType) && $orderType == 'DESC')
+                        @if(!empty($orderType) && $orderType == 'desc')
                             <i class="ion-arrow-down-b"></i>
                         @else
                             <i class="ion-arrow-up-b"></i>
@@ -81,14 +81,32 @@
         //All titles Pagination
         $('.pagination li').click(function(e){
             e.preventDefault();
-
             var page = $(this).children('a').attr('href');
-
+			var rel = $(this).children('a').attr('rel');
+			
             if(page != undefined)
                 var page = page.split('=')[1];
             else
                 return false;
-
+			
+			if(rel == 'prev') 
+			{
+				var active = $('.pagination li[class="active"]');
+				$('.pagination .active').removeClass('active');
+				$(active).prev('li').addClass('active');
+			}	
+			else if(rel == 'next') 
+			{
+				var active = $('.pagination li[class="active"]');
+				$('.pagination .active').removeClass('active');
+				$(active).next('li').addClass('active');				
+			}
+			else
+			{
+				$('.pagination .active').removeClass('active');
+				$(this).addClass('active');
+			}	
+			
             $('#bottomPager').hide();
             $("#datatable").fadeOut(300, function(){
                 $('#titlesLoading').show();
@@ -101,22 +119,17 @@
                     $('#titlesLoading').hide();
                 });
             });
-
-            //$('.pagination li a[href="/?page='+page+'"]').parent('li').addClass('active');
-
-            $('.pagination .active').removeClass('active');
-            $(this).addClass('active');
         });
         //End pagination
 
         $('.filter').click(function(){
             var order = $(this).attr('data-order');
-            var orderType = ($('input[name="filter[orderType]"]').val() == "ASC")?"DESC":"ASC";
+            var orderType = ($('input[name="filter[orderType]"]').val() == "asc")?"desc":"asc";
 
             $('input[name="filter[order]"]').val(order);
             $('input[name="filter[orderType]"]').val(orderType);
-
             titlesFilter();
         });
+
     });
 </script>

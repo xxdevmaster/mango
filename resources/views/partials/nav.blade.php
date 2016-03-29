@@ -68,7 +68,7 @@
                 </li>
                 <li><a href="/store/slider">Slider</a></li>
                 <li><a href="/store/channelsManager">Channels Manager</a></li>
-                <li><a class="menuDisabled" href="/store/subscription">Subscription</a></li>
+                <li><a href="/store/subscriptions">Subscriptions</a></li>
                 <li><a class="menuDisabled" href="/store/subscribersManagement">Subscribers</a></li>
                 <li><a class="menuDisabled" href="/store/frontPageManager">Front Page Manager</a></li>
                 <li><a href="/store/giftVoucher">Gift Vauchers</a></li>

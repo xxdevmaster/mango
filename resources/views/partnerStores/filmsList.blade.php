@@ -1,7 +1,7 @@
-<div class="col-md-12 text-left clearfix">
+<div id="topPager" class="col-md-12 text-left clearfix">
 	{!! $paginator->render() !!}
 </div>
-<div class="col-md-12 clearfix">
+
 	<div class="row">
 		@foreach($paginator->items() as $key => $val)
 			<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
@@ -20,8 +20,8 @@
 			</div>
 		@endforeach
 	</div>
-</div>
-<div class="col-md-12 text-left clearfix">
+
+<div id="bottomPager" class="col-md-12 text-left clearfix">
 	{!! $paginator->render() !!}
 </div>
 <script>
@@ -33,7 +33,7 @@
 			var page = page.split('=')[1];
 			$('.loading').show();
 			$.post('/partner/stores/films/pager', {page:page, storeID:storeID}, function(data){
-				$("#storeFilms").html(data);
+				$("#films").html(data);
 				$('.loading').hide();
 			});
 			$('.pagination .active').removeClass('active');
