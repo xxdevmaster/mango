@@ -66,6 +66,69 @@ class CHhelper {
 			return $totalQuery->first()->count;
 	}
 
+	/**
+	 * Get all currencies.
+	 * @return collection
+	*/
+	public static function getCurrencies()
+	{
+		return collect([
+			'USD' => 'USD',
+			'EUR' => 'EUR',
+			'RUB' => 'RUB'
+		]);
+	}
+
+	/**
+	 * Get all Euro plans.
+	 * @return collection
+	 */
+	public static function getEuroPlans()
+	{
+		return collect([
+			'T1_EUR'  => ' EUR 0.99',
+			'T2_EUR'  => ' EUR 1.99',
+			'T3_EUR'  => ' EUR 2.99',
+			'T4_EUR'  => ' EUR 3.99',
+			'T5_EUR'  => ' EUR 4.99',
+			'T6_EUR'  => ' EUR 5.99',
+			'T7_EUR'  => ' EUR 6.99',
+			'T8_EUR'  => ' EUR 7.99',
+			'T9_EUR'  => ' EUR 8.99',
+			'T10_EUR' => ' EUR 9.99',
+			'T11_EUR' => ' EUR 10.99',
+			'T12_EUR' => ' EUR 11.99',
+			'T13_EUR' => ' EUR 12.99',
+			'T14_EUR' => ' EUR 13.99',
+			'T15_EUR '=> ' EUR 14.99'
+		]);
+	}
+
+	/**
+	 * Get all Euro amount.
+	 * @return collection
+	 */
+	public static function getEuroAmount()
+	{
+		return collect([
+			'T1_EUR'  => '0.99',
+			'T2_EUR'  => '1.99',
+			'T3_EUR'  => '2.99',
+			'T4_EUR'  => '3.99',
+			'T5_EUR'  => '4.99',
+			'T6_EUR'  => '5.99',
+			'T7_EUR'  => '6.99',
+			'T8_EUR'  => '7.99',
+			'T9_EUR'  => '8.99',
+			'T10_EUR' => '9.99',
+			'T11_EUR' => '10.99',
+			'T12_EUR' => '11.99',
+			'T13_EUR' => '12.99',
+			'T14_EUR' => '13.99',
+			'T15_EUR' => '14.99'
+		]);
+	}
+
 	public function getTitlesTotal()
 	{
 		$authUser = Auth::user();
