@@ -58,6 +58,6 @@
                     autoCloseMsg('1', data.message, 5000);
             });
         });
-        
+
     });
 </script>

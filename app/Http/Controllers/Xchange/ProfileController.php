@@ -30,7 +30,7 @@ class ProfileController extends Controller
     public function profileShow()
     {
         $CP = $this->getCp();
-        return view('Xchange.profile.cPProfile', compact('CP'));
+        return view('xchange.profile.cPProfile', compact('CP'));
     }
 
     private function getCp()
