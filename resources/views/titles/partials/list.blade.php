@@ -48,7 +48,7 @@
             <tr>
                 <td class="w-80">
                     <a href="{{url()}}/titles/metadata/{{$film->id}}">
-                        <img src="http://cinecliq.assets.s3.amazonaws.com/files/{{ $film->cover }}" style="width:50px;">
+                        <img src="http://cinecliq.assets.s3.amazonaws.com/files/{{ $film->cover }}" width="50px">
                     </a>
                 </td>
                 <td class="w-160">

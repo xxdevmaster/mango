@@ -54,7 +54,7 @@
             </ul>
         </li>
         @endif
-        @if($CHpermissions->isTrueCP())
+        @if($CHpermissions->isTruePl())
         <li class="has-submenu"><a href="#"><i class="ion-compose"></i> <span class="nav-label">My Store</span></a>
             <ul class="list-unstyled">
                 <li><a href="/store/profile">Store Profile</a></li>
@@ -69,10 +69,10 @@
                 <li><a href="/store/slider">Slider</a></li>
                 <li><a href="/store/channelsManager">Channels Manager</a></li>
                 <li><a href="/store/subscriptions">Subscriptions</a></li>
-                <li><a class="menuDisabled" href="/store/subscribersManagement">Subscribers</a></li>
+                <li><a href="/store/subscribers">Subscribers</a></li>
                 <li><a class="menuDisabled" href="/store/frontPageManager">Front Page Manager</a></li>
                 <li><a href="/store/giftVoucher">Gift Vauchers</a></li>
-                <li><a class="menuDisabled" href="/store/urlSetup">Url Setup</a></li>
+                <li><a href="/store/urlSetup">Url Setup</a></li>
             </ul>
         </li>
         @endif

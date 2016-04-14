@@ -16,13 +16,13 @@
                     <h3 class="panel-title">Xchange Filter</h3>
                 </div>
                 <div class="panel-body">
-                    <form id="titlesFilter">
+                    <form id="titlesFilter" autocomplete="off">
                         <div class="form-group row">
                             <div class="col-lg-12" style="margin-top:30px;">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Title" value="" name="filter[searchWord]">
                                      <span class="input-group-btn">
-                                        <button type="button" class="btn btn-effect-ripple btn-primary" id="titleSearch">
+                                        <button type="submit" class="btn btn-effect-ripple btn-primary" id="titleSearch">
                                             <i class="fa fa-search"></i>
                                         </button>
                                     </span>
@@ -30,68 +30,35 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-6">
-                                <select name="filter[vaultStatus]" class="form-control filter_select">
+                            <div class="col-lg-6 m-t-10">
+                                <select name="filter[vaultStatus]" class="form-control filterSelect">
                                     <option value="0">All Titles in Xchange</option>
                                     <option value="1">Included in My Store</option>
                                     <option value="2">Not Included in My Store</option>
                                 </select>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 m-t-10">
                                 @if(isset($companies))
-                                    <select name="filter[pl]" id="filter[pl]" class="form-control filter_select">
+                                    <select name="filter[pl]" id="filter[pl]" class="form-control filterSelect">
                                         <option value="" selected="selected">Content Providers</option>
-                                        @foreach($companies as $key => $val)
-                                            <option value="{{$key}}">{{ $val }}</option>
+                                        @foreach($companies as $companyID => $companyTitle)
+                                            <option value="{{ $companyID }}">{{ $companyTitle }}</option>
                                         @endforeach
                                     </select>
                                 @endif
                             </div>
                         </div>
+                        <input type="hidden" name="filter[order]" value="">
+                        <input type="hidden" name="filter[orderType]" value="asc">
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <div id="topPager" class="text-right">
-        {!! $items->render() !!}
-    </div>
-    <form id="vaultBulkForm" onsubmit="return false" class="panel panel-default">
-        <div id="VaultCPContainer">
-            <table class="table" id="platformsRows">
-                <tr>
-                    <td class="bulkAct" style="width:20px;">
-                        <div class="dropdown pull-left">
-                            <input type="checkbox" id="bulkActCheckbox">
-                            <a id="bulkActPopup" data-target="#" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                                <span class="caret"></span>
-                            </a>
-                            <ul aria-labelledby="bulkActPopup" role="menu" class="dropdown-menu">
-                                <li role="presentation"><a class=" cp" tabindex="-1" role="menuitem" rollapp-href="" id="bulkActAddToStore">Add to My Store</a></li>
-                                <li role="presentation"><a class=" cp" tabindex="-1" role="menuitem" rollapp-href="" id="bulkActDeleteFromStore">Remove from My Store</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                    <td>Poster</td>
-                    <td>
-                        <a class="cp pull-left" rel="id">ID</a>
-                        <span class=" pull-left AscDescIcon"></span>
-                    </td>
-                    <td>
-                        <a class="cp pull-left" rel="title" >Title</a>
-                        <span class="pull-left AscDescIcon "></span>
-                    </td>
-                    <td>Stores</td>
-                    <td class="text-right">Xchange</td>
-                </tr>
-                <tbody id="listContent">
-                    @include('xchange.xchangeTitles.list_partial')
-                </tbody>
-            </table>
+    <div class="panel panel-default">
+        <div id="xchangeTitles" class="panel-body">
+            @include('xchange.xchangeTitles.list')
         </div>
-    </form>
-    <div id="bottomPager" class="text-right">
-        {!! $items->render() !!}
     </div>
     <script>
         $( document ).ready(function() {
@@ -105,17 +72,23 @@
     </script>
 
     <script>
+        jQuery(document).ready(function() {
+            jQuery(".selectBoxWithSearch").select2({
+                width: '100%',
+            });
+        });
+
         function titlesFilter(){
             $('.loading').show();
             $("#ordertype").val("ASC");
 
             var titlesFilter = $('#titlesFilter').serialize();
 
-            $.post('/titles/titlesFilter', titlesFilter, function(response){
+            $.post('/xchange/titlesFilter', titlesFilter, function(response){
                 if(response.error)
-                    $('#allTitles').html('<h3 class="text-center text-danger">' + response.message + '</h3>');
+                    $('#xchangeTitles').html('<h3 class="text-center text-danger">' + response.message + '</h3>');
                 else
-                    $('#allTitles').html(response);
+                    $('#xchangeTitles').html(response);
                 $('.loading').hide();
             });
         }
@@ -129,7 +102,7 @@
             titlesFilter();
         });
 
-        $(".filter_select").change(function(){
+        $(".filterSelect").change(function(){
             titlesFilter();
         });
     </script>

@@ -52,7 +52,9 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('store/slider', 'Store\SliderController@sliderShow');
     Route::get('store/channelsManager', 'Store\ChannelsManagerController@channelsManagerShow');
     Route::get('store/subscriptions', 'Store\SubscriptionsController@subscriptionsShow');
+    Route::get('store/subscribers', 'Store\SubscribersController@subscribersShow');
     Route::get('store/giftVoucher', 'Store\GiftVoucherController@giftVoucherShow');
+    Route::get('store/urlSetup', 'Store\UrlSetupController@urlSetupShow');
 
 
     Route::get('account/users', [

@@ -41,6 +41,18 @@ class XchangeTitlesController extends Controller
 
     private $page = 0;
 
+    private $orderBy = 'id';
+
+    private $orderType = 'asc';
+
+    private $filterContentProviderID = false;
+
+    private $searchWord = false;
+
+    private $stores = [];
+
+    private $deletedFilmsForXchange = [];
+
     public function __construct(Request $request)
     {
         $this->request = $request;
@@ -52,8 +64,9 @@ class XchangeTitlesController extends Controller
     public function xchangeTitlesShow()
     {
         $companies = $this->getContentProviders();
+        $data = $this->getFilms();
 
-        return view('xchange.xchangeTitles.xchangeTitles', compact('companies'), $this->getData());
+        return view('xchange.xchangeTitles.xchangeTitles', compact('companies'), $data);
     }
 
     /**
@@ -66,7 +79,7 @@ class XchangeTitlesController extends Controller
             ->where('cc_companies.title', '<>', '')
             ->groupBy('cc_companies.id')
             ->select('cc_companies.id', 'cc_companies.title')
-            ->lists('title', 'id')->toArray();
+            ->lists('title', 'id');
     }
 
     private function getVaultAllFilms()
@@ -77,125 +90,137 @@ class XchangeTitlesController extends Controller
     public function getOwnerFilms()
     {
         return Film::select('cc_films.id')
-            ->join('fk_films_owners', 'fk_films_owners.films_id', '=', 'cc_films.id')
-            ->join('cc_vaults', 'cc_vaults.films_id', '=', 'cc_films.id')
-            ->where('fk_films_owners.owner_id', $this->companyID)
-            ->orWhere('fk_films_owners.owner_id', $this->storeID)
-            ->where('fk_films_owners.type', '0')
-            ->orWhere('fk_films_owners.type', '1')
-            ->where('fk_films_owners.role', '<', '2')
-            ->get()->lists('id');
+                    ->join('fk_films_owners', 'fk_films_owners.films_id', '=', 'cc_films.id')
+                    ->join('cc_vaults', 'cc_vaults.films_id', '=', 'cc_films.id')
+                    ->where('fk_films_owners.owner_id', $this->companyID)
+                    ->orWhere('fk_films_owners.owner_id', $this->storeID)
+                    ->where('fk_films_owners.type', '0')
+                    ->orWhere('fk_films_owners.type', '1')
+                    ->where('fk_films_owners.role', '<', '2')
+                    ->get()->lists('id', 'id');
     }
 
-    public function getData(){
-        //$this->classObj = new stdClass();
+    /**
+     * Get all films, pagintion.
+     * @return array
+     */
+    public function getFilms()
+    {
+        $films = Vaults::join('cc_films', 'cc_films.id', '=', 'cc_vaults.films_id')
+                        ->join('cc_base_contracts', 'cc_base_contracts.films_id', '=', 'cc_films.id')
+                        ->where('cc_films.deleted', 0);
 
-        $filterCp = '';
-        $filterPl = '';
-        $filter = '';
-
-        $order = 'title';
-        $orderType = 'ASC';
-
-        $filterArray = (!empty($this->request->Input('filter')) && is_array($this->request->Input('filter'))) ? $this->request->Input('filter') : false;
-
-        /*$filter = (!empty($this->request->input('filter')) && is_array($this->request->input('filter'))) ? $this->request->input('filter') : false;
-
-        if($filter) {
+        $filter = (!empty($this->request->input('filter')) && is_array($this->request->input('filter'))) ? $this->request->input('filter') : false;
+        if($filter)
+        {
             $this->searchWord = !empty($filter['searchWord']) ? CHhelper::filterInput($filter['searchWord']) : false;
-            $filterContentProviderID = (!empty($filter['cp']) && is_numeric($filter['cp'])) ? CHhelper::filterInputInt($filter['cp']) : false;
+            $this->filterContentProviderID = (!empty($filter['pl']) && is_numeric($filter['pl'])) ? CHhelper::filterInputInt($filter['pl']) : false;
 
-            if ($filterContentProviderID) {
-                $contentProviderFilmsIDS = FilmOwners::where('owner_id', $filterContentProviderID)->lists('films_id');
+            if(!empty($filter['order']) && ($filter['order'] == 'id' || $filter['order'] == 'title'))
+                $this->orderBy = CHhelper::filterInput($filter['order']);
+            if(!empty($filter['orderType']) && ($filter['orderType'] == 'asc' || $filter['orderType'] == 'desc'))
+                $this->orderType = CHhelper::filterInput($filter['orderType']);
+        }
+
+        if(!empty($filter['vaultStatus']))
+        {
+            if($filter['vaultStatus'] == 1)
+            {
+                $films->join('cc_channels_contracts', function ($join) {
+                    $join->on('cc_channels_contracts.bcontracts_id', '=', 'cc_base_contracts.id')
+                        ->where('cc_channels_contracts.channel_id','=', $this->storeID);
+                });
+            }else {
+                $films->leftJoin('cc_channels_contracts', function ($join) {
+                    $join->on('cc_channels_contracts.bcontracts_id', '=', 'cc_base_contracts.id')
+                        ->where('cc_channels_contracts.channel_id','=', $this->storeID);
+                })->whereNull('cc_channels_contracts.id');
             }
-        }*/
-
-        if($filterArray['order'])
-            $order = CHhelper::filterInput($filterArray['order']);
-        if($filterArray['ordertype'])
-            $orderType = CHhelper::filterInput($filterArray['ordertype']);
-
-        $sort = " cc_films.".$order." ".$orderType." ";
-
-        if (!empty($filterArray['searchWord'])) {
-            $filter = " AND (cc_films.title LIKE '".CHhelper::filterInput($filterArray['search_word'])."%' OR cc_films.id LIKE '".CHhelper::filterInput($filterArray['search_word'])."%')";
+        }else {
+            $films->leftJoin('cc_channels_contracts', function ($join) {
+                $join->on('cc_channels_contracts.bcontracts_id', '=', 'cc_base_contracts.id')
+                    ->where('cc_channels_contracts.channel_id','=', $this->storeID);
+            });
         }
 
-        if (!empty($filterArray['cp']) && is_numeric($filterArray['cp'])) {
-            $cpFilms = FilmOwners::where('owner_id', CHhelper::filterInputInt($filterArray['cp']))->lists('films_id')->toArray();
-            $filterCp .= " AND cc_films.id IN  ('".implode("','",$cpFilms)."') ";
-        }
-        if (!empty($plFilms) && !empty($cpFilms)){
-            $filterFilms =  array_intersect($plFilms,$cpFilms);
-            $filter .=  " AND cc_films.id IN  ('".implode("','",$filterFilms)."') ";
-        }
-        else
-            $filter .=  $filterPl.$filterCp;
-
-        /**/
-        if ($filterArray['vaultStatus'] == 1) {
-            $preQuery  = "INNER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id AND cc_channels_contracts.channel_id=".$this->storeID."
-                WHERE 1 = 1 $filterCp $filter  AND cc_films.deleted=0 ";
-        }
-        else if ($filterArray['vaultStatus']==2) {
-            $preQuery = "LEFT OUTER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id AND cc_channels_contracts.channel_id=".$this->storeID."
-                WHERE 1=1  $filter AND cc_channels_contracts.id IS NULL   AND cc_films.deleted=0";
-        }
-        else  {
-            $preQuery = "LEFT OUTER JOIN cc_channels_contracts ON cc_channels_contracts.bcontracts_id=cc_base_contracts.id AND cc_channels_contracts.channel_id=".$this->storeID."
-                WHERE 1=1 $filter  AND cc_films.deleted=0";
+        if($this->searchWord)
+        {
+            $films->where(function($query){
+                $query->where('cc_films.title', 'like', "$this->searchWord%")
+                    ->orWhere('cc_films.id', 'like', "$this->searchWord%");
+            });
         }
 
-        $q="Select cc_films.*,cc_films.id as filmID,cc_vaults.*,cc_vaults.id as vaultID, cc_channels_contracts.id as channelContractID  FROM cc_vaults
-                    INNER JOIN cc_films ON cc_films.id=cc_vaults.films_id
-                    INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id
-                    $preQuery GROUP BY cc_vaults.films_id ORDER BY $sort ";
-
-        $res = Film::hydrateRaw($q)->keyBy('id');
-        //dd($res);
-        $qt="Select COUNT(cc_films.id) as count  FROM cc_vaults
-                    INNER JOIN cc_films ON cc_films.id=cc_vaults.films_id
-                    INNER JOIN cc_base_contracts ON cc_base_contracts.films_id=cc_films.id
-                    $preQuery ";
-
-        $resTotal = Film::hydrateRaw($qt);
-
-        $resTotal = $resTotal->first()->total;
-       // $resTotal= G('DB')->query($qt);
-        //dd($res);
-
-
-
-       // $res_deleted = G('DB')->query("SELECT cc_vaults.films_id, cc_vaults.companies_id, cc_vaults.delete_dt  FROM cron_jobs inner join cc_vaults on cron_jobs.films_id=cc_vaults.films_id");
-        $resDeleted = CronJobs::join('cc_vaults', 'cron_jobs.films_id', '=', 'cc_vaults.films_id')->select('cc_vaults.films_id', 'cc_vaults.companies_id', 'cc_vaults.delete_dt')->get();
-
-        foreach($resDeleted as $key => $val) {
-            if($val->delete_dt > 0)
-                $filmsDelete['AllTeritories'][$val->films_id] = $val->delete_dt;
-            else
-                $filmsDelete['InSomeTeritories'][$val->films_id] = 1;
+        if($this->filterContentProviderID)
+        {
+            $contentProviderFilmsIDS = FilmOwners::where('owner_id', $this->filterContentProviderID)->where('type', 0)->lists('films_id');
+            $films = $films->whereIn('cc_films.id', $contentProviderFilmsIDS);
         }
 
-        $films = $this->getVaultAllFilms();
+        $filmsTotal = DB::table(DB::raw("({$films->groupBy('cc_vaults.films_id')->select('cc_films.id as id', 'cc_vaults.id as vaultID', 'cc_channels_contracts.id as channelContractID')->toSql()}) as tmpTable"))->mergeBindings($films->getQuery())->count();
+        $films = $films->select('cc_films.*', 'cc_vaults.*', 'cc_vaults.id as vaultID', 'cc_channels_contracts.id as channelContractID')
+                       ->groupBy('cc_vaults.films_id')->orderBY('cc_films.'.$this->orderBy, $this->orderType)->limit($this->limit)->skip($this->offset)->get()->keyBy('films_id');
 
-        $filmStores = $this->getFilmsStores($films);
-        $filmsOwners = $this->getOwnerFilms();
-        $filmsContentProviders = $this->getContentProviders();
+        $films = new LengthAwarePaginator($films, $filmsTotal, $this->limit, $this->page);
+        $filmStores = $this->getFilmsStores($this->getVaultAllFilms());
 
-        $items = new LengthAwarePaginator($res, $resTotal, $this->limit, $this->page);
+        $orderBy = $this->orderBy;
+        $orderType = $this->orderType;
 
-        return compact('items', 'filmsOwners', 'filmStores', 'filmsContentProviders');
-        /*
-        $this->classObj->filmsDelete =$filmsDelete;*/
+        $cronJobsFilms= CronJobs::join('cc_vaults', 'cron_jobs.films_id', '=', 'cc_vaults.films_id')->select('cc_vaults.films_id', 'cc_vaults.companies_id', 'cc_vaults.delete_dt')->get();
+
+        if(!$cronJobsFilms->isEmpty()) {
+            $cronJobsFilms->each(function($film) {
+                if($film->delete_dt > 0)
+                    $this->deletedFilmsForXchange['AllTeritories'][$film->films_id] = $film->delete_dt;
+                else
+                    $this->deletedFilmsForXchange['InSomeTeritories'][$film->films_id] = 1;
+            });
+
+        }
+        $deletedFilmsForXchange = $this->deletedFilmsForXchange;
+        $ownerFilmIDS = $this->getOwnerFilms();
+
+        return compact('films', 'filmStores', 'orderBy', 'orderType', 'deletedFilmsForXchange', 'ownerFilmIDS');
+    }
+
+    /**
+     *@POST("/xchange/titlesFilter")
+     * @Middleware("auth")
+     */
+    public function titlesFilter()
+    {
+        $data = $this->getFilms();
+        return view('xchange.xchangeTitles.list', $data)->render();
+    }
+
+    /**
+     *@POST("/xchange/pager")
+     * @Middleware("auth")
+     */
+    public function pager()
+    {
+        $this->page = (!empty($this->request->Input('page')) && is_numeric($this->request->Input('page'))) ? CHhelper::filterInputInt($this->request->Input('page')) : 0;
+
+        if(($this->page - 1) != 0)
+            $this->offset  = ($this->page - 1)*20;
+
+        $data = $this->getFilms();
+        return view('xchange.xchangeTitles.list', $data)->render();
     }
 
     private function getFilmsStores($films)
     {
-        return Store::join('fk_films_owners', 'cc_channels.id', '=', 'fk_films_owners.owner_id')
+        $filmStores = Store::join('fk_films_owners', 'cc_channels.id', '=', 'fk_films_owners.owner_id')
                 ->where('type', '1')
                 ->whereIn('fk_films_owners.films_id', $films)
                 ->select('cc_channels.title', 'fk_films_owners.films_id')
                 ->get()->keyBy('films_id')->lists('title', 'films_id');
+
+        foreach($filmStores as $storeID => $storeTitle)
+            $this->stores[$storeID][] = $storeTitle;
+
+        return $this->stores;
     }
 
     /**

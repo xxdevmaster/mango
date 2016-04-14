@@ -16,7 +16,7 @@
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Title" value="" name="filter[searchWord]">
 							 <span class="input-group-btn">
-								<button type="button" class="btn btn-effect-ripple btn-primary" id="titleSearch">
+								<button type="submit" class="btn btn-effect-ripple btn-primary" id="titleSearch">
 									<i class="fa fa-search"></i>
 								</button>
 							</span>
