@@ -242,7 +242,7 @@ class ChannelsManagerController extends Controller
     {
         $subChannel = Subchannels::find($subChannelID);
         $subChannelTitles = FkSubChannelsFilms::where('subchannels_id', $subChannelID)->leftJoin('cc_films', 'cc_films.id', '=', 'fk_subchannels_films.films_id')->get();
-        dd($subChannelTitles);
+        //dd($subChannelTitles);
         return view('store.channelsManager.editSubChannel', compact('subChannel'));
     }
 }
