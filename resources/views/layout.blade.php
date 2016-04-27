@@ -43,6 +43,7 @@
 		<link href="/library/CHTransfer/css/bootstrap-custom-transfer.css" rel="stylesheet" />
 
         <script src="/js/jquery.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		<script src="/assets/jquery-multi-select/jquery.multi-select.js" type="text/javascript" ></script>
 		<script src="/assets/spinner/spinner.min.js" type="text/javascript" ></script>
 		<script src="/assets/select2/select2.min.js" type="text/javascript"></script>

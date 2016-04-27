@@ -45,7 +45,7 @@ if(isset($metadata['images']['localeFilms']) && is_array($metadata['images']['lo
 									<button class="pull-right btn btn-default btn-sm removePosterImage" data-locale="'.$locales['locale'].'" data-localeid="'.$locales['id'].'" aria-hidden="true" style="cursor:pointer">
 										<i class="fa fa-close"></i> 
 									</button>										
-									<div class="col-sm-6 col-md-8">
+									<div class="col-sm-7 col-md-7">
 										<img src="http://cinecliq.assets.s3.amazonaws.com/files/'.$filmPosterImage.'" alt="..." id="cover_imgview" class="cover_imgview_'.$locales['locale'].'" style="max-width:250px">
 									</div>
 									<div class="media-body">
@@ -63,7 +63,7 @@ if(isset($metadata['images']['localeFilms']) && is_array($metadata['images']['lo
 						';
 						
 			$uploadScript .= '
-							CHUpload("'.url().'/titles/metadata/castAndCrew/posterImageUpload", "cover_img_'.$locales['locale'].'","Upload Image", {"filmId":"'.$film->id.'", "locale":"'.$locales['locale'].'", "_token":"'.csrf_token().'" }, function(data){
+							CHUpload("'.url().'/titles/metadata/castAndCrew/posterImageUpload", "cover_img_'.$locales['locale'].'","Upload Image", {"filmID":"'.$film->id.'", "locale":"'.$locales['locale'].'", "_token":"'.csrf_token().'" }, function(data){
 								var response = JSON.parse(data);
 								if(!response.error){
 									autoCloseMsg(0, "Poster Image was uploaded succesfully", 5000);
@@ -98,14 +98,13 @@ if(isset($metadata['images']['localeFilms']) && is_array($metadata['images']['lo
 							else
 								$tsplash = 'black.png';
 						?>
-						<img src="http://cinecliq.assets.s3.amazonaws.com/splash/{{ $tsplash }}" alt="..." id="tsplash_imgview" style="max-width:250px">			
+						<img src="http://cinecliq.assets.s3.amazonaws.com/splash/{{ $tsplash }}" alt="" id="tsplash_imgview" width="250">
 					</div>  
 					<div class="media-body">
 						<div class="form-group">Trailer Splash Image [1920x1080px, JPG or PNG, 500KB max size]</div>
 						<div class="form-group">
-							<div id="uploadifive-tsplash_img" class="uploadifive-button" data-url="{{url()}}/titles/metadata/castAndCrew/tsplashImageUpload" style="height: 29px; line-height: 29px; overflow: hidden; position: relative; text-align: center; width: 129px;">Upload Image
-								<input type="file" id="tsplash_img" name="tsplash_img" style="display: none;">
-								<input type="file" style="font-size: 29px; opacity: 0; position: absolute; right: -3px; top: -3px; z-index: 999;" multiple="multiple">
+							<div id="uploadifive-tsplash_img" class="uploadifive-button" data-url="{{url()}}/titles/metadata/castAndCrew/tsplashImageUpload">Upload Image
+								<input type="file" id="tsplash_img" name="tsplash_img">
 							</div>
 						</div>
 					</div>
@@ -126,7 +125,7 @@ if(isset($metadata['images']['localeFilms']) && is_array($metadata['images']['lo
 							else
 								$fsplash = 'black.png';
 						?>					
-						<img src="http://cinecliq.assets.s3.amazonaws.com/splash/{{ $fsplash }}" alt="..." id="fsplash_imgview" style="max-width:250px">
+						<img src="http://cinecliq.assets.s3.amazonaws.com/splash/{{ $fsplash }}" alt="..." id="fsplash_imgview" width="250">
 					</div>  
 					<div class="media-body">
 						<div class="form-group">Film Splash Image [1920x1080px, JPG or PNG, 500KB max size]</div>
@@ -145,9 +144,9 @@ if(isset($metadata['images']['localeFilms']) && is_array($metadata['images']['lo
 $(document).ready(function(){
 	{!! $uploadScript !!}
 	
-	var filmId = $('input[name="filmId"]').val();
+	var filmID = $('input[name="filmID"]').val();
 	
-	CHUpload("{{url()}}/titles/metadata/castAndCrew/tsplashImageUpload", "uploadifive-tsplash_img", 'Upload Image', {"filmId":filmId, "_token":"{{csrf_token()}}" }, function(data){
+	CHUpload("{{url()}}/titles/metadata/castAndCrew/tsplashImageUpload", "uploadifive-tsplash_img", 'Upload Image', {"filmID":filmID, "_token":"{{csrf_token()}}" }, function(data){
 		var response = JSON.parse(data);
 		if(!response.error){
 			autoCloseMsg(0, "Trailer Splash Image was uploaded succesfully", 5000);
@@ -158,7 +157,7 @@ $(document).ready(function(){
 		}				
 	});	
 	
-	CHUpload("{{url()}}/titles/metadata/castAndCrew/fsplashImageUpload", "uploadifive-fsplash_img", 'Upload Image', {"filmId":filmId, "_token":"{{csrf_token()}}" }, function(data){
+	CHUpload("{{url()}}/titles/metadata/castAndCrew/fsplashImageUpload", "uploadifive-fsplash_img", 'Upload Image', {"filmID":filmID, "_token":"{{csrf_token()}}" }, function(data){
 		var response = JSON.parse(data);
 		if(!response.error){
 			autoCloseMsg(0, "Film Splash Image was uploaded succesfully", 5000);
@@ -171,18 +170,13 @@ $(document).ready(function(){
 	
 	$(".removePosterImage").click(function(){	
 		autoCloseMsgHide();
-		var localeId = $(this).data('localeid');
+		var localeID = $(this).data('localeid');
 		var locale = $(this).data('locale');
 		
 		bootbox.confirm('Do you realy want to delete Cover Image', function(result) {
 			if(result){
-				$.post('{{url()}}/titles/metadata/castAndCrew/posterImageRemove', {filmId:filmId, localeId:localeId }, function(response){
-					if(response.error == 0) {
-						autoCloseMsg(0, response.message, 5000);
-						$('.cover_imgview_'+locale).attr('src', 'http://cinecliq.assets.s3.amazonaws.com/files/nocover.png');
-					}else {
-						autoCloseMsg(1, response.message, 5000);
-					}
+				$.post('{{url()}}/titles/metadata/castAndCrew/posterImageRemove', {localeID:localeID }, function(){
+					$('.cover_imgview_'+locale).attr('src', 'http://cinecliq.assets.s3.amazonaws.com/files/nocover.png');
 				});
 			}
 		});
@@ -192,13 +186,8 @@ $(document).ready(function(){
 		autoCloseMsgHide();
 		bootbox.confirm('Do you realy want to delete trailer Splash', function(result) {
 			if(result){
-				$.post('{{url()}}/titles/metadata/castAndCrew/tsplashImageRemove', { filmId:filmId }, function(response){
-					if(response.error == 0) {
-						autoCloseMsg(0, response.message, 5000);
-						$('#tsplash_imgview').attr('src', 'http://cinecliq.assets.s3.amazonaws.com/splash/black.png');
-					}else {
-						autoCloseMsg(1, response.message, 5000);
-					}
+				$.post('{{url()}}/titles/metadata/castAndCrew/tsplashImageRemove', function(){
+					$('#tsplash_imgview').attr('src', 'http://cinecliq.assets.s3.amazonaws.com/splash/black.png');
 				});
 			}
 		});
@@ -208,13 +197,8 @@ $(document).ready(function(){
 		autoCloseMsgHide();
 		bootbox.confirm('Do you realy want to delete film Splash', function(result) {
 			if(result){
-				$.post('{{url()}}/titles/metadata/castAndCrew/fsplashImageRemove', { filmId:filmId }, function(response){
-					if(response.error == 0) {
-						autoCloseMsg(0, response.message, 5000);
-						$('#fsplash_imgview').attr('src', 'http://cinecliq.assets.s3.amazonaws.com/splash/black.png');
-					}else {
-						autoCloseMsg(1, response.message, 5000);
-					}
+				$.post('{{url()}}/titles/metadata/castAndCrew/fsplashImageRemove', function(){
+					$('#fsplash_imgview').attr('src', 'http://cinecliq.assets.s3.amazonaws.com/splash/black.png');
 				});
 			}
 		});

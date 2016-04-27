@@ -121,7 +121,6 @@ $i = 0;
         </div>
     </div>
 </form>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
     $(function() {
         $('.sliderContent').sortable({

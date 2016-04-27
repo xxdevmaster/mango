@@ -59,31 +59,6 @@
 				?>
 			@endif
 	@endforeach
-{{--@else--}}
-	<?php
-		// $basicLocaleNavTabs = '
-			// <li class="active"> 
-				// <a href="#tabBasicLocale_en" class="tab-level1" data-toggle="tab" aria-expanded="false"> 
-					// <span class="visible-xs"><i class="fa fa-cog"></i></span> 
-					// <span class="hidden-xs">'.$allLocales["en"].'<span> 
-				// </a> 
-			// </li>				
-		// ';
-		// $basicLocaleTabContents = '
-			// <div class="tab-pane active" id="tabBasicLocale_en">
-				// <div class="form-group">
-					// <input type="hidden" name="filmsLocales["en"][localeId]" value="'.$val->id.'">
-					// <span class="text-success pull-right"><span class="glyphicon glyphicon-flag "></span> Default </span>
-					// <label for="title">Title</label>
-					// <input type="text" class="form-control" id="title" name="title" value="">
-				// </div>												
-				// <div class="form-group">
-					// <label class="col-md-2 control-label">Synopsis</label>
-					// <textarea class="form-control" rows="8" name="synopsis" style="resize:none;"></textarea>
-				// </div>																					
-			// </div>					
-		// ';
-	?>			
 @endif
 
 <form id="basicForm" name="basicForm" action="" method="post" role="form">
@@ -93,14 +68,6 @@
 	<div class="tab-content">
 		{!! $basicLocaleTabContents !!}	
 		<div class="form-group">
-			<!--select class="form-control" id="filmsNewLanguage" name="filmsNewLanguage">
-				<option selected="selected" value="">+ Add New Metadata Language</option>
-				@if(isset($allUniqueLocales) && is_array($allUniqueLocales))
-					@foreach($allUniqueLocales as $key => $value)														
-						<option value="{{ $key }}">{{ $value }}</option>													
-					@endforeach
-				@endif
-			</select-->
 			<select class="selectBoxWithSearch" id="filmsNewLanguage" name="filmsNewLanguage" data-placeholder="+ Add New Metadata Language">
 				@if(isset($metadata['basic']['allUniqueLocales']) && is_array($metadata['basic']['allUniqueLocales']))
 						<option selected="selected" value="0">+ Add New Metadata Language</option>
@@ -120,9 +87,7 @@ jQuery(document).ready(function() {
 		width: '100%',
 	});	
 });
-$(document).ready(function(){	
-	var filmId = $('input[name="filmId"]').val();
-
+$(document).ready(function(){
 	//Tab Basic create new language
 	$('#filmsNewLanguage').change(function() {
 		autoCloseMsgHide();
@@ -135,27 +100,15 @@ $(document).ready(function(){
 			bootbox.confirm('Please Confirm adding '+title+' translation', function(result) {
 				if(result) {
 					$('.loading').show();				
-					$.post('{{url()}}/titles/metadata/basic/newLocale', {filmId:filmId,locale:locale},function(response){					
-						if(response.error == 0) {
-							$.post('{{url()}}/titles/metadata/basic/getTemplate', {filmId:filmId,template:'basic'},function(response){							
-								if(response) {
-									$('#basic').html(response);
-									$('a[href="#tabBasicLocale_'+locale+'"]').tab('show');
-									autoCloseMsg(0, title+' translation is adding', 5000);	
-									$('.loading').hide();
-								}else {
-									$('.loading').hide();
-									autoCloseMsg(1, title+' translation is dont adding', 5000);
-								}							
-							});
-							$.post('{{url()}}/titles/metadata/basic/getTemplate', {filmId:filmId,template:'images'},function(responce){
-								if(response.error == 0) {
-									$("#images").html(responce);
-								}
-							});							
+					$.post('/titles/metadata/basic/newLocale', {locale:locale},function(response){
+						if(!response.error) {
+							$('#basic').html(response.basic);
+							$('a[href="#tabBasicLocale_'+locale+'"]').tab('show');
+							$("#images").html(response.images);
+							$('.loading').hide();
 						}else {
 							$('.loading').hide();
-							autoCloseMsg(response.error, response.message, 5000);
+							autoCloseMsg(1, response.message, 5000);
 						}					
 					});
 				}
@@ -168,27 +121,19 @@ $(document).ready(function(){
 		autoCloseMsgHide();
 		
 		var title = $(this).data('title');
-		var localeId = $(this).data('localeid');
+		var localeID = $(this).data('localeid');
 		
 		bootbox.confirm('Do you really want to delete '+title+' language ?', function(result) {
 			if(result) {
 				$('.loading').show();
-				$.post('{{url()}}/titles/metadata/basic/localeRemove', {filmId:filmId, localeId:localeId},function(response){
-					if(response.error == 0) {
-						$.post('{{url()}}/titles/metadata/basic/getTemplate', {filmId:filmId,template:'basic'}, function(response){							
-							if(response) {
-								$('#basic').html(response);
-								$('.loading').hide();
-								autoCloseMsg(0, title+' language is Deleted', 5000);								
-							}							
-						});	
-						$.post('{{url()}}/titles/metadata/basic/getTemplate', {filmId:filmId,template:'images'},function(responce){
-							if(response.error == 0) {
-								$("#images").html(responce);
-							}
-						});							
+				$.post('/titles/metadata/basic/localeRemove', {localeID:localeID},function(response){
+					if(!response.error) {
+						$('#basic').html(response.basic);
+						$("#images").html(response.images);
+						$('.loading').hide();
 					}else {
-						autoCloseMsg(response.error, response.message, 5000);
+						$('.loading').hide();
+						autoCloseMsg(1, response.message, 5000);
 					}
 				});
 			}
@@ -199,29 +144,21 @@ $(document).ready(function(){
 	$('.makeDefaultLocale').click(function(){
 		autoCloseMsgHide();
 		
-		var localeId = $(this).data('localeid');
+		var localeID = $(this).data('localeid');
 		var locale = $(this).data('locale');
 		var title = $(this).data('title');
 		
 		bootbox.confirm('Do you really want to make '+title+' language default?', function(result) {
 			if(result) {
 				$('.loading').show();
-				$.post('{{url()}}/titles/metadata/basic/makeDefaultLocale', {locale:locale, localeId:localeId, filmId:filmId},function(response){
-					if(response.error == 0) {
-						$.post('{{url()}}/titles/metadata/basic/getTemplate', {filmId:filmId,template:'basic'},function(response){							
-							if(response) {
-								$('#basic').html(response);
-								autoCloseMsg(0, title+' language is maked default', 5000);	
-								$('.loading').hide();
-							}							
-						});
-						$.post('{{url()}}/titles/metadata/basic/getTemplate', {filmId:filmId,template:'images'},function(responce){
-							if(response.error == 0) {
-								$("#images").html(responce);
-							}
-						});													
+				$.post('/titles/metadata/basic/makeDefaultLocale', {locale:locale, localeID:localeID},function(response){
+					if(!response.error) {
+						$('#basic').html(response.basic);
+						$("#images").html(response.images);
+						$('.loading').hide();
 					}else {
-						autoCloseMsg(response.error, response.message, 5000);
+						$('.loading').hide();
+						autoCloseMsg(1, response.message, 5000);
 					}
 				});
 			}

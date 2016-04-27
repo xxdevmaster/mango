@@ -45,11 +45,6 @@ class FilmMiddleware
 
         if(!is_numeric($this->filmID) || $this->filmID == 0)
             return view('errors.404', compact('current_menu'));
-
-        $userInfo = Auth::user();
-
-        $accountInfo = $userInfo->account;
-
 		
 		$this->film = $this->getFilm();
 
@@ -57,7 +52,7 @@ class FilmMiddleware
             return view('errors.550');
 
 
-        $request->merge(array("film" => $this->film, 'filmID' => $this->filmID));
+        $request->merge(array("film" => $this->film->first(), 'filmID' => $this->filmID));
         return $next($request);
     }
 

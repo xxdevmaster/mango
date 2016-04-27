@@ -94,6 +94,8 @@ $(document).ready(function(){
 		var seriesForm = $('#seriesForm').serialize();
 		var editFilmSubtitleForm = $('#editFilmSubtitleForm').serialize();
 		var editTrailerSubtitleForm = $('#editTrailerSubtitleForm').serialize();
+		var ageRatesForm = $('#ageRatesForm').serialize();
+
 		$('.loading').show();
 
             $.when(
@@ -116,6 +118,11 @@ $(document).ready(function(){
                     type: 'POST',
                     url: '{{ url() }}/titles/metadata/subtitles/subtitlesSaveChanges',
                     data: editFilmSubtitleForm+'&'+editTrailerSubtitleForm
+                }),
+				$.ajax({
+                    type: 'POST',
+                    url: '{{ url() }}/titles/metadata/subtitles/ageRateSaveChanges',
+                    data: ageRatesForm
                 })
             ).done(function(){
 				$('.loading').hide();
@@ -127,28 +134,9 @@ $(document).ready(function(){
             });		
 	});
 	
-	$('form').submit(function(){
-		return false;
+	$('form').submit(function(e){
+		e.stopPropagation();
 	});
 });
-</script>	
-
-
-
-<script>
-// Cast And Crew
-$(document).ready(function(){
-	//Person Image Upload
-
-	/*$(document).on('click', '#uploadifive-person', function(){
-
-		var personId = $('input[name="personId"]').val();
-		var _token = $('input[name="_token"]').val();
-		var url = this_.data('url');
-		console.log('opens');
-
-	});	*/
-	//End	
-});
-</script>				
+</script>
 @stop

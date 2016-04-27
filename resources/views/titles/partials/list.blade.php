@@ -58,10 +58,14 @@
                     {{ $film->title }}
                 </td>
                 <td class="w-450">
-                    <span>{{ implode(' , ', $filmCP[$film->id])  }}</span>
+                    @if(array_key_exists($film->id, $filmCP))
+                        <span>{{ implode(' , ', $filmCP[$film->id])  }}</span>
+                    @endif
                 </td>
                 <td class="w-450">
-                    <span>{{ implode(' , ', $filmStores[$film->id]) }}</span>
+                    @if(array_key_exists($film->id, $filmStores))
+                        <span>{{ implode(' , ', $filmStores[$film->id]) }}</span>
+                    @endif
                 </td>
                 <td> T  F </td>
                 <td>

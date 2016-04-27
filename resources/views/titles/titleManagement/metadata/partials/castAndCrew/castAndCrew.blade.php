@@ -12,10 +12,10 @@
 						@endif
 					</span>			
 					<div class="pull-right btn-group-sm">
-						<button class="btn btn-default tooltips editPerson" data-personid="{{$persons->id}}" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+						<button class="btn btn-default tooltips editPerson" data-personid="{{ $persons->id }}" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
 							<i class="fa fa-pencil-square-o"></i>
 						</button>
-						<button class="btn btn-danger removePerson tooltips" data-personid="{{$persons->id}}" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+						<button class="btn btn-danger removePerson tooltips" data-personid="{{ $persons->id }}" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
 							<i class="fa fa-close"></i>
 						</button>
 					</div>
@@ -40,38 +40,30 @@
 
 <script>
 $(document).ready(function(){
-	var filmId = $('input[name="filmId"]').val();
-	
 	$('#addNewPersonModalOpen').click(function(){
 		autoCloseMsgHide();
-		
-		$.post('{{url()}}/titles/metadata/castAndCrew/getNewPersonForm', {filmId:filmId}, function(data){
-			$("#newPersonFormDiv").html(data);
+
+		$.post('/titles/metadata/castAndCrew/getNewPersonForm', function(response){
+			$("#newPersonFormDiv").html(response);
 			$('#addNewPersonModal').modal('show');
-			//$('html').css({'overflow-y':'hidden'});
 		});
+
 	});
 
 	//Remove Person
 	$(".removePerson").click(function() {
 		autoCloseMsgHide();
-		var personId = $(this).data('personid');
-		
+		var personID = $(this).data('personid');
 		bootbox.confirm('Do you really want to delete this Person?', function(result) {
 			if(result) {
 				$('.loading').show();				
-				$.post('{{url()}}/titles/metadata/castAndCrew/personRemove', {filmId:filmId, personId:personId},function(responce){					
-					if(responce.error == 0) {
-						$.post('{{url()}}/titles/metadata/basic/getTemplate', {filmId:filmId, personId:personId, template:'castAndCrew'},function(data){							
-							if(data) {
-								$('#castAndCrew').html(data);
-								$('.loading').hide();
-								autoCloseMsg(0, 'Person  is Removed', 5000);	
-							}							
-						});						
+				$.post('/titles/metadata/castAndCrew/personRemove', {personID:personID},function(response){
+					if(!response.error) {
+						$('#castAndCrew').html(response);
+						$('.loading').hide();
 					}else {
 						$('.loading').hide();
-						autoCloseMsg(1, 'Person  is dont Removed', 5000);
+						autoCloseMsg(1, response.error, 5000);
 					}					
 				});
 			}
@@ -82,12 +74,14 @@ $(document).ready(function(){
 	$('.editPerson').click(function(e){
 		e.stopPropagation();
 		autoCloseMsgHide();
+		var personID = $(this).data('personid');
 		
-		var personId = $(this).data('personid');
-		
-		$.post('{{url()}}/titles/metadata/castAndCrew/getPersonEditForm', {filmId:filmId, personId:personId}, function(data){
-			$('#editPersonForm').html(data);
-			$('#editPersonModal').modal('show');
+		$.post('/titles/metadata/castAndCrew/getPersonEditForm', {personID:personID}, function(response){
+			if(!response.error) {
+				$('#editPersonForm').html(response);
+				$('#editPersonModal').modal('show');
+			}else
+				autoCloseMsg(1, response.error, 5000);
 		});
 		
 	});	

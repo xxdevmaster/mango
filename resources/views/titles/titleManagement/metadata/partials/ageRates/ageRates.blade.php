@@ -1,37 +1,33 @@
 <?
 $select = '';
 ?>
-<div class="miniwell countries">
-    <form name="ageRates" id="ageRates">
-        <input type="hidden" name="films_id" id="films_id" value="2505">
-        <input type="hidden" name="act" value="saveAgeRates">
-		@if(isset($metadata['ageRates']['ageRate']))
-			@foreach($metadata['ageRates']['ageRate'] as $key => $value)
-				@foreach($value as $v)
-					<?php
-						//if(in_array($v->id,$metadata['ageRates']['filmRates']))
-							//echo 100000;
-					?>
-				@endforeach
-				<div class="well ageRatesWell">
-					<div class="row">
-						<p class="col-lg-5">{{ $value[0]->countryTitle }}</p>
-						<div class="cInputs col-lg-7">
-							<select class="form-control" name="ar[3]" id="ar[3]">
-								<option value="0" {{ $select }}>Select Rating </option>
+<form id="ageRatesForm" role="form">
+	@if(isset($metadata['ageRates']['ageRate']))
+		@foreach($metadata['ageRates']['ageRate'] as $value)
+			<div class="well ageRatesWell">
+				<div class="row">
+					<p class="col-lg-5">{{ $value[0]->countryTitle }}</p>
+					<div class="cInputs col-lg-7">
+						<select class="form-control" name="ageRates[{{ $value[0]->id }}]">
+							<option value="0" {{ $select }}>Select Rating </option>
+							@if(isset($value))
 								@foreach($value as $v)
-									@if(in_array($v->id,$metadata['ageRates']['filmRates']))
+									@if(in_array($v->id, $metadata['ageRates']['filmRates']))
 										<?php
 											$select = 'selected';
 										?>
-									@endif									
+									@else
+										<?php
+											$select = '';
+										?>
+									@endif
 									<option value="{{$v->id}}" <?php echo $select;?>>{{ $v->code }} - {{ $v->title }}</option>
 								@endforeach
-							</select>
-						</div>
+							@endif
+						</select>
 					</div>
 				</div>
-			@endforeach
-		@endif
-    </form>
-</div>
+			</div>
+		@endforeach
+	@endif
+</form>

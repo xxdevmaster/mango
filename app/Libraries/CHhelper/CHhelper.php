@@ -2,9 +2,9 @@
 namespace App\Libraries\CHhelper;
 
 use DB;
-use App\Film;
 use App\Models\ZaccountsView;
 use Auth;
+use App\Models\ChannelsContracts;
 class CHhelper {
 	private static $allUniqueLocales = array();
 	
@@ -127,6 +127,14 @@ class CHhelper {
 			'T14_EUR' => '13.99',
 			'T15_EUR' => '14.99'
 		]);
+	}
+
+	public static function isPublish($film)
+	{
+		$baseContractID = $film->baseContract->id;
+		$authUser = Auth::user();
+		$storeID = $authUser->account->platforms_id;
+		return ChannelsContracts::where('bcontracts_id', $baseContractID)->where('channel_id', $storeID)->value('film_status');
 	}
 
 	public function getTitlesTotal()

@@ -69,18 +69,14 @@ class TitlesController extends Controller
             $filterStoreID = (!empty($filter['pl']) && is_numeric($filter['pl'])) ? CHhelper::filterInputInt($filter['pl']) : false;
             $filterContentProviderID = (!empty($filter['cp']) && is_numeric($filter['cp'])) ? CHhelper::filterInputInt($filter['cp']) : false;
             if ($filterStoreID) {
-                $storeFilmsIDS = FilmOwners::where('owner_id', $filterStoreID)->where('type', 1)->lists('films_id')->toArray();
+                $filterIDS = $storeFilmsIDS = FilmOwners::where('owner_id', $filterStoreID)->where('type', 1)->lists('films_id')->toArray();
             }
             if ($filterContentProviderID) {
-                $contentProviderFilmsIDS = FilmOwners::where('owner_id', $filterContentProviderID)->where('type', 0)->lists('films_id')->toArray();
+                $filterIDS = $contentProviderFilmsIDS = FilmOwners::where('owner_id', $filterContentProviderID)->where('type', 0)->lists('films_id')->toArray();
             }
 
             if(!empty($storeFilmsIDS) && !empty($contentProviderFilmsIDS))
-                $filterIDS = array_intersect($storeFilmsIDS, $contentProviderFilmsIDS);
-            elseif(!empty($storeFilmsIDS))
-                $filterIDS = $storeFilmsIDS;
-            elseif(!empty($contentProviderFilmsIDS))
-                $filterIDS = $contentProviderFilmsIDS;
+               $filterIDS = array_intersect($storeFilmsIDS, $contentProviderFilmsIDS);
 
             if(!empty($filter['order']) && ($filter['order'] == 'id' || $filter['order'] == 'title'))
                 $this->orderBy = CHhelper::filterInput($filter['order']);
@@ -118,7 +114,7 @@ class TitlesController extends Controller
                 });
             }
 
-            if(isset($filterIDS))
+            if(!empty($filterIDS))
             {
                 $union = $union->whereIn('cc_films.id', $filterIDS);
                 $films = $films->whereIn('cc_films.id', $filterIDS);
@@ -150,7 +146,7 @@ class TitlesController extends Controller
                 });
             }
 
-            if(!empty($filterIDS))
+            if(isset($filterIDS))
                 $films = $films->whereIn('cc_films.id', $filterIDS);
 
             $total = $films->count();

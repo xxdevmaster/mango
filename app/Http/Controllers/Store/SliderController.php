@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Libraries\CHhelper\CHhelper;
-use App\Models\Silders;
+use App\Models\Sliders;
 use App\Models\FilmSlidersImages;
 use App\Store;
 use Aws\Common\Aws;
@@ -42,10 +42,10 @@ class SliderController extends Controller
     public function getMainSliderID()
     {
         if($this->storeID != 0 || $this->companyID == 1) {
-            $this->slider = Silders::where('channel_id', $this->storeID)->get()->keyBy('id');
+            $this->slider = Sliders::where('channel_id', $this->storeID)->get()->keyBy('id');
 
             if($this->slider->isEmpty())
-                Silders::create([
+                Sliders::create([
                     'channel_id' => $this->storeID,
                     'title' => 'Main Slider'
                 ])->id;

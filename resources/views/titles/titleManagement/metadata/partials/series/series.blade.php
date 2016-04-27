@@ -1,31 +1,32 @@
 <div class="miniwell countries">
 	<form name="seriesForm" id="seriesForm">
-		<input type="hidden" name="filmId" id="filmId" value="{{isset($film->id) ? $film->id : ''}}">
-		<input type="hidden" name="act" value="saveSeries">
 		<div class="form-group">
 			<label>Title type</label>
 			<select class="form-control" id="title_type" name="filmType">
 				@if(isset($film))
-					@if($film->series_parent === 0)
+					@if($film->series_parent == 0)
 						<option value="0" selected="selected">Feature</option>
 						<option value="-1">Series</option>
 						<option value="-2">Episode</option>
-					@elseif($film->series_parent === -1)
+						<?php $display = 'display:none';?>
+					@elseif($film->series_parent == -1)
 						<option value="0">Feature</option>
 						<option value="-1" selected="selected">Series</option>
 						<option value="-2">Episode</option>
+						<?php $display = 'display:none';?>
 					@else
 						<option value="0">Feature</option>
 						<option value="-1">Series</option>
 						<option value="-2" selected="selected">Episode</option>
+						<?php $display = 'display:block';?>
 					@endif
 				@endif
 			</select>
 		</div>	
-		<div id="seriesChiled" style="display:none">
+		<div id="seriesChiled" style="{{ $display }}">
 			<div class="form-group">
 				<label for="form-title">Series</label>
-				<input type="text" style="z-index: 20000; display: none;" id="input-series_parent">
+				<input type="text" class="hidden" style="z-index: 1000;" id="input-series_parent">
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$("#input-series_parent").tokenInput("{{url()}}/titles/metadata/series/getTokenSeries", {
@@ -34,11 +35,9 @@
 							tokenLimit:1
 						});
 						@if(isset($metadata['series']['parentFilm']))
-							@foreach($metadata['series']['parentFilm'] as $key)
 							<?php
-								echo '$("#input-series_parent").tokenInput("add", {id: "'.$key->id.'", title: "'.$key->title.'"});';
+								echo '$("#input-series_parent").tokenInput("add", {id: "'.$metadata['series']['parentFilm']->id.'", title: "'.$metadata['series']['parentFilm']->title.'"});';
 							?>
-							@endforeach
 						@endif						
 					});
 				</script>				
@@ -72,7 +71,7 @@ $(document).ready(function(){
 		else if(selected == "-2")
 			$("#seriesChiled").show();			
 	});
-	//seriesParentInput([]);	
-});
 
+	$('#spinner1').spinner();
+});
 </script>

@@ -24,6 +24,8 @@ use App\Models\Subchannels;
 use App\FilmOwners;
 use App\Company;
 use App\Store;
+use App\Models\ChannelsVaults;
+use App\Models\Sliders;
 
 class XchangeTitlesController extends Controller
 {
@@ -224,171 +226,312 @@ class XchangeTitlesController extends Controller
     }
 
     /**
-     *@POST("/xchange/soloActAddToStore")
+     * Add the film to account store.
+     * @POST("/xchange/soloActAddToStore")
      * @Middleware("auth")
-     * @Middleware("filmPermission")
      */
     public function soloActAddToStore()
     {
-        DB::transaction(function () {
-            $baseContracts = $this->request->film->baseContract;
+        $this->filmID = (!empty($this->request->Input('filmID')) && is_numeric($this->request->Input('filmID'))) ? CHhelper::filterInputInt($this->request->Input('filmID')) : false;
 
-            $newChannelFilm = ChannelsFilms::create([
-                'channels_id' => $this->platformsID ,
-                'films_id' => $this->request->filmId
+        if(!$this->filmID)
+            return [
+                'error' => '1',
+                'message' => 'Invalid argument film id',
+            ];
+
+        DB::transaction(function () {
+            $film = Film::find($this->filmID);
+            $baseContracts = $film->baseContract;
+
+            ChannelsFilms::create([
+                'channels_id' => $this->storeID ,
+                'films_id' => $film->id
             ]);
 
-            $newFilmOwner = FilmOwners::create([
-                'owner_id' => $this->platformsID ,
-                'films_id' => $this->request->filmId ,
+            FilmOwners::create([
+                'owner_id' => $this->storeID ,
+                'films_id' => $film->id ,
                 'type' => '1',
                 'role' => '4'
             ]);
 
-            $newChannelContract = ChannelsContracts::create([
-                'channel_id' => $this->platformsID ,
+            ChannelsContracts::create([
+                'channel_id' => $this->storeID ,
                 'bcontracts_id' => $baseContracts->id ,
                 'film_status' => '1'
             ]);
 
-            $vaults = Vaults::where('films_id', $this->request->filmId)->get()->keyBy('id');
+            $vaults = Vaults::where('films_id', $film->id)->lists('id');
 
-            foreach($vaults as $key => $val){
+            foreach($vaults as $vaultID){
                 ChannelsVaults::create([
-                    'vaults_id' => $key,
-                    'channels_id' => $this->platformsID
+                    'vaults_id' => $vaultID,
+                    'channels_id' => $this->storeID
                 ]);
             }
         });
+
+        $data = $this->getFilms();
+        return view('xchange.xchangeTitles.list', $data)->render();
     }    
 	
 	/**
-     *@POST("/xchange/soloActDeleteFromStore")
+     * Delete the film from account store.
+     * @POST("/xchange/soloActDeleteFromStore")
      * @Middleware("auth")
      * @Middleware("filmPermission")
      */
     public function soloActDeleteFromStore()
     {
         DB::transaction(function () {
-            $baseContracts = $this->request->film->baseContract;
+            $film = $this->request->film->first();
+            $baseContract = $film->baseContract;
 
-            ChannelsFilms::where('channels_id', $this->platformsID)->where('films_id', $this->request->filmId)->delete();
-            FilmOwners::where('owner_id', $this->platformsID)->where('films_id', $this->request->filmId)->where('type', '1')->delete();
-            ChannelsContracts::where('channel_id', $this->platformsID)->where('bcontracts_id', $baseContracts->id)->delete();
+            ChannelsFilms::where('channels_id', $this->storeID)->where('films_id', $film->id)->delete();
+            FilmOwners::where('owner_id', $this->storeID)->where('films_id', $film->id)->where('type', '1')->delete();
+            ChannelsContracts::where('channel_id', $this->storeID)->where('bcontracts_id', $baseContract->id)->delete();
 
-            $sildersID = Sliders::where('channel_id', $this->platformsID)->select('id')->get()->keyBy('id')->toArray();
-            FilmSlidersImages::where('films_id', $this->request->filmId)
+            $sildersID = Sliders::where('channel_id', $this->storeID)->select('id')->get()->keyBy('id')->toArray();
+            FilmSlidersImages::where('films_id', $film->filmId)
                 ->whereIn('sliders_id', $sildersID)
                 ->update([
                     'films_id' => ''
                 ]);
 
-            $collectionsID = Collections::where('channels_id', $this->platformsID)->select('id')->get()->keyBy('id')->toArray();
-            CollectionsFilms::where('films_id', $this->request->filmId)
+            $collectionsID = Collections::where('channels_id', $this->storeID)->select('id')->get()->keyBy('id')->toArray();
+            CollectionsFilms::where('films_id', $film->id)
                 ->whereIn('collections_id', $collectionsID)
                 ->delete();
 
-            $subchannelsID = Subchannels::where('channels_id', $this->platformsID)->select('id')->get()->keyBy('id')->toArray();
-            SubchannelsFilms::where('films_id', $this->request->filmId)
+            $subchannelsID = Subchannels::where('channels_id', $this->storeID)->select('id')->get()->keyBy('id')->toArray();
+            SubchannelsFilms::where('films_id', $film->id)
                 ->whereIn('subchannels_id', $subchannelsID);
 
-            $vaults = Vaults::where('films_id', $this->request->filmId)->get()->keyBy('id');
+            $vaults = Vaults::where('films_id', $film->id)->get()->keyBy('id');
 
             foreach($vaults as $key => $val){
-                ChannelsVaults::where('channels_id', $this->platformsID)->where('vaults_id', $key)->delete();
+                ChannelsVaults::where('channels_id', $this->storeID)->where('vaults_id', $key)->delete();
             }
         });
+
+        $data = $this->getFilms();
+        return view('xchange.xchangeTitles.list', $data)->render();
     }
 	
 	/**
-     *@POST("/xchange/bulkActAddToStore")
+     * Add the films from xchange to store.
+     * @POST("/xchange/bulkActAddToStore")
      * @Middleware("auth")
      */	
     public function bulkActAddToStore()
 	{
 		if(!empty($this->request->Input('filmsNotInMyStore'))){
-			foreach($this->request->Input('filmsNotInMyStore') AS $k =>$v){
-				if ($v == 'on'){
+			foreach($this->request->Input('filmsNotInMyStore') as $filmID => $status){
+				if ($status == 'on'){
+                    $this->filmID = CHhelper::filterInputInt($filmID);
                     DB::transaction(function () {
-                        $filmID = CHhelper::filterInputInt($k);
+                        $baseContracts = Film::where('id', $this->filmID)->first()->baseContract;
 
-                        $baseContracts = Film::where('id', $filmID)->first()->baseContract;
-
-                        $newChannelFilm = ChannelsFilms::create([
-                            'channels_id' => $this->platformsID ,
-                            'films_id' => $filmID
+                        ChannelsFilms::create([
+                            'channels_id' => $this->storeID ,
+                            'films_id' => $this->filmID
                         ]);
 
-                        $newFilmOwner = FilmOwners::create([
-                            'owner_id' => $this->platformsID ,
-                            'films_id' => $filmID ,
+                        FilmOwners::create([
+                            'owner_id' => $this->storeID ,
+                            'films_id' => $this->filmID ,
                             'type' => '1',
                             'role' => '4'
                         ]);
 
-                        $newChannelContract = ChannelsContracts::create([
-                            'channel_id' => $this->platformsID ,
+                        ChannelsContracts::create([
+                            'channel_id' => $this->storeID ,
                             'bcontracts_id' => $baseContracts->id ,
                             'film_status' => '1'
                         ]);
 
-                        $vaults = Vaults::where('films_id', $filmID)->get()->keyBy('id');
+                        $vaults = Vaults::where('films_id', $this->filmID)->lists('id');
 
-                        foreach($vaults as $key => $val){
+                        foreach($vaults as $vaultID){
                             ChannelsVaults::create([
-                                'vaults_id' => $key,
-                                'channels_id' => $this->platformsID
+                                'vaults_id' => $vaultID ,
+                                'channels_id' => $this->storeID
                             ]);
                         }
                     });
 				}			
 			}		
 		}
+
+        $data = $this->getFilms();
+        return view('xchange.xchangeTitles.list', $data)->render();
     }
 
 	/**
-     *@POST("/xchange/bulkActDeleteFromStore")
+     * Delete the films from store.
+     * @POST("/xchange/bulkActDeleteFromStore")
      * @Middleware("auth")
      */		
     public function bulkActDeleteFromStore()
 	{
 		if(!empty($this->request->Input('filmsInMyStore'))){
-			foreach($this->request->Input('filmsInMyStore') AS $k =>$v){
-				if ($v == 'on'){
+			foreach($this->request->Input('filmsInMyStore') as $filmID => $status){
+                if ($status == 'on'){
+
+                    $this->filmID = CHhelper::filterInputInt($filmID);
                     DB::transaction(function () {
-                        $filmID = CHhelper::filterInputInt($k);
+                        $baseContracts = Film::where('id', $this->filmID)->first()->baseContract;
 
-                        $baseContracts = Film::where('id', $filmID)->first()->baseContract;
+                        ChannelsFilms::where('channels_id', $this->storeID)->where('films_id', $this->filmID)->delete();
+                        FilmOwners::where('owner_id', $this->storeID)->where('films_id', $this->filmID)->where('type', '1')->delete();
+                        ChannelsContracts::where('channel_id', $this->storeID)->where('bcontracts_id', $baseContracts->id)->delete();
 
-                        ChannelsFilms::where('channels_id', $this->platformsID)->where('films_id', $filmID)->delete();
-                        FilmOwners::where('owner_id', $this->platformsID)->where('films_id', $filmID)->where('type', '1')->delete();
-                        ChannelsContracts::where('channel_id', $this->platformsID)->where('bcontracts_id', $baseContracts->id)->delete();
-
-                        $sildersID = Sliders::where('channel_id', $this->platformsID)->select('id')->get()->keyBy('id')->toArray();
-                        FilmSlidersImages::where('films_id', $filmID)
+                        $sildersID = Sliders::where('channel_id', $this->storeID)->select('id')->get()->keyBy('id')->toArray();
+                        FilmSlidersImages::where('films_id', $this->filmID)
                             ->whereIn('sliders_id', $sildersID)
                             ->update([
                                 'films_id' => ''
                             ]);
 
-                        $collectionsID = Collections::where('channels_id', $this->platformsID)->select('id')->get()->keyBy('id')->toArray();
-                        CollectionsFilms::where('films_id', $filmID)
+                        $collectionsID = Collections::where('channels_id', $this->storeID)->select('id')->get()->keyBy('id')->toArray();
+                        CollectionsFilms::where('films_id', $this->filmID)
                             ->whereIn('collections_id', $collectionsID)
                             ->delete();
 
-                        $subchannelsID = Subchannels::where('channels_id', $this->platformsID)->select('id')->get()->keyBy('id')->toArray();
-                        SubchannelsFilms::where('films_id', $filmID)
+                        $subchannelsID = Subchannels::where('channels_id', $this->storeID)->select('id')->get()->keyBy('id')->toArray();
+                        SubchannelsFilms::where('films_id', $this->filmID)
                             ->whereIn('subchannels_id', $subchannelsID);
 
-                        $vaults = Vaults::where('films_id', $filmID)->get()->keyBy('id');
+                        $vaults = Vaults::where('films_id', $this->filmID)->get()->keyBy('id');
 
                         foreach($vaults as $key => $val){
-                            ChannelsVaults::where('channels_id', $this->platformsID)->where('vaults_id', $key)->delete();
+                            ChannelsVaults::where('channels_id', $this->storeID)->where('vaults_id', $key)->delete();
                         }
                     });
 				}			
 			}		
 		}
-    }	
+
+        $data = $this->getFilms();
+        return view('xchange.xchangeTitles.list', $data)->render();
+    }
+
+    private function isFilmNotInStore($filmID)
+    {
+        $film = Film::join('cc_base_contracts', 'cc_base_contracts.films_id', '=', 'cc_films.id')
+                        ->join('cc_channels_contracts', 'cc_channels_contracts.bcontracts_id', '=', 'cc_base_contracts.id')
+                        ->where('cc_channels_contracts.channel_id', $this->storeID)
+                        ->where('cc_films.deleted', 0)
+                        ->where('cc_films.id', $filmID)->get();
+
+      return $film->isEmpty();
+    }
+
+    public function getAvailableCountries($filmID)
+    {
+        $out = [];
+        $availableCountries = Vaults::join('cc_companies', 'cc_companies.id', '=', 'cc_vaults.companies_id')
+                    ->join('cc_geo_contracts', function ($join) {
+                        $join->on('cc_geo_contracts.companies_id', '=', 'cc_vaults.companies_id')
+                             ->where('cc_geo_contracts.films_id', '=', 'cc_vaults.films_id');
+                    })->join('cc_countries', 'cc_countries.id', '=', 'cc_geo_contracts.countries_id')
+                    ->where('cc_vaults.films_id', $filmID)
+                    ->where('cc_geo_contracts.deleted', 0)
+                    ->select('cc_vaults.*', 'cc_companies.title', 'cc_geo_contracts.countries_id' ,'cc_countries.title AS countryTitle')
+                    ->get();
+
+        if(!$availableCountries->isEmpty())
+            foreach($availableCountries as $availableCountry) {
+                $out[$availableCountry['companies_id']]['info'] = $availableCountry['title'];
+                $out[$availableCountry['companies_id']]['delete_dt'] = $availableCountry['delete_dt'];
+                $out[$availableCountry['companies_id']]['countries'][] = $availableCountry['country_title'];
+            }
+
+        return $out;
+    }
+
+    /**
+     * Draw film available countries.
+     * @POST("/xchange/drawAvailableCountries")
+     * @Middleware("auth")
+     * @return laravel response view('xchange.store.countries')
+    */
+    public function drawAvailableCountries()
+    {
+        $this->filmID = (!empty($this->request->Input('filmID')) && is_numeric($this->request->Input('filmID'))) ? CHhelper::filterInputInt($this->request->Input('filmID')) : false;
+
+        if(!$this->filmID)
+            return [
+                'error' => '1',
+                'message' => 'Invalid argument film id',
+            ];
+
+        $isFilmNotInStore = $this->isFilmNotInStore($this->filmID);
+        $availableCountries = $this->getAvailableCountries($this->filmID);
+
+        $channelCompanies = ChannelsVaults::join('cc_vaults', 'cc_vaults.id', '=', 'fk_channels_vaults.vaults_id')
+                            ->where('cc_vaults.films_id', $this->filmID)
+                            ->where('fk_channels_vaults.channels_id', $this->storeID)
+                            ->lists('companies_id', 'companies_id');
+
+        $filmID = $this->filmID;
+
+        return view('xchange.xchangeTitles.countries', compact('availableCountries', 'isFilmNotInStore', 'channelCompanies', 'filmID'))->render();
+    }
+
+    /**
+     *
+     * @POST("/xchange/connectCP2PL")
+     * @Middleware("auth")
+     * @Middleware("filmPermission")
+     */
+    public function connectCP2PL()
+    {
+        $this->filmID = $this->request->filmID;
+        $companyID = (!empty($this->request->Input('companyID')) && is_numeric($this->request->Input('companyID'))) ? CHhelper::filterInputInt($this->request->Input('companyID')) : false;
+
+        if(!$companyID)
+            return [
+                'error' => '1',
+                'message' => 'Invalid argument company id',
+            ];
+
+        $vaults = Vaults::where('cc_vaults.films_id', $this->filmID)->where('cc_vaults.companies_id', $companyID)->lists('id');
+        foreach($vaults as $vaultID) {
+            ChannelsVaults::create([
+                'vaults_id' => $vaultID ,
+                'channels_id' => $this->StoreID
+            ]);
+        }
+
+        return $this->drawAvailableCountries();
+    }
+
+    /**
+     *
+     * @POST("/xchange/disconnectCP2PL")
+     * @Middleware("auth")
+     * @Middleware("filmPermission")
+     */
+    public function disconnectCP2PL()
+    {
+        $this->filmID = $this->request->filmID;
+        $companyID = (!empty($this->request->Input('companyID')) && is_numeric($this->request->Input('companyID'))) ? CHhelper::filterInputInt($this->request->Input('companyID')) : false;
+
+        if(!$companyID)
+            return [
+                'error' => '1',
+                'message' => 'Invalid argument company id',
+            ];
+
+        $vaults = Vaults::where('cc_vaults.films_id', $this->filmID)->where('cc_vaults.companies_id', $companyID)->lists('id');
+
+        foreach($vaults as $vaultID) {
+            ChannelsVaults::where('channels_id', $this->StoreID)->where('vaults_id', $vaultID)->delete();
+        }
+
+        return $this->drawAvailableCountries();
+    }
 
 }

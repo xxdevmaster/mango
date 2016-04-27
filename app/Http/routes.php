@@ -24,7 +24,10 @@ Route::group(['middleware' => 'auth'], function()
 
 	/*Titles Menegment*/
     Route::group(['middleware' => 'filmPermission'], function(){
-         Route::get('titles/metadata/{filmID}', 'TitleManagement\MetadataController@metadataShow')->where('filmID', '[0-9]+');
+         Route::get('titles/metadata/{filmID}', [
+             'uses' => 'TitleManagement\MetadataController@metadataShow' ,
+             'middleware' => 'filmPermission'
+         ])->where('filmID', '[0-9]+');
          Route::get('titles/media/{filmID}', 'TitleManagement\MediaController@mediaShow')->where('filmID', '[0-9]+');
          Route::get('titles/rights/{filmID}', 'TitleManagement\RightsController@rightsShow')->where('filmID', '[0-9]+');
          /*Route::get('titles/rights/{filmID}', [

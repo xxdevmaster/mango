@@ -34,7 +34,7 @@
 					$("#input-jobs").tokenInput("{{url()}}/titles/metadata/castAndCrew/getTokenJobs", {
 						tokenLimit: 1,
 						theme: "facebook",
-						tokenFormatter:function(item){ return '<li><p><input type="hidden" name="jobs" value="'+item.id+'" />' + item.title + '</p></li>' }
+						tokenFormatter:function(item){ return '<li><p><input type="hidden" name="jobID" value="'+item.id+'" />' + item.title + '</p></li>' }
 					});
 				});
 				</script>
@@ -76,43 +76,32 @@ $(document).ready(function(){
 
 	//Add New Person
 	$('#addNewPerson').click(function(){
-		
+
 		var personName = $('input[name="persons"]').val();
-		var jobId = $('input[name="jobs"]').val();
-		
+		var jobID = $('input[name="jobID"]').val();
+
 		if(personName === undefined) {
 			autoCloseMsg(1, 'Field Person is empty', 5000);
 			return false;
-		}		
-		if(jobId === undefined) {
+		}
+		if(jobID === undefined) {
 			autoCloseMsg(1, 'Field Position is empty', 5000);
 			return false;
-		}		
+		}
 		autoCloseMsgHide();
-		
+
 		$('#addNewPersonModal').modal('hide');
 		$('html').css({'overflow-y':'auto'});
-		
+
 		var newPersonForm = $("#newPersonForm").serialize();
-		var filmId = $("input[name='filmId']").val();
 		$('.loading').show();
-		
+
 		$.post('{{url()}}/titles/metadata/castAndCrew/personCreate', newPersonForm, function(response){
-			if(response.error == 0) {
-				$.post('{{url()}}/titles/metadata/basic/getTemplate', {filmId:filmId, template:'castAndCrew'}, function(data){							
-					if(data) {
-						$('#castAndCrew').html(data);
-						$('.loading').hide();
-						autoCloseMsg(0, response.message, 5000);
-					}							
-				});						
-			}else {
-				$('.loading').hide();
-				autoCloseMsg(response.error, response.message, 5000);
-			}
+			$('#castAndCrew').html(response);
+			$('.loading').hide();
 		});
-		
-	});	
+
+	});
 	// End
 });
 </script>

@@ -72,12 +72,15 @@ function CHUpload( url, id, buttonText, params, callback ) {
 		'multi'           	 : false,
 		'formData'       	 : params,
 		'uploadScript'   	 : url,
+		'onError'      		 : function(errorType) {
+									$('.loading').hide();
+									autoCloseMsg(1,'The error was: ' + errorType,50000);
+		},
 		'onUpload'		 	 : function(){
 									autoCloseMsgHide();
 									$('.loading').show();
 							   },
 		'onUploadComplete'	 : function(file, data) {
-									console.log(data);;
 									if(data){
 										if(callback && typeof(callback) === "function") {
 											$('.loading').hide();
@@ -85,5 +88,5 @@ function CHUpload( url, id, buttonText, params, callback ) {
 										}
 									}
 								}
-	});			
+	});
 }

@@ -67,9 +67,9 @@
 								<a href="/titles/metadata/{{ $filmID }}" class="view-link">{{ isset($film->title) ? $film->title : '' }}</a>
 							</td>
 							<td>
-								<span>
-									{{ implode(' , ', $filmStores[$filmID]) }}
-								</span>
+								@if(array_key_exists($filmID, $filmStores))
+									<span>{{ implode(' , ', $filmStores[$filmID]) }}</span>
+								@endif
 							</td>
 							<td class="text-right">
 								You're the owner of this title.
@@ -109,15 +109,15 @@
 										<span class="dengerTxt">
 											This titles will soon be removed from Xchange in some territories.
 										</span><br>
-										<a class="showCountries cp" rel="{{ $filmID }}">Available Countries</a>
+										<a class="showCountries cp" data-filmid="{{ $filmID }}">Available Countries</a>
 									@else
 										<span class="dengerTxt">This title will be removed from Xchange on  {{ $deletedFilmsForXchange['InSomeTeritories'][$filmID] }}.</span>
 									@endif
 								</td>
 								<td>
-									<span>
-										{{ implode(' , ', $filmStores[$filmID]) }}
-									</span>
+									@if(array_key_exists($filmID, $filmStores))
+										<span>{{ implode(' , ', $filmStores[$filmID]) }}</span>
+									@endif
 								</td>
 								<td class="text-center">
 									@if($film->channelContractID > 0)
@@ -140,52 +140,26 @@
 									<a href="/review/{{ $filmID }}" class="view-link">
 										{{ isset($film->title) ? $film->title : '' }}
 									</a><br>
-									<a class="showCountries cp" rel="{{ $filmID }}">Available Countries</a>
+									<a class="showCountries cp" data-filmid="{{ $filmID }}">Available Countries</a>
 								</td>
 								<td>
-									<span>
-										{{ implode(' , ', $filmStores[$filmID]) }}
-									</span>
+									@if(array_key_exists($filmID, $filmStores))
+										<span>{{ implode(' , ', $filmStores[$filmID]) }}</span>
+									@endif
 								</td>
 								<td class="text-right">
 									@if($film->channelContractID > 0)
-										<span data-filmid="{{ $filmID }}" class="btn btn-primary btn-xs soloActDeleteFromStore cp">Remove from My Store</span>
+										<span data-filmid="{{ $filmID }}" class="btn btn-primary btn-md soloActDeleteFromStore cp">Remove from My Store</span>
 									@else
-										<span data-filmid="{{ $filmID }}" class="btn btn-primary btn-xs soloActAddToStore cp">Add to My Store</span>
+										<span data-filmid="{{ $filmID }}" class="btn btn-primary btn-md soloActAddToStore cp">Add to My Store</span>
 									@endif
 								</td>
+								<tr id="availableCountries_{{ $filmID }}" class="display-none"></tr>
 							</tr>
 						@endif
 					@endif
 				@endforeach
 			@endif
-			<script>
-				$(document).ready(function(){
-					$( ".soloActAddToStore" ).click(function(){
-						var filmId = $(this).data("filmid");
-						autoCloseMsgHide();
-						$(".loading").show();
-						$.post('/xchange/soloActAddToStore', {filmId:filmId}, function(data){
-							//$('#listContent').html(data);
-							$("#bulkActCheckbox").prop('checked', false);
-							$(".loading").hide();
-						});
-					});
-
-
-					$( ".soloActDeleteFromStore" ).click(function(){
-						var filmId = $(this).data("filmid");
-						autoCloseMsgHide();
-						$(".loading").show();
-						$.post('/xchange/soloActDeleteFromStore', {filmId:filmId}, function(data){
-							//$('#listContent').html(data);
-							$("#bulkActCheckbox").prop('checked', false);
-							$(".loading").hide();
-						});
-					});
-
-				});
-			</script>
 			</tbody>
 		</table>
 	</div>
@@ -196,48 +170,49 @@
 <script>
 	$(document).ready(function(){
 
-		/* Add films to vault */
-		$( ".soloActAddToVault" ).click(function(){
-			var filmID = $(this).data("id");
+		/* Add film from xchange to store */
+		$( ".soloActAddToStore" ).click(function(){
+			var filmID = $(this).data("filmid");
 			autoCloseMsgHide();
 			$(".loading").show();
-			$.post('/CPTitles/soloActAddToVault', 'filmID='+filmID+'&'+$('#titlesFilter').serialize(), function(data){
+			$.post('/xchange/soloActAddToStore', {filmID:filmID}, function(data){
 				$('#xchangeTitles').html(data);
 				$("#bulkActCheckbox").prop('checked', false);
 				$(".loading").hide();
 			});
 		});
 
-		/* Delete films from vault */
-		$( ".soloActDeleteFromVault" ).click(function(){
-			var filmID = $(this).data("id");
+		/* Delete the film from store */
+		$( ".soloActDeleteFromStore" ).click(function(){
+			var filmID = $(this).data("filmid");
 			autoCloseMsgHide();
 			$(".loading").show();
-			$.post('/CPTitles/soloActDeleteFromVault', 'filmID='+filmID+'&'+$('#titlesFilter').serialize(), function(data){
+			$.post('/xchange/soloActDeleteFromStore', {filmID:filmID}, function(data){
 				$('#xchangeTitles').html(data);
 				$("#bulkActCheckbox").prop('checked', false);
 				$(".loading").hide();
 			});
 		});
 
-		/* Add films to vault which the checked*/
-		$("#bulkActAddToVault").click(function(){
+
+		/* Add the films from xchange to store. */
+		$( "#bulkActAddToStore" ).click(function(){
 			autoCloseMsgHide();
 			$(".loading").show();
-			$.post('/CPTitles/bulkActAddToVault', $("#vaultCPBulkForm").serialize()+'&'+$('#titlesFilter').serialize(), function(data){
+			$.post('/xchange/bulkActAddToStore', $("#vaultBulkForm").serialize(), function(data){
 				$('#xchangeTitles').html(data);
 				$("#bulkActCheckbox").prop('checked', false);
 				$(".loading").hide();
 			});
 		});
 
-		/* Delete films from vault which the checked */
-		$("#bulkActDeleteFromVault").click(function(){
-			bootbox.confirm('You are about to remove the selected titles from vault. Are you sure? ', function(result) {
+		/* Delete the films from store. */
+		$( "#bulkActDeleteFromStore" ).click(function(){
+			bootbox.confirm('You are about to remove the selected titles from your store. Are you sure?', function(result) {
 				if(result) {
 					autoCloseMsgHide();
 					$(".loading").show();
-					$.post('/CPTitles/bulkActDeleteFromVault', $("#vaultCPBulkForm").serialize()+'&'+$('#titlesFilter').serialize(), function(data){
+					$.post('/xchange/bulkActDeleteFromStore', $("#vaultBulkForm").serialize(), function(data){
 						$('#xchangeTitles').html(data);
 						$("#bulkActCheckbox").prop('checked', false);
 						$(".loading").hide();
@@ -246,6 +221,17 @@
 			});
 		});
 
+		/* Show Available Countries*/
+		$('.showCountries').click(function () {
+			autoCloseMsgHide();
+			var filmID = $(this).data("filmid");
+
+			$.post('/xchange/drawAvailableCountries', {filmID:filmID}, function(data){
+				$('#availableCountries_'+filmID).html(data);
+				$('#availableCountries_'+filmID).fadeToggle();
+			});
+
+		});
 
 		/* Xchange cp titles Pagination */
 		$('.pagination li').click(function(e){

@@ -70,7 +70,7 @@
                 <li><a href="/store/channelsManager">Channels Manager</a></li>
                 <li><a href="/store/subscriptions">Subscriptions</a></li>
                 <li><a href="/store/subscribers">Subscribers</a></li>
-                <li><a class="menuDisabled" href="/store/frontPageManager">Front Page Manager</a></li>
+                <!--li><a class="menuDisabled" href="/store/frontPageManager">Front Page Manager</a></li-->
                 <li><a href="/store/giftVoucher">Gift Vauchers</a></li>
                 <li><a href="/store/urlSetup">Url Setup</a></li>
             </ul>
