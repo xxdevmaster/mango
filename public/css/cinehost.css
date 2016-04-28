@@ -10,6 +10,9 @@
 .w-450{
     width:450px;
 }
+.m-l-40 {
+    margin-left: 40px;
+}
 .margin-top10{
 margin-top:10px !important;	
 }
@@ -340,3 +343,6 @@ margin-top: 20px;
 .codes{cursor:pointer;margin-left:2px;}
 .codes span{background: transparent;opacity: 0;font-size:0;}
 .vaucherBox{padding:8px 15px !important;margin-bottom:0;}
+.removeSubChannelLanguage {
+    margin-bottom:5px;
+}

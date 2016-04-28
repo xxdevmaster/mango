@@ -26,9 +26,20 @@
                 <div class="modal-body">
                     <form role="form" id="newChannelForm">
                         <div class="form-group">
-                            <label for="channelTitle">Email address</label>
                             <input type="text" name="channelTitle" class="form-control" id="channelTitle" placeholder="Channel Title">
                         </div>
+
+                        <div class="form-group">
+                            <select name="parentChannel" class="form-control">
+                                <option value="0" selected="selected">Select Parent Channel</option>
+                                @if(isset($allSubChannels))
+                                    @foreach($allSubChannels as $allSubChannel)
+                                        <option value="{{ $allSubChannel->id }}">{{ $allSubChannel->title }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label for="input-movieTitles">Movie Titles</label>
                             <input type="text" id="input-movieTitles" name="inputToken" value="" />
@@ -87,6 +98,8 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="editSubChannel" tabindex="-1" role="dialog"></div>
     <script>
         $(document).ready(function(){
 
@@ -113,8 +126,6 @@
                     $('#newChannelModal').modal('hide');
                     $('#subChannelsContent').html(data);
                     $('#newChannelForm')[0].reset();
-                    //$('#subChannelsEditor').modal('hide');
-                    //$('#active-subchannels_'+data.device).load('engine.php?act=get-active-subchannels&device='+data.device,function(){initSubChannelHandlers();});
                 });
 
             });
@@ -131,7 +142,7 @@
         }
 
 
-        $(function() {
+        /*$(function() {
             $('.channels_sort').sortable({
                 items: ' li' ,
                 update: function (event,ui){
@@ -143,7 +154,7 @@
                     });
                 }
             });
-        });
+        });*/
 
         /*
         $(document.body).on('hidden.bs.modal', function () {

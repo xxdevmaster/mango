@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Store;
 
-use App\FilmOwners;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,7 +9,9 @@ use App\Http\Controllers\Controller;
 use Auth;
 use DB;
 use App\Film;
+use App\AllLocales;
 use App\Models\Subchannels;
+use App\Models\SubChannelsLocale;
 use App\Models\FkSubChannelsFilms;
 use App\Libraries\CHhelper\CHhelper;
 
@@ -39,9 +40,10 @@ class ChannelsManagerController extends Controller
 
     public function channelsManagerShow()
     {
+        $allSubChannels = Subchannels::where('active', 1)->where('deleted', 0)->get();
         $subChannels = $this->loadSubChannels();
 
-        return view('store.channelsManager.channelsManager', compact('subChannels'));
+        return view('store.channelsManager.channelsManager', compact('subChannels', 'allSubChannels'));
     }
 
     public function loadSubChannels()
@@ -64,6 +66,25 @@ class ChannelsManagerController extends Controller
 
     }
 
+    public function getChildrenSubChannels($id)
+    {
+        $custom = Subchannels::where('channels_id', $this->storeID)->where('source', 'custom')->where('parent_id', $id)->get();
+        //$custom = "SELECT c.*,c.title as xtitle FROM cc_subchannels c WHERE c.source = 'custom' AND c.channels_id='{$this->storeID}'";
+
+        $genres = Subchannels::leftJoin('cc_genres', 'cc_subchannels.source_id', '=', 'cc_genres.id')
+            ->where('cc_subchannels.source', 'genres')
+            ->where('cc_subchannels.channels_id', $this->storeID)->where('parent_id', $id)->get();
+
+        // $genres = "SELECT c.*,g.title as xtitle FROM cc_subchannels c LEFT JOIN cc_genres g ON c.source_id = g.id WHERE c.source = 'genres' AND c.channels_id='{$this->storeID}'";
+
+        // dd($custom, $genres);
+        return $custom->merge($genres);
+        //dd(array_merge(Subchannels::hydrateRaw($custom)->toArray(), Subchannels::hydrateRaw($genres)->toArray()), $x->toArray());
+        //$this->assortSubChannels(array_merge($custom,$genres));
+        //foreach ($this->getDevices() as $device => $deviceName)
+        //   usort($this->o[$device], array("SubChannelsEditor", "compareSubChannelsPriority"));
+
+    }
     /**
      * Get Token Movie Titles
      * @POST("/store/channelsManager/getTokenMovieTitles")
@@ -166,10 +187,13 @@ class ChannelsManagerController extends Controller
         $newSubChannelID = Subchannels::create([
             'subscriptions_id' => $this->request->Input('subscriptions_id') ,
             'channels_id' => $this->storeID ,
+            'title' => $this->request->Input('channelTitle') ,
             'source_id' => '' ,
             'source' => 'custom' ,
             'active' => '1' ,
-            'device' => 'web'
+            'device' => 'web' ,
+            'model' => $this->request->Input('model') ,
+            'parent_id' => $this->request->Input('parentChannel')
         ])->id;
 
         $i = 0;
@@ -244,5 +268,126 @@ class ChannelsManagerController extends Controller
         $subChannelTitles = FkSubChannelsFilms::where('subchannels_id', $subChannelID)->leftJoin('cc_films', 'cc_films.id', '=', 'fk_subchannels_films.films_id')->get();
         //dd($subChannelTitles);
         return view('store.channelsManager.editSubChannel', compact('subChannel'));
+    }
+
+    /**
+     * Edit SubChannel Modal Form Show
+     * @POST("/store/channelsManager/editSubChannelFormShowModal")
+     * @Middleware("auth")
+     * @return Response html
+     */
+    public function editSubChannelFormShowModal()
+    {
+        $subChannelID = (!empty($this->request->Input('subChannelID')) && is_numeric($this->request->Input('subChannelID'))) ? CHhelper::filterInputInt($this->request->Input('subChannelID')) : false;
+
+        if(!$subChannelID)
+            return [
+              'error' => '1',
+              'message' => 'Invalid argument subchannel id'
+            ];
+
+        $allLanguages = AllLocales::lists('title', 'code')->toArray();
+        $subChannelLanguages = SubChannelsLocale::where('subchannels_id', $subChannelID)->get();
+        $allUniqueLanguages = CHhelper::getUniqueLocale($allLanguages, $subChannelLanguages);
+
+        $subChannel = Subchannels::find($subChannelID);
+        $subChannelTitles = FkSubChannelsFilms::where('subchannels_id', $subChannelID)->leftJoin('cc_films', 'cc_films.id', '=', 'fk_subchannels_films.films_id')->get();
+
+        return view('store.channelsManager.editFormModal', compact('allLanguages', 'allUniqueLanguages', 'subChannelLanguages', 'subChannel', 'subChannelTitles'));
+    }
+
+    /**
+     * Add New Title Language For SubChannel
+     * @POST("/store/channelsManager/newLocale")
+     * @Middleware("auth")
+     * @return Response html
+     */
+    public function newLocale()
+    {
+        $subChannelID = (!empty($this->request->Input('subChannelID')) && is_numeric($this->request->Input('subChannelID'))) ? CHhelper::filterInputInt($this->request->Input('subChannelID')) : false;
+        $locale = (!empty($this->request->Input('locale'))) ? CHhelper::filterInput($this->request->Input('locale')) : false;
+
+        if(!$subChannelID || !$locale)
+            return [
+                'error' => '1',
+                'message' => 'Invalid argument subchannel id or locale'
+            ];
+
+        SubChannelsLocale::create([
+            'subchannels_id' => $subChannelID,
+            'locale' => $locale
+        ]);
+
+        $subChannel = Subchannels::find($subChannelID);
+        $allLanguages = AllLocales::lists('title', 'code')->toArray();
+        $subChannelLanguages = SubChannelsLocale::where('subchannels_id', $subChannelID)->get();
+        $allUniqueLanguages = CHhelper::getUniqueLocale($allLanguages, $subChannelLanguages);
+
+        return view('store.channelsManager.titlesTab', compact('allLanguages', 'allUniqueLanguages', 'subChannelLanguages', 'subChannel'));
+    }
+
+    /**
+     * Remove Title Language For SubChannel
+     * @POST("/store/channelsManager/removeLanguage")
+     * @Middleware("auth")
+     * @return Response html
+     */
+    public function removeLanguage()
+    {
+        $subChannellanguageID = (!empty($this->request->Input('subChannellanguageID')) && is_numeric($this->request->Input('subChannellanguageID'))) ? CHhelper::filterInputInt($this->request->Input('subChannellanguageID')) : false;
+        $subChannelID = (!empty($this->request->Input('subChannelID')) && is_numeric($this->request->Input('subChannelID'))) ? CHhelper::filterInputInt($this->request->Input('subChannelID')) : false;
+
+        if(!$subChannellanguageID || !$subChannelID)
+            return [
+                'error' => '1',
+                'message' => 'Invalid argument subchannel language id or subchannel id'
+            ];
+
+        SubChannelsLocale::where('id', $subChannellanguageID)->delete();
+
+        $allLanguages = AllLocales::lists('title', 'code')->toArray();
+        $subChannelLanguages = SubChannelsLocale::where('subchannels_id', $subChannelID)->get();
+        $allUniqueLanguages = CHhelper::getUniqueLocale($allLanguages, $subChannelLanguages);
+        $subChannel = Subchannels::find($subChannelID);
+
+        return view('store.channelsManager.titlesTab', compact('allLanguages', 'allUniqueLanguages', 'subChannelLanguages', 'subChannel'));
+    }
+
+    /**
+     * Remove Title Language For SubChannel
+     * @POST("/store/channelsManager/editChannel")
+     * @Middleware("auth")
+     * @return Response html
+     */
+    public function editChannel()
+    {
+        $subChannelID = (!empty($this->request->Input('subChannelID')) && is_numeric($this->request->Input('subChannelID'))) ? CHhelper::filterInputInt($this->request->Input('subChannelID')) : false;
+
+        if($subChannelID) {
+            Subchannels::where('id', $subChannelID)->update([
+                'subscriptions_id' => $this->request->Input('subscriptions_id') ,
+                'channels_id' => $this->storeID ,
+                'source_id' => '' ,
+                'source' => 'custom' ,
+                'active' => '1' ,
+                'device' => 'web'
+            ]);
+
+            $i = 0;
+            FkSubChannelsFilms::where('subchannels_id', $subChannelID)->delete();
+            if(is_array($this->request->Input('sorted')))
+                foreach ($this->request->Input('sorted') as $filmID => $val)
+                {
+                    FkSubChannelsFilms::create([
+                        'subchannels_id' => $subChannelID,
+                        'films_id' => $filmID ,
+                        'priority' => $i
+                    ]);
+                    ++$i;
+                }
+        }
+
+        $subChannels = $this->loadSubChannels();
+        return view('store.channelsManager.subChannels', compact('subChannels'));
     }
 }

@@ -10,5 +10,5 @@ class Subchannels extends Model
 	
     public $timestamps = false;
 	
-	protected $fillable = ['id', 'title', 'deleted', 'active', 'priority', 'source', 'source_id', 'channels_id', 'device', 'subscriptions_id', 'bundles_id', 'model', 'locale'];
+	protected $fillable = ['id', 'title', 'deleted', 'active', 'priority', 'source', 'source_id', 'channels_id', 'device', 'subscriptions_id', 'bundles_id', 'model', 'locale', 'parent_id'];
 }
