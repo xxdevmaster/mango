@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d970e7cb-79be-44a7-bbf3-f440f7349167" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Store/ChannelsManagerController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Store/ChannelsManagerController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Subchannels.php" afterPath="$PROJECT_DIR$/app/Models/Subchannels.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/store/channelsManager/channelsManager.blade.php" afterPath="$PROJECT_DIR$/resources/views/store/channelsManager/channelsManager.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/cinehost.css" afterPath="$PROJECT_DIR$/public/css/cinehost.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/store/channelsManager/subChannels.blade.php" afterPath="$PROJECT_DIR$/resources/views/store/channelsManager/subChannels.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/TitleManagement/MediaController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/TitleManagement/MediaController.php" />
     </list>
     <ignored path="mango.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +27,7 @@
       <file leaf-file-name="ChannelsManagerController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Store/ChannelsManagerController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.2545457">
+            <state vertical-scroll-proportion="0.0">
               <caret line="194" column="51" selection-start-line="194" selection-start-column="51" selection-end-line="194" selection-end-column="51" />
               <folding>
                 <element signature="e#46#74#0#PHP" expanded="true" />
@@ -43,7 +39,7 @@
       <file leaf-file-name="subChannels.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/subChannels.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2692308">
+            <state vertical-scroll-proportion="0.0">
               <caret line="5" column="58" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
               <folding>
                 <marker date="1461862345080" expanded="true" signature="294:484" placeholder="..." />
@@ -58,18 +54,6 @@
                 <marker date="1461862345080" expanded="true" signature="1533:2116" placeholder="..." />
                 <marker date="1461862345080" expanded="true" signature="1727:1843" placeholder="..." />
                 <marker date="1461862345080" expanded="true" signature="1975:2081" placeholder="..." />
-                <marker date="1461862345080" expanded="true" signature="2251:2993" placeholder="..." />
-                <marker date="1461862345080" expanded="true" signature="2288:2616" placeholder="..." />
-                <marker date="1461862345080" expanded="true" signature="2378:2605" placeholder="..." />
-                <marker date="1461862345080" expanded="true" signature="2425:2590" placeholder="..." />
-                <marker date="1461862345080" expanded="true" signature="2501:2570" placeholder="..." />
-                <marker date="1461862345080" expanded="true" signature="2654:2986" placeholder="..." />
-                <marker date="1461862345080" expanded="true" signature="2746:2975" placeholder="..." />
-                <marker date="1461862345080" expanded="true" signature="2793:2960" placeholder="..." />
-                <marker date="1461862345080" expanded="true" signature="2869:2940" placeholder="..." />
-                <marker date="1461862345080" expanded="true" signature="3002:3139" placeholder="..." />
-                <marker date="1461862345080" expanded="true" signature="3036:3139" placeholder="{...}" />
-                <marker date="1461862345080" expanded="true" signature="3047:3127" placeholder="/*...*/" />
               </folding>
             </state>
           </provider>
@@ -78,39 +62,19 @@
       <file leaf-file-name="channelsManager.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/channelsManager.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.653847">
+            <state vertical-scroll-proportion="0.0">
               <caret line="27" column="48" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
               <folding>
                 <marker date="1461862574700" expanded="true" signature="2266:2697" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="2278:2660" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="5652:6724" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="5663:6723" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="5740:6053" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="5751:6052" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="5775:6037" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="5837:6036" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="6131:6215" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="6142:6214" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="6290:6668" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="6301:6667" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="6398:6651" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="6466:6650" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="6765:6914" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="6930:7353" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="6942:7340" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="7061:7326" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="7183:7307" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="7194:7306" placeholder="..." />
-                <marker date="1461862574700" expanded="true" signature="7369:13230" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editFormModal.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="editFormModal.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/editFormModal.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6403402">
+            <state vertical-scroll-proportion="-0.0">
               <caret line="58" column="104" selection-start-line="58" selection-start-column="104" selection-end-line="58" selection-end-column="104" />
               <folding>
                 <marker date="1461863478620" expanded="true" signature="4429:6297" placeholder="..." />
@@ -134,10 +98,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="MediaController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TitleManagement/MediaController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="titlesTab.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/titlesTab.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-30.192308">
+            <state vertical-scroll-proportion="0.0">
               <caret line="68" column="11" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="11" />
               <folding />
             </state>
@@ -157,7 +131,7 @@
       <file leaf-file-name="editSubChannel.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/editSubChannel.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.6153846">
+            <state vertical-scroll-proportion="0.0">
               <caret line="4" column="51" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
               <folding />
             </state>
@@ -167,7 +141,7 @@
       <file leaf-file-name="SubChannelsEditor.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../kiwi/classes/SubChannelsEditor.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.5454545">
+            <state vertical-scroll-proportion="0.0">
               <caret line="5" column="40" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="40" />
               <folding>
                 <element signature="n#getInactiveSubChannels#0;n#SubChannelsEditor#0;n#!!top" expanded="false" />
@@ -226,7 +200,7 @@
       <file leaf-file-name="engine.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../kiwi/engine.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.2181816">
+            <state vertical-scroll-proportion="0.0">
               <caret line="1173" column="36" selection-start-line="1173" selection-start-column="16" selection-end-line="1173" selection-end-column="36" />
               <folding />
             </state>
@@ -338,8 +312,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -778,6 +750,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -857,7 +831,7 @@
     <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23333333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2360215" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864866" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -913,13 +887,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/titles/titleManagement/metadata/partials/seo/forms/addKeywords.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82125604">
-          <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/titles/titleManagement/metadata/partials/seo/forms/editKeywords.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38297874">
@@ -1072,7 +1039,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12631579">
           <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1101,7 +1067,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1116,68 +1081,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="218" column="39" selection-start-line="218" selection-start-column="27" selection-end-line="218" selection-end-column="39" />
-          <folding>
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT slide..cc_channels..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT front..cc_channels..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..cc_films..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..cc_films..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..cc_channels_contracts..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT cc_ba..cc_base_contracts..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..cc_base_contracts..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT cc_ba..cc_base_contracts..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT cc_ba..cc_base_contracts..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT cc_ch..cc_channels_contracts..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..z_locales..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT cc_co..cc_companies..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT id,ti..cc_companies..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT id,ti..cc_subchannels..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..cc_subscriptions..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..cc_bundles..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT DISTI..cc_contracts..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT DISTI..cc_contracts..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT DISTI..cc_contracts..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT DISTI..cc_contracts..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1452772207853" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="{&quot;type&quot;: 'POST'...}" />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..cc_films..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT count..cc_films..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..fk_films_media..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..cc_countries..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..cc_countries..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT title..cc_countries..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..cc_features..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..fk_channels_features..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT z_sub..z_subscription_transactions..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT id FR..cc_films..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT cc_fi..cc_films..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT ids a..id..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT DISTI..cc_films..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..cc_accounts..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..cc_accounts..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT email..cc_users..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..cc_users..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..cc_accounts..." />
-            <marker date="1452772207853" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..cc_users..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1185,7 +1088,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1207,7 +1109,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.71495324">
           <caret line="45" column="72" selection-start-line="45" selection-start-column="72" selection-end-line="45" selection-end-column="72" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1222,7 +1123,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11874273">
           <caret line="6" column="24" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1230,7 +1130,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.4249127">
           <caret line="72" column="106" selection-start-line="72" selection-start-column="106" selection-end-line="72" selection-end-column="106" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1245,7 +1144,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.3846154">
           <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="140" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1253,13 +1151,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15962441">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="16" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../kiwi/engine.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.2181816">
+        <state vertical-scroll-proportion="0.0">
           <caret line="1173" column="36" selection-start-line="1173" selection-start-column="16" selection-end-line="1173" selection-end-column="36" />
           <folding />
         </state>
@@ -1267,7 +1164,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../kiwi/classes/SubChannelsEditor.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5454545">
+        <state vertical-scroll-proportion="0.0">
           <caret line="5" column="40" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="40" />
           <folding>
             <element signature="n#getInactiveSubChannels#0;n#SubChannelsEditor#0;n#!!top" expanded="false" />
@@ -1326,13 +1223,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.74178404">
           <caret line="170" column="8" selection-start-line="170" selection-start-column="8" selection-end-line="170" selection-end-column="81" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/editSubChannel.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.6153846">
+        <state vertical-scroll-proportion="0.0">
           <caret line="4" column="51" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
           <folding />
         </state>
@@ -1340,7 +1236,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/titlesTab.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-30.192308">
+        <state vertical-scroll-proportion="0.0">
           <caret line="68" column="11" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="11" />
           <folding />
         </state>
@@ -1350,7 +1246,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3235725">
           <caret line="13" column="56" selection-start-line="13" selection-start-column="56" selection-end-line="13" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1358,7 +1253,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29868227">
           <caret line="12" column="187" selection-start-line="12" selection-start-column="187" selection-end-line="12" selection-end-column="187" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1372,7 +1266,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Store/ChannelsManagerController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.2545457">
+        <state vertical-scroll-proportion="0.0">
           <caret line="194" column="51" selection-start-line="194" selection-start-column="51" selection-end-line="194" selection-end-column="51" />
           <folding>
             <element signature="e#46#74#0#PHP" expanded="true" />
@@ -1382,7 +1276,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/subChannels.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2692308">
+        <state vertical-scroll-proportion="0.0">
           <caret line="5" column="58" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
           <folding>
             <marker date="1461862345080" expanded="true" signature="294:484" placeholder="..." />
@@ -1397,55 +1291,23 @@
             <marker date="1461862345080" expanded="true" signature="1533:2116" placeholder="..." />
             <marker date="1461862345080" expanded="true" signature="1727:1843" placeholder="..." />
             <marker date="1461862345080" expanded="true" signature="1975:2081" placeholder="..." />
-            <marker date="1461862345080" expanded="true" signature="2251:2993" placeholder="..." />
-            <marker date="1461862345080" expanded="true" signature="2288:2616" placeholder="..." />
-            <marker date="1461862345080" expanded="true" signature="2378:2605" placeholder="..." />
-            <marker date="1461862345080" expanded="true" signature="2425:2590" placeholder="..." />
-            <marker date="1461862345080" expanded="true" signature="2501:2570" placeholder="..." />
-            <marker date="1461862345080" expanded="true" signature="2654:2986" placeholder="..." />
-            <marker date="1461862345080" expanded="true" signature="2746:2975" placeholder="..." />
-            <marker date="1461862345080" expanded="true" signature="2793:2960" placeholder="..." />
-            <marker date="1461862345080" expanded="true" signature="2869:2940" placeholder="..." />
-            <marker date="1461862345080" expanded="true" signature="3002:3139" placeholder="..." />
-            <marker date="1461862345080" expanded="true" signature="3036:3139" placeholder="{...}" />
-            <marker date="1461862345080" expanded="true" signature="3047:3127" placeholder="/*...*/" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/channelsManager.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.653847">
+        <state vertical-scroll-proportion="0.0">
           <caret line="27" column="48" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
           <folding>
             <marker date="1461862574700" expanded="true" signature="2266:2697" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="2278:2660" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="5652:6724" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="5663:6723" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="5740:6053" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="5751:6052" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="5775:6037" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="5837:6036" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="6131:6215" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="6142:6214" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="6290:6668" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="6301:6667" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="6398:6651" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="6466:6650" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="6765:6914" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="6930:7353" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="6942:7340" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="7061:7326" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="7183:7307" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="7194:7306" placeholder="..." />
-            <marker date="1461862574700" expanded="true" signature="7369:13230" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/editFormModal.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6403402">
+        <state vertical-scroll-proportion="-0.0">
           <caret line="58" column="104" selection-start-line="58" selection-start-column="104" selection-end-line="58" selection-end-column="104" />
           <folding>
             <marker date="1461863478620" expanded="true" signature="4429:6297" placeholder="..." />
@@ -1465,6 +1327,14 @@
             <marker date="1461863478620" expanded="true" signature="6088:6277" placeholder="..." />
             <marker date="1461863478620" expanded="true" signature="6158:6276" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TitleManagement/MediaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -28,7 +28,7 @@ class MediaController extends Controller
 
 	public function __construct(Request $request)
 	{
-        $this->filmId = $request->filmId;
+        $this->filmId = $request->filmID;
         $this->film = $request->film;
         $this->request = $request;
 	}
