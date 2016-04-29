@@ -24,7 +24,7 @@
     <div role="tabpanel" class="tab-pane active" id="en">
         <div class="form-group">
             <label for="channelTitle">Channel Title</label>
-            <input type="text" name="channelTitle" class="form-control" id="channelTitle" placeholder="Channel Title">
+            <input type="text" name="channelTitle" class="form-control" id="channelTitle" placeholder="" value="{{ $subChannel->title }}">
         </div>
     </div>
     @if(isset($subChannelLanguages))
@@ -35,7 +35,7 @@
                         <i class="fa fa-close"></i>
                     </button>
                     <label for="channelTitle">Channel Title</label>
-                    <input type="text" name="channelTitle" class="form-control" id="channelTitle" placeholder="Channel Title">
+                    <input type="text" name="channelTitlesLocales[{{ $subChannelLanguage->id }}]" class="form-control" id="channelTitle" placeholder="" value="{{ $subChannelLanguage->title }}">
                 </div>
             </div>
         @endforeach

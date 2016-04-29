@@ -32,9 +32,9 @@
                         <div class="form-group">
                             <select name="parentChannel" class="form-control">
                                 <option value="0" selected="selected">Select Parent Channel</option>
-                                @if(isset($allSubChannels))
-                                    @foreach($allSubChannels as $allSubChannel)
-                                        <option value="{{ $allSubChannel->id }}">{{ $allSubChannel->title }}</option>
+                                @if(isset($parentSubChannels))
+                                    @foreach($parentSubChannels as $subChannel)
+                                        <option value="{{ $subChannel->id }}">{{ $subChannel->title }}</option>
                                     @endforeach
                                 @endif
                             </select>
@@ -75,7 +75,15 @@
                                     <label class="ff-label">Subscription</label>
                                     <select name="subscriptions_id" id="subscriptions_id" class="form-control">
                                         <option value="" selected="selected">Select Subscription</option>
-                                        <option value="29">fd ?  EUR 2.99</option>
+                                        @if(isset($subscriptions))
+                                            @foreach($subscriptions as $subscription)
+                                                @if($subscription->currency == 'EUR')
+                                                    <option value="{{ $subscription->id }}">{{ $subscription->title }} ? {{ $euroPlans->search($subscription->plan_id) }}</option>
+                                                @else
+                                                    <option value="{{ $subscription->id }}">{{ $subscription->title }} ? Every {{ $subscription->regular_frequency }} {{ ($subscription->regular_period == 'day' ? 'Day(s)' : 'Month(s)' ) }} ? {{ $subscription->currency }} {{ $subscription->regular_amount }}</option>
+                                                @endif
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
 
@@ -84,6 +92,11 @@
                                     <label class="ff-label">Bundle</label>
                                     <select name="bundles_id" id="bundles_id" class="form-control">
                                         <option value="" selected="selected">Select Bundle</option>
+                                        @if(isset($bundles))
+                                            @foreach($bundles as $bundleID => $bundle)
+                                                <option value="{{ $bundleID }}">{{ $bundle }}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
 
@@ -102,7 +115,6 @@
     <div class="modal fade" id="editSubChannel" tabindex="-1" role="dialog"></div>
     <script>
         $(document).ready(function(){
-
             /* Import All Titles*/
             $('.importAllTitles').click(function(){
                 $.post('/store/channelsManager/getAllTitlesForToken', function(data){
@@ -122,174 +134,19 @@
 
                 var newChannelForm = $('#newChannelForm').serialize();
 
-                $.post('/store/channelsManager/addChannel', newChannelForm, function(data){
+                $.post('/store/channelsManager/addSubChannel', newChannelForm, function(data){
                     $('#newChannelModal').modal('hide');
                     $('#subChannelsContent').html(data);
                     $('#newChannelForm')[0].reset();
                 });
 
             });
-
-
-
-            //initSubChannelHandlers();
-
         });
+
         function  showChannnelModel(){
             var model = $( "#channel_model" ).val();
             $('.channel_model').hide();
             $('.channel_model_'+model).show();
         }
-
-
-        /*$(function() {
-            $('.channels_sort').sortable({
-                items: ' li' ,
-                update: function (event,ui){
-                    var arr = new Array();
-                    var i = 0;
-                    $(".list-group-item").each(function(){
-                        $(this).children('.position').val(i);
-                        ++i;
-                    });
-                }
-            });
-        });*/
-
-        /*
-        $(document.body).on('hidden.bs.modal', function () {
-            $('#subChannelsEditor').removeData('bs.modal')
-        });
-
-        function initSubChannelHandlers()
-        {
-            $('.active-sort').sortable({
-                connectWith: '.inactive-sort',
-                placeholder: "state-highlight",
-                items: "li:not(.nonvisibleli)",
-                update: function(event, ui) {
-                    updateSubChannelOrder($(this).attr("rel"));
-                }
-            });
-
-            $('.inactive-sort').sortable({
-                connectWith: '.active-sort',
-                placeholder: "state-highlight",
-                items: "li:not(.nonvisibleli)"
-            });
-
-            $('.delete-subchannel').click(function(){
-                var id = $(this).attr("rel");
-                if(window.confirm("You are about to delete subchannel, Are you sure?"))
-                {
-                    var el = $(this);
-                    $.ajax({
-                        type: 'POST',
-                        url: 'engine.php',
-                        data: 'act=remove-subchannel&id='+id,
-                        dataType: 'json',
-                        success: function (data) {
-                            if(data.success)
-                                el.parent().remove();
-                        }
-                    });
-                }
-            });
-        }
-        function updateSubChannelOrder(device)
-        {
-            $.ajax({
-                type: 'POST',
-                url: 'engine.php',
-                data: $('#active-subchannels_'+device).serialize()+'&act=save-subchannels-order&device='+device,
-                dataType: 'json'
-            });
-        }
-
-        function removeAllTitles(id)
-        {
-            $(".token-input-token-facebook").remove();
-            $("#"+id).val('');
-        }
-        function post_modal_add_subchannel()
-        {
-            $("#titles-tokens").tokenInput("tokens.php?pid=titles", {theme: "facebook",onReady:function(){ $('.token-input-list-facebook').sortable(); },tokenFormatter:function(item){ return '<li><input type="hidden" name="sorted['+item.id+']" /><p>' + item.name + '</p></li>' }});
-            $('.add-subchannel-genre').click(function(){
-                $.ajax({
-                    type: 'POST',
-                    url: 'engine.php',
-                    data: $('#form-add-subchannel-genre').serialize(),
-                    dataType: 'json',
-                    success: function (data) {
-                        if(data.success)
-                        {
-                            $('#form-add-subchannel-genre')[0].reset();
-                            $('#subChannelsEditor').modal('hide');
-                            $('#active-subchannels_'+data.device).load('engine.php?act=get-active-subchannels&device='+data.device,function(){initSubChannelHandlers();});
-                        }
-                    }
-                });
-            });
-
-            $('.add-subchannel-custom').click(function(){
-                $.ajax({
-                    type: 'POST',
-                    url: 'engine.php',
-                    data: $('#form-add-subchannel-custom').serialize(),
-                    dataType: 'json',
-                    success: function (data) {
-                        if(data.success)
-                        {
-                            $('#form-add-subchannel-custom')[0].reset();
-                            $('#subChannelsEditor').modal('hide');
-                            $('#active-subchannels_'+data.device).load('engine.php?act=get-active-subchannels&device='+data.device,function(){initSubChannelHandlers();});
-                        }
-                    }
-                });
-            });
-        }
-
-
-        function deleteSubChannelLocale(id,locale){
-            $.ajax({
-                type: "POST",
-                url: "engine.php",
-                data: "act=deleteSubChannelLocale&id="+id+"&locale="+locale,
-                dataType: "json",
-                success: function (data) {
-                    $.ajax({
-                        type: "POST",
-                        url: "engine.php",
-                        data: "act=subChannels-editor-form-edit&id="+id+"",
-                        dataType: "html",
-                        success: function (data) {
-                            $("#subChannelsEditor .modal-dialog .modal-content").html(data);
-                        }
-                    });
-                }
-            });
-        }
-        function post_modal_edit_subchannel(pre)
-        {
-            $("#edit-titles-tokens").tokenInput("tokens.php?pid=titles", {theme: "facebook",prePopulate:pre,onReady:function(){ $('.token-input-list-facebook').sortable(); },tokenFormatter:function(item){ return '<li><input type="hidden" name="sorted['+item.id+']" /><p>' + item.name + '</p></li>' }});
-            $('.update-subchannel-custom').click(function(){
-                $.ajax({
-                    type: 'POST',
-                    url: 'engine.php',
-                    data: $('#form-update-subchannel-custom').serialize(),
-                    dataType: 'json',
-                    success: function (data) {
-                        if(data.success)
-                        {
-                            $('#form-update-subchannel-custom')[0].reset();
-                            $('#subChannelsEditor').modal('hide');
-                            $('#active-subchannels_'+data.device).load('engine.php?act=get-active-subchannels&device='+data.device,function(){initSubChannelHandlers();});
-                            $('#inactive-subchannels_'+data.device).load('engine.php?act=get-inactive-subchannels&device='+data.device,function(){initSubChannelHandlers();});
-                        }
-                    }
-                });
-            });
-        }*/
-
     </script>
 @stop

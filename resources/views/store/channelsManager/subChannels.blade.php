@@ -1,10 +1,32 @@
 <?php
 $activeSubChannels = '';
 $inActiveSubChannels = '';
+$subData = '';
 ?>
-@if(isset($subChannels))
-    @foreach($subChannels as $subChannelID => $subChannel)
+@if(isset($parentSubChannels))
+    @foreach($parentSubChannels as $subChannelID => $subChannel)
         <?php
+            if(array_key_exists($subChannel->id, $childrenSubChannels)) {
+                $subData = '<ul class="childrenSubChannels">';
+                foreach($childrenSubChannels[$subChannel->id] as $childrenSubChan) {
+                    $subData .= '
+                        <li class="list-group-item bg-primary ">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="name w-80" style="display:inline-block">'.$childrenSubChan->title.'</span>
+                            <div class="pull-right">
+                                <button class="btn btn-default btn-sm editSubChannelFormShowModal" data-id="'.$childrenSubChan->id.'" type="button" data-toggle="modal" data-target="#editSubChannel">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </button>
+                                <button class="btn btn-danger btn-sm removeSubChannel" data-id="'.$childrenSubChan->id.'" type="button">
+                                    <i class="fa fa-close"></i>
+                                </button>
+                            </div>
+                        </li>
+                    ';
+                }
+                $subData .= '</ul>';
+            }else
+                $subData = '';
         if($subChannel->active == 1)
             $activeSubChannels .= '
                         <li class="list-group-item bg-primary">
@@ -18,6 +40,7 @@ $inActiveSubChannels = '';
                                     <i class="fa fa-close"></i>
                                 </button>
                             </div>
+                            '.$subData.'
                         </li>
                         ';
         else
@@ -68,6 +91,11 @@ $inActiveSubChannels = '';
             $(".ui-widget-content" ).draggable();
         });*/
 
+        $(function() {
+            $(".ui-widget-content ul" ).sortable();
+            //$(".ui-widget-content " ).draggable();
+        });
+
         $('.editSubChannelFormShowModal').click(function(){
             var subChannelID = $(this).data('id');
 
@@ -92,5 +120,6 @@ $inActiveSubChannels = '';
                 }
             });
         });
+
     });
 </script>

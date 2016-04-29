@@ -10,7 +10,9 @@ use Auth;
 use DB;
 use App\Film;
 use App\AllLocales;
+use App\Models\Bundles;
 use App\Models\Subchannels;
+use App\Models\Subscriptions;
 use App\Models\SubChannelsLocale;
 use App\Models\FkSubChannelsFilms;
 use App\Libraries\CHhelper\CHhelper;
@@ -40,51 +42,50 @@ class ChannelsManagerController extends Controller
 
     public function channelsManagerShow()
     {
-        $allSubChannels = Subchannels::where('active', 1)->where('deleted', 0)->get();
-        $subChannels = $this->loadSubChannels();
-
-        return view('store.channelsManager.channelsManager', compact('subChannels', 'allSubChannels'));
+        $subChannels = $this->getSubChannels();
+        $subscriptions = $this->getSubscriptions();
+        $bundles = $this->getBundles();
+        $euroPlans = CHhelper::getEuroPlans();
+        return view('store.channelsManager.channelsManager', compact('subscriptions', 'euroPlans', 'bundles'), $subChannels);
     }
 
-    public function loadSubChannels()
+    /**
+     * Get All subscriptions.
+     * @return collection
+     */
+    private function getSubscriptions()
     {
-        $custom = Subchannels::where('channels_id', $this->storeID)->where('source', 'custom')->get();
-        //$custom = "SELECT c.*,c.title as xtitle FROM cc_subchannels c WHERE c.source = 'custom' AND c.channels_id='{$this->storeID}'";
-
-        $genres = Subchannels::leftJoin('cc_genres', 'cc_subchannels.source_id', '=', 'cc_genres.id')
-                            ->where('cc_subchannels.source', 'genres')
-                            ->where('cc_subchannels.channels_id', $this->storeID)->get();
-
-       // $genres = "SELECT c.*,g.title as xtitle FROM cc_subchannels c LEFT JOIN cc_genres g ON c.source_id = g.id WHERE c.source = 'genres' AND c.channels_id='{$this->storeID}'";
-
-       // dd($custom, $genres);
-        return $custom->merge($genres);
-        //dd(array_merge(Subchannels::hydrateRaw($custom)->toArray(), Subchannels::hydrateRaw($genres)->toArray()), $x->toArray());
-        //$this->assortSubChannels(array_merge($custom,$genres));
-        //foreach ($this->getDevices() as $device => $deviceName)
-         //   usort($this->o[$device], array("SubChannelsEditor", "compareSubChannelsPriority"));
-
+        return Subscriptions::where('channels_id', $this->storeID)->where('deleted', 0)->get();
     }
 
-    public function getChildrenSubChannels($id)
+    /**
+     * Get All Bundles.
+     * @return collection
+     */
+    private function getBundles(){
+        $arr = [];
+        $bundles = Bundles::where('channels_id', $this->storeID)->where('deleted', 0)->get();
+        foreach($bundles as $bundle){
+            $arr[$bundle->id] = '$'.$bundle->amount.' For  '.$bundle->duration.' Day(s)';
+        }
+        return $arr;
+    }
+
+    public function getSubChannels()
     {
-        $custom = Subchannels::where('channels_id', $this->storeID)->where('source', 'custom')->where('parent_id', $id)->get();
-        //$custom = "SELECT c.*,c.title as xtitle FROM cc_subchannels c WHERE c.source = 'custom' AND c.channels_id='{$this->storeID}'";
+        $subChannels =  Subchannels::where('channels_id', $this->storeID)->where('source', 'custom')->get();
 
-        $genres = Subchannels::leftJoin('cc_genres', 'cc_subchannels.source_id', '=', 'cc_genres.id')
-            ->where('cc_subchannels.source', 'genres')
-            ->where('cc_subchannels.channels_id', $this->storeID)->where('parent_id', $id)->get();
+        $parentSubChannels = $subChannels->where('parent_id', 0);
+        $childrenSubChannels = [];
+        foreach($subChannels as $subChannel) {
+            if($subChannel->parent_id > 0) {
+                $childrenSubChannels[$subChannel->parent_id][] = $subChannel;
+            }
+        }
 
-        // $genres = "SELECT c.*,g.title as xtitle FROM cc_subchannels c LEFT JOIN cc_genres g ON c.source_id = g.id WHERE c.source = 'genres' AND c.channels_id='{$this->storeID}'";
-
-        // dd($custom, $genres);
-        return $custom->merge($genres);
-        //dd(array_merge(Subchannels::hydrateRaw($custom)->toArray(), Subchannels::hydrateRaw($genres)->toArray()), $x->toArray());
-        //$this->assortSubChannels(array_merge($custom,$genres));
-        //foreach ($this->getDevices() as $device => $deviceName)
-        //   usort($this->o[$device], array("SubChannelsEditor", "compareSubChannelsPriority"));
-
+        return compact('subChannels', 'parentSubChannels', 'childrenSubChannels');
     }
+
     /**
      * Get Token Movie Titles
      * @POST("/store/channelsManager/getTokenMovieTitles")
@@ -178,28 +179,27 @@ class ChannelsManagerController extends Controller
 
     /**
      * Add New Channel Or SubChannel
-     * @POST("/store/channelsManager/addChannel")
+     * @POST("/store/channelsManager/addSubChannel")
      * @Middleware("auth")
      * @return array
      */
-    public function addChannel()
+    public function addSubChannel()
     {
         $newSubChannelID = Subchannels::create([
-            'subscriptions_id' => $this->request->Input('subscriptions_id') ,
+            'subscriptions_id' => CHhelper::filterInputInt($this->request->Input('subscriptions_id')) ,
             'channels_id' => $this->storeID ,
-            'title' => $this->request->Input('channelTitle') ,
-            'source_id' => '' ,
+            'title' => CHhelper::filterInput($this->request->Input('channelTitle')) ,
             'source' => 'custom' ,
             'active' => '1' ,
-            'device' => 'web' ,
-            'model' => $this->request->Input('model') ,
-            'parent_id' => $this->request->Input('parentChannel')
+            'model' => CHhelper::filterInputInt($this->request->Input('model')),
+            'parent_id' => CHhelper::filterInputInt($this->request->Input('parentChannel'))
         ])->id;
 
         $i = 0;
         if(is_array($this->request->Input('sorted')))
-            foreach ($this->request->Input('sorted') as $filmID => $val)
+            foreach ($this->request->Input('sorted') as $filmID => $sort)
             {
+                $filmID = CHhelper::filterInputInt($filmID);
                 FkSubChannelsFilms::create([
                     'subchannels_id' => $newSubChannelID,
                     'films_id' => $filmID ,
@@ -208,8 +208,8 @@ class ChannelsManagerController extends Controller
                 ++$i;
             }
 
-        $subChannels = $this->loadSubChannels();
-        return view('store.channelsManager.subChannels', compact('subChannels'));
+        $subChannels = $this->getSubChannels();
+        return view('store.channelsManager.subChannels', $subChannels);
     }
 
     /**
@@ -231,29 +231,8 @@ class ChannelsManagerController extends Controller
             });
         }
 
-        $subChannels = $this->loadSubChannels();
-        return view('store.channelsManager.subChannels', compact('subChannels'));
-        /*
-        $this->wlid=$WL_ID;
-        $id = G('DB')->quote($R['id']);
-        $c = G('DB')->query("SELECT c.* FROM cc_subchannels c WHERE c.id = $id")->fetch(PDO::FETCH_OBJ);
-
-        if(ne($c))
-        {
-            switch($c->source)
-            {
-                case 'genres':
-                    G('DB')->exec("DELETE FROM cc_subchannels WHERE channels_id='{$this->wlid}' AND id=$id");
-                    break;
-                case 'custom':
-                    G('DB')->exec("DELETE FROM fk_subchannels_films WHERE subchannels_id=$id");
-                    G('DB')->exec("DELETE FROM cc_subchannels WHERE channels_id='{$this->wlid}' AND id=$id");
-                    break;
-            }
-            return '{"success":true}';
-        }
-        else
-            return '{"success":false,"message":"SubChannel not found"}';*/
+        $subChannels = $this->getSubChannels();
+        return view('store.channelsManager.subChannels', $subChannels);
     }
 
     /**
@@ -286,14 +265,19 @@ class ChannelsManagerController extends Controller
               'message' => 'Invalid argument subchannel id'
             ];
 
+        $subChannels = $this->getSubChannels();
         $allLanguages = AllLocales::lists('title', 'code')->toArray();
         $subChannelLanguages = SubChannelsLocale::where('subchannels_id', $subChannelID)->get();
         $allUniqueLanguages = CHhelper::getUniqueLocale($allLanguages, $subChannelLanguages);
 
+        $subscriptions = $this->getSubscriptions();
+        $bundles = $this->getBundles();
+        $euroPlans = CHhelper::getEuroPlans();
+
         $subChannel = Subchannels::find($subChannelID);
         $subChannelTitles = FkSubChannelsFilms::where('subchannels_id', $subChannelID)->leftJoin('cc_films', 'cc_films.id', '=', 'fk_subchannels_films.films_id')->get();
 
-        return view('store.channelsManager.editFormModal', compact('allLanguages', 'allUniqueLanguages', 'subChannelLanguages', 'subChannel', 'subChannelTitles'));
+        return view('store.channelsManager.editFormModal', compact('allLanguages', 'allUniqueLanguages', 'subChannelLanguages', 'subChannel', 'subChannelTitles', 'subscriptions', 'bundles', 'euroPlans'), $subChannels);
     }
 
     /**
@@ -365,18 +349,17 @@ class ChannelsManagerController extends Controller
 
         if($subChannelID) {
             Subchannels::where('id', $subChannelID)->update([
-                'subscriptions_id' => $this->request->Input('subscriptions_id') ,
+                'subscriptions_id' => CHhelper::filterInputInt($this->request->Input('subscriptions_id')) ,
                 'channels_id' => $this->storeID ,
-                'source_id' => '' ,
-                'source' => 'custom' ,
-                'active' => '1' ,
-                'device' => 'web'
+                'title' => CHhelper::filterInput($this->request->Input('channelTitle')) ,
+                'model' => CHhelper::filterInputInt($this->request->Input('model')),
+                'parent_id' => CHhelper::filterInputInt($this->request->Input('parentChannel'))
             ]);
 
             $i = 0;
             FkSubChannelsFilms::where('subchannels_id', $subChannelID)->delete();
             if(is_array($this->request->Input('sorted')))
-                foreach ($this->request->Input('sorted') as $filmID => $val)
+                foreach ($this->request->Input('sorted') as $filmID => $sort)
                 {
                     FkSubChannelsFilms::create([
                         'subchannels_id' => $subChannelID,
@@ -385,9 +368,19 @@ class ChannelsManagerController extends Controller
                     ]);
                     ++$i;
                 }
+
+            if (is_array($this->request->Input('channelTitlesLocales'))) {
+                foreach($this->request->Input('channelTitlesLocales') as $localeID => $title) {
+                    $title = CHhelper::filterInput($title);
+                    $localeID = CHhelper::filterInputInt($localeID);
+                    SubChannelsLocale::where('subchannels_id', $subChannelID)->where('id', $localeID)->update([
+                        'title' => $title
+                    ]);
+                }
+            }
         }
 
-        $subChannels = $this->loadSubChannels();
-        return view('store.channelsManager.subChannels', compact('subChannels'));
+        $subChannels = $this->getSubChannels();
+        return view('store.channelsManager.subChannels', $subChannels);
     }
 }
