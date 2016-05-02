@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d970e7cb-79be-44a7-bbf3-f440f7349167" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/cinehost.css" afterPath="$PROJECT_DIR$/public/css/cinehost.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/store/channelsManager/subChannels.blade.php" afterPath="$PROJECT_DIR$/resources/views/store/channelsManager/subChannels.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mango.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,7 +41,7 @@
       <file leaf-file-name="addNewFormModal.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/addNewFormModal.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.73077">
+            <state vertical-scroll-proportion="-47.192307">
               <caret line="111" column="25" selection-start-line="111" selection-start-column="25" selection-end-line="111" selection-end-column="25" />
               <folding />
             </state>
@@ -59,28 +61,28 @@
       <file leaf-file-name="subChannels.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/subChannels.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.384615">
-              <caret line="31" column="50" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="50" />
+            <state vertical-scroll-proportion="-18.307692">
+              <caret line="34" column="77" selection-start-line="34" selection-start-column="51" selection-end-line="34" selection-end-column="77" />
               <folding>
-                <marker date="1461943289984" expanded="true" signature="505:1346" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="505:1375" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="644:664" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="752:1345" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="951:1067" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="1204:1310" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="1639:1829" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="1639:2465" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="1639:2493" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="1639:2535" placeholder="..." />
-                <marker date="1461943289984" expanded="false" signature="1778:1798" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="1881:2464" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="2075:2191" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="2323:2429" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="2677:3532" placeholder="..." />
-                <marker date="1461943289984" expanded="false" signature="2816:2836" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="2919:3502" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="3113:3229" placeholder="..." />
-                <marker date="1461943289984" expanded="true" signature="3361:3467" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="505:1373" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="505:1402" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="644:664" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="779:1372" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="978:1094" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="1231:1337" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="1666:1856" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="1666:2519" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="1666:2547" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="1666:2589" placeholder="..." />
+                <marker date="1462198778476" expanded="false" signature="1805:1825" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="1935:2518" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="2129:2245" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="2377:2483" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="2731:3586" placeholder="..." />
+                <marker date="1462198778476" expanded="false" signature="2870:2890" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="2973:3556" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="3167:3283" placeholder="..." />
+                <marker date="1462198778476" expanded="true" signature="3415:3521" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -172,8 +174,8 @@
       <file leaf-file-name="cinehost.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/cinehost.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9040903">
-              <caret line="352" column="32" selection-start-line="352" selection-start-column="32" selection-end-line="352" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.95204514">
+              <caret line="355" column="22" selection-start-line="355" selection-start-column="22" selection-end-line="355" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -298,7 +300,6 @@
         <option value="$PROJECT_DIR$/app/Models/Subchannels.php" />
         <option value="$PROJECT_DIR$/app/Models/Bundles.php" />
         <option value="$PROJECT_DIR$/resources/views/store/channelsManager/titlesTab.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/store/channelsManager/subChannels.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/store/channelsManager/editFormModal.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/nav.blade.php" />
@@ -307,6 +308,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Store/ChannelsManagerController.php" />
         <option value="$PROJECT_DIR$/resources/views/store/channelsManager/channelsManager.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/store/channelsManager/addNewFormModal.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/store/channelsManager/subChannels.blade.php" />
         <option value="$PROJECT_DIR$/public/css/cinehost.css" />
       </list>
     </option>
@@ -1072,14 +1074,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/addNewFormModal.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.73077">
-          <caret line="111" column="25" selection-start-line="111" selection-start-column="25" selection-end-line="111" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/channelsManager.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-22.23077">
@@ -1088,38 +1082,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/addNewFormModal.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-47.192307">
+          <caret line="111" column="25" selection-start-line="111" selection-start-column="25" selection-end-line="111" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/store/channelsManager/subChannels.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.384615">
-          <caret line="31" column="50" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="50" />
+        <state vertical-scroll-proportion="-18.307692">
+          <caret line="34" column="77" selection-start-line="34" selection-start-column="51" selection-end-line="34" selection-end-column="77" />
           <folding>
-            <marker date="1461943289984" expanded="true" signature="505:1346" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="505:1375" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="644:664" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="752:1345" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="951:1067" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="1204:1310" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="1639:1829" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="1639:2465" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="1639:2493" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="1639:2535" placeholder="..." />
-            <marker date="1461943289984" expanded="false" signature="1778:1798" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="1881:2464" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="2075:2191" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="2323:2429" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="2677:3532" placeholder="..." />
-            <marker date="1461943289984" expanded="false" signature="2816:2836" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="2919:3502" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="3113:3229" placeholder="..." />
-            <marker date="1461943289984" expanded="true" signature="3361:3467" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="505:1373" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="505:1402" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="644:664" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="779:1372" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="978:1094" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="1231:1337" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="1666:1856" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="1666:2519" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="1666:2547" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="1666:2589" placeholder="..." />
+            <marker date="1462198778476" expanded="false" signature="1805:1825" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="1935:2518" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="2129:2245" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="2377:2483" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="2731:3586" placeholder="..." />
+            <marker date="1462198778476" expanded="false" signature="2870:2890" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="2973:3556" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="3167:3283" placeholder="..." />
+            <marker date="1462198778476" expanded="true" signature="3415:3521" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/cinehost.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9040903">
-          <caret line="352" column="32" selection-start-line="352" selection-start-column="32" selection-end-line="352" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.95204514">
+          <caret line="355" column="22" selection-start-line="355" selection-start-column="22" selection-end-line="355" selection-end-column="22" />
           <folding />
         </state>
       </provider>

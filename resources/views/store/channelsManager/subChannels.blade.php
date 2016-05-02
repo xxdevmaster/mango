@@ -13,7 +13,7 @@ $subData = '';
                         <li class="list-group-item bg-primary ">
                             <span class="glyphicon glyphicon-th-list"></span>
                             <span class="name w-80" style="display:inline-block">'.$childrenSubChan->title.'</span>
-                            <div class="pull-right">
+                            <div class="pull-right subChannelToolsButtonGroup">
                                 <button class="btn btn-default btn-sm editSubChannelFormShowModal" data-id="'.$childrenSubChan->id.'" type="button" data-toggle="modal" data-target="#editSubChannel">
                                     <i class="fa fa-pencil-square-o"></i>
                                 </button>
@@ -32,7 +32,7 @@ $subData = '';
                         <li class="list-group-item bg-primary">
                             <span class="glyphicon glyphicon-th-list"></span>
                             <span class="name w-80" style="display:inline-block">'.$subChannel->title.'</span>
-                            <div class="pull-right">
+                            <div class="pull-right subChannelToolsButtonGroup">
                                 <button class="btn btn-default btn-sm editSubChannelFormShowModal" data-id="'.$subChannel->id.'" type="button" data-toggle="modal" data-target="#editSubChannel">
                                     <i class="fa fa-pencil-square-o"></i>
                                 </button>
