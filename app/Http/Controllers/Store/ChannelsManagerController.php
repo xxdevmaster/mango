@@ -43,10 +43,22 @@ class ChannelsManagerController extends Controller
     public function channelsManagerShow()
     {
         $subChannels = $this->getSubChannels();
+        return view('store.channelsManager.channelsManager', compact('subscriptions', 'euroPlans', 'bundles'), $subChannels);
+    }
+
+    /**
+     * Show New SubChannel Modal Form
+     * @POST("/store/channelsManager/showNewSubchannelModalForm")
+     * @Middleware("auth")
+     * @return Response Html
+     */
+    public function showNewSubchannelModalForm()
+    {
+        $subChannels = $this->getSubChannels();
         $subscriptions = $this->getSubscriptions();
         $bundles = $this->getBundles();
         $euroPlans = CHhelper::getEuroPlans();
-        return view('store.channelsManager.channelsManager', compact('subscriptions', 'euroPlans', 'bundles'), $subChannels);
+        return view('store.channelsManager.addNewFormModal', compact('subscriptions', 'euroPlans', 'bundles'), $subChannels);
     }
 
     /**
