@@ -12,7 +12,7 @@
     <!-- Right navbar -->
     <ul class="list-inline navbar-right top-menu top-right-menu">
         <!-- Notification -->
-        <li class="dropdown">
+        <!--li-- class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <i class="fa fa-bell-o"></i>
                 <span class="badge badge-sm up bg-pink count">3</span>
@@ -44,7 +44,7 @@
                     <p><a href="#" class="text-right">See all notifications</a></p>
                 </li>
             </ul>
-        </li>
+        </li-->
         <!-- /Notification -->
 
         <!-- user login dropdown start-->
@@ -54,7 +54,7 @@
                 <span class="username">{{ $user->person }}</span> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
-                <li><a href="profile.html"><i class="fa fa-briefcase"></i>Profile</a></li>
+                <!--li><a href="profile.html"><i class="fa fa-briefcase"></i>Profile</a></li-->
                 <li><a href="{{ action('AuthController@logout')  }}"><i class="fa fa-sign-out"></i> Log Out</a></li>
             </ul>
         </li>

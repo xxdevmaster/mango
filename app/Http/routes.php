@@ -19,7 +19,7 @@ Route::get('auth/logout', 'AuthController@logout');
 Route::group(['middleware' => 'auth'], function()
 {
 
-    Route::get('/', 'MainController@dashboard');
+    Route::get('/', 'TitlesController@titlesShow');
     Route::get('titles', 'TitlesController@titlesShow');
 
 	/*Titles Menegment*/

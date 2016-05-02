@@ -3,7 +3,7 @@
 <nav class="navigation">
     <ul class="list-unstyled">
         @if($user->is('superadmin'))
-        <li {{ ($current_menu == 'dashboard')?'class=active':''  }}><a href="/"><i class="ion-home"></i> <span class="nav-label">Dashboard</span></a></li>
+        <!--li {-- ($current_menu == 'dashboard')?'class=active':''  --}><a href="/"><i class="ion-home"></i> <span class="nav-label">Dashboard</span></a></li-->
         <li class="has-submenu {{ ($current_menu == 'allTitles')?'active':''  }}"><a href="#"><i class="ion-flask"></i> <span class="nav-label">General</span></a>
             <ul class="list-unstyled">
                 <li {{ ($current_menu == 'allTitles')?'class=active':''  }}><a href="{{ action('TitlesController@titlesShow') }}">All Titles (Total 100)</a></li>
@@ -33,7 +33,7 @@
             </ul>
         </li>
         @else
-        <li {{ ($current_menu == 'dashboard')?'class=active':''  }}><a href="/"><i class="ion-home"></i> <span class="nav-label">Dashboard</span></a></li>
+        <!--li {-- ($current_menu == 'dashboard')?'class=active':''  --}><a href="/"><i class="ion-home"></i> <span class="nav-label">Dashboard</span></a></li-->
         <li class="has-submenu {{ ($current_menu == 'allTitles')?'active':''  }}"><a href="#"><i class="ion-flask"></i> <span class="nav-label">General</span></a>
             <ul class="list-unstyled">
                 <li {{ ($current_menu == 'allTitles')?'class=active':''  }}>
