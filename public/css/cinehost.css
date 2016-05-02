@@ -349,3 +349,6 @@ margin-top: 20px;
 .childrenSubChannels {
     margin-top:15px;
 }
+.channels_sort .list-group-item {
+    padding: 12px 0px 20px 20px;
+}
