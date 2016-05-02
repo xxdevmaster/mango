@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="form-group">
-                    <select name="parentChannel" class="form-control">
+                    <select name="parentChannel" id="parentChannel" class="form-control">
                         <option value="0" selected="selected">Select Parent Channel</option>
                         @if(isset($parentSubChannels))
                         @foreach($parentSubChannels as $subChannel)
@@ -41,7 +41,7 @@
                         <span aria-hidden="true" class="glyphicon glyphicon-trash"></span> Clear All Titles
                     </button>
                 </div>
-                <div class="panel panel-default">
+                <div class="panel panel-default" id="model">
                     <div class="panel-heading">Channel Model</div>
                     <div class="panel-body">
                         <div class="form-group">
@@ -104,6 +104,15 @@
                 $('#newChannelForm')[0].reset();
             });
 
+        });
+
+        $('#parentChannel').change(function(){
+            var value = $(this).val();
+
+            if(value != 0)
+                $('#model').hide();
+            else
+                $('#model').show();
         });
     });
 </script>
