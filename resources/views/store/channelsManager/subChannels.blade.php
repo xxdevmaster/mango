@@ -10,7 +10,7 @@ $subData = '';
                 $subData = '<ul class="childrenSubChannels">';
                 foreach($childrenSubChannels[$subChannel->id] as $childrenSubChan) {
                     $subData .= '
-                        <li class="list-group-item bg-primary ">
+                        <li class="list-group-item bg-primary">
                             <span class="glyphicon glyphicon-th-list"></span>
                             <span class="name w-80" style="display:inline-block">'.$childrenSubChan->title.'</span>
                             <div class="pull-right subChannelToolsButtonGroup">
@@ -29,7 +29,7 @@ $subData = '';
                 $subData = '';
         if($subChannel->active == 1)
             $activeSubChannels .= '
-                        <li class="list-group-item bg-primary">
+                        <li class="list-group-item bg-primary" data-id="'.$subChannel->id.'">
                             <span class="glyphicon glyphicon-th-list"></span>
                             <span class="name w-80" style="display:inline-block">'.$subChannel->title.'</span>
                             <div class="pull-right subChannelToolsButtonGroup">
@@ -45,7 +45,7 @@ $subData = '';
                         ';
         else
             $inActiveSubChannels .= '
-                        <li class="list-group-item bg-primary">
+                        <li class="list-group-item bg-primary" data-id="'.$subChannel->id.'">
                             <span class="glyphicon glyphicon-th-list"></span>
                             <span class="name w-80" style="display:inline-block">'.$subChannel->title.'</span>
                             <div class="pull-right">
@@ -56,17 +56,19 @@ $subData = '';
                                     <i class="fa fa-close"></i>
                                 </button>
                             </div>
+                            '.$subData.'
                         </li>
                      ';
         ?>
     @endforeach
 @endif
-<div id="draggable" class="ui-widget-content">
+<div id="draggable">
     <div class="panel panel-color ">
         <div class="panel-heading">Active Channels</div>
         <div class="panel-body">
             <form id="active-subchannels_web">
-                <ul class="list-group channels_sort ui-sortable" rel="web">
+                <ul class="list-group" id="list1">
+                    <li class="nonvisibleli"></li>
                     {!! $activeSubChannels !!}
                 </ul>
             </form>
@@ -77,7 +79,8 @@ $subData = '';
         <div class="panel-heading">Inactive Channels</div>
         <div class="panel-body">
             <form id="active-subchannels_web">
-                <ul class="list-group channels_sort ui-sortable" rel="web">
+                <ul class="list-group" id="list2">
+                    <li class="nonvisibleli"></li>
                     {!! $inActiveSubChannels !!}
                 </ul>
             </form>
@@ -87,13 +90,34 @@ $subData = '';
 <script>
     $(document).ready(function(){
 
-        /*$(function() {
-            $(".ui-widget-content" ).draggable();
-        });*/
+        $('#list1').sortable({
+            connectWith: '#list2',
+            scroll: false,
+            revert: true,
+            items: "li:not(.nonvisibleli)",
+            receive: function (event, ui) {
+                var subChannelID  = ui.item.data('id');
+                var active = 1;
+                $.post('/store/channelsManager/activation', {subChannelID:subChannelID, active:active});
+            },
+            update: function (event, ui) {
 
-        $(function() {
-            $(".ui-widget-content ul" ).sortable();
-            //$(".ui-widget-content " ).draggable();
+            }
+        });
+
+        $('#list2').sortable({
+            connectWith: '#list1',
+            scroll: false,
+            revert: true,
+            items: "li:not(.nonvisibleli)",
+            receive: function (event, ui) {
+                var subChannelID  = ui.item.data('id');
+                var active = 0;
+                $.post('/store/channelsManager/activation', {subChannelID:subChannelID, active:active});
+            },
+            update: function (event, ui) {
+
+            }
         });
 
         $('.editSubChannelFormShowModal').click(function(){

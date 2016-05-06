@@ -395,4 +395,30 @@ class ChannelsManagerController extends Controller
         $subChannels = $this->getSubChannels();
         return view('store.channelsManager.subChannels', $subChannels);
     }
+
+    /**
+     * Remove Title Language For SubChannel
+     * @POST("/store/channelsManager/activation")
+     * @Middleware("auth")
+     * @return Response html
+     */
+    public function activation()
+    {
+        $subChannelID = (!empty($this->request->Input('subChannelID')) && is_numeric($this->request->Input('subChannelID'))) ? CHhelper::filterInputInt($this->request->Input('subChannelID')) : false;
+        $active = (!empty($this->request->Input('active')) && is_numeric($this->request->Input('active'))) ? CHhelper::filterInputInt($this->request->Input('active')) : false;
+
+        if($subChannelID) {
+            $childrens = Subchannels::where('parent_id', $subChannelID)->lists('id', 'id');
+
+            foreach($childrens as $childrenID) {
+                Subchannels::where('id', $childrenID)->update([
+                    'active' => $active
+                ]);
+            }
+
+            Subchannels::where('id', $subChannelID)->update([
+                'active' => $active
+            ]);
+        }
+    }
 }

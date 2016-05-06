@@ -109,7 +109,7 @@
         $('#parentChannel').change(function(){
             var value = $(this).val();
 
-            if(value != 0)
+            if(value != 00)
                 $('#model').hide();
             else
                 $('#model').show();

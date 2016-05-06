@@ -355,3 +355,8 @@ margin-top: 20px;
 .subChannelToolsButtonGroup {
     margin-right:15px;
 }
+.nonvisibleli {
+    visibilty:hidden;
+    height:5px;
+    opacity:0;
+}
